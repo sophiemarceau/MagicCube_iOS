@@ -1,0 +1,31 @@
+//
+//  MagicPrefixHeader.pch
+//  MagicCube
+//
+//  Created by wanmeizty on 21/11/18.
+//  Copyright © 2018年 wanmeizty. All rights reserved.
+//
+
+#ifndef MagicPrefixHeader_pch
+#define MagicPrefixHeader_pch
+
+// 常用系统类
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import <AFNetworking/AFNetworking.h>
+
+// MARK: --------Headers---------
+#import "BHAppConfig.h"
+#import "BHHttpConstant.h"
+#import "BHDefineConstant.h"
+#import "BHNotificationConstant.h"
+#import "BHStaticConstant.h"
+
+// 常用变量
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* MagicPrefixHeader_pch */

@@ -35,6 +35,12 @@
 
 /* Begin PBXFileReference section */
 		7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicCube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAppConfig.h; sourceTree = "<group>"; };
+		B22E4A2D21A4FCCD003F37BD /* BHStaticConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHStaticConstant.h; sourceTree = "<group>"; };
+		B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHNotificationConstant.h; sourceTree = "<group>"; };
+		B22E4A2F21A4FCCD003F37BD /* BHDefineConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHDefineConstant.h; sourceTree = "<group>"; };
+		B22E4A3021A4FCCD003F37BD /* BHHttpConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHHttpConstant.h; sourceTree = "<group>"; };
+		B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicPrefixHeader.pch; sourceTree = "<group>"; };
 		B2D8C54D21A405FA00BBC74F /* MagicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C55021A405FA00BBC74F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B2D8C55121A405FA00BBC74F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -79,6 +85,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B22E4A0621A4FCCD003F37BD /* libs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		B22E4A0A21A4FCCD003F37BD /* custom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		B22E4A0B21A4FCCD003F37BD /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		B22E4A2B21A4FCCD003F37BD /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */,
+				B22E4A2D21A4FCCD003F37BD /* BHStaticConstant.h */,
+				B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */,
+				B22E4A2F21A4FCCD003F37BD /* BHDefineConstant.h */,
+				B22E4A3021A4FCCD003F37BD /* BHHttpConstant.h */,
+				B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		B22E4A3121A4FCCD003F37BD /* classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		B22E4A3221A4FCCD003F37BD /* common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		B22E4A3321A4FCCE003F37BD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		B2D8C54421A405FA00BBC74F = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +165,13 @@
 		B2D8C54F21A405FA00BBC74F /* MagicCube */ = {
 			isa = PBXGroup;
 			children = (
+				B22E4A3321A4FCCE003F37BD /* Categories */,
+				B22E4A3121A4FCCD003F37BD /* classes */,
+				B22E4A3221A4FCCD003F37BD /* common */,
+				B22E4A0A21A4FCCD003F37BD /* custom */,
+				B22E4A2B21A4FCCD003F37BD /* Headers */,
+				B22E4A0621A4FCCD003F37BD /* libs */,
+				B22E4A0B21A4FCCD003F37BD /* Tools */,
 				B2D8C55021A405FA00BBC74F /* AppDelegate.h */,
 				B2D8C55121A405FA00BBC74F /* AppDelegate.m */,
 				B2D8C55321A405FA00BBC74F /* ViewController.h */,
@@ -511,6 +579,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 696JEW54Q7;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MagicCube/Headers/MagicPrefixHeader.pch";
 				INFOPLIST_FILE = MagicCube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -530,6 +599,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 696JEW54Q7;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/MagicCube/Headers/MagicPrefixHeader.pch";
 				INFOPLIST_FILE = MagicCube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
