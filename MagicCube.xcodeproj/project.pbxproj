@@ -18,10 +18,10 @@
 		93CF8E3F21A52EEF004D8111 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E3B21A52EEE004D8111 /* FLAnimatedImageView.m */; };
 		93CF8E4721A52EFC004D8111 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E4321A52EFC004D8111 /* BaseNavigationViewController.m */; };
 		93CF8E4821A52EFC004D8111 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E4521A52EFC004D8111 /* BaseViewController.m */; };
-		93CF8E6221A53409004D8111 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E6121A53408004D8111 /* HomePageViewController.m */; };
-		93CF8E7221A5352C004D8111 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E7121A5352C004D8111 /* ThirdViewController.m */; };
-		93CF8E7521A53546004D8111 /* MyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E7421A53546004D8111 /* MyCenterViewController.m */; };
-		93CF8E7921A5357D004D8111 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E7821A5357D004D8111 /* SecondViewController.m */; };
+		93CF8E8521A53705004D8111 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8421A53705004D8111 /* HomePageViewController.m */; };
+		93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8721A53717004D8111 /* SecondViewController.m */; };
+		93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8A21A5371E004D8111 /* ThirdViewController.m */; };
+		93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8D21A53734004D8111 /* MyCenterViewController.m */; };
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
 		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
@@ -73,14 +73,14 @@
 		93CF8E5D21A52FD3004D8111 /* CommonTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTools.h; sourceTree = "<group>"; };
 		93CF8E5E21A53030004D8111 /* ColorOrFontConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorOrFontConstants.h; sourceTree = "<group>"; };
 		93CF8E5F21A5304D004D8111 /* AdaptDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdaptDevice.h; sourceTree = "<group>"; };
-		93CF8E6021A53408004D8111 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
-		93CF8E6121A53408004D8111 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
-		93CF8E7021A5352C004D8111 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
-		93CF8E7121A5352C004D8111 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
-		93CF8E7321A53546004D8111 /* MyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
-		93CF8E7421A53546004D8111 /* MyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
-		93CF8E7721A5357D004D8111 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		93CF8E7821A5357D004D8111 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		93CF8E8321A53705004D8111 /* HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		93CF8E8421A53705004D8111 /* HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		93CF8E8621A53717004D8111 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		93CF8E8721A53717004D8111 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		93CF8E8921A5371E004D8111 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		93CF8E8A21A5371E004D8111 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		93CF8E8C21A53734004D8111 /* MyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
+		93CF8E8D21A53734004D8111 /* MyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
 		B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAppConfig.h; sourceTree = "<group>"; };
 		B22E4A2D21A4FCCD003F37BD /* BHStaticConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHStaticConstant.h; sourceTree = "<group>"; };
 		B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHNotificationConstant.h; sourceTree = "<group>"; };
@@ -191,85 +191,83 @@
 			path = BaseViewController;
 			sourceTree = "<group>";
 		};
-		93CF8E4921A52F03004D8111 /* Modules */ = {
+		93CF8E7A21A5369C004D8111 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E4A21A52F03004D8111 /* Home */,
-				93CF8E6B21A534B8004D8111 /* New Group2 */,
-				93CF8E6C21A534E6004D8111 /* New Group3 */,
-				93CF8E6E21A534E6004D8111 /* PersonalCenter */,
+				93CF8E7E21A536CD004D8111 /* PersonalCenter */,
+				93CF8E7D21A536C2004D8111 /* New Group3 */,
+				93CF8E7C21A536B9004D8111 /* New Group2 */,
+				93CF8E7B21A536AC004D8111 /* HomePage */,
 			);
-			name = Modules;
-			path = "../../magic-cube-ios/MagicCube/Modules";
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		93CF8E4A21A52F03004D8111 /* Home */ = {
+		93CF8E7B21A536AC004D8111 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E4B21A52F03004D8111 /* Controller */,
+				93CF8E8221A536ED004D8111 /* ViewController */,
 			);
-			path = Home;
+			path = HomePage;
 			sourceTree = "<group>";
 		};
-		93CF8E4B21A52F03004D8111 /* Controller */ = {
+		93CF8E7C21A536B9004D8111 /* New Group2 */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E6021A53408004D8111 /* HomePageViewController.h */,
-				93CF8E6121A53408004D8111 /* HomePageViewController.m */,
+				93CF8E8121A536E8004D8111 /* ViewController */,
 			);
-			path = Controller;
+			path = "New Group2";
 			sourceTree = "<group>";
 		};
-		93CF8E6B21A534B8004D8111 /* New Group2 */ = {
+		93CF8E7D21A536C2004D8111 /* New Group3 */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E7621A5355E004D8111 /* Controller */,
-			);
-			name = "New Group2";
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		93CF8E6C21A534E6004D8111 /* New Group3 */ = {
-			isa = PBXGroup;
-			children = (
-				93CF8E6D21A534E6004D8111 /* Controller */,
+				93CF8E8021A536E2004D8111 /* ViewController */,
 			);
 			path = "New Group3";
 			sourceTree = "<group>";
 		};
-		93CF8E6D21A534E6004D8111 /* Controller */ = {
+		93CF8E7E21A536CD004D8111 /* PersonalCenter */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E7021A5352C004D8111 /* ThirdViewController.h */,
-				93CF8E7121A5352C004D8111 /* ThirdViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		93CF8E6E21A534E6004D8111 /* PersonalCenter */ = {
-			isa = PBXGroup;
-			children = (
-				93CF8E6F21A534E6004D8111 /* Controller */,
+				93CF8E7F21A536D9004D8111 /* ViewController */,
 			);
 			path = PersonalCenter;
 			sourceTree = "<group>";
 		};
-		93CF8E6F21A534E6004D8111 /* Controller */ = {
+		93CF8E7F21A536D9004D8111 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E7321A53546004D8111 /* MyCenterViewController.h */,
-				93CF8E7421A53546004D8111 /* MyCenterViewController.m */,
+				93CF8E8C21A53734004D8111 /* MyCenterViewController.h */,
+				93CF8E8D21A53734004D8111 /* MyCenterViewController.m */,
 			);
-			path = Controller;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		93CF8E7621A5355E004D8111 /* Controller */ = {
+		93CF8E8021A536E2004D8111 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E7721A5357D004D8111 /* SecondViewController.h */,
-				93CF8E7821A5357D004D8111 /* SecondViewController.m */,
+				93CF8E8921A5371E004D8111 /* ThirdViewController.h */,
+				93CF8E8A21A5371E004D8111 /* ThirdViewController.m */,
 			);
-			path = Controller;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		93CF8E8121A536E8004D8111 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				93CF8E8621A53717004D8111 /* SecondViewController.h */,
+				93CF8E8721A53717004D8111 /* SecondViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		93CF8E8221A536ED004D8111 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				93CF8E8321A53705004D8111 /* HomePageViewController.h */,
+				93CF8E8421A53705004D8111 /* HomePageViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		B22E4A2B21A4FCCD003F37BD /* Headers */ = {
@@ -331,8 +329,8 @@
 				93CF8E2B21A52ECA004D8111 /* Tools */,
 				B2649BC621A50C0300C871C8 /* Categories */,
 				93CF8E3821A52EEE004D8111 /* Libs */,
-				93CF8E4921A52F03004D8111 /* Modules */,
 				93CF8E4021A52EFC004D8111 /* General */,
+				93CF8E7A21A5369C004D8111 /* Modules */,
 				93CF8E2821A52E8D004D8111 /* AppDelegate.h */,
 				93CF8E2721A52E8D004D8111 /* AppDelegate.m */,
 				93CF8E2521A52E8C004D8111 /* MainViewController.h */,
@@ -583,21 +581,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93CF8E7921A5357D004D8111 /* SecondViewController.m in Sources */,
-				93CF8E7521A53546004D8111 /* MyCenterViewController.m in Sources */,
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
-				93CF8E6221A53409004D8111 /* HomePageViewController.m in Sources */,
+				93CF8E8521A53705004D8111 /* HomePageViewController.m in Sources */,
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
 				93CF8E3721A52ED2004D8111 /* UIImage+help.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,
 				93CF8E4821A52EFC004D8111 /* BaseViewController.m in Sources */,
+				93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */,
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				93CF8E3421A52ECA004D8111 /* BHToast.m in Sources */,
-				93CF8E7221A5352C004D8111 /* ThirdViewController.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
+				93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */,
+				93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */,
 				93CF8E4721A52EFC004D8111 /* BaseNavigationViewController.m in Sources */,
 				B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */,
 				93CF8E3F21A52EEF004D8111 /* FLAnimatedImageView.m in Sources */,
