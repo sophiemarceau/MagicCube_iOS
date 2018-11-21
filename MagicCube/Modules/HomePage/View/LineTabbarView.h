@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@protocol LineTabbarSelectDelegate <NSObject>
+-(void)tabbarDidSelect:(NSInteger)number;
+@end
 @interface LineTabbarView : UIView
+@property (weak, nonatomic) id<LineTabbarSelectDelegate> delegate;
 - (instancetype)initWithFrame:(CGRect)frame WithNameArray:(NSArray *)array;
 @end
 

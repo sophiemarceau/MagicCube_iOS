@@ -14,10 +14,18 @@
 - (instancetype)initWithFrame:(CGRect)frame WithNameArray:(NSArray *)array{
     self = [super initWithFrame:frame];
     if (self) {
+        self.userInteractionEnabled = YES;
         self.backgroundColor = KBGCell;
         if(array.count > 0){
             CGFloat labelWidth = SCREEN_WIDTH / array.count;
             for (int i = 0 ; i< array.count ; i++ ) {
+                UIButton *tempButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                tempButton.backgroundColor = [UIColor clearColor];
+                tempButton.frame = CGRectMake(i *labelWidth , 0, labelWidth, frame.size.height);
+                tempButton.tag = 1000+i;
+                [tempButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+                [self addSubview:tempButton];
+                
                 UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i *labelWidth +(labelWidth - 40)/2, 0, 40, 40)];
                 iconImageView.backgroundColor = [UIColor redColor];
                 iconImageView.layer.masksToBounds = YES;
@@ -35,5 +43,11 @@
     return self;
 }
 
-
+-(void)onClick:(UIButton *)sender{
+    sender.enabled = NO;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tabbarDidSelect:)]) {
+         [self.delegate tabbarDidSelect:sender.tag];
+    }
+    sender.enabled = YES;
+}
 @end

@@ -14,7 +14,7 @@
 #import "TYPageControl.h"
 #import "TYCyclePagerViewCell.h"
 
-@interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,TYCyclePagerViewDataSource,TYCyclePagerViewDelegate>{
+@interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate>{
     int current_page,total_count;
 }
 @property (nonatomic, strong) NSMutableArray *listArray;
@@ -75,6 +75,7 @@
 -(LineTabbarView *)headTabbarView{
     if(_headTabbarView == nil){
         _headTabbarView = [[LineTabbarView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62) WithNameArray:@[@{@"name":@"精选好物"},@{@"name":@"美丽好物"},@{@"name":@"健康好物"},@{@"name":@"节庆好物"}]];
+        _headTabbarView.delegate = self;
     }
     return _headTabbarView;
 }
@@ -110,7 +111,6 @@
     [self.bannrView reloadData];
     bgView.backgroundColor = KBGColor;
     self.listView.tableHeaderView = bgView;
-
 }
 
 #pragma mark - tableViewDelegate
@@ -212,4 +212,9 @@
 //    }
 }
 
+
+#pragma mark - LineTabbarSelectDelegate
+-(void)tabbarDidSelect:(NSInteger)number{
+    NSLog(@"num-------->%ld",(long)number);
+}
 @end

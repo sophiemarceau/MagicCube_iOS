@@ -270,11 +270,11 @@
 		93CF8E7A21A5369C004D8111 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7DB9F87A21A58D8C005D4DD4 /* ProductDdetail */,
 				93CF8E7B21A536AC004D8111 /* HomePage */,
-				93CF8E7C21A536B9004D8111 /* Group2 */,
-				93CF8E7D21A536C2004D8111 /* Group3 */,
+				93CF8E7C21A536B9004D8111 /* Group2_MyGoodProduct */,
+				93CF8E7D21A536C2004D8111 /* Group3_MyFinanceCenter */,
 				93CF8E7E21A536CD004D8111 /* PersonalCenter */,
+				7DB9F87A21A58D8C005D4DD4 /* ProductDdetail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -289,24 +289,24 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
-		93CF8E7C21A536B9004D8111 /* Group2 */ = {
+		93CF8E7C21A536B9004D8111 /* Group2_MyGoodProduct */ = {
 			isa = PBXGroup;
 			children = (
 				93CF8E9221A5384E004D8111 /* Model */,
 				93CF8E9121A53848004D8111 /* View */,
 				93CF8E8121A536E8004D8111 /* ViewController */,
 			);
-			path = Group2;
+			path = Group2_MyGoodProduct;
 			sourceTree = "<group>";
 		};
-		93CF8E7D21A536C2004D8111 /* Group3 */ = {
+		93CF8E7D21A536C2004D8111 /* Group3_MyFinanceCenter */ = {
 			isa = PBXGroup;
 			children = (
 				93CF8E9421A5385B004D8111 /* Model */,
 				93CF8E9321A53855004D8111 /* View */,
 				93CF8E8021A536E2004D8111 /* ViewController */,
 			);
-			path = Group3;
+			path = Group3_MyFinanceCenter;
 			sourceTree = "<group>";
 		};
 		93CF8E7E21A536CD004D8111 /* PersonalCenter */ = {
