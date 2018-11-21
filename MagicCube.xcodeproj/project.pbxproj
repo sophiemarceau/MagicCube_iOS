@@ -78,10 +78,12 @@
 		93CF8E5121A52F03004D8111 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		93CF8E5221A52F03004D8111 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		93CF8E5321A52F03004D8111 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		93CF8E5D21A52FD3004D8111 /* CommonTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTools.h; sourceTree = "<group>"; };
+		93CF8E5E21A53030004D8111 /* ColorOrFontConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorOrFontConstants.h; sourceTree = "<group>"; };
+		93CF8E5F21A5304D004D8111 /* AdaptDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdaptDevice.h; sourceTree = "<group>"; };
 		B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAppConfig.h; sourceTree = "<group>"; };
 		B22E4A2D21A4FCCD003F37BD /* BHStaticConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHStaticConstant.h; sourceTree = "<group>"; };
 		B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHNotificationConstant.h; sourceTree = "<group>"; };
-		B22E4A2F21A4FCCD003F37BD /* BHDefineConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHDefineConstant.h; sourceTree = "<group>"; };
 		B22E4A3021A4FCCD003F37BD /* BHHttpConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHHttpConstant.h; sourceTree = "<group>"; };
 		B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicPrefixHeader.pch; sourceTree = "<group>"; };
 		B2649BC721A50C0300C871C8 /* UIColor+YW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YW.m"; sourceTree = "<group>"; };
@@ -264,10 +266,12 @@
 		B22E4A2B21A4FCCD003F37BD /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				93CF8E5E21A53030004D8111 /* ColorOrFontConstants.h */,
+				93CF8E5F21A5304D004D8111 /* AdaptDevice.h */,
 				B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */,
 				B22E4A2D21A4FCCD003F37BD /* BHStaticConstant.h */,
 				B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */,
-				B22E4A2F21A4FCCD003F37BD /* BHDefineConstant.h */,
+				93CF8E5D21A52FD3004D8111 /* CommonTools.h */,
 				B22E4A3021A4FCCD003F37BD /* BHHttpConstant.h */,
 				B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */,
 			);
@@ -314,12 +318,12 @@
 		B2D8C54F21A405FA00BBC74F /* MagicCube */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E4921A52F03004D8111 /* Modules */,
-				93CF8E4021A52EFC004D8111 /* General */,
-				93CF8E3821A52EEE004D8111 /* Libs */,
+				B22E4A2B21A4FCCD003F37BD /* Headers */,
 				93CF8E2B21A52ECA004D8111 /* Tools */,
 				B2649BC621A50C0300C871C8 /* Categories */,
-				B22E4A2B21A4FCCD003F37BD /* Headers */,
+				93CF8E3821A52EEE004D8111 /* Libs */,
+				93CF8E4921A52F03004D8111 /* Modules */,
+				93CF8E4021A52EFC004D8111 /* General */,
 				93CF8E2821A52E8D004D8111 /* AppDelegate.h */,
 				93CF8E2721A52E8D004D8111 /* AppDelegate.m */,
 				93CF8E2521A52E8C004D8111 /* MainViewController.h */,

@@ -14,6 +14,12 @@
 #import <Foundation/Foundation.h>
 
 #import <AFNetworking/AFNetworking.h>
+#import "Masonry.h"
+#import "MJRefresh.h"
+#import "YYModel.h"
+#import "AFNetworking.h"
+#import "MBProgressHUD.h"
+#import "UIImageView+WebCache.h"
 
 #import "UIColor+YW.h"
 #import "UIView+Frame.h"
@@ -22,14 +28,20 @@
 // MARK: --------Headers---------
 #import "BHAppConfig.h"
 #import "BHHttpConstant.h"
-#import "BHDefineConstant.h"
+#import "CommonTools.h"
 #import "BHNotificationConstant.h"
 #import "BHStaticConstant.h"
+#import "ColorOrFontConstants.h"
+#import "AdaptDevice.h"
 
-// 常用变量
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+// MARK: --------Category---------
+#import "UIImage+help.h"
+
+
+
+//MARK: tools
+#import "BHHexColor.h"
+#import "Tools.h"
+#import "BHToast.h"
 
 #endif /* MagicPrefixHeader_pch */
