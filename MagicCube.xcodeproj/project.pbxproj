@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F42781BBF16DC229512A506 /* Pods_MagicCube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */; };
 		B2D8C55221A405FA00BBC74F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55121A405FA00BBC74F /* AppDelegate.m */; };
 		B2D8C55521A405FA00BBC74F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55421A405FA00BBC74F /* ViewController.m */; };
-		B2D8C55821A405FA00BBC74F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D8C55621A405FA00BBC74F /* Main.storyboard */; };
 		B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D8C55921A405FE00BBC74F /* Assets.xcassets */; };
-		B2D8C55D21A405FE00BBC74F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D8C55B21A405FE00BBC74F /* LaunchScreen.storyboard */; };
 		B2D8C56021A405FE00BBC74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55F21A405FE00BBC74F /* main.m */; };
 		B2D8C56A21A405FE00BBC74F /* MagicCubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C56921A405FE00BBC74F /* MagicCubeTests.m */; };
 		B2D8C57521A405FE00BBC74F /* MagicCubeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C57421A405FE00BBC74F /* MagicCubeUITests.m */; };
@@ -35,14 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicCube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C54D21A405FA00BBC74F /* MagicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C55021A405FA00BBC74F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B2D8C55121A405FA00BBC74F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B2D8C55321A405FA00BBC74F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B2D8C55421A405FA00BBC74F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B2D8C55721A405FA00BBC74F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2D8C55921A405FE00BBC74F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B2D8C55C21A405FE00BBC74F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2D8C55E21A405FE00BBC74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2D8C55F21A405FE00BBC74F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2D8C56521A405FE00BBC74F /* MagicCubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicCubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +49,8 @@
 		B2D8C57021A405FE00BBC74F /* MagicCubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicCubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C57421A405FE00BBC74F /* MagicCubeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCubeUITests.m; sourceTree = "<group>"; };
 		B2D8C57621A405FE00BBC74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB2348FC8C17E308B9A9C395 /* Pods-MagicCube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicCube.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube.release.xcconfig"; sourceTree = "<group>"; };
+		F271BB3A73938B24FF22D70E /* Pods-MagicCube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicCube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F42781BBF16DC229512A506 /* Pods_MagicCube.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +86,8 @@
 				B2D8C56821A405FE00BBC74F /* MagicCubeTests */,
 				B2D8C57321A405FE00BBC74F /* MagicCubeUITests */,
 				B2D8C54E21A405FA00BBC74F /* Products */,
+				FF9115F8C2A760551BAF45ED /* Pods */,
+				EF93E28852BDD2C7248BE33F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,9 +108,7 @@
 				B2D8C55121A405FA00BBC74F /* AppDelegate.m */,
 				B2D8C55321A405FA00BBC74F /* ViewController.h */,
 				B2D8C55421A405FA00BBC74F /* ViewController.m */,
-				B2D8C55621A405FA00BBC74F /* Main.storyboard */,
 				B2D8C55921A405FE00BBC74F /* Assets.xcassets */,
-				B2D8C55B21A405FE00BBC74F /* LaunchScreen.storyboard */,
 				B2D8C55E21A405FE00BBC74F /* Info.plist */,
 				B2D8C55F21A405FE00BBC74F /* main.m */,
 			);
@@ -132,6 +133,23 @@
 			path = MagicCubeUITests;
 			sourceTree = "<group>";
 		};
+		EF93E28852BDD2C7248BE33F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF9115F8C2A760551BAF45ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F271BB3A73938B24FF22D70E /* Pods-MagicCube.debug.xcconfig */,
+				EB2348FC8C17E308B9A9C395 /* Pods-MagicCube.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +157,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B2D8C57921A405FE00BBC74F /* Build configuration list for PBXNativeTarget "MagicCube" */;
 			buildPhases = (
+				45636628B945BA42279797EB /* [CP] Check Pods Manifest.lock */,
 				B2D8C54921A405FA00BBC74F /* Sources */,
 				B2D8C54A21A405FA00BBC74F /* Frameworks */,
 				B2D8C54B21A405FA00BBC74F /* Resources */,
+				0D8B5D844BAD49802D19C159 /* [CP] Embed Pods Frameworks */,
+				B53232B0144830BEECED3F06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,9 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2D8C55D21A405FE00BBC74F /* LaunchScreen.storyboard in Resources */,
 				B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */,
-				B2D8C55821A405FA00BBC74F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +275,79 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D8B5D844BAD49802D19C159 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AliyunOSSiOS/AliyunOSSiOS.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunOSSiOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGQRCode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45636628B945BA42279797EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MagicCube-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B53232B0144830BEECED3F06 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube-resources.sh",
+				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B2D8C54921A405FA00BBC74F /* Sources */ = {
@@ -298,25 +390,6 @@
 			targetProxy = B2D8C57121A405FE00BBC74F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B2D8C55621A405FA00BBC74F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2D8C55721A405FA00BBC74F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B2D8C55B21A405FE00BBC74F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2D8C55C21A405FE00BBC74F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B2D8C57721A405FE00BBC74F /* Debug */ = {
@@ -433,6 +506,7 @@
 		};
 		B2D8C57A21A405FE00BBC74F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F271BB3A73938B24FF22D70E /* Pods-MagicCube.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -443,14 +517,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.BTE.magic.MagicCube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magic.MagicCube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		B2D8C57B21A405FE00BBC74F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB2348FC8C17E308B9A9C395 /* Pods-MagicCube.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -461,9 +536,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.BTE.magic.MagicCube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magic.MagicCube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

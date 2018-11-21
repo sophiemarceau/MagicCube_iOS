@@ -1,0 +1,6 @@
+framework module Pods_MagicCube {
+  umbrella header "Pods-MagicCube-umbrella.h"
+
+  export *
+  module * { export * }
+}
