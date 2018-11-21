@@ -15,10 +15,13 @@
 
 //腾讯Bugly
 #define BuglyAppId @"02d2f32836"
+
 //微信开放平台开发
 #define kWechatAppKey @"wx82c2aa4fde147029" //wechat appkey
+
 //微信开放平台开发AppSecret
 #define kWechatAppSecret @"c5b6fc7cc21fbfb5feee9361fbf03798"
+
 /*公众号原始ID*/
 #define kWechatPublicBTEID @"gh_969a4152b4a9"
 
