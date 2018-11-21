@@ -47,9 +47,7 @@
     [self addChildViewController:nav4];
 }
 
-
 #pragma mark - 初始化设置tabBar上面单个按钮的方法
-
 /**
  *  设置单个tabBarButton
  *  @param Vc            每一个按钮对应的控制器

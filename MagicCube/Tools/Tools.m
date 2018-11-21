@@ -129,7 +129,7 @@
 /**
  *  是否6-8位数字或者字母组合
  *
- *  @param BOOL 验证密码
+ *  @param strPassword 验证密码
  *
  *  @return 返回结果
  */
@@ -326,7 +326,6 @@
 /**
  *  删除动画
  *
- *  @return
  */
 + (void)removeLoadingView
 {

@@ -83,9 +83,8 @@
  *
  *  获取保存的数据
  *
- *  @param key
+ *  @param key 输入key
  *
- *  @return
  */
 + (id)loadLocalWithKey:(NSString *)key;
 /**
@@ -102,7 +101,7 @@
 /**
  *  删除动画
  *
- *  @return
+ *
  */
 + (void)removeLoadingView;
 #pragma mark 动画类
