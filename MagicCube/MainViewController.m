@@ -71,7 +71,6 @@
     
     Vc.tabBarItem.title = title;
     Vc.navigationItem.title = title;
-    
     return nav;
 }
 
@@ -82,7 +81,6 @@
     childVc.tabBarItem.image = myImage;
     //声明显示图片的原始式样 不要渲染
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
     // 设置子控制器的文字
     childVc.title = title; // 同时设置tabbar和navigationBar的文字
     childVc.tabBarItem.title = title;
