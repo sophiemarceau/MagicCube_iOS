@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5F42781BBF16DC229512A506 /* Pods_MagicCube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */; };
+		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
+		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
+		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
 		B2D8C55221A405FA00BBC74F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55121A405FA00BBC74F /* AppDelegate.m */; };
 		B2D8C55521A405FA00BBC74F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55421A405FA00BBC74F /* ViewController.m */; };
 		B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D8C55921A405FE00BBC74F /* Assets.xcassets */; };
@@ -41,6 +44,12 @@
 		B22E4A2F21A4FCCD003F37BD /* BHDefineConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHDefineConstant.h; sourceTree = "<group>"; };
 		B22E4A3021A4FCCD003F37BD /* BHHttpConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHHttpConstant.h; sourceTree = "<group>"; };
 		B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicPrefixHeader.pch; sourceTree = "<group>"; };
+		B2649BC721A50C0300C871C8 /* UIColor+YW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YW.m"; sourceTree = "<group>"; };
+		B2649BC821A50C0300C871C8 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		B2649BC921A50C0300C871C8 /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
+		B2649BCA21A50C0300C871C8 /* UIColor+YW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YW.h"; sourceTree = "<group>"; };
+		B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
+		B2649BCC21A50C0300C871C8 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		B2D8C54D21A405FA00BBC74F /* MagicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C55021A405FA00BBC74F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B2D8C55121A405FA00BBC74F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -133,9 +142,15 @@
 			path = common;
 			sourceTree = "<group>";
 		};
-		B22E4A3321A4FCCE003F37BD /* Categories */ = {
+		B2649BC621A50C0300C871C8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				B2649BC921A50C0300C871C8 /* UIButton+EnlargeEdge.h */,
+				B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */,
+				B2649BCC21A50C0300C871C8 /* UIView+Frame.h */,
+				B2649BC821A50C0300C871C8 /* UIView+Frame.m */,
+				B2649BCA21A50C0300C871C8 /* UIColor+YW.h */,
+				B2649BC721A50C0300C871C8 /* UIColor+YW.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -165,7 +180,7 @@
 		B2D8C54F21A405FA00BBC74F /* MagicCube */ = {
 			isa = PBXGroup;
 			children = (
-				B22E4A3321A4FCCE003F37BD /* Categories */,
+				B2649BC621A50C0300C871C8 /* Categories */,
 				B22E4A3121A4FCCD003F37BD /* classes */,
 				B22E4A3221A4FCCD003F37BD /* common */,
 				B22E4A0A21A4FCCD003F37BD /* custom */,
@@ -423,8 +438,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D8C55521A405FA00BBC74F /* ViewController.m in Sources */,
+				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,
+				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				B2D8C55221A405FA00BBC74F /* AppDelegate.m in Sources */,
+				B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
