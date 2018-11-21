@@ -211,12 +211,12 @@
 		93CF8E2B21A52ECA004D8111 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				93CF8E2F21A52ECA004D8111 /* Tools.h */,
 				93CF8E2C21A52ECA004D8111 /* Tools.m */,
 				93CF8E2D21A52ECA004D8111 /* BHToast.h */,
-				93CF8E2E21A52ECA004D8111 /* BHHexColor.m */,
-				93CF8E2F21A52ECA004D8111 /* Tools.h */,
-				93CF8E3021A52ECA004D8111 /* BHHexColor.h */,
 				93CF8E3121A52ECA004D8111 /* BHToast.m */,
+				93CF8E2E21A52ECA004D8111 /* BHHexColor.m */,
+				93CF8E3021A52ECA004D8111 /* BHHexColor.h */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
