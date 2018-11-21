@@ -94,27 +94,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B22E4A0621A4FCCD003F37BD /* libs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = libs;
-			sourceTree = "<group>";
-		};
-		B22E4A0A21A4FCCD003F37BD /* custom */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = custom;
-			sourceTree = "<group>";
-		};
-		B22E4A0B21A4FCCD003F37BD /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tools;
-			sourceTree = "<group>";
-		};
 		B22E4A2B21A4FCCD003F37BD /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,20 +105,6 @@
 				B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */,
 			);
 			path = Headers;
-			sourceTree = "<group>";
-		};
-		B22E4A3121A4FCCD003F37BD /* classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = classes;
-			sourceTree = "<group>";
-		};
-		B22E4A3221A4FCCD003F37BD /* common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = common;
 			sourceTree = "<group>";
 		};
 		B2649BC621A50C0300C871C8 /* Categories */ = {
@@ -181,12 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				B2649BC621A50C0300C871C8 /* Categories */,
-				B22E4A3121A4FCCD003F37BD /* classes */,
-				B22E4A3221A4FCCD003F37BD /* common */,
-				B22E4A0A21A4FCCD003F37BD /* custom */,
 				B22E4A2B21A4FCCD003F37BD /* Headers */,
-				B22E4A0621A4FCCD003F37BD /* libs */,
-				B22E4A0B21A4FCCD003F37BD /* Tools */,
 				B2D8C55021A405FA00BBC74F /* AppDelegate.h */,
 				B2D8C55121A405FA00BBC74F /* AppDelegate.m */,
 				B2D8C55321A405FA00BBC74F /* ViewController.h */,
