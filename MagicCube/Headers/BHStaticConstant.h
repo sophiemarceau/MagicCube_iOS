@@ -16,7 +16,4 @@ static NSString *const SERVICE_HOT_LINE = @"400-965-0866";
 //App Store评论
 static NSString *const kAppStoreCommentAddress = @"itms-apps://itunes.apple.com/cn/app/id1342160976?mt=8&action=write-review";
 
-
-
-
 #endif /* BHStaticConstant_h */

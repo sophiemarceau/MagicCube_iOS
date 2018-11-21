@@ -8,8 +8,8 @@
 
 #ifndef AdaptDevice_h
 #define AdaptDevice_h
-// MARK: 设备设配相关
 
+// MARK: 设备设配相关
 //判断是否是ipad
 #define IS_PAD (UI_USER_INTERFACE_IDIOM()== UIUserInterfaceIdiomPad)
 //判断是否是手机

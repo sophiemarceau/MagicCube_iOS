@@ -26,7 +26,6 @@
 #define KBGColor BHHexColor(@"edf0f2")
 #define KBGCell BHHexColor(@"FAFAFA")
 
-
 // MARK: App中主要常用字体Font相关 
 #define FontName [UIFont systemFontOfSize:[UIFont systemFontSize]].fontName // 系统字体
 #define  KfontNormal(a) [UIFont fontWithName:FontName size:(a)]
