@@ -22,7 +22,7 @@
 + (void)initialize{
     UITabBarItem *tabBarItem = [UITabBarItem appearanceWhenContainedInInstancesOfClasses:@[self]];
     [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:BHHexColor(@"ABB5BE")} forState:UIControlStateNormal];
-    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size:10],NSForegroundColorAttributeName:BHHexColor(@"308CDD")} forState:UIControlStateSelected];
+    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:BHHexColor(@"308CDD")} forState:UIControlStateSelected];
 }
 
 - (void)viewDidLoad {

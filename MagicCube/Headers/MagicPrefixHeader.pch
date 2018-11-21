@@ -20,7 +20,6 @@
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
-
 #import "UIColor+YW.h"
 #import "UIView+Frame.h"
 #import "UIButton+EnlargeEdge.h"
@@ -36,8 +35,6 @@
 
 // MARK: --------Category---------
 #import "UIImage+help.h"
-
-
 
 //MARK: tools
 #import "BHHexColor.h"
