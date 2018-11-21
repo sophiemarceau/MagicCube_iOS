@@ -21,8 +21,8 @@
 #pragma mark - 第一次使用当前类的时候对设置UITabBarItem的主题
 + (void)initialize{
     UITabBarItem *tabBarItem = [UITabBarItem appearanceWhenContainedInInstancesOfClasses:@[self]];
-    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:BHHexColor(@"ABB5BE")} forState:UIControlStateNormal];
-    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:BHHexColor(@"308CDD")} forState:UIControlStateSelected];
+    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:GrayMagicColor} forState:UIControlStateNormal];
+    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:RedMagicColor} forState:UIControlStateSelected];
 }
 
 - (void)viewDidLoad {
@@ -34,13 +34,13 @@
 
 - (void)initChildVC{
     HomePageViewController *homeVc = [[HomePageViewController alloc] init];
-    BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"tab_icon_item_normal" selectedImage:@"tab_item_selected" title:@"首页"];
+    BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"tab_icon_item_normal" selectedImage:@"tab_item_selected" title:@"好物中心"];
     SecondViewController *secondVc = [[SecondViewController alloc] init];
-    BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"tab_boss_normal" selectedImage:@"tab_boss_selected" title:@"数据"];
+    BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"tab_boss_normal" selectedImage:@"tab_boss_selected" title:@"我的好物"];
     ThirdViewController * thirdVc = [[ThirdViewController alloc] init];
-    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"tab_chat_normal" selectedImage:@"tab_chat_selected" title:@"自选"];
+    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"tab_chat_normal" selectedImage:@"tab_chat_selected" title:@"财务中心"];
     MyCenterViewController * myCVc = [[MyCenterViewController alloc] init];
-    BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"tab_me_normal" selectedImage:@"tab_me_selected" title:@"我的"];
+    BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"tab_me_normal" selectedImage:@"tab_me_selected" title:@"会员中心"];
     [self addChildViewController:nav1];
     [self addChildViewController:nav2];
     [self addChildViewController:nav3];
@@ -57,7 +57,7 @@
  */
 - (BaseNavigationViewController *)setUpOneChildVcWithVc:(UIViewController *)Vc Image:(NSString *)image selectedImage:(NSString *)selectedImage title:(NSString *)title{
     BaseNavigationViewController *nav = [[BaseNavigationViewController alloc] initWithRootViewController:Vc];
-    Vc.view.backgroundColor = [UIColor whiteColor];
+    Vc.view.backgroundColor = KBGColor;
     //tabBarItem，是系统提供模型，专门负责tabbar上按钮的文字以及图片展示
     UIImage *myImage = [UIImage imageNamed:image];
     myImage = [myImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

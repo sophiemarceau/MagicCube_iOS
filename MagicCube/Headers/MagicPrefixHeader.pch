@@ -34,7 +34,7 @@
 
 // MARK: --------Category---------
 #import "UIImage+help.h"
-
+#import "UIView+category.h"
 //MARK: tools
 #import "BHHexColor.h"
 #import "Tools.h"

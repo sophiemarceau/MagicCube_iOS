@@ -50,8 +50,8 @@
     dispatch_once(&onceToken, ^{
         CAGradientLayer *layer = [CAGradientLayer layer];
         layer.frame = CGRectMake(0, -20, SCREEN_WIDTH, NAVIGATION_HEIGHT);
-        id  color = (__bridge UIColor *)BHHexColor(@"005CCC").CGColor;
-        id color2 = (__bridge UIColor *)BHHexColor(@"0083FF").CGColor;
+        id  color = (__bridge UIColor *)BHHexColor(@"FFFFFF").CGColor;
+        id color2 = (__bridge UIColor *)BHHexColor(@"FFFFFF").CGColor;
         layer.colors = @[color, color2];
         
         UIGraphicsBeginImageContextWithOptions(layer.bounds.size, NO, [UIScreen mainScreen].scale);

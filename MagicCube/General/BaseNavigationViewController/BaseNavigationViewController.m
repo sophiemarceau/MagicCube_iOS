@@ -15,12 +15,12 @@
 @implementation BaseNavigationViewController
 
 + (void)load {
-    NSArray *colorArray = @[BHHexColor(@"#FAFAFA"),BHHexColor(@"#FAFAFA")];
+    NSArray *colorArray = @[KBGCell,KBGCell];
     CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATION_HEIGHT);
     UIImage *barImg = [UIImage BgImageFromColors: colorArray withFrame: frame];
     [[UINavigationBar appearance] setBackgroundImage:barImg forBarMetrics:UIBarMetricsDefault];
-    [UINavigationBar appearance].shadowImage = [UIImage imageWithColor:BHHexColor(@"E6EBF0")];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:BHHexColor(@"#454F6B"), NSFontAttributeName:[UIFont systemFontOfSize:18]}];
+    [UINavigationBar appearance].shadowImage = [UIImage imageWithColor:KBGCell];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:BlackMagicColor, NSFontAttributeName:[UIFont systemFontOfSize:18]}];
 }
 
 - (void)viewDidLoad {
