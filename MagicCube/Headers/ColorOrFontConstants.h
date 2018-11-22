@@ -32,6 +32,11 @@
 #define KBGCell BHHexColor(@"FFFFFF")
 //分割线 常用色
 #define LineGrayColor BHHexColor(@"D6DAE2")
+//字体 常用灰色1
+#define Gray7F7Color BHHexColor(@"7F7569")
+//字体 常用灰色2
+#define Gray948Color BHHexColor(@"948B7F")
+
 // MARK: App中主要常用字体Font相关 
 #define FontName [UIFont systemFontOfSize:[UIFont systemFontSize]].fontName // 系统字体
 #define  KfontNormal(a) [UIFont fontWithName:FontName size:(a)]
