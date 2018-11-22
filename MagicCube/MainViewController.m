@@ -34,13 +34,13 @@
 
 - (void)initChildVC{
     HomePageViewController *homeVc = [[HomePageViewController alloc] init];
-    BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"tab_icon_item_normal" selectedImage:@"tab_item_selected" title:@"好物中心"];
+    BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"home_normal" selectedImage:@"home_selected" title:@"好物中心"];
     SecondViewController *secondVc = [[SecondViewController alloc] init];
-    BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"tab_boss_normal" selectedImage:@"tab_boss_selected" title:@"我的好物"];
+    BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"wodehaowu_normal" selectedImage:@"wodehaowu_selected" title:@"我的好物"];
     ThirdViewController * thirdVc = [[ThirdViewController alloc] init];
-    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"tab_chat_normal" selectedImage:@"tab_chat_selected" title:@"财务中心"];
+    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"caiwuzhongxin_normal" selectedImage:@"caiwuzhongxin_selected" title:@"财务中心"];
     MyCenterViewController * myCVc = [[MyCenterViewController alloc] init];
-    BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"tab_me_normal" selectedImage:@"tab_me_selected" title:@"会员中心"];
+    BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"huiyuanzhongxin_normal" selectedImage:@"huiyuanzhongxin_selected" title:@"会员中心"];
     [self addChildViewController:nav1];
     [self addChildViewController:nav2];
     [self addChildViewController:nav3];
