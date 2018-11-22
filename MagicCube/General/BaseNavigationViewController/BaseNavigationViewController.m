@@ -20,7 +20,7 @@
     UIImage *barImg = [UIImage BgImageFromColors: colorArray withFrame: frame];
     [[UINavigationBar appearance] setBackgroundImage:barImg forBarMetrics:UIBarMetricsDefault];
     [UINavigationBar appearance].shadowImage = [UIImage imageWithColor:KBGCell];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:BlackMagicColor, NSFontAttributeName:[UIFont systemFontOfSize:18]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:BlackMagicColor, NSFontAttributeName:UIFontRegularOfSize(18)}];
 }
 
 - (void)viewDidLoad {

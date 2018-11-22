@@ -28,13 +28,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initDatas];
+    [self initSubviews];
+    [self requestData];
+}
+
+-(void)initDatas{
     self.listArray = [NSMutableArray array];
     self.bannerArray = [NSMutableArray array];
     [self.bannerArray addObject:@"1"];
     [self.bannerArray addObject:@"2"];
     [self.bannerArray addObject:@"3"];
-    [self initSubviews];
-    [self requestData];
 }
 
 -(void)initSubviews{
@@ -46,72 +50,6 @@
 }
 
 -(void)giveMeMoreData{}
-
--(UITableView *)listView{
-    if (_listView == nil) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT  -NAVIGATION_HEIGHT - TAB_BAR_HEIGHT)];
-        _listView.dataSource = self;
-        _listView.delegate = self;
-        _listView.backgroundColor = KBGColor;
-        //也可以让分割线消失
-        _listView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self setTableHeadView];
-        UIView *footView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 5)];
-        footView.backgroundColor = KBGColor;
-        _listView.tableFooterView = footView;
-        WS(weakSelf)
-        _listView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf requestData];
-        }];
-        MJRefreshBackNormalFooter *allfooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-            [weakSelf giveMeMoreData];
-        }];
-        _listView.mj_footer = allfooter;
-        _listView.mj_footer.ignoredScrollViewContentInsetBottom = HOME_INDICATOR_HEIGHT;
-    }
-    return _listView;
-}
-
--(LineTabbarView *)headTabbarView{
-    if(_headTabbarView == nil){
-        _headTabbarView = [[LineTabbarView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62) WithNameArray:@[@{@"name":@"精选好物"},@{@"name":@"美丽好物"},@{@"name":@"健康好物"},@{@"name":@"节庆好物"}]];
-        _headTabbarView.delegate = self;
-    }
-    return _headTabbarView;
-}
-
-//设置头部视图
-- (void)setTableHeadView{
-    UIView *bgView;
-    bgView = [[UIView alloc] initWithFrame:CGRectZero];
-    [bgView addSubview:self.headTabbarView];
-    if(self.bannerArray && self.bannerArray.count > 0){
-        UIView *bannerBgView = [UIView new];
-        bannerBgView.backgroundColor =  KBGColor;
-        bannerBgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 130);
-        
-        TYCyclePagerView *pagerView = [[TYCyclePagerView alloc]init];
-        pagerView.layout.layoutType = TYCyclePagerTransformLayoutCoverflow;
-        pagerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (130));
-        pagerView.layer.borderWidth = 0;
-        //    pagerView.isInfiniteLoop = YES;
-        pagerView.autoScrollInterval = 6.0;
-        pagerView.dataSource = self;
-        pagerView.delegate = self;
-        [pagerView setNeedUpdateLayout];
-        // registerClass or registerNibr
-        [pagerView registerClass:[TYCyclePagerViewCell class] forCellWithReuseIdentifier:@"cellId"];
-        _bannrView = pagerView;
-        [bannerBgView addSubview:_bannrView];
-        [bgView addSubview:bannerBgView];
-        
-        self.headTabbarView.frame = CGRectMake(0, bannerBgView.height , SCREEN_WIDTH, self.headTabbarView.height);
-    }
-    bgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.headTabbarView.bottom + 10);
-    [self.bannrView reloadData];
-    bgView.backgroundColor = KBGColor;
-    self.listView.tableHeaderView = bgView;
-}
 
 #pragma mark - tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -189,7 +127,7 @@
 
 - (TYCyclePagerViewLayout *)layoutForPagerView:(TYCyclePagerView *)pageView {
     TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc]init];
-    layout.itemSize = CGSizeMake(SCREEN_WIDTH, 130);
+    layout.itemSize = CGSizeMake(SCREEN_WIDTH, 150);
     layout.itemSpacing = SCALE_W(0);
     //layout.minimumAlpha = 0.3;
     //    layout.itemHorizontalCenter = YES;
@@ -216,5 +154,72 @@
 #pragma mark - LineTabbarSelectDelegate
 -(void)tabbarDidSelect:(NSInteger)number{
     NSLog(@"num-------->%ld",(long)number);
+}
+
+#pragma mark  initView
+-(UITableView *)listView{
+    if (_listView == nil) {
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT  - NAVIGATION_HEIGHT - TAB_BAR_HEIGHT)];
+        _listView.dataSource = self;
+        _listView.delegate = self;
+        _listView.backgroundColor = KBGColor;
+        //也可以让分割线消失
+        _listView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self setTableHeadView];
+        UIView *footView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
+        footView.backgroundColor = KBGColor;
+        _listView.tableFooterView = footView;
+        WS(weakSelf)
+        _listView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [weakSelf requestData];
+        }];
+        MJRefreshBackNormalFooter *allfooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            [weakSelf giveMeMoreData];
+        }];
+        _listView.mj_footer = allfooter;
+        _listView.mj_footer.ignoredScrollViewContentInsetBottom = HOME_INDICATOR_HEIGHT;
+    }
+    return _listView;
+}
+
+-(LineTabbarView *)headTabbarView{
+    if(_headTabbarView == nil){
+        _headTabbarView = [[LineTabbarView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 97) WithNameArray:@[@{@"name":@"精选好物",@"pic":@"home_jingxuan"},@{@"name":@"美丽好物",@"pic":@"home_meilihaowu"},@{@"name":@"健康好物",@"pic":@"home_jiankanghaowu"},@{@"name":@"节庆好物",@"pic":@"home_jieqinghaowu"}]];
+        _headTabbarView.delegate = self;
+    }
+    return _headTabbarView;
+}
+
+//设置头部视图
+- (void)setTableHeadView{
+    UIView *bgView;
+    bgView = [[UIView alloc] initWithFrame:CGRectZero];
+    [bgView addSubview:self.headTabbarView];
+    if(self.bannerArray && self.bannerArray.count > 0){
+        UIView *bannerBgView = [UIView new];
+        bannerBgView.backgroundColor =  KBGColor;
+        bannerBgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150);
+        
+        TYCyclePagerView *pagerView = [[TYCyclePagerView alloc]init];
+        pagerView.layout.layoutType = TYCyclePagerTransformLayoutCoverflow;
+        pagerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (150));
+        pagerView.layer.borderWidth = 0;
+        //    pagerView.isInfiniteLoop = YES;
+        pagerView.autoScrollInterval = 6.0;
+        pagerView.dataSource = self;
+        pagerView.delegate = self;
+        [pagerView setNeedUpdateLayout];
+        // registerClass or registerNibr
+        [pagerView registerClass:[TYCyclePagerViewCell class] forCellWithReuseIdentifier:@"cellId"];
+        _bannrView = pagerView;
+        [bannerBgView addSubview:_bannrView];
+        [bgView addSubview:bannerBgView];
+        
+        self.headTabbarView.frame = CGRectMake(0, bannerBgView.height , SCREEN_WIDTH, self.headTabbarView.height);
+    }
+    bgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.headTabbarView.bottom );
+    [self.bannrView reloadData];
+    bgView.backgroundColor = KBGColor;
+    self.listView.tableHeaderView = bgView;
 }
 @end
