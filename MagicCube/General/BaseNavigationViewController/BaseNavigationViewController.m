@@ -20,7 +20,7 @@
     UIImage *barImg = [UIImage BgImageFromColors: colorArray withFrame: frame];
     [[UINavigationBar appearance] setBackgroundImage:barImg forBarMetrics:UIBarMetricsDefault];
     [UINavigationBar appearance].shadowImage = [UIImage imageWithColor:KBGCell];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:BlackMagicColor, NSFontAttributeName:[UIFont systemFontOfSize:18]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:BlackMagicColor, NSFontAttributeName:UIFontRegularOfSize(18)}];
 }
 
 - (void)viewDidLoad {
@@ -38,7 +38,7 @@
     }
     [super pushViewController:viewController animated:animated];
     
-    UIImage *buttonNormal = [[UIImage imageNamed:@"nav_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *buttonNormal = [[UIImage imageNamed:@"fanhui"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [viewController.navigationController.navigationBar setBackIndicatorImage:buttonNormal];
     [viewController.navigationController.navigationBar setBackIndicatorTransitionMaskImage:buttonNormal];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];

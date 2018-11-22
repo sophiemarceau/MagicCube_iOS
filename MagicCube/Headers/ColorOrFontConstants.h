@@ -21,17 +21,21 @@
 /* App导航条颜色*/
 #define BHColornavigationBar         [BHHexColor navigationBarColor]
 //App中主红色
-#define RedMagicColor BHHexColor(@"D82727")
-//App中主黑色
+#define RedMagicColor BHHexColor(@"E02E24")
+//App中 字体主黑色
 #define BlackMagicColor BHHexColor(@"333333")
-//App中主灰色
+//App中 字体主灰色
 #define GrayMagicColor BHHexColor(@"999999")
-//App中主灰色
-//#define GrayMagicColor BHHexColor(@"666666")
-
-//背景色
+//View 背景色
 #define KBGColor BHHexColor(@"F4F4F4")
+//View 常用背景色
 #define KBGCell BHHexColor(@"FFFFFF")
+//分割线 常用色
+#define LineGrayColor BHHexColor(@"D6DAE2")
+//字体 常用灰色1
+#define Gray7F7Color BHHexColor(@"7F7569")
+//字体 常用灰色2
+#define Gray948Color BHHexColor(@"948B7F")
 
 // MARK: App中主要常用字体Font相关 
 #define FontName [UIFont systemFontOfSize:[UIFont systemFontSize]].fontName // 系统字体

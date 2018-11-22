@@ -1,38 +1,21 @@
 //
-//  HomePageTableViewCell.m
+//  ProducDetailtHeaderView.m
 //  MagicCube
 //
-//  Created by sophiemarceau_qu on 2018/11/21.
+//  Created by sophie on 2018/11/22.
 //  Copyright © 2018 wanmeizty. All rights reserved.
 //
 
-#import "HomePageTableViewCell.h"
-@interface HomePageTableViewCell ()
+#import "ProducDetailtHeaderView.h"
 
-@property (strong,nonatomic) UIView * bgView;
-@property (strong,nonatomic) UIImageView * picImageView;
-@property (strong,nonatomic) UILabel* titleLabel;
-@property (strong,nonatomic) UILabel * priceLabel;
-@property (strong,nonatomic) UILabel * numLabel;
-@property (strong,nonatomic) UILabel * redBgLabel;
-@end
-@implementation HomePageTableViewCell
+@implementation ProducDetailtHeaderView
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.contentView.backgroundColor = KBGColor;
-        [self.contentView addSubview: self.bgView];
-       
+-(instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.userInteractionEnabled = YES;
+        self.backgroundColor = KBGCell;
+        [self addSubview: self.bgView];
         [self.bgView addSubview:self.picImageView];
         [self.bgView addSubview:self.titleLabel];
         [self.bgView addSubview:self.priceLabel];
@@ -42,20 +25,10 @@
     return self;
 }
 
-- (void)configwidth:(NSDictionary *)dict{
-    
-}
-
-+ (CGFloat)cellHeight{
-    return 10 +175 + 114 ;
-}
-
 -(UIView *)bgView{
     if (_bgView == nil) {
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH -20, 175 + 114)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , 175 + 114)];
         _bgView.backgroundColor = KBGCell;
-        self.contentView.layer.masksToBounds = YES;
-        self.contentView.layer.cornerRadius = 16;
     }
     return _bgView;
 }
@@ -82,18 +55,18 @@
 
 -(UILabel *)priceLabel{
     if (_priceLabel == nil) {
-        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.titleLabel.bottom + 5.5, (self.bgView.width -30)/2, 18)];
+        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.titleLabel.bottom + 5.5, (self.bgView.width -20)/2, 18)];
         _priceLabel.backgroundColor = [UIColor yellowColor];
         _priceLabel.textColor = GrayMagicColor;
-        _priceLabel.font = UIFontRegularOfSize(18);
-        _priceLabel.text = @"￥588零售指导价";
+        _priceLabel.font = UIFontRegularOfSize(17);
+        _priceLabel.text = @"￥588  零售指导价";
     }
     return _priceLabel;
 }
 
 -(UILabel *)numLabel{
     if (_numLabel == nil) {
-        _numLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.priceLabel.bottom + 7, (self.bgView.width -30)/2, 18)];
+        _numLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.priceLabel.bottom + 7, (self.bgView.width -20)/2, 18)];
         _numLabel.backgroundColor = [UIColor clearColor];
         _numLabel.textColor = GrayMagicColor;
         _numLabel.font = UIFontRegularOfSize(14);
@@ -115,4 +88,5 @@
     }
     return _redBgLabel;
 }
+
 @end

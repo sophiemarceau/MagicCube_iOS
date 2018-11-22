@@ -26,13 +26,14 @@
                 [tempButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
                 [self addSubview:tempButton];
                 
-                UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i *labelWidth +(labelWidth - 40)/2, 0, 40, 40)];
-                iconImageView.backgroundColor = [UIColor redColor];
+                UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(i *labelWidth +(labelWidth - 45)/2, 14, 45, 45)];
+                iconImageView.image = [UIImage imageNamed:[array[i] objectForKey:@"pic"]];
                 iconImageView.layer.masksToBounds = YES;
-                iconImageView.layer.cornerRadius = 20;
+                iconImageView.layer.cornerRadius = 45/2;
                 [self addSubview:iconImageView];
-                UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(i *labelWidth, iconImageView.height +10, labelWidth, 12)];
-                nameLabel.font = UIFontRegularOfSize(12);
+                
+                UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(i *labelWidth, iconImageView.bottom + 10, labelWidth, 14)];
+                nameLabel.font = UIFontRegularOfSize(14);
                 nameLabel.textColor = BlackMagicColor;
                 nameLabel.text = [NSString stringWithFormat:@"%@",[array[i] objectForKey:@"name"]];
                 nameLabel.textAlignment = NSTextAlignmentCenter;

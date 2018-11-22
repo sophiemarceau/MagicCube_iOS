@@ -19,9 +19,6 @@
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
 #import "UIImageView+WebCache.h"
-#import "UIColor+YW.h"
-#import "UIView+Frame.h"
-#import "UIButton+EnlargeEdge.h"
 
 // MARK: --------Headers---------
 #import "BHAppConfig.h"
@@ -35,7 +32,11 @@
 // MARK: --------Category---------
 #import "UIImage+help.h"
 #import "UIView+category.h"
-//MARK: tools
+#import "UIColor+YW.h"
+#import "UIView+Frame.h"
+#import "UIButton+EnlargeEdge.h"
+
+//MARK: --------Tools---------
 #import "BHHexColor.h"
 #import "Tools.h"
 #import "BHToast.h"
