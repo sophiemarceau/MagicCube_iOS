@@ -30,9 +30,15 @@
 		93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8721A53717004D8111 /* SecondViewController.m */; };
 		93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8A21A5371E004D8111 /* ThirdViewController.m */; };
 		93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8D21A53734004D8111 /* MyCenterViewController.m */; };
+		B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */; };
+		B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4521A65CC900F70C07 /* MagicLabel.m */; };
+		B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4821A6603500F70C07 /* MagicLineView.m */; };
+		B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B229A66121A692A900A5B23B /* SalerTableViewCell.m */; };
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
 		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
+		B27585D321A6864800C9943A /* MagicRichTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D221A6864800C9943A /* MagicRichTool.m */; };
+		B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D521A68A5500C9943A /* GoodsDetailViewController.m */; };
 		B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D8C55921A405FE00BBC74F /* Assets.xcassets */; };
 		B2D8C56021A405FE00BBC74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55F21A405FE00BBC74F /* main.m */; };
 		B2D8C56A21A405FE00BBC74F /* MagicCubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C56921A405FE00BBC74F /* MagicCubeTests.m */; };
@@ -105,6 +111,14 @@
 		93CF8E8A21A5371E004D8111 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		93CF8E8C21A53734004D8111 /* MyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
 		93CF8E8D21A53734004D8111 /* MyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
+		B2059C3F21A659A100F70C07 /* MyGoodsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsTableViewCell.h; sourceTree = "<group>"; };
+		B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsTableViewCell.m; sourceTree = "<group>"; };
+		B2059C4421A65CC900F70C07 /* MagicLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicLabel.h; sourceTree = "<group>"; };
+		B2059C4521A65CC900F70C07 /* MagicLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicLabel.m; sourceTree = "<group>"; };
+		B2059C4721A6603500F70C07 /* MagicLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicLineView.h; sourceTree = "<group>"; };
+		B2059C4821A6603500F70C07 /* MagicLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicLineView.m; sourceTree = "<group>"; };
+		B229A66021A692A900A5B23B /* SalerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalerTableViewCell.h; sourceTree = "<group>"; };
+		B229A66121A692A900A5B23B /* SalerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalerTableViewCell.m; sourceTree = "<group>"; };
 		B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAppConfig.h; sourceTree = "<group>"; };
 		B22E4A2D21A4FCCD003F37BD /* BHStaticConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHStaticConstant.h; sourceTree = "<group>"; };
 		B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHNotificationConstant.h; sourceTree = "<group>"; };
@@ -116,6 +130,10 @@
 		B2649BCA21A50C0300C871C8 /* UIColor+YW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YW.h"; sourceTree = "<group>"; };
 		B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		B2649BCC21A50C0300C871C8 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		B27585D121A6864800C9943A /* MagicRichTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicRichTool.h; sourceTree = "<group>"; };
+		B27585D221A6864800C9943A /* MagicRichTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicRichTool.m; sourceTree = "<group>"; };
+		B27585D421A68A5500C9943A /* GoodsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
+		B27585D521A68A5500C9943A /* GoodsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		B2D8C54D21A405FA00BBC74F /* MagicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C55921A405FE00BBC74F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2D8C55E21A405FE00BBC74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -292,8 +310,8 @@
 		93CF8E7C21A536B9004D8111 /* Group2_MyGoodProduct */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E9221A5384E004D8111 /* Model */,
-				93CF8E9121A53848004D8111 /* View */,
+				B2059C3D21A6596300F70C07 /* model */,
+				B2059C3E21A6596300F70C07 /* view */,
 				93CF8E8121A536E8004D8111 /* ViewController */,
 			);
 			path = Group2_MyGoodProduct;
@@ -342,6 +360,8 @@
 			children = (
 				93CF8E8621A53717004D8111 /* SecondViewController.h */,
 				93CF8E8721A53717004D8111 /* SecondViewController.m */,
+				B27585D421A68A5500C9943A /* GoodsDetailViewController.h */,
+				B27585D521A68A5500C9943A /* GoodsDetailViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -356,20 +376,6 @@
 			sourceTree = "<group>";
 		};
 		93CF8E9021A53840004D8111 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		93CF8E9121A53848004D8111 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		93CF8E9221A5384E004D8111 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -402,6 +408,37 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B2059C3D21A6596300F70C07 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		B2059C3E21A6596300F70C07 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B2059C3F21A659A100F70C07 /* MyGoodsTableViewCell.h */,
+				B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */,
+				B229A66021A692A900A5B23B /* SalerTableViewCell.h */,
+				B229A66121A692A900A5B23B /* SalerTableViewCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		B2059C4321A65CAD00F70C07 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				B2059C4421A65CC900F70C07 /* MagicLabel.h */,
+				B2059C4521A65CC900F70C07 /* MagicLabel.m */,
+				B2059C4721A6603500F70C07 /* MagicLineView.h */,
+				B2059C4821A6603500F70C07 /* MagicLineView.m */,
+				B27585D121A6864800C9943A /* MagicRichTool.h */,
+				B27585D221A6864800C9943A /* MagicRichTool.m */,
+			);
+			path = custom;
 			sourceTree = "<group>";
 		};
 		B22E4A2B21A4FCCD003F37BD /* Headers */ = {
@@ -461,6 +498,7 @@
 		B2D8C54F21A405FA00BBC74F /* MagicCube */ = {
 			isa = PBXGroup;
 			children = (
+				B2059C4321A65CAD00F70C07 /* custom */,
 				B22E4A2B21A4FCCD003F37BD /* Headers */,
 				93CF8E2B21A52ECA004D8111 /* Tools */,
 				B2649BC621A50C0300C871C8 /* Categories */,
@@ -720,25 +758,31 @@
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
 				93CF8E8521A53705004D8111 /* HomePageViewController.m in Sources */,
+				B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */,
 				7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */,
 				7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */,
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
 				93CF8E3721A52ED2004D8111 /* UIImage+help.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,
+				B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */,
 				93CF8E4821A52EFC004D8111 /* BaseViewController.m in Sources */,
+				B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */,
 				7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */,
 				7DB9F88021A58DFE005D4DD4 /* ProductDetailViewController.m in Sources */,
 				93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */,
 				7DB9F89521A5AB3C005D4DD4 /* TYCyclePagerView.m in Sources */,
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
+				B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */,
 				93CF8E3421A52ECA004D8111 /* BHToast.m in Sources */,
 				7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
+				B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */,
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
 				7DB9F89321A5AB3C005D4DD4 /* TYPageControl.m in Sources */,
 				7DB9F88A21A5A739005D4DD4 /* LineTabbarView.m in Sources */,
 				93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */,
+				B27585D321A6864800C9943A /* MagicRichTool.m in Sources */,
 				93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */,
 				93CF8E4721A52EFC004D8111 /* BaseNavigationViewController.m in Sources */,
 				B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */,

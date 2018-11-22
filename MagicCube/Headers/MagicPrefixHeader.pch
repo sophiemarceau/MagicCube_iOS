@@ -39,5 +39,8 @@
 #import "BHHexColor.h"
 #import "Tools.h"
 #import "BHToast.h"
-
+//MARK: custom
+#import "MagicLabel.h"
+#import "MagicLineView.h"
+#import "MagicRichTool.h"
 #endif /* MagicPrefixHeader_pch */

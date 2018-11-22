@@ -26,6 +26,9 @@
 #define BlackMagicColor BHHexColor(@"333333")
 //App中主灰色
 #define GrayMagicColor BHHexColor(@"999999")
+//App中主灰色
+//#define GrayMagicColor BHHexColor(@"666666")
+
 //背景色
 #define KBGColor BHHexColor(@"F4F4F4")
 #define KBGCell BHHexColor(@"FFFFFF")
