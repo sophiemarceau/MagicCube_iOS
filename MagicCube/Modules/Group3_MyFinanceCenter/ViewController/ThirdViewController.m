@@ -10,9 +10,19 @@
 #import "HisstoryTableViewCell.h"
 @interface ThirdViewController ()<UITableViewDelegate,UITableViewDataSource>{
     int current_page,total_count;
+    UIView *redBgView;
 }
-@property (nonatomic, strong) NSMutableArray *listArray;
+
+@property (nonatomic, strong) NSMutableArray *listArray,*btnViewsArray,*accountArray;
 @property (nonatomic, strong) UITableView *listView;
+@property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *accountValueLabel;
+@property (nonatomic, strong) UILabel *scoresLabel;
+@property (nonatomic, strong) UIView *incomeView;
+@property (nonatomic, strong) UIView *historyView;
+@property (nonatomic, strong) UIView *listHeadView;
+@property (nonatomic, strong) UIView *moneyView;
 @end
 
 @implementation ThirdViewController
@@ -35,6 +45,14 @@
 
 -(void)initSubviews{
     [self.view addSubview:self.listView];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    if (@available(iOS 11.0, *)) {
+        self.listView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    self.listView.contentInset = UIEdgeInsetsMake(0, 0, TAB_BAR_HEIGHT, 0);
+    self.listView.scrollIndicatorInsets = self.listView.contentInset;
     
 }
 
@@ -85,15 +103,52 @@
 }
 
 - (void)setTableHeadView{
-    UIView *bgView;
-    bgView = [[UIView alloc] initWithFrame:CGRectZero];
-//    [bgView addSubview:self.headerView];
-//    [bgView addSubview:self.memberView];
-//    [bgView addSubview:self.productInfoView];
-//    [bgView addSubview:self.highPullView];
-    bgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 162);
-    bgView.backgroundColor = RedMagicColor;
-    self.listView.tableHeaderView = bgView;
+    UIView *headbgview = [[UIView alloc] initWithFrame:CGRectZero];
+    headbgview.backgroundColor = KBGColor;
+    
+    redBgView = [[UIView alloc] initWithFrame:CGRectZero];
+    redBgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 162);
+    redBgView.backgroundColor = RedMagicColor;
+    
+    self.headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 50, 60, 60)];
+    self.headerImageView.layer.masksToBounds = YES;
+    self.headerImageView.layer.cornerRadius = 30;
+    self.headerImageView.backgroundColor = [UIColor blackColor];
+    [redBgView addSubview:self.headerImageView];
+    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 61, SCREEN_WIDTH / 2, 16)];
+    self.nameLabel.text = @"用户名";
+    self.nameLabel.font = UIFontMediumOfSize(16);
+    self.nameLabel.textColor = [UIColor whiteColor];
+    [redBgView addSubview:self.nameLabel];
+    
+    self.accountValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 90, 114, 14)];
+    self.accountValueLabel.text = @"会员卡余额：¥28";
+    self.accountValueLabel.font = UIFontMediumOfSize(14);
+    self.accountValueLabel.textColor = [UIColor whiteColor];
+    self.accountValueLabel.textAlignment = NSTextAlignmentLeft;
+    [redBgView addSubview:self.accountValueLabel];
+    
+    self.scoresLabel = [[UILabel alloc] initWithFrame:CGRectMake(235.5, 90, 110, 14)];
+    self.scoresLabel.text = @"会员卡余额：¥28";
+    self.scoresLabel.font = UIFontMediumOfSize(14);
+    self.scoresLabel.textColor = [UIColor whiteColor];
+    self.scoresLabel.textAlignment = NSTextAlignmentLeft;
+    [redBgView addSubview:self.scoresLabel];
+    
+    [headbgview addSubview:redBgView];
+    [headbgview addSubview:self.incomeView];
+    [headbgview addSubview:self.historyView];
+    [headbgview addSubview:self.listHeadView];
+    [headbgview addSubview:self.moneyView];
+    self.listHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, self.historyView.bottom, SCREEN_WIDTH, 42)];
+    
+    self.listHeadView.backgroundColor = KBGColor;
+    headbgview.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.listHeadView.bottom);
+    
+    
+    
+    
+    self.listView.tableHeaderView = headbgview;
 }
 
 - (void)setTableFooterView{
@@ -117,6 +172,133 @@
     lineView.backgroundColor = LineGrayColor;
     [footerView addSubview:lineView];
     
+    
     self.listView.tableFooterView = footerView;
+}
+
+-(UIView *)incomeView{
+    if (_incomeView == nil) {
+        _incomeView = [[UIView alloc] initWithFrame:CGRectMake(0, redBgView.bottom, SCREEN_WIDTH, 169.5)];
+        _incomeView.backgroundColor = KBGCell;
+        
+        UIView *lineView= [[UIView alloc] initWithFrame:CGRectMake(0, 88, SCREEN_WIDTH, 0.5)];
+        lineView.backgroundColor = LineGrayColor;
+        [_incomeView addSubview:lineView];
+        
+        UILabel *incomeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 58, SCREEN_WIDTH / 2, 16)];
+        incomeTitleLabel.textColor = BlackMagicColor;
+        incomeTitleLabel.textAlignment = NSTextAlignmentLeft;
+        incomeTitleLabel.font = UIFontRegularOfSize(16);
+        [_incomeView addSubview:incomeTitleLabel];
+        incomeTitleLabel.text = @"今日总收入";
+        
+        UILabel *incomeValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 130 - 10, 58, 130, 16)];
+        [_incomeView addSubview:incomeValueLabel];
+        incomeValueLabel.textColor = Gray666Color;
+        incomeValueLabel.textAlignment = NSTextAlignmentRight;
+        incomeValueLabel.font = UIFontRegularOfSize(16);
+        [_incomeView addSubview:incomeValueLabel];
+        incomeValueLabel.text = @"¥6380";
+        
+        [self setDelegatetView];
+    }
+    return _incomeView;
+}
+
+-(void)setDelegatetView{
+    UIButton *btn;
+    UILabel *delegateValueLabel;
+    UILabel *titleLabel;
+    UIView *verticalLine;
+    self.btnViewsArray = [NSMutableArray array];
+    self.accountArray = [NSMutableArray array];
+    for(int i = 0; i < 3 ;i++){
+        btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        verticalLine = [[UIView alloc] init];
+        titleLabel = [[UILabel alloc] init];
+        delegateValueLabel = [[UILabel alloc] init];
+        btn.frame = CGRectMake(i*(SCREEN_WIDTH  )/3, 88, (SCREEN_WIDTH)/3, 81);
+        [self.incomeView addSubview:btn];
+        btn.backgroundColor = [UIColor clearColor];
+        
+        delegateValueLabel.frame = CGRectMake(SCALE_W(0), SCALE_W(20),SCREEN_WIDTH/3,SCALE_W(20));
+        [btn addSubview:delegateValueLabel];
+        delegateValueLabel.backgroundColor  = [UIColor clearColor];
+        delegateValueLabel.textAlignment = NSTextAlignmentCenter;
+        delegateValueLabel.font = UIFontSemiboldOfSize(SCALE_W(16));
+        delegateValueLabel.textColor = Gray666Color;
+        [self.accountArray addObject:delegateValueLabel];
+        
+        titleLabel.frame = CGRectMake(SCALE_W(0) , SCALE_W(47), SCREEN_WIDTH/3, SCALE_W(14));
+        titleLabel.font = UIFontRegularOfSize(SCALE_W(14));
+        titleLabel.textColor = GrayMagicColor;
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        [btn addSubview:titleLabel];
+        if (i == 0) {
+            titleLabel.text = @"代理收入";
+        }
+        if (i == 1) {
+            titleLabel.text = @"团队分红";
+        }
+        if (i == 2) {
+            titleLabel.text = @"工分分红";
+        }
+        
+        [btn addTarget:self action:@selector(gotoScoresList) forControlEvents:UIControlEventTouchUpInside];
+        [self.btnViewsArray addObject:btn];
+    }
+}
+
+-(UIView *)historyView{
+    if (_historyView == nil) {
+        _historyView = [[UIView alloc] initWithFrame:CGRectMake(0, self.incomeView.bottom + 10, SCREEN_WIDTH, 44)];
+        _historyView.backgroundColor = [UIColor whiteColor];
+        UILabel *incomeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH / 2, 44)];
+        incomeTitleLabel.textColor = BlackMagicColor;
+        incomeTitleLabel.textAlignment = NSTextAlignmentLeft;
+        incomeTitleLabel.font = UIFontRegularOfSize(16);
+        [_historyView addSubview:incomeTitleLabel];
+        incomeTitleLabel.text = @"历史收入明细";
+    }
+    return _historyView;
+}
+
+-(UIView *)listHeadView{
+    if (_listHeadView == nil) {
+        _listHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, self.historyView.bottom, SCREEN_WIDTH, 42)];
+        _listHeadView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *clientNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 60, 42)];
+        clientNameLabel.textColor = GrayMagicColor;
+        clientNameLabel.textAlignment = NSTextAlignmentLeft;
+        clientNameLabel.font = UIFontRegularOfSize(14);
+        [_listHeadView addSubview:clientNameLabel];
+        clientNameLabel.text = @"客户名称";
+        
+        UILabel *getMoneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(197.5, 0, 28, 42)];
+        getMoneyLabel.textColor = GrayMagicColor;
+        getMoneyLabel.textAlignment = NSTextAlignmentRight;
+        getMoneyLabel.font = UIFontRegularOfSize(14);
+        [_listHeadView addSubview:getMoneyLabel];
+        getMoneyLabel.text = @"收入";
+        
+        UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 28 -20, 0, 28, 42)];
+        timeLabel.textColor = GrayMagicColor;
+        timeLabel.textAlignment = NSTextAlignmentRight;
+        timeLabel.font = UIFontRegularOfSize(14);
+        [_listHeadView addSubview:timeLabel];
+        timeLabel.text = @"时间";
+        
+    }
+    return _listHeadView;
+}
+
+-(UIView *)moneyView{
+    if (_moneyView == nil) {
+        _moneyView = [[UIView alloc] initWithFrame:CGRectMake(10, 130, SCREEN_WIDTH - 20, 66)];
+        _moneyView.backgroundColor = [UIColor whiteColor];
+        
+    }
+    return _moneyView;
 }
 @end

@@ -54,8 +54,8 @@
     if (_bgView == nil) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH -20, 175 + 114)];
         _bgView.backgroundColor = KBGCell;
-        self.contentView.layer.masksToBounds = YES;
-        self.contentView.layer.cornerRadius = 16;
+        _bgView.layer.masksToBounds = YES;
+        _bgView.layer.cornerRadius = 16;
     }
     return _bgView;
 }
