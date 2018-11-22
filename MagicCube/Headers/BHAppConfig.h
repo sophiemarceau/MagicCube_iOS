@@ -30,8 +30,8 @@
 #define AppStore
 #ifdef AppStore
 // App Store 极光推送
-#define JPushKEY @"9d96eadfeb7c65c9283a5078"
+#define JPushKEY @"df5f3b4d318c6a14f532e45c"
 #else
 // 内侧应用的极光推送
-#define JPushKEY @"1239f0697204bba1e425abdb"
+//#define JPushKEY @"1239f0697204bba1e425abdb"
 #endif
