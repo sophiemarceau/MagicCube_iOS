@@ -45,9 +45,7 @@
     [self.view addSubview:self.listView];
 }
 
--(void)requestData{
-    
-}
+-(void)requestData{}
 
 -(void)giveMeMoreData{}
 
@@ -149,7 +147,6 @@
 //        [self.delegate bannberJumpToWebView:bannerModel.target];
 //    }
 }
-
 
 #pragma mark - LineTabbarSelectDelegate
 -(void)tabbarDidSelect:(NSInteger)number{
