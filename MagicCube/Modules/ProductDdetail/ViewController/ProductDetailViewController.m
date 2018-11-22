@@ -38,8 +38,8 @@
 -(void)initSubviews{
     [self.view addSubview:self.listView];
     [self.view addSubview:self.bottomBtn];
-
 }
+
 #pragma mark - tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 0;
