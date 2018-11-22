@@ -31,7 +31,7 @@
 }
 
 - (void)createfakeData{
-    for (int i = 0; i < 10; i ++) {
+    for (int i = 0; i < 20; i ++) {
         [_dataArray addObject:@""];
     }
 }
@@ -122,6 +122,14 @@
         return headView;
         
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.01)];
 }
 
 /*

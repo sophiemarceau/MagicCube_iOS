@@ -36,10 +36,14 @@
         [self.contentView addSubview:self.iconView];
         
         self.nameLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(50, 0, width - 40, cellHeight)];
+        self.nameLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+        self.nameLabel.textColor = BlackMagicColor;
         [self.contentView addSubview:self.nameLabel];
         
         self.priceLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + width, 0, width, cellHeight)];
         self.priceLabel.textAlignment = NSTextAlignmentRight;
+        self.priceLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+        self.priceLabel.textColor = BlackMagicColor;
         [self.contentView addSubview:self.priceLabel];
         
         self.dateLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + 2 * width, 0, width, cellHeight)];
