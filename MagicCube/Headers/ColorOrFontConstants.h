@@ -24,6 +24,8 @@
 #define RedMagicColor BHHexColor(@"E02E24")
 //App中 字体主黑色
 #define BlackMagicColor BHHexColor(@"333333")
+//字体 常用黑色1
+#define Black626A75Color BHHexColor(@"626A75")
 //App中 字体主灰色
 #define GrayMagicColor BHHexColor(@"999999")
 //View 背景色
@@ -36,6 +38,8 @@
 #define Gray7F7Color BHHexColor(@"7F7569")
 //字体 常用灰色2
 #define Gray948Color BHHexColor(@"948B7F")
+//字体 常用灰色3
+#define Gray666Color BHHexColor(@"666666")
 
 // MARK: App中主要常用字体Font相关 
 #define FontName [UIFont systemFontOfSize:[UIFont systemFontSize]].fontName // 系统字体
