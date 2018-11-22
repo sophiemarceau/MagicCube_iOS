@@ -174,7 +174,7 @@
         
     }];
     [alertController addAction:cancelAction];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定",nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"确认",nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
         
     }];
     [alertController addAction:sureAction];
