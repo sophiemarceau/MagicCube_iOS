@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         MagicLabel * noteLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 14)];
-        noteLabel.textColor = Black6666Color;
+        noteLabel.textColor = Gray666Color;
         noteLabel.text = @"组队代理，可获额外分销分成+利润分成";
         noteLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:noteLabel];

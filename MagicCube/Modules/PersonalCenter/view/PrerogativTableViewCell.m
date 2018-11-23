@@ -59,7 +59,7 @@
     if (!_nameLabel) {
         _nameLabel = [MagicLabel initWithFrame:CGRectMake(10, 20, 207, 16)];
         _nameLabel.font = UIFontRegularOfSize(16);
-        _nameLabel.textColor = Black6666Color;
+        _nameLabel.textColor = Gray666Color;
     }
     return _nameLabel;
 }
@@ -74,7 +74,7 @@
 -(MagicLabel *)periodLabel{
     if (!_periodLabel) {
         _periodLabel = [MagicLabel initWithFrame:CGRectMake(217, 32, 60, 16)];
-        _periodLabel.textColor = Black6666Color;
+        _periodLabel.textColor = Gray666Color;
         _periodLabel.font = UIFontRegularOfSize(16);
     }
     return _periodLabel;
