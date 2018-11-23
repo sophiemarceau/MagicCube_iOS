@@ -10,7 +10,7 @@
 #import "HisstoryTableViewCell.h"
 @interface ThirdViewController ()<UITableViewDelegate,UITableViewDataSource>{
     int current_page,total_count;
-    UIView *redBgView;
+    UIImageView *redBgView;
 }
 
 @property (nonatomic, strong) NSMutableArray *listArray,*btnViewsArray,*accountArray;
@@ -22,7 +22,9 @@
 @property (nonatomic, strong) UIView *incomeView;
 @property (nonatomic, strong) UIView *historyView;
 @property (nonatomic, strong) UIView *listHeadView;
-@property (nonatomic, strong) UIView *moneyView;
+@property (nonatomic, strong) UIImageView *moneyView;
+@property (nonatomic, strong) UILabel *moneyLabel,*moneyTitleLabel;
+@property (nonatomic, strong) UIButton *checkMoneyBtn;
 @end
 
 @implementation ThirdViewController
@@ -59,7 +61,6 @@
 #pragma mark - tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.listArray count];
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -106,9 +107,9 @@
     UIView *headbgview = [[UIView alloc] initWithFrame:CGRectZero];
     headbgview.backgroundColor = KBGColor;
     
-    redBgView = [[UIView alloc] initWithFrame:CGRectZero];
+    redBgView = [[UIImageView alloc] initWithFrame:CGRectZero];
     redBgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 162);
-    redBgView.backgroundColor = RedMagicColor;
+    redBgView.image = [UIImage imageNamed:@"redBgIcon"];
     
     self.headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 50, 60, 60)];
     self.headerImageView.layer.masksToBounds = YES;
@@ -121,16 +122,20 @@
     self.nameLabel.textColor = [UIColor whiteColor];
     [redBgView addSubview:self.nameLabel];
     
+    UIImageView  *memImageLevelView = [[UIImageView alloc] initWithFrame:CGRectMake(147, 61, 15, 15)];
+    memImageLevelView.image = [UIImage imageNamed:@"用户等级_shuijing"];
+    [redBgView addSubview:memImageLevelView];
+    
     self.accountValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 90, 114, 14)];
     self.accountValueLabel.text = @"会员卡余额：¥28";
-    self.accountValueLabel.font = UIFontMediumOfSize(14);
+    self.accountValueLabel.font = UIFontRegularOfSize(14);
     self.accountValueLabel.textColor = [UIColor whiteColor];
     self.accountValueLabel.textAlignment = NSTextAlignmentLeft;
     [redBgView addSubview:self.accountValueLabel];
     
     self.scoresLabel = [[UILabel alloc] initWithFrame:CGRectMake(235.5, 90, 110, 14)];
-    self.scoresLabel.text = @"会员卡余额：¥28";
-    self.scoresLabel.font = UIFontMediumOfSize(14);
+    self.scoresLabel.text = @"魔方工分：456";
+    self.scoresLabel.font = UIFontRegularOfSize(14);
     self.scoresLabel.textColor = [UIColor whiteColor];
     self.scoresLabel.textAlignment = NSTextAlignmentLeft;
     [redBgView addSubview:self.scoresLabel];
@@ -243,7 +248,15 @@
         if (i == 2) {
             titleLabel.text = @"工分分红";
         }
-        
+        if (i == 0) {
+            delegateValueLabel.text = @"¥6380";
+        }
+        if (i == 1) {
+            delegateValueLabel.text = @"0";
+        }
+        if (i == 2) {
+            delegateValueLabel.text = @"0";
+        }
         [btn addTarget:self action:@selector(gotoScoresList) forControlEvents:UIControlEventTouchUpInside];
         [self.btnViewsArray addObject:btn];
     }
@@ -259,6 +272,11 @@
         incomeTitleLabel.font = UIFontRegularOfSize(16);
         [_historyView addSubview:incomeTitleLabel];
         incomeTitleLabel.text = @"历史收入明细";
+        
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, SCREEN_WIDTH, 0.5)];
+        lineView.backgroundColor = LineGrayColor;
+        [_historyView addSubview:lineView];
     }
     return _historyView;
 }
@@ -268,7 +286,7 @@
         _listHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, self.historyView.bottom, SCREEN_WIDTH, 42)];
         _listHeadView.backgroundColor = [UIColor whiteColor];
         
-        UILabel *clientNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 60, 42)];
+        UILabel *clientNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 60, 42)];
         clientNameLabel.textColor = GrayMagicColor;
         clientNameLabel.textAlignment = NSTextAlignmentLeft;
         clientNameLabel.font = UIFontRegularOfSize(14);
@@ -288,17 +306,55 @@
         timeLabel.font = UIFontRegularOfSize(14);
         [_listHeadView addSubview:timeLabel];
         timeLabel.text = @"时间";
-        
     }
     return _listHeadView;
 }
 
--(UIView *)moneyView{
+-(UIImageView *)moneyView{
     if (_moneyView == nil) {
-        _moneyView = [[UIView alloc] initWithFrame:CGRectMake(10, 130, SCREEN_WIDTH - 20, 66)];
-        _moneyView.backgroundColor = [UIColor whiteColor];
-        
+        _moneyView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 365)/2, 125, 365 ,76)];
+        _moneyView.image = [UIImage imageNamed:@"矩形"];
+        [_moneyView addSubview:self.moneyLabel];
+        [_moneyView addSubview:self.moneyTitleLabel];
+        [_moneyView addSubview:self.checkMoneyBtn];
     }
     return _moneyView;
 }
+
+-(UILabel *)moneyLabel{
+    if (_moneyLabel == nil) {
+        _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 26, 72 , 24)];
+        _moneyLabel.textColor = Gray666Color;
+        _moneyLabel.textAlignment = NSTextAlignmentLeft;
+        _moneyLabel.font = UIFontRegularOfSize(24);
+        _moneyLabel.text = @"¥6380";
+    }
+    return _moneyLabel;
+}
+
+-(UILabel *)moneyTitleLabel{
+    if (_moneyTitleLabel == nil) {
+        _moneyTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.moneyLabel.right + 10, 35, 48, 12)];
+        _moneyTitleLabel.textColor = Gray666Color;
+        _moneyTitleLabel.textAlignment = NSTextAlignmentLeft;
+        _moneyTitleLabel.font = UIFontRegularOfSize(12);
+        _moneyTitleLabel.text = @"账户余额";
+    }
+    return _moneyTitleLabel;
+}
+
+-(UIButton *)checkMoneyBtn{
+    if (_checkMoneyBtn == nil) {
+        _checkMoneyBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.moneyView.width - 25- 93.5, 22, 93.5, 32)];
+        _checkMoneyBtn.titleLabel.font = UIFontRegularOfSize(16);
+        [_checkMoneyBtn setTitle:@"提现" forState:UIControlStateNormal];
+        [_checkMoneyBtn setBackgroundColor:RedMagicColor];
+        [_checkMoneyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _checkMoneyBtn.layer.masksToBounds = YES;
+        _checkMoneyBtn.layer.cornerRadius = 4;
+    }
+    return _checkMoneyBtn;
+}
+
+
 @end
