@@ -55,8 +55,9 @@
     }
     self.listView.contentInset = UIEdgeInsetsMake(0, 0, TAB_BAR_HEIGHT, 0);
     self.listView.scrollIndicatorInsets = self.listView.contentInset;
-    
 }
+
+-(void)gotoScoresList{}
 
 #pragma mark - tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -77,7 +78,6 @@
     [cell configwidth:self.listArray[indexPath.row]];
     return cell;
 }
-
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -150,10 +150,6 @@
     
     self.listHeadView.backgroundColor = KBGColor;
     headbgview.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.listHeadView.bottom);
-    
-    
-    
-    
     self.listView.tableHeaderView = headbgview;
 }
 
