@@ -20,9 +20,26 @@
         [self.bgView addSubview:self.titleLabel];
         [self.bgView addSubview:self.priceLabel];
         [self.bgView addSubview:self.numLabel];
-        [self.bgView addSubview:self.redBgLabel];
+        [self.bgView addSubview:self.redBgView];
     }
     return self;
+}
+
+- (void)configwidth:(NSDictionary *)dict{
+    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"详情"]];
+    self.numLabel.text = @"已经出售99323个";
+    self.titleLabel.text = @"【商品名称】Asnières 工坊是品牌的灵魂Asnières 工坊是品牌的灵魂";
+    NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(17),NSForegroundColorAttributeName:RedMagicColor};
+    NSString *deliveryPrice =@"¥ 588  零售指导价";
+    NSString *price = @"¥ 588";
+    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subString:price];
+    self.priceLabel.attributedText = attributestring;
+    
+    NSDictionary * attubtrDict1 = @{NSFontAttributeName:UIFontRegularOfSize(22),NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSString *deliveryPrice1 =@"代理价低至 3 折";
+    NSString *price1 = @"3";
+    NSAttributedString * attributestring1 = [MagicRichTool initWithString:deliveryPrice1 dict:attubtrDict1 subString:price1];
+    self.redBgLabel.attributedText = attributestring1;
 }
 
 -(UIView *)bgView{
@@ -48,7 +65,7 @@
         _titleLabel.textColor = BlackMagicColor;
         _titleLabel.font = UIFontRegularOfSize(16);
         _titleLabel.numberOfLines = 2;
-        _titleLabel.text = @"【商品名称】AirJordan 工坊是品牌的灵魂AirJordan 工坊是品牌的灵魂";
+       
     }
     return _titleLabel;
 }
@@ -56,10 +73,9 @@
 -(UILabel *)priceLabel{
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.titleLabel.bottom + 5.5, (self.bgView.width -20)/2, 18)];
-        _priceLabel.backgroundColor = [UIColor yellowColor];
+        _priceLabel.backgroundColor = [UIColor clearColor];
         _priceLabel.textColor = GrayMagicColor;
-        _priceLabel.font = UIFontRegularOfSize(17);
-        _priceLabel.text = @"￥588  零售指导价";
+        _priceLabel.font = UIFontRegularOfSize(14);
     }
     return _priceLabel;
 }
@@ -77,16 +93,24 @@
 
 -(UILabel *)redBgLabel{
     if (_redBgLabel == nil) {
-        _redBgLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bgView.width - 130.5 -10, self.bgView.height - 35 -10 , 130.5, 35)];
-        _redBgLabel.backgroundColor = RedMagicColor;
+        _redBgLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 6 , self.redBgView.width, 20)];
+        _redBgLabel.backgroundColor = [UIColor clearColor];
         _redBgLabel.textColor = [UIColor whiteColor];
         _redBgLabel.textAlignment = NSTextAlignmentCenter;
         _redBgLabel.font = UIFontRegularOfSize(14);
-        _redBgLabel.text = @"代理价低至3折";
-        _redBgLabel.layer.masksToBounds = YES;
-        _redBgLabel.layer.cornerRadius = 4;
+        
     }
     return _redBgLabel;
 }
 
+-(UIView *)redBgView{
+    if (_redBgView == nil) {
+        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(self.bgView.width - 130.5 -10, self.bgView.height - 35 -10 , 130.5, 35)];
+        _redBgView.backgroundColor = RedMagicColor;
+        _redBgView.layer.masksToBounds = YES;
+        _redBgView.layer.cornerRadius = 4;
+        [_redBgView addSubview:self.redBgLabel];
+    }
+    return _redBgView;
+}
 @end

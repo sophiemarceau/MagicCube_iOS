@@ -9,7 +9,7 @@
 #import "HomePageTableViewCell.h"
 @interface HomePageTableViewCell ()
 
-@property (strong,nonatomic) UIView * bgView;
+@property (strong,nonatomic) UIView * bgView,*redBgView;
 @property (strong,nonatomic) UIImageView * picImageView;
 @property (strong,nonatomic) UILabel* titleLabel;
 @property (strong,nonatomic) UILabel * priceLabel;
@@ -36,7 +36,7 @@
         [self.bgView addSubview:self.titleLabel];
         [self.bgView addSubview:self.priceLabel];
         [self.bgView addSubview:self.numLabel];
-        [self.bgView addSubview:self.redBgLabel];
+        [self.bgView addSubview:self.redBgView];
     }
     return self;
 }
@@ -44,9 +44,20 @@
 - (void)configwidth:(NSDictionary *)dict{
     [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
     self.titleLabel.text = @"【商品名称】Asnières 工坊是品牌的灵魂Asnières 工坊是品牌的灵魂";
-    self.priceLabel.text = @"￥588零售指导价";
+    
+    NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(18),NSForegroundColorAttributeName:RedMagicColor};
+    NSString *deliveryPrice =@"¥ 588  零售指导价";
+    NSString *price = @"¥ 588";
+    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subString:price];
+    self.priceLabel.attributedText = attributestring;
+    
     self.numLabel.text = @"已经出售99323个";
-    self.redBgLabel.text = @"代理价低至3折";
+    
+    NSDictionary * attubtrDict1 = @{NSFontAttributeName:UIFontRegularOfSize(22),NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSString *deliveryPrice1 =@"代理价低至 3 折";
+    NSString *price1 = @"3";
+    NSAttributedString * attributestring1 = [MagicRichTool initWithString:deliveryPrice1 dict:attubtrDict1 subString:price1];
+    self.redBgLabel.attributedText = attributestring1;
 }
 
 + (CGFloat)cellHeight{
@@ -85,10 +96,8 @@
 -(UILabel *)priceLabel{
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.titleLabel.bottom + 5.5, (self.bgView.width -30)/2, 18)];
-        _priceLabel.backgroundColor = [UIColor yellowColor];
         _priceLabel.textColor = GrayMagicColor;
-        _priceLabel.font = UIFontRegularOfSize(18);
-        
+        _priceLabel.font = UIFontRegularOfSize(14);
     }
     return _priceLabel;
 }
@@ -105,14 +114,24 @@
 
 -(UILabel *)redBgLabel{
     if (_redBgLabel == nil) {
-        _redBgLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bgView.width - 130.5 -10, self.bgView.height - 35 -10 , 130.5, 35)];
-        _redBgLabel.backgroundColor = RedMagicColor;
+        _redBgLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 6 , self.redBgView.width, 20)];
+        _redBgLabel.backgroundColor = [UIColor clearColor];
         _redBgLabel.textColor = [UIColor whiteColor];
         _redBgLabel.textAlignment = NSTextAlignmentCenter;
         _redBgLabel.font = UIFontRegularOfSize(14);
-        _redBgLabel.layer.masksToBounds = YES;
-        _redBgLabel.layer.cornerRadius = 4;
+
     }
     return _redBgLabel;
+}
+
+-(UIView *)redBgView{
+    if (_redBgView == nil) {
+        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(self.bgView.width - 130.5 -10, self.bgView.height - 35 -10 , 130.5, 35)];
+        _redBgView.backgroundColor = RedMagicColor;
+        _redBgView.layer.masksToBounds = YES;
+        _redBgView.layer.cornerRadius = 4;
+        [_redBgView addSubview:self.redBgLabel];
+    }
+    return _redBgView;
 }
 @end

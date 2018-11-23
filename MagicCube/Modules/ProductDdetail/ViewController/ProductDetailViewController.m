@@ -88,6 +88,7 @@
 -(ProducDetailtHeaderView *) headerView{
     if (_headerView == nil ) {
         _headerView = [[ProducDetailtHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT ,175+114)];
+        [_headerView configwidth:@{}];
     }
     return _headerView;
 }

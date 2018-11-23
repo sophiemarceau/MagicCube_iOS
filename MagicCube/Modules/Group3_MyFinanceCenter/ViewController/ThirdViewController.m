@@ -114,8 +114,9 @@
     self.headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 50, 60, 60)];
     self.headerImageView.layer.masksToBounds = YES;
     self.headerImageView.layer.cornerRadius = 30;
-    self.headerImageView.backgroundColor = [UIColor blackColor];
+    self.headerImageView.image = [UIImage imageNamed:@"Bitmap"];
     [redBgView addSubview:self.headerImageView];
+    
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 61, SCREEN_WIDTH / 2, 16)];
     self.nameLabel.text = @"用户名";
     self.nameLabel.font = UIFontMediumOfSize(16);

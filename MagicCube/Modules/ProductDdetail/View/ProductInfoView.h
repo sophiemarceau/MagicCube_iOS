@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ProductInfoView : UIView
 @property(nonatomic,strong)UILabel *titleLabel;
 
-@property(nonatomic,strong)UILabel *identifylLabel;
+@property(nonatomic,strong)UILabel *identifylLabel,*proNameLabel;
 @property(nonatomic,strong)UILabel *identifySubLabel;
 @property(nonatomic,strong)UILabel *proNameTitleLabel;
 @property(nonatomic,strong)UILabel *proNameSubLabel;

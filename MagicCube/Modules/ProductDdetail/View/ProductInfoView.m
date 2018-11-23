@@ -24,6 +24,7 @@
         
         [self addSubview:self.productImageView];
         [self addSubview:self.proNameTitleLabel];
+        [self addSubview:self.proNameLabel];
         [self addSubview:self.proNameSubLabel];
         
         [self addSubview:self.addressImageView];
@@ -47,7 +48,7 @@
 
 -(UILabel *)identifylLabel{
     if (_identifylLabel == nil) {
-        _identifylLabel = [self createlabel1frame:CGRectMake(116, 63.5, 259-10, 14)];
+        _identifylLabel = [self createlabel1frame:CGRectMake(116, 64.5, 259-10, 14)];
         _identifylLabel.text = @"本产品已通过防伪认证";
     }
     return _identifylLabel;
@@ -63,16 +64,23 @@
 
 -(UILabel *)proNameTitleLabel{
     if (_proNameTitleLabel == nil) {
-        _proNameTitleLabel = [self createlabel1frame:CGRectMake(116, 109.5, 259-10, 32)];
-        _proNameTitleLabel.numberOfLines = 2;
-        _proNameTitleLabel.text = @"本产品生产商为\nMoet Hennessy Louis Vuitton";
+        _proNameTitleLabel = [self createlabel1frame:CGRectMake(116, 109.5, 259-66, 14)];
+        _proNameTitleLabel.text = @"本产品生产商为";
     }
     return _proNameTitleLabel;
 }
 
+-(UILabel *)proNameLabel{
+    if (_proNameLabel == nil) {
+        _proNameLabel = [self createlabel1frame:CGRectMake(116, self.proNameTitleLabel.bottom, 259, 14)];
+        _proNameLabel.text = @"Moet Hennessy Louis Vuitton";
+    }
+    return _proNameLabel;
+}
+
 -(UILabel *)proNameSubLabel{
     if (_proNameSubLabel == nil) {
-        _proNameSubLabel = [self createlabel2frame:CGRectMake(116, 146.5, 259-10, 30)];
+        _proNameSubLabel = [self createlabel2frame:CGRectMake(116, 146.5, 154, 30)];
         _proNameSubLabel.numberOfLines = 2;
         _proNameSubLabel.text = @"由路易威登（中国）商业销售有限公司数字签名确认";
     }
@@ -136,7 +144,7 @@
     UILabel * label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = Gray948Color;
-    label.font = UIFontRegularOfSize(9);
+    label.font = UIFontRegularOfSize(10);
     label.textAlignment = NSTextAlignmentLeft;
     return label;
 }
@@ -146,4 +154,14 @@
     tempImageView.image = [UIImage imageNamed:imageNameStr];
     return tempImageView;
 }
+
+//- (float) heightForString:(NSString *)value fontSize:(float)fontSize andWidth:(float)width{
+//    UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, width, 0)];
+//    detailLabel.font = UIFontRegularOfSize(fontSize);
+//    detailLabel.text = value;
+//    detailLabel.numberOfLines = 0;
+//    CGSize deSize = [detailLabel sizeThatFits:CGSizeMake(width,1)];
+//    return deSize.height;
+//}
+
 @end

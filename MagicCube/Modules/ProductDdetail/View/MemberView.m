@@ -60,6 +60,7 @@
 -(UILabel *)normalLabel{
     if (_normalLabel == nil) {
          _normalLabel = [self createlabelframe:CGRectMake(30, 50, 157, 15)];
+        _normalLabel.attributedText = [self setValueWith:@"普通会员:488" WithNumStr:@"488"];
     }
     return _normalLabel;
 }
@@ -67,6 +68,7 @@
 -(UILabel *)goldLabel{
     if (_goldLabel == nil) {
          _goldLabel = [self createlabelframe:CGRectMake(208, 50, 157, 15)];
+         _goldLabel.attributedText = [self setValueWith:@"黄金会员:388(6折)" WithNumStr:@"388(6折)"];
     }
     return _goldLabel;
 }
@@ -74,6 +76,7 @@
 -(UILabel *)siverLabel{
     if (_siverLabel == nil) {
          _siverLabel = [self createlabelframe:CGRectMake(30, 79, 157, 15)];
+        _siverLabel.attributedText = [self setValueWith:@"白金会员:288(5.5折)" WithNumStr:@"288(5.5折)"];
     }
     return _siverLabel;
 }
@@ -81,6 +84,7 @@
 -(UILabel *)diamondLabel{
     if (_diamondLabel == nil) {
         _diamondLabel = [self createlabelframe:CGRectMake(208, 79, 157, 15)];
+        _diamondLabel.attributedText = [self setValueWith:@"钻石会员:188(4.5折)" WithNumStr:@"188(4.5折)"];
     }
     return _diamondLabel;
 }
@@ -127,4 +131,9 @@
     return tempImageView;
 }
 
+-(NSAttributedString *)setValueWith:deliveryStr WithNumStr:(NSString *)numStr{
+    NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(15),NSForegroundColorAttributeName:BlackMagicColor};
+    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryStr dict:attubtrDict subString:numStr];
+    return attributestring;
+}
 @end

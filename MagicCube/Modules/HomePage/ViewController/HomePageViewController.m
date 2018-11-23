@@ -22,6 +22,7 @@
 @property (nonatomic, strong) TYCyclePagerView *bannrView;
 @property (nonatomic, strong) NSMutableArray *bannerArray;
 @property (nonatomic, strong) LineTabbarView *headTabbarView;
+@property (nonatomic, strong) TYPageControl *pageControl;
 @end
 
 @implementation HomePageViewController
@@ -149,8 +150,8 @@
 }
 
 - (void)pagerView:(TYCyclePagerView *)pageView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-    //    _pageControl.currentPage = toIndex;
-    //[_pageControl setCurrentPage:newIndex animate:YES];
+    _pageControl.currentPage = toIndex;
+    [_pageControl setCurrentPage:toIndex animate:YES];
     //    NSLog(@"%ld ->  %ld",fromIndex,toIndex);
 }
 
@@ -224,6 +225,8 @@
         // registerClass or registerNibr
         [pagerView registerClass:[TYCyclePagerViewCell class] forCellWithReuseIdentifier:@"cellId"];
         _bannrView = pagerView;
+        [self addPageControl];
+        self.pageControl.frame = CGRectMake(0, CGRectGetHeight(_bannrView.frame) - 26, CGRectGetWidth(_bannrView.frame), 26);
         [bannerBgView addSubview:_bannrView];
         [bgView addSubview:bannerBgView];
         
@@ -233,5 +236,23 @@
     [self.bannrView reloadData];
     bgView.backgroundColor = KBGColor;
     self.listView.tableHeaderView = bgView;
+}
+
+
+- (void)addPageControl {
+    TYPageControl *pageControl = [[TYPageControl alloc]init];
+    pageControl.numberOfPages = self.bannerArray.count;
+    pageControl.currentPageIndicatorSize = CGSizeMake(8, 8);
+    pageControl.pageIndicatorSize = CGSizeMake(8, 8);
+    pageControl.currentPageIndicatorTintColor = RedMagicColor;
+    pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    //    pageControl.pageIndicatorImage = [UIImage imageNamed:@"Dot"];
+    //    pageControl.currentPageIndicatorImage = [UIImage imageNamed:@"DotSelected"];
+    //    pageControl.contentInset = UIEdgeInsetsMake(0, 20, 0, 20);
+    //    pageControl.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    //    pageControl.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    //    [pageControl addTarget:self action:@selector(pageControlValueChangeAction:) forControlEvents:UIControlEventValueChanged];
+    [_bannrView addSubview:pageControl];
+    _pageControl = pageControl;
 }
 @end
