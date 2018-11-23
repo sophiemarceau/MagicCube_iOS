@@ -31,7 +31,7 @@
         
 //        BHHexColor(@"F9F9FA");
         _bannerImageView  = [[UIImageView alloc] init];
-        _bannerImageView.layer.masksToBounds = YES;
+//        _bannerImageView.layer.masksToBounds = YES;
         [bgView addSubview:self.bannerImageView];
         _bannerImageView.backgroundColor = [UIColor clearColor];
        

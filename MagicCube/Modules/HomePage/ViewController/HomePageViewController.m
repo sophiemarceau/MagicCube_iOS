@@ -35,6 +35,16 @@
 
 -(void)initDatas{
     self.listArray = [NSMutableArray array];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
+    [self.listArray addObject:@{@"url":@""}];
     self.bannerArray = [NSMutableArray array];
     [self.bannerArray addObject:@"1"];
     [self.bannerArray addObject:@"2"];
@@ -51,8 +61,8 @@
 
 #pragma mark - tableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
-//    return self.listArray.count;
+//    return 10;
+    return self.listArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -68,8 +78,7 @@
     if (cell == nil) {
         cell = [[HomePageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
-//    [cell configwidth:[self.listArray objectAtIndex:indexPath.row]];
+    [cell configwidth:[self.listArray objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -101,20 +110,26 @@
 
 - (UICollectionViewCell *)pagerView:(TYCyclePagerView *)pagerView cellForItemAtIndex:(NSInteger)index {
     TYCyclePagerViewCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndex:index];
-    if (index == 0) {
-        cell.contentView.backgroundColor = [UIColor purpleColor];
-    }
-    if (index == 1) {
-        cell.contentView.backgroundColor = [UIColor greenColor];
-    }
-    if (index == 2) {
-        cell.contentView.backgroundColor = [UIColor redColor];
-    }
+     [cell.bannerImageView setImage:[UIImage imageNamed:@"home_banner"]];
+//    if (index == 0) {
+//        [cell.bannerImageView setImage:[UIImage imageNamed:@"首页_列表"]];
+//    }
+//    if (index == 1) {
+//       [cell.bannerImageView setImage:[UIImage imageNamed:@"home_banner"]];
+//    }
+//    if (index == 2) {
+//        [cell.bannerImageView setImage:[UIImage imageNamed:@"首页_列表"]];
+//    }
+//    if (index == 2) {
+//        cell.contentView.backgroundColor = [UIColor redColor];
+//    }
     //    cell.backgroundColor = _datas[index];
     //    cell.label.text = [NSString stringWithFormat:@"index->%ld",index];
 //    HomeBannerModel *bannerModel = (HomeBannerModel *) bannerArray[index];
 //
 //    [cell.bannerImageView sd_setImageWithURL: [NSURL URLWithString:bannerModel.url]];
+   
+    
 //        NSURL *URL =
 //        [NSURL URLWithString:@"https://mobike.com/cn/"];
 ////        [NSURL URLWithString:bannerModel.url];

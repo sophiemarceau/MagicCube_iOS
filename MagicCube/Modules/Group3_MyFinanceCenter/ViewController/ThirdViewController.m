@@ -162,7 +162,7 @@
     footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
     footerView.backgroundColor = [UIColor whiteColor];
     
-    UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shangla"]];
+    UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"huiyuanzhongxin_more"]];
     pullArrowImageView.frame = CGRectMake(149.85, 16, 13, 12);
     [footerView addSubview:pullArrowImageView];
     

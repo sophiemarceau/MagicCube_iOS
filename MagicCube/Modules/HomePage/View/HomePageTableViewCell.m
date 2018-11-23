@@ -32,7 +32,6 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = KBGColor;
         [self.contentView addSubview: self.bgView];
-       
         [self.bgView addSubview:self.picImageView];
         [self.bgView addSubview:self.titleLabel];
         [self.bgView addSubview:self.priceLabel];
@@ -43,7 +42,11 @@
 }
 
 - (void)configwidth:(NSDictionary *)dict{
-    
+    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
+    self.titleLabel.text = @"【商品名称】Asnières 工坊是品牌的灵魂Asnières 工坊是品牌的灵魂";
+    self.priceLabel.text = @"￥588零售指导价";
+    self.numLabel.text = @"已经出售99323个";
+    self.redBgLabel.text = @"代理价低至3折";
 }
 
 + (CGFloat)cellHeight{
@@ -63,7 +66,6 @@
 -(UIImageView *)picImageView{
     if (_picImageView == nil) {
         _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, 175)];
-        _picImageView.backgroundColor = [UIColor greenColor];
     }
     return _picImageView;
 }
@@ -75,7 +77,7 @@
         _titleLabel.textColor = BlackMagicColor;
         _titleLabel.font = UIFontRegularOfSize(16);
         _titleLabel.numberOfLines = 2;
-        _titleLabel.text = @"【商品名称】AirJordan 工坊是品牌的灵魂AirJordan 工坊是品牌的灵魂";
+       
     }
     return _titleLabel;
 }
@@ -86,7 +88,7 @@
         _priceLabel.backgroundColor = [UIColor yellowColor];
         _priceLabel.textColor = GrayMagicColor;
         _priceLabel.font = UIFontRegularOfSize(18);
-        _priceLabel.text = @"￥588零售指导价";
+        
     }
     return _priceLabel;
 }
@@ -97,7 +99,6 @@
         _numLabel.backgroundColor = [UIColor clearColor];
         _numLabel.textColor = GrayMagicColor;
         _numLabel.font = UIFontRegularOfSize(14);
-        _numLabel.text = @"已经出售99323个";
     }
     return _numLabel;
 }
@@ -109,7 +110,6 @@
         _redBgLabel.textColor = [UIColor whiteColor];
         _redBgLabel.textAlignment = NSTextAlignmentCenter;
         _redBgLabel.font = UIFontRegularOfSize(14);
-        _redBgLabel.text = @"代理价低至3折";
         _redBgLabel.layer.masksToBounds = YES;
         _redBgLabel.layer.cornerRadius = 4;
     }
