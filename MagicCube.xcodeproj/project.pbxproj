@@ -20,6 +20,10 @@
 		936E9FC721A67B9B00CD1A4E /* ProducDetailtHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FC621A67B9B00CD1A4E /* ProducDetailtHeaderView.m */; };
 		936E9FCA21A684BA00CD1A4E /* ProductInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FC921A684BA00CD1A4E /* ProductInfoView.m */; };
 		936E9FCE21A6B10300CD1A4E /* HisstoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FCD21A6B10300CD1A4E /* HisstoryTableViewCell.m */; };
+		936E9FDE21A7FF6100CD1A4E /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FD021A7FF6000CD1A4E /* BaseWebViewController.m */; };
+		936E9FE021A7FF6100CD1A4E /* SecondaryLevelWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FD621A7FF6000CD1A4E /* SecondaryLevelWebViewController.m */; };
+		936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDB21A7FF6000CD1A4E /* TestJSObject.m */; };
+		936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDC21A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.m */; };
 		93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2621A52E8C004D8111 /* MainViewController.m */; };
 		93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2721A52E8D004D8111 /* AppDelegate.m */; };
 		93CF8E3221A52ECA004D8111 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2C21A52ECA004D8111 /* Tools.m */; };
@@ -92,6 +96,14 @@
 		936E9FC921A684BA00CD1A4E /* ProductInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductInfoView.m; sourceTree = "<group>"; };
 		936E9FCC21A6B10300CD1A4E /* HisstoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisstoryTableViewCell.h; sourceTree = "<group>"; };
 		936E9FCD21A6B10300CD1A4E /* HisstoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisstoryTableViewCell.m; sourceTree = "<group>"; };
+		936E9FD021A7FF6000CD1A4E /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebViewController.m; sourceTree = "<group>"; };
+		936E9FD221A7FF6000CD1A4E /* TestJSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestJSObject.h; sourceTree = "<group>"; };
+		936E9FD321A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+TS_JavaScriptContext.h"; sourceTree = "<group>"; };
+		936E9FD621A7FF6000CD1A4E /* SecondaryLevelWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondaryLevelWebViewController.m; sourceTree = "<group>"; };
+		936E9FD821A7FF6000CD1A4E /* BaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebViewController.h; sourceTree = "<group>"; };
+		936E9FDB21A7FF6000CD1A4E /* TestJSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestJSObject.m; sourceTree = "<group>"; };
+		936E9FDC21A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+TS_JavaScriptContext.m"; sourceTree = "<group>"; };
+		936E9FDD21A7FF6000CD1A4E /* SecondaryLevelWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondaryLevelWebViewController.h; sourceTree = "<group>"; };
 		93CF8E2521A52E8C004D8111 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		93CF8E2621A52E8C004D8111 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		93CF8E2721A52E8D004D8111 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -245,6 +257,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		936E9FCF21A7FF6000CD1A4E /* WebViewVC */ = {
+			isa = PBXGroup;
+			children = (
+				936E9FD821A7FF6000CD1A4E /* BaseWebViewController.h */,
+				936E9FD021A7FF6000CD1A4E /* BaseWebViewController.m */,
+				936E9FDD21A7FF6000CD1A4E /* SecondaryLevelWebViewController.h */,
+				936E9FD621A7FF6000CD1A4E /* SecondaryLevelWebViewController.m */,
+				936E9FD221A7FF6000CD1A4E /* TestJSObject.h */,
+				936E9FDB21A7FF6000CD1A4E /* TestJSObject.m */,
+				936E9FD321A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.h */,
+				936E9FDC21A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.m */,
+			);
+			path = WebViewVC;
+			sourceTree = "<group>";
+		};
 		93CF8E2B21A52ECA004D8111 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +334,7 @@
 		93CF8E7A21A5369C004D8111 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				936E9FCF21A7FF6000CD1A4E /* WebViewVC */,
 				93CF8E7B21A536AC004D8111 /* HomePage */,
 				93CF8E7C21A536B9004D8111 /* Group2_MyGoodProduct */,
 				93CF8E7D21A536C2004D8111 /* Group3_MyFinanceCenter */,
@@ -510,8 +538,8 @@
 		B2D8C54F21A405FA00BBC74F /* MagicCube */ = {
 			isa = PBXGroup;
 			children = (
-				B2059C4321A65CAD00F70C07 /* custom */,
 				B22E4A2B21A4FCCD003F37BD /* Headers */,
+				B2059C4321A65CAD00F70C07 /* custom */,
 				93CF8E2B21A52ECA004D8111 /* Tools */,
 				B2649BC621A50C0300C871C8 /* Categories */,
 				93CF8E3821A52EEE004D8111 /* Libs */,
@@ -770,7 +798,9 @@
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
 				93CF8E8521A53705004D8111 /* HomePageViewController.m in Sources */,
+				936E9FE021A7FF6100CD1A4E /* SecondaryLevelWebViewController.m in Sources */,
 				B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */,
+				936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */,
 				7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */,
 				936E9FC421A66AC300CD1A4E /* MemberView.m in Sources */,
 				7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */,
@@ -784,6 +814,7 @@
 				7DB9F88021A58DFE005D4DD4 /* ProductDetailViewController.m in Sources */,
 				936E9FC721A67B9B00CD1A4E /* ProducDetailtHeaderView.m in Sources */,
 				93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */,
+				936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				7DB9F89521A5AB3C005D4DD4 /* TYCyclePagerView.m in Sources */,
 				936E9FCE21A6B10300CD1A4E /* HisstoryTableViewCell.m in Sources */,
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
@@ -791,6 +822,7 @@
 				B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */,
 				93CF8E3421A52ECA004D8111 /* BHToast.m in Sources */,
 				7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */,
+				936E9FDE21A7FF6100CD1A4E /* BaseWebViewController.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
 				B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */,
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
