@@ -44,4 +44,5 @@
 #import "MagicLabel.h"
 #import "MagicLineView.h"
 #import "MagicRichTool.h"
+#import "RedButton.h"
 #endif /* MagicPrefixHeader_pch */

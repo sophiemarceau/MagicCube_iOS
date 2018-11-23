@@ -41,12 +41,19 @@
 		B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */; };
 		B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4521A65CC900F70C07 /* MagicLabel.m */; };
 		B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4821A6603500F70C07 /* MagicLineView.m */; };
+		B209F18421A7DE9E0043E485 /* PrerogativView.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F18321A7DE9E0043E485 /* PrerogativView.m */; };
+		B209F18721A7DFD60043E485 /* SpecilView.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F18621A7DFD60043E485 /* SpecilView.m */; };
+		B209F18A21A7EBE80043E485 /* PrerogativTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F18921A7EBE80043E485 /* PrerogativTableViewCell.m */; };
+		B209F19021A7EF2C0043E485 /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F18F21A7EF2C0043E485 /* RedButton.m */; };
+		B209F19321A7F5AB0043E485 /* TableTitleHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F19221A7F5AB0043E485 /* TableTitleHeadView.m */; };
+		B209F19621A7F9160043E485 /* InviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F19521A7F9160043E485 /* InviteView.m */; };
 		B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B229A66121A692A900A5B23B /* SalerTableViewCell.m */; };
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
 		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
 		B27585D321A6864800C9943A /* MagicRichTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D221A6864800C9943A /* MagicRichTool.m */; };
 		B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D521A68A5500C9943A /* GoodsDetailViewController.m */; };
+		B2A76C2521A7AFFD00AFCC6C /* UserHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A76C2421A7AFFD00AFCC6C /* UserHeadView.m */; };
 		B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D8C55921A405FE00BBC74F /* Assets.xcassets */; };
 		B2D8C56021A405FE00BBC74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55F21A405FE00BBC74F /* main.m */; };
 		B2D8C56A21A405FE00BBC74F /* MagicCubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C56921A405FE00BBC74F /* MagicCubeTests.m */; };
@@ -141,6 +148,18 @@
 		B2059C4521A65CC900F70C07 /* MagicLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicLabel.m; sourceTree = "<group>"; };
 		B2059C4721A6603500F70C07 /* MagicLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicLineView.h; sourceTree = "<group>"; };
 		B2059C4821A6603500F70C07 /* MagicLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicLineView.m; sourceTree = "<group>"; };
+		B209F18221A7DE9E0043E485 /* PrerogativView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrerogativView.h; sourceTree = "<group>"; };
+		B209F18321A7DE9E0043E485 /* PrerogativView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrerogativView.m; sourceTree = "<group>"; };
+		B209F18521A7DFD60043E485 /* SpecilView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpecilView.h; sourceTree = "<group>"; };
+		B209F18621A7DFD60043E485 /* SpecilView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpecilView.m; sourceTree = "<group>"; };
+		B209F18821A7EBE80043E485 /* PrerogativTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrerogativTableViewCell.h; sourceTree = "<group>"; };
+		B209F18921A7EBE80043E485 /* PrerogativTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrerogativTableViewCell.m; sourceTree = "<group>"; };
+		B209F18E21A7EF2C0043E485 /* RedButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedButton.h; sourceTree = "<group>"; };
+		B209F18F21A7EF2C0043E485 /* RedButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedButton.m; sourceTree = "<group>"; };
+		B209F19121A7F5AB0043E485 /* TableTitleHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableTitleHeadView.h; sourceTree = "<group>"; };
+		B209F19221A7F5AB0043E485 /* TableTitleHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableTitleHeadView.m; sourceTree = "<group>"; };
+		B209F19421A7F9160043E485 /* InviteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteView.h; sourceTree = "<group>"; };
+		B209F19521A7F9160043E485 /* InviteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteView.m; sourceTree = "<group>"; };
 		B229A66021A692A900A5B23B /* SalerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalerTableViewCell.h; sourceTree = "<group>"; };
 		B229A66121A692A900A5B23B /* SalerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalerTableViewCell.m; sourceTree = "<group>"; };
 		B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAppConfig.h; sourceTree = "<group>"; };
@@ -158,6 +177,8 @@
 		B27585D221A6864800C9943A /* MagicRichTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicRichTool.m; sourceTree = "<group>"; };
 		B27585D421A68A5500C9943A /* GoodsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		B27585D521A68A5500C9943A /* GoodsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
+		B2A76C2321A7AFFD00AFCC6C /* UserHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserHeadView.h; sourceTree = "<group>"; };
+		B2A76C2421A7AFFD00AFCC6C /* UserHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHeadView.m; sourceTree = "<group>"; };
 		B2D8C54D21A405FA00BBC74F /* MagicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C55921A405FE00BBC74F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2D8C55E21A405FE00BBC74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -377,8 +398,8 @@
 		93CF8E7E21A536CD004D8111 /* PersonalCenter */ = {
 			isa = PBXGroup;
 			children = (
-				93CF8E9621A5386D004D8111 /* Model */,
-				93CF8E9521A53863004D8111 /* View */,
+				B253EC8D21A79953001DCBEB /* model */,
+				B253EC8E21A79953001DCBEB /* view */,
 				93CF8E7F21A536D9004D8111 /* ViewController */,
 			);
 			path = PersonalCenter;
@@ -436,20 +457,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		93CF8E9521A53863004D8111 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		93CF8E9621A5386D004D8111 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		B2059C3D21A6596300F70C07 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +484,10 @@
 				B2059C4821A6603500F70C07 /* MagicLineView.m */,
 				B27585D121A6864800C9943A /* MagicRichTool.h */,
 				B27585D221A6864800C9943A /* MagicRichTool.m */,
+				B209F18E21A7EF2C0043E485 /* RedButton.h */,
+				B209F18F21A7EF2C0043E485 /* RedButton.m */,
+				B209F19121A7F5AB0043E485 /* TableTitleHeadView.h */,
+				B209F19221A7F5AB0043E485 /* TableTitleHeadView.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -494,6 +505,30 @@
 				B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */,
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		B253EC8D21A79953001DCBEB /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		B253EC8E21A79953001DCBEB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B2A76C2321A7AFFD00AFCC6C /* UserHeadView.h */,
+				B2A76C2421A7AFFD00AFCC6C /* UserHeadView.m */,
+				B209F18521A7DFD60043E485 /* SpecilView.h */,
+				B209F18621A7DFD60043E485 /* SpecilView.m */,
+				B209F18221A7DE9E0043E485 /* PrerogativView.h */,
+				B209F18321A7DE9E0043E485 /* PrerogativView.m */,
+				B209F18821A7EBE80043E485 /* PrerogativTableViewCell.h */,
+				B209F18921A7EBE80043E485 /* PrerogativTableViewCell.m */,
+				B209F19421A7F9160043E485 /* InviteView.h */,
+				B209F19521A7F9160043E485 /* InviteView.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		B2649BC621A50C0300C871C8 /* Categories */ = {
@@ -802,10 +837,13 @@
 				B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */,
 				936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */,
 				7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */,
+				B209F19621A7F9160043E485 /* InviteView.m in Sources */,
 				936E9FC421A66AC300CD1A4E /* MemberView.m in Sources */,
+				B209F18721A7DFD60043E485 /* SpecilView.m in Sources */,
 				7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */,
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
 				93CF8E3721A52ED2004D8111 /* UIImage+help.m in Sources */,
+				B209F19321A7F5AB0043E485 /* TableTitleHeadView.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,
 				B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */,
 				93CF8E4821A52EFC004D8111 /* BaseViewController.m in Sources */,
@@ -820,11 +858,14 @@
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */,
+				B2A76C2521A7AFFD00AFCC6C /* UserHeadView.m in Sources */,
 				93CF8E3421A52ECA004D8111 /* BHToast.m in Sources */,
 				7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */,
 				936E9FDE21A7FF6100CD1A4E /* BaseWebViewController.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
+				B209F18A21A7EBE80043E485 /* PrerogativTableViewCell.m in Sources */,
 				B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */,
+				B209F18421A7DE9E0043E485 /* PrerogativView.m in Sources */,
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
 				7DB9F89321A5AB3C005D4DD4 /* TYPageControl.m in Sources */,
 				7DB9F88A21A5A739005D4DD4 /* LineTabbarView.m in Sources */,
@@ -833,6 +874,7 @@
 				B27585D321A6864800C9943A /* MagicRichTool.m in Sources */,
 				93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */,
 				93CF8E4721A52EFC004D8111 /* BaseNavigationViewController.m in Sources */,
+				B209F19021A7EF2C0043E485 /* RedButton.m in Sources */,
 				B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */,
 				93CF8E3F21A52EEF004D8111 /* FLAnimatedImageView.m in Sources */,
 			);

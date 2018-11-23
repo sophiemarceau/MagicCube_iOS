@@ -21,14 +21,14 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+        self.font = UIFontRegularOfSize(14);
         self.textColor = GrayMagicColor;
     }
     return self;
 }
 
 + (MagicLabel *)initWithFrame:(CGRect)frame{
-    return [MagicLabel initWithFrame:frame];
+    return [[MagicLabel alloc] initWithFrame:frame];
 }
 /*
 // Only override drawRect: if you perform custom drawing.
