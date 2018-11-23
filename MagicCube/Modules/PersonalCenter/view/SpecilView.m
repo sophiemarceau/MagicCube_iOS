@@ -25,8 +25,12 @@
     return self;
 }
 
+- (void)figureImg:(NSString *)imageName{
+    [self.imgView setImage:[UIImage imageNamed:imageName]];
+}
+
 - (void)configWithDict:(NSDictionary *)dict{
-    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"idocn"]]] placeholderImage:[UIImage imageNamed:@"caiwuzhongxin_selected"]];
+//    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"idocn"]]] placeholderImage:[UIImage imageNamed:@"caiwuzhongxin_selected"]];
     
     self.titlLabel.text = [dict objectForKey:@"title"];
     self.desclabel.text = [dict objectForKey:@"desc"];
@@ -43,7 +47,7 @@
     if (!_titlLabel) {
         _titlLabel = [MagicLabel initWithFrame:CGRectMake(0, 65, self.frame.size.width, 14)];
         _titlLabel.textAlignment = NSTextAlignmentCenter;
-        _titlLabel.textColor = BlackMagicColor;
+        _titlLabel.textColor = Gray666Color;
     }
     return _titlLabel;
 }

@@ -42,7 +42,7 @@
 }
 
 - (void)configWithDict:(NSDictionary *)dict{
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"icon"]]] placeholderImage:[UIImage imageNamed:@"home_jieqinghaowu"]];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Bitmap"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
     [self.nameBtn setImage:[UIImage imageNamed:@"zuanshihuiyuan"] forState:UIControlStateNormal];
     [self.nameBtn setTitle:@"用户名" forState:UIControlStateNormal];
     _nameBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -58,6 +58,8 @@
 - (UIImageView *)iconView{
     if (!_iconView) {
         _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (self.frame.size.height - 58) * 0.5, 58, 58)];
+        _iconView.layer.cornerRadius = _iconView.height * 0.5;
+        _iconView.layer.masksToBounds = YES;
     }
     return _iconView;
 }

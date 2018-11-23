@@ -10,7 +10,7 @@
 #import "SpecilView.h"
 
 @interface PrerogativView ()
-@property (strong,nonatomic) UIButton * joinMagicBtn;
+@property (strong,nonatomic) RedButton * joinMagicBtn;
 @end
 
 @implementation PrerogativView
@@ -21,6 +21,7 @@
         for (int i = 0; i < 4; i ++) {
             SpecilView * view = [[SpecilView alloc] initWithFrame:CGRectMake(width * i, 0, width, 100)];
             view.tag = 100 + i;
+            [view figureImg:[NSString stringWithFormat:@"prerogative%d",i + 1]];
             [self addSubview:view];
         }
         
@@ -46,9 +47,9 @@
     [self.joinMagicBtn setTitle:@"18元起成为魔方合伙人" forState:UIControlStateNormal];
 }
 
-- (UIButton *)joinMagicBtn{
+- (RedButton *)joinMagicBtn{
     if (!_joinMagicBtn) {
-        _joinMagicBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 196) * 0.5, 139, 196, 38)];
+        _joinMagicBtn = [[RedButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 196) * 0.5, 139, 196, 38)];
         _joinMagicBtn.backgroundColor = RedMagicColor;
         [_joinMagicBtn setTitleColor:BHColorWhite forState:UIControlStateNormal];
         _joinMagicBtn.titleLabel.font = UIFontRegularOfSize(16);

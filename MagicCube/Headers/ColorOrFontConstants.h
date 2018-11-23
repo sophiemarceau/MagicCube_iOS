@@ -40,6 +40,9 @@
 #define Gray948Color BHHexColor(@"948B7F")
 //字体 常用灰色3
 #define Gray666Color BHHexColor(@"666666")
+//边框 常用灰色Layer
+#define GrayLayerColor BHHexColor(@"CCCCCC")
+
 
 // MARK: App中主要常用字体Font相关 
 #define FontName [UIFont systemFontOfSize:[UIFont systemFontSize]].fontName // 系统字体

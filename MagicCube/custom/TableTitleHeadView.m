@@ -39,6 +39,7 @@
     if (!_titleLabel) {
         _titleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 43.5)];
         _titleLabel.font = UIFontRegularOfSize(16);
+        _titleLabel.textColor = BlackMagicColor;
         _titleLabel.text = @"会员特权";
     }
     return _titleLabel;

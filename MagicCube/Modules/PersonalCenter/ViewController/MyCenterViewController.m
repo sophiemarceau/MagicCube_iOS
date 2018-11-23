@@ -172,12 +172,20 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
+    if (section == 0) {
+        return 10;
+    }else{
+        return 0;
+    }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
-    footView.backgroundColor = KBGColor;
-    return footView;
+    if (section == 0) {
+        UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+        footView.backgroundColor = KBGColor;
+        return footView;
+    }else{
+        return [UIView new];
+    }
 }
 @end

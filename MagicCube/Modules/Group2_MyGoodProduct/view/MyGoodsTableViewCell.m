@@ -52,6 +52,7 @@
         [self.contentView addSubview:self.distributionPriceLabel];
         
         self.descLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(left, 100, SCREEN_WIDTH - left - 10, 14)];
+        self.descLabel.textColor = Gray666Color;
         [self.contentView addSubview:self.descLabel];
         
         MagicLineView * lineView = [MagicLineView initFame:CGRectMake(0, cellHeight - 10, SCREEN_WIDTH, 10)];
@@ -62,7 +63,7 @@
 }
 
 - (void)configDict:(NSDictionary *)dict{
-    [self.goodsImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"home_jieqinghaowu"]];
+    [self.goodsImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"我的好物图片"]];
     
     self.goodsNameLabel.text = @"【商品名称】Asnières 工坊是品…";
     UIFont *font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];

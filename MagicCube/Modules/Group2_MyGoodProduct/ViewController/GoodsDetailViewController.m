@@ -9,6 +9,7 @@
 #import "GoodsDetailViewController.h"
 #import "MyGoodsTableViewCell.h"
 #import "SalerTableViewCell.h"
+#import "TableTitleHeadView.h"
 
 @interface GoodsDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) NSMutableArray * dataArray;
@@ -97,19 +98,16 @@
     }else{
         UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44 + 42)];
         headView.backgroundColor = [UIColor whiteColor];
-        MagicLabel *titleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH, 43.5)];
-        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
-        titleLabel.text = @"销售记录";
-        [headView addSubview:titleLabel];
-        
-        MagicLineView *lineView = [[MagicLineView alloc] initWithFrame:CGRectMake(0, 43.5, SCREEN_WIDTH, 0.5)];
-        [headView addSubview:lineView];
+        TableTitleHeadView * headtile = [[TableTitleHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        [headtile setUpTitle:@"销售记录"];
+        [headView addSubview:headtile];
         
         CGFloat width = (SCREEN_WIDTH - 20) / 3.0;
         NSArray * titles = @[@"客户名称",@"销售价格",@"销售时间"];
         int index = 0;
         for (NSString * title in titles) {
             MagicLabel * label = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + index * width, 44, width, 41.5)];
+            label.textColor = Gray666Color;
             [headView addSubview:label];
             label.text = title;
             if (index != 0) {

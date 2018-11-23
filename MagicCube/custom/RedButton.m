@@ -28,7 +28,7 @@
     [self setTitleColor:BHColorWhite forState:UIControlStateNormal];
     self.backgroundColor = RedMagicColor;
     self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = self.frame.size.height * 0.2;
+    self.layer.cornerRadius = self.frame.size.height * 0.1;
     self.titleLabel.font = UIFontRegularOfSize(14);
 }
 

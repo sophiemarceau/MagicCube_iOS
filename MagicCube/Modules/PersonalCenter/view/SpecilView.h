@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SpecilView : UIView
+- (void)figureImg:(NSString *)imageName;
 - (void)configWithDict:(NSDictionary *)dict;
 @end
 
