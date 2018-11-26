@@ -7,15 +7,13 @@
 //
 
 #import "SecondaryLevelWebViewController.h"
-
 #import "TestJSObject.h"
-
 
 @interface SecondaryLevelWebViewController ()<RetrunFormJsFunctionDelegate>{
     NSUInteger selectedIndex;
 }
 
-@property (nonatomic,strong) NSTimer * timer;
+@property (nonatomic,strong) NSTimer *timer;
 @end
 
 @implementation SecondaryLevelWebViewController
@@ -24,6 +22,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self addNotification];
+//    self.navigationItem.leftBarButtonItem = [self leftBart];
+//    self.navigationItem.rightBarButtonItem = [self creatRightBarItem];
 }
 
 - (void)addNotification {}
@@ -45,11 +45,24 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //     NSLog(@"--------webview-------viewWillAppear------------------%@",self.urlString);
+    if (!self.timer) {
+        // 创建定时器
+        self.timer = [NSTimer timerWithTimeInterval:1.5f target:self selector:@selector(startClock) userInfo:nil repeats:YES];
+        // 将定时器添加到runloop中，否则定时器不会启动
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        //开启定时器
+        [self.timer fire];
+    }else{
+        [self.timer fire];
+    }
 }
 
 #pragma mark - viewWillDisappear
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.timer invalidate];
+    self.timer = nil;
+
 }
 
 -(void)go2PageVc:(NSDictionary *)obj{
@@ -60,6 +73,14 @@
                 
             }
         });
+    }
+}
+
+- (void)startClock{
+    NSString *titleStr = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
+    if (titleStr.length != 0) {
+        self.navigationItem.title = titleStr;
     }
 }
 

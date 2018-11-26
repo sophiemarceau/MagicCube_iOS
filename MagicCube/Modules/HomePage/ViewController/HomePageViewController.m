@@ -13,6 +13,7 @@
 #import "TYCyclePagerView.h"
 #import "TYPageControl.h"
 #import "TYCyclePagerViewCell.h"
+#import "SecondaryLevelWebViewController.h"
 
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate>{
     int current_page,total_count;
@@ -157,6 +158,16 @@
 
 - (void)pagerView:(TYCyclePagerView *)pageView didSelectedItemCell:(__kindof UICollectionViewCell *)cell atIndex:(NSInteger)index{
     NSLog(@"didSelectedItemCell->  %ld",index);
+    
+    SecondaryLevelWebViewController *vc = [[SecondaryLevelWebViewController alloc] init];
+    vc.urlString =
+//    [NSString stringWithFormat:@"%@%@",kAppPartnerAddress,@"?partner=1"];
+        @"https://www.baidu.com";
+//    kAppPartnerAddress;
+    vc.isHiddenLeft = YES;
+    NSLog(@"getDigInfo-->%@",vc.urlString);
+    vc.isHiddenBottom = YES;
+    [ self.navigationController pushViewController:vc animated:YES];
 //    if (self.delegate && [self.delegate respondsToSelector:@selector(bannberJumpToWebView:)]) {
 //        HomeBannerModel *bannerModel = (HomeBannerModel *) bannerArray[index];
 //
