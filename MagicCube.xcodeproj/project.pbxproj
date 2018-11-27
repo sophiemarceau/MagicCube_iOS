@@ -24,6 +24,7 @@
 		936E9FE021A7FF6100CD1A4E /* SecondaryLevelWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FD621A7FF6000CD1A4E /* SecondaryLevelWebViewController.m */; };
 		936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDB21A7FF6000CD1A4E /* TestJSObject.m */; };
 		936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDC21A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.m */; };
+		936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02B21AD4D4100CD1A4E /* SPPageMenu.m */; };
 		93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2621A52E8C004D8111 /* MainViewController.m */; };
 		93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2721A52E8D004D8111 /* AppDelegate.m */; };
 		93CF8E3221A52ECA004D8111 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2C21A52ECA004D8111 /* Tools.m */; };
@@ -111,6 +112,8 @@
 		936E9FDB21A7FF6000CD1A4E /* TestJSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestJSObject.m; sourceTree = "<group>"; };
 		936E9FDC21A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+TS_JavaScriptContext.m"; sourceTree = "<group>"; };
 		936E9FDD21A7FF6000CD1A4E /* SecondaryLevelWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondaryLevelWebViewController.h; sourceTree = "<group>"; };
+		936EA02B21AD4D4100CD1A4E /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
+		936EA02C21AD4D4100CD1A4E /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
 		93CF8E2521A52E8C004D8111 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		93CF8E2621A52E8C004D8111 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		93CF8E2721A52E8D004D8111 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -293,6 +296,15 @@
 			path = WebViewVC;
 			sourceTree = "<group>";
 		};
+		936E9FEE21AD4C2700CD1A4E /* SPPageMenu */ = {
+			isa = PBXGroup;
+			children = (
+				936EA02C21AD4D4100CD1A4E /* SPPageMenu.h */,
+				936EA02B21AD4D4100CD1A4E /* SPPageMenu.m */,
+			);
+			path = SPPageMenu;
+			sourceTree = "<group>";
+		};
 		93CF8E2B21A52ECA004D8111 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +321,7 @@
 		93CF8E3821A52EEE004D8111 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				936E9FEE21AD4C2700CD1A4E /* SPPageMenu */,
 				93CF8E3921A52EEE004D8111 /* FLAnimatedImage */,
 			);
 			path = Libs;
@@ -842,6 +855,7 @@
 				B209F18721A7DFD60043E485 /* SpecilView.m in Sources */,
 				7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */,
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
+				936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */,
 				93CF8E3721A52ED2004D8111 /* UIImage+help.m in Sources */,
 				B209F19321A7F5AB0043E485 /* TableTitleHeadView.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,

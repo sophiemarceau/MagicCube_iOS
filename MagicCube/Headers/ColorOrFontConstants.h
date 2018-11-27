@@ -21,7 +21,7 @@
 /* App导航条颜色*/
 #define BHColornavigationBar         [BHHexColor navigationBarColor]
 //App中主红色
-#define RedMagicColor BHHexColor(@"E02E24")
+#define RedMagicColor BHHexColor(@"B5262F")
 //App中 字体主黑色
 #define BlackMagicColor BHHexColor(@"333333")
 //字体 常用黑色1
