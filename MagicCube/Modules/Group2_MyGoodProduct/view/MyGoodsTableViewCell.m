@@ -66,6 +66,8 @@
     [self.goodsImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"我的好物图片"]];
     
     self.goodsNameLabel.text = @"【商品名称】Asnières 工坊是品…";
+    self.goodsNameLabel.text = @"【商品名称】Asnières 工坊是品牌的灵魂Asnières 工坊是品牌的灵魂";
+    self.goodsNameLabel.numberOfLines = 0;
     UIFont *font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
     NSDictionary * attubtrDict = @{NSFontAttributeName:font,NSForegroundColorAttributeName:RedMagicColor};
     NSString *deliveryPrice =@"¥ 288  提货价(黄金会员价)";

@@ -73,7 +73,7 @@
 
 -(MagicLabel *)periodLabel{
     if (!_periodLabel) {
-        _periodLabel = [MagicLabel initWithFrame:CGRectMake(217, 32, 60, 16)];
+        _periodLabel = [MagicLabel initWithFrame:CGRectMake(SCALE_W(217), 32, 60, 16)];
         _periodLabel.textColor = Gray666Color;
         _periodLabel.font = UIFontRegularOfSize(16);
     }
@@ -82,7 +82,7 @@
 
 - (RedButton *)buyBtn{
     if (!_buyBtn) {
-        _buyBtn = [[RedButton alloc] initWithFrame:CGRectMake(298, 25, 64, 30)];
+        _buyBtn = [[RedButton alloc] initWithFrame:CGRectMake(SCALE_W(298), 25, SCALE_W(64), 30)];
         [_buyBtn setTitle:@"购买" forState:UIControlStateNormal];
     }
     return _buyBtn;

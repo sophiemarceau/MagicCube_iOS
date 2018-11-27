@@ -96,7 +96,7 @@
 
 - (UIButton *)menberBtn{
     if (!_menberBtn) {
-        _menberBtn = [[UIButton alloc] initWithFrame:CGRectMake(244, 33, 121, 32)];
+        _menberBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCALE_W(244), 33, SCALE_W(121), 32)];
         _menberBtn.titleLabel.font = UIFontMediumOfSize(14);
         _menberBtn.layer.cornerRadius = 5;
         _menberBtn.layer.masksToBounds = YES;

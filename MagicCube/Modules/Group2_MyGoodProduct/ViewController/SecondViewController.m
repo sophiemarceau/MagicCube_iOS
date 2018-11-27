@@ -37,7 +37,7 @@
 }
 
 - (void)addSubViews{
-    UITableView * tabelview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT) style:UITableViewStylePlain];
+    UITableView * tabelview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - 49) style:UITableViewStylePlain];
     tabelview.delegate = self;
     tabelview.dataSource = self;
     tabelview.rowHeight = [MyGoodsTableViewCell cellHeight];
