@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F42781BBF16DC229512A506 /* Pods_MagicCube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */; };
+		7D709BB521ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D709BB421ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m */; };
+		7D709BB821ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D709BB721ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m */; };
 		7DB9F88021A58DFE005D4DD4 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F87F21A58DFE005D4DD4 /* ProductDetailViewController.m */; };
 		7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F88221A59633005D4DD4 /* HomePageTableViewCell.m */; };
 		7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F88521A5A278005D4DD4 /* UIView+category.m */; };
@@ -79,6 +81,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D709BB321ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXIgnoreHeaderTouchTableView.h; sourceTree = "<group>"; };
+		7D709BB421ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXIgnoreHeaderTouchTableView.m; sourceTree = "<group>"; };
+		7D709BB621ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h; sourceTree = "<group>"; };
+		7D709BB721ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m; sourceTree = "<group>"; };
 		7DB9F87E21A58DFE005D4DD4 /* ProductDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		7DB9F87F21A58DFE005D4DD4 /* ProductDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		7DB9F88121A59633005D4DD4 /* HomePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomePageTableViewCell.h; path = MagicCube/Modules/HomePage/View/HomePageTableViewCell.h; sourceTree = SOURCE_ROOT; };
@@ -255,6 +261,10 @@
 				7DB9F88221A59633005D4DD4 /* HomePageTableViewCell.m */,
 				7DB9F88821A5A739005D4DD4 /* LineTabbarView.h */,
 				7DB9F88921A5A739005D4DD4 /* LineTabbarView.m */,
+				7D709BB321ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.h */,
+				7D709BB421ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m */,
+				7D709BB621ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h */,
+				7D709BB721ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -845,8 +855,10 @@
 			files = (
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
+				7D709BB521ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m in Sources */,
 				93CF8E8521A53705004D8111 /* HomePageViewController.m in Sources */,
 				936E9FE021A7FF6100CD1A4E /* SecondaryLevelWebViewController.m in Sources */,
+				7D709BB821ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m in Sources */,
 				B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */,
 				936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */,
 				7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */,

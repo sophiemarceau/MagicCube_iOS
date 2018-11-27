@@ -18,12 +18,13 @@
 
 
 #import "SPPageMenu.h"
+#import "YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h"
 
 
 
 #define pageMenuH 42
-
-
+#define kLeaveTopNotificationName           @"leaveTop"//离开置顶命令
+#define scrollViewHeight SCREEN_HEIGHT - NAVIGATION_HEIGHT - pageMenuH -TAB_BAR_HEIGHT
 
 
 
@@ -42,7 +43,11 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) UIView *tableHeaderView;
-@property (nonatomic, strong) UIScrollView *bgScrollView;
+@property(nonatomic,assign)BOOL isTopIsCanNotMoveTabView;
+@property(nonatomic,assign)BOOL isTopIsCanNotMoveTabViewPre;
+@property(nonatomic,assign)BOOL canScroll;
+@property(nonatomic,strong)YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView *tableView;
+
 @end
 
 @implementation HomePageViewController
@@ -76,18 +81,29 @@
 }
 
 -(void)initSubviews{
-    // trackerStyle:跟踪器的样式
-    SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT - NAVIGATION_HEIGHT - pageMenuH -TAB_BAR_HEIGHT, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
-    // 传递数组，默认选中第2个
-    [pageMenu setItems:self.dataArr selectedItemIndex:0];
-    // 设置代理
-    pageMenu.delegate = self;
-    // 给pageMenu传递外界的大scrollView，内部监听self.scrollView的滚动，从而实现让跟踪器跟随self.scrollView移动的效果
-    pageMenu.bridgeScrollView = self.scrollView;
-    [self.view addSubview:pageMenu];
-    _pageMenu = pageMenu;
+    
+    _tableView = [[YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_HEIGHT-TAB_BAR_HEIGHT) style:UITableViewStylePlain];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kLeaveTopNotificationName object:nil];
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.bounces = NO;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_tableView];
+    
+    
 //    [self.view addSubview:self.listView];
 }
+
+-(void)acceptMsg : (NSNotification *)notification{
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *canScroll = userInfo[@"canScroll"];
+    if ([canScroll isEqualToString:@"1"]) {
+        _canScroll = YES;
+    }
+}
+
 
 -(void)requestData{}
 
@@ -300,29 +316,188 @@
 //}
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //悬浮框
-    if (_bottomScrollView.contentOffset.y < self.banner.bounds.size.height) {
-        _bottomScrollView.delegate = nil;
-        CGPoint contentOffsetPoint = _bottomScrollView.contentOffset;
-        _bottomScrollView.contentOffset = contentOffsetPoint;
-        _bottomScrollView.delegate = self;
-        m_tabel.scrollEnabled =NO; //设置tableview 不能滚动
-    }else if(_bottomScrollView.contentOffset.y > self.banner.bounds.size.height){
-        m_tabel.scrollEnabled =YES;
-        _bottomScrollView.delegate = nil;
-        _bottomScrollView.contentOffset = CGPointMake(0, self.banner.bounds.size.height);
-        _bottomScrollView.delegate = self;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat height = 0;
+    
+    NSInteger section = indexPath.section;
+    if (section==0) {
+        height = [self tableHeaderView].frame.size.height;
+    }else if(section==1){
+        height = scrollViewHeight+pageMenuH;
+    }
+    return height;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSInteger section  = indexPath.section;
+    if (section==0) {
+        [cell.contentView addSubview:self.tableHeaderView];
+        return cell;
+    }else if(section==1){
+        
+//        //不是别人浏览 是自己的主页
+//        if (self.user_id == 0 ) {
+//            if([project_status_code isEqualToString:@"1"]){
+//
+//            }else{
+//                self.pProjectVC.reqeustURLStr = bossProjectH5Url;
+//                [self addChildViewController:self.pProjectVC];
+//                [self.myChildViewControllers addObject:self.pProjectVC];
+//            }
+//        }else{
+//            //是别人浏览 是他人的主页
+//            if (![project_status_code isEqualToString:@"3"] ) {
+//                self.pProjectVC.reqeustURLStr = bossProjectH5Url;
+//                [self addChildViewController:self.pProjectVC];
+//                [self.myChildViewControllers addObject:self.pProjectVC];
+//            }else{
+//
+//            }
+//        }
+//
+//
+//        self.pAnswerVC.answerArray = self.answerArray;
+//        self.pQuestionVC.questionArray = self.questionArray;
+//
+//        self.pAnswerVC.user_id = self.user_id;
+//        self.pQuestionVC.user_id = self.user_id;
+//
+//        self.pAnswerVC.total_count = total_count2;
+//        self.pQuestionVC.total_count = total_count3;
+        
+        // trackerStyle:跟踪器的样式
+        SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT - NAVIGATION_HEIGHT - pageMenuH -TAB_BAR_HEIGHT, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
+        // 传递数组，默认选中第2个
+        [pageMenu setItems:self.dataArr selectedItemIndex:0];
+        // 设置代理
+        pageMenu.delegate = self;
+        // 给pageMenu传递外界的大scrollView，内部监听self.scrollView的滚动，从而实现让跟踪器跟随self.scrollView移动的效果
+        pageMenu.bridgeScrollView = self.scrollView;
+        [self.view addSubview:pageMenu];
+        _pageMenu = pageMenu;
+        
+        
+        
+        for (int i = 0; i < self.dataArr.count; i++) {
+            BaseViewController *baseVc = [[BaseViewController alloc] init];
+            [self addChildViewController:baseVc];
+             [self.myChildViewControllers addObject:baseVc];
+        }
+        
+       
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageMenuH, SCREEN_WIDTH, scrollViewHeight)];
+        scrollView.delegate = self;
+        scrollView.pagingEnabled = YES;
+        scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView = scrollView;
+        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleTextZoom];
+        
+        //不是别人浏览 是自己的主页
+        if (self.user_id == 0 ) {
+            if([project_status_code isEqualToString:@"1"]){
+                [_pageMenu setItems:@[@"回答",@"提问",] selectedItemIndex:0];
+            }else{
+                [_pageMenu setItems:@[@"项目",@"回答",@"提问",] selectedItemIndex:0];
+            }
+        }else{
+            //是别人浏览 是他人的主页
+            if (![project_status_code isEqualToString:@"3"] ) {
+                [_pageMenu setItems:@[@"项目",@"回答",@"提问",] selectedItemIndex:0];
+            }else{
+                [_pageMenu setItems:@[@"回答",@"提问",] selectedItemIndex:0];
+            }
+        }
+        
+        // 等宽,不可滑动
+        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+        // 设置代理
+        _pageMenu.delegate = self;
+        // 这一行赋值，可实现pageMenu的跟踪器时刻跟随scrollView滑动的效果
+        _pageMenu.bridgeScrollView = scrollView;
+        
+        // pageMenu.selectedItemIndex就是选中的item下标
+        if (self.pageMenu.selectedItemIndex < self.myChildViewControllers.count) {
+            BaseViewController *baseVc = self.myChildViewControllers[_pageMenu.selectedItemIndex];
+            [scrollView addSubview:baseVc.view];
+            baseVc.view.frame = CGRectMake(SCREEN_WIDTH*_pageMenu.selectedItemIndex, 0, SCREEN_WIDTH, scrollViewHeight);
+            scrollView.contentOffset = CGPointMake(SCREEN_WIDTH*_pageMenu.selectedItemIndex, 0);
+            scrollView.contentSize = CGSizeMake(self.myChildViewControllers.count*SCREEN_WIDTH, 0);
+        }
+        [cell.contentView addSubview:_pageMenu];
+        [cell.contentView addSubview:self.scrollView];
+        return cell;
+    }
+    return cell;
+    
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (![scrollView isKindOfClass:[YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView class]]) {
+        return;
+    }
+    CGFloat tabOffsetY = self.tableHeaderView.frame.size.height  ;
+    
+    CGFloat offsetY = self.tableView.contentOffset.y;
+    //    NSLog(@"taboffestY------->%f",tabOffsetY);
+    //    NSLog(@"offsetY------->%f",offsetY);
+    _isTopIsCanNotMoveTabViewPre = _isTopIsCanNotMoveTabView;
+    if (offsetY+1>=tabOffsetY) {
+        scrollView.contentOffset = CGPointMake(0, tabOffsetY);
+        _isTopIsCanNotMoveTabView = YES;
+    }else{
+        _isTopIsCanNotMoveTabView = NO;
+    }
+    if (_isTopIsCanNotMoveTabView != _isTopIsCanNotMoveTabViewPre) {
+        if (!_isTopIsCanNotMoveTabViewPre && _isTopIsCanNotMoveTabView) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGoTopNotificationName object:nil userInfo:@{@"canScroll":@"1"}];
+            _canScroll = NO;
+        }
+        if(_isTopIsCanNotMoveTabViewPre && !_isTopIsCanNotMoveTabView){
+            if (!_canScroll) {
+                scrollView.contentOffset = CGPointMake(0, tabOffsetY);
+            }
+        }
     }
 }
 
+#pragma mark - SPPageMenu的代理方法
+- (void)pageMenu:(SPPageMenu *)pageMenu itemSelectedAtIndex:(NSInteger)index {
+    //    NSLog(@"%zd",index);
+}
+
+- (void)pageMenu:(SPPageMenu *)pageMenu itemSelectedFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
+    //    NSLog(@"%zd------->%zd",fromIndex,toIndex);
+    // 如果fromIndex与toIndex之差大于等于2,说明跨界面移动了,此时不动画.
+    if (labs(toIndex - fromIndex) >= 2) {
+        [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * toIndex, 0) animated:NO];
+    } else {
+        [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * toIndex, 0) animated:YES];
+    }
+    if (self.myChildViewControllers.count <= toIndex) {return;}
+    
+    UIViewController *targetViewController = self.myChildViewControllers[toIndex];
+    // 如果已经加载过，就不再加载
+    if ([targetViewController isViewLoaded]) return;
+    
+    targetViewController.view.frame = CGRectMake(SCREEN_WIDTH * toIndex, 0, SCREEN_WIDTH, scrollViewHeight);
+    [_scrollView addSubview:targetViewController.view];
+}
 
 
 -(UIView *)tableHeaderView{
     if (_tableHeaderView == nil) {
         _tableHeaderView = [UIView new];
-        _tableHeaderView.backgroundColor = BGColorGray;
+        _tableHeaderView.backgroundColor = [UIColor redColor];
         _tableHeaderView.userInteractionEnabled = YES;
     }
     return _tableHeaderView;
