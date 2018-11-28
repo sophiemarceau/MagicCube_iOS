@@ -8,6 +8,7 @@
 
 #import "HomeListViewController.h"
 #import "HomePageTableViewCell.h"
+#import "ProductDetailViewController.h"
 @interface HomeListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, assign) BOOL canScroll;
 @property (nonatomic,strong) UITableView *baseTableView;
@@ -65,6 +66,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+        ProductDetailViewController *vc= [[ProductDetailViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
 //    if ([self.questionArray count] == 0) {
 //
 //    }else{

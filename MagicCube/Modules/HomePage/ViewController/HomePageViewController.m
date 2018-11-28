@@ -148,8 +148,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 ////    }
 //
 //
-//    ProductDetailViewController *webVc= [[ProductDetailViewController alloc] init];
-//    [self.navigationController pushViewController:webVc animated:YES];
+
 //}
 //
 //#pragma mark - TYCyclePagerViewDataSource

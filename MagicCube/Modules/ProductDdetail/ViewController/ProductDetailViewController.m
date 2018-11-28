@@ -15,8 +15,9 @@
 @property (nonatomic, strong) MemberView *memberView;
 @property (nonatomic, strong) ProducDetailtHeaderView *headerView;
 @property (nonatomic, strong) ProductInfoView *productInfoView;
+@property (nonatomic, strong) UIView *productInfoBGView;
 @property (nonatomic, strong) UITableView *listView;
-@property (nonatomic, strong) UIButton *highPullView;
+
 @property (nonatomic, strong) UIButton *bottomBtn;
 @end
 
@@ -32,7 +33,7 @@
 -(void)requestData{}
 
 -(void)initDatas{
-    self.title = @"产品详情";
+    self.title = @"商品可卡详情";
 }
 
 -(void)initSubviews{
@@ -77,55 +78,64 @@
     UIView *bgView;
     bgView = [[UIView alloc] initWithFrame:CGRectZero];
     [bgView addSubview:self.headerView];
-    [bgView addSubview:self.memberView];
-    [bgView addSubview:self.productInfoView];
-    [bgView addSubview:self.highPullView];
-    bgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.highPullView.bottom);
+//    [bgView addSubview:self.memberView];
+ 
+    [bgView addSubview:self.productInfoBGView];
+    
     bgView.backgroundColor = KBGColor;
     self.listView.tableHeaderView = bgView;
 }
 
 -(ProducDetailtHeaderView *) headerView{
     if (_headerView == nil ) {
-        _headerView = [[ProducDetailtHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT ,175+114)];
+        _headerView = [[ProducDetailtHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT ,173.5)];
         [_headerView configwidth:@{}];
     }
     return _headerView;
 }
 
--(MemberView *)memberView{
-    if (_memberView == nil) {
-        _memberView = [[MemberView alloc] initWithFrame:CGRectMake(0, 299, SCREEN_WIDTH, 110)];
-        _memberView.backgroundColor = [UIColor whiteColor];
-        [_memberView.updateMemBtn addTarget:self action:@selector(gotoUpdateOnclick:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _memberView;
-}
+//-(MemberView *)memberView{
+//    if (_memberView == nil) {
+//        _memberView = [[MemberView alloc] initWithFrame:CGRectMake(0, 299, SCREEN_WIDTH, 110)];
+//        _memberView.backgroundColor = [UIColor whiteColor];
+//        [_memberView.updateMemBtn addTarget:self action:@selector(gotoUpdateOnclick:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _memberView;
+//}
 
 -(ProductInfoView *)productInfoView{
     if (_productInfoView == nil) {
-        _productInfoView = [[ProductInfoView alloc] initWithFrame:CGRectMake(0, 419, SCREEN_WIDTH, 257.5)];
+        _productInfoView = [[ProductInfoView alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 182.5)];
     }
     return _productInfoView;
 }
 
--(UIButton *)highPullView{
-    if (_highPullView == nil) {
-        _highPullView = [[UIButton alloc] initWithFrame:CGRectMake(0, 686.5, SCREEN_WIDTH, 44)];
-        _highPullView.backgroundColor = [UIColor whiteColor];
-        UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shangla"]];
-        pullArrowImageView.frame = CGRectMake(130.5, 16, 13, 12);
-        [_highPullView addSubview:pullArrowImageView];
-        UILabel *pullLabel = [[UILabel alloc] initWithFrame:CGRectMake(148.5, 0, 96, 44)];
-        pullLabel.font = UIFontRegularOfSize(12);
-        pullLabel.textAlignment = NSTextAlignmentLeft;
-        pullLabel.textColor = Gray666Color;
-        pullLabel.text = @"上拉查看产品详情";
-         [_highPullView addSubview:pullLabel];
-         [_highPullView addTarget:self action:@selector(highPullOnclick:) forControlEvents:UIControlEventTouchUpInside];
+-(UIView *)productInfoBGView{
+    if (_productInfoBGView == nil) {
+        _productInfoBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerView.bottom, SCREEN_WIDTH, 182.5 +10 + 10)];
+        _productInfoBGView.backgroundColor = KBGColor;
+        [_productInfoBGView addSubview:self.productInfoView];
     }
-    return _highPullView;
+    return _productInfoBGView;
 }
+
+//-(UIButton *)highPullView{
+//    if (_highPullView == nil) {
+//        _highPullView = [[UIButton alloc] initWithFrame:CGRectMake(0, 686.5, SCREEN_WIDTH, 44)];
+//        _highPullView.backgroundColor = [UIColor whiteColor];
+//        UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shangla"]];
+//        pullArrowImageView.frame = CGRectMake(130.5, 16, 13, 12);
+//        [_highPullView addSubview:pullArrowImageView];
+//        UILabel *pullLabel = [[UILabel alloc] initWithFrame:CGRectMake(148.5, 0, 96, 44)];
+//        pullLabel.font = UIFontRegularOfSize(12);
+//        pullLabel.textAlignment = NSTextAlignmentLeft;
+//        pullLabel.textColor = Gray666Color;
+//        pullLabel.text = @"上拉查看产品详情";
+//         [_highPullView addSubview:pullLabel];
+//         [_highPullView addTarget:self action:@selector(highPullOnclick:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _highPullView;
+//}
 
 -(UIButton *)bottomBtn{
     if (_bottomBtn == nil) {
@@ -137,14 +147,14 @@
         btnTitleLabel.font = UIFontRegularOfSize(16);
         btnTitleLabel.textAlignment = NSTextAlignmentCenter;
         btnTitleLabel.textColor = [UIColor whiteColor];
-        btnTitleLabel.text = @"我要做代理";
+        btnTitleLabel.text = @"我要分销";
         [_bottomBtn addSubview:btnTitleLabel];
         
         UILabel *btnSubLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 29, SCREEN_WIDTH, 10)];
         btnSubLabel.font = UIFontRegularOfSize(10);
         btnSubLabel.textAlignment = NSTextAlignmentCenter;
         btnSubLabel.textColor = [UIColor whiteColor];
-        btnSubLabel.text = @"0成本进货，卖出即分成";
+        btnSubLabel.text = @"无需付款进货，卖出立得分成";
         [_bottomBtn addSubview:btnSubLabel];
     }
     return _bottomBtn;
@@ -181,4 +191,5 @@
     [alertController addAction:sureAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 @end

@@ -16,6 +16,10 @@
         self.userInteractionEnabled = YES;
         self.backgroundColor = KBGCell;
         [self addSubview:self.titleLabel];
+        UIView *lineview = [[UIView alloc] initWithFrame:CGRectMake(0, 42, SCREEN_WIDTH, 0.5)];
+        lineview.backgroundColor = LineGrayColor;
+        [self addSubview:lineview];
+        
         [self addSubview:self.bgImageView];
         
         [self addSubview:self.ideitifylImageView];
@@ -24,7 +28,7 @@
         
         [self addSubview:self.productImageView];
         [self addSubview:self.proNameTitleLabel];
-        [self addSubview:self.proNameLabel];
+//        [self addSubview:self.proNameLabel];
         [self addSubview:self.proNameSubLabel];
         
         [self addSubview:self.addressImageView];
@@ -36,11 +40,11 @@
 
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 18.5, SCREEN_WIDTH - 20, 16)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 16, SCREEN_WIDTH - 20, 14)];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = BlackMagicColor;
-        _titleLabel.font = UIFontRegularOfSize(16);
-        _titleLabel.text = @"该产品信息已在蚂蚁金服区块链存证备查";
+        _titleLabel.font = UIFontRegularOfSize(14);
+        _titleLabel.text = @"商品卡信息";
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _titleLabel;
@@ -48,85 +52,91 @@
 
 -(UILabel *)identifylLabel{
     if (_identifylLabel == nil) {
-        _identifylLabel = [self createlabel1frame:CGRectMake(116, 64.5, 259-10, 14)];
-        _identifylLabel.text = @"本产品已通过防伪认证";
+        _identifylLabel = [self createlabel1frame:CGRectMake(49.5, 59, SCREEN_WIDTH-49.5, 12)];
+        _identifylLabel.text = @"本卡产品认证生产商为厦门燕之屋生物工程发展有限公司";
     }
     return _identifylLabel;
 }
 
 -(UILabel *)identifySubLabel{
     if (_identifySubLabel == nil) {
-        _identifySubLabel = [self createlabel2frame:CGRectMake(116, 83.5, 259-10, 9)];
-         _identifySubLabel.text = @"由魔方区块链数字签名确认";
+        _identifySubLabel = [self createlabel2frame:CGRectMake(15, 80.5, SCREEN_WIDTH-30, 9)];
+         _identifySubLabel.text = @"由厦门燕之屋生物工程发展有限公司数字签名确认";
     }
     return _identifySubLabel;
 }
 
 -(UILabel *)proNameTitleLabel{
     if (_proNameTitleLabel == nil) {
-        _proNameTitleLabel = [self createlabel1frame:CGRectMake(116, 109.5, 259-66, 14)];
-        _proNameTitleLabel.text = @"本产品生产商为";
+        _proNameTitleLabel = [self createlabel1frame:CGRectMake(49.5, 104.5, SCREEN_WIDTH-49.5, 12)];
+        _proNameTitleLabel.text = @"本卡产品认证发货商为厦门燕之屋生物工程发展有限公司";
     }
     return _proNameTitleLabel;
 }
-
--(UILabel *)proNameLabel{
-    if (_proNameLabel == nil) {
-        _proNameLabel = [self createlabel1frame:CGRectMake(116, self.proNameTitleLabel.bottom, 259, 14)];
-        _proNameLabel.text = @"Moet Hennessy Louis Vuitton";
-    }
-    return _proNameLabel;
-}
-
+//
+//-(UILabel *)proNameLabel{
+//    if (_proNameLabel == nil) {
+//        _proNameLabel = [self createlabel1frame:CGRectMake(116, self.proNameTitleLabel.bottom, 259, 14)];
+//        _proNameLabel.text = @"Moet Hennessy Louis Vuitton";
+//    }
+//    return _proNameLabel;
+//}
+//
 -(UILabel *)proNameSubLabel{
     if (_proNameSubLabel == nil) {
-        _proNameSubLabel = [self createlabel2frame:CGRectMake(116, 146.5, 154, 30)];
-        _proNameSubLabel.numberOfLines = 2;
-        _proNameSubLabel.text = @"由路易威登（中国）商业销售有限公司数字签名确认";
+        _proNameSubLabel = [self createlabel2frame:CGRectMake(15, 126, SCREEN_WIDTH-30, 9)];
+        _proNameSubLabel.text = @"由厦门燕之屋生物工程发展有限公司数字签名确认";
     }
     return _proNameSubLabel;
 }
 
 -(UILabel *)proAddressLabel{
     if (_proAddressLabel == nil) {
-        _proAddressLabel = [self createlabel1frame:CGRectMake(116, 194.5, 259-10, 14)];
-         _proAddressLabel.text = @"本产品产地为法国";
+        _proAddressLabel = [self createlabel1frame:CGRectMake(49.5, 149.5,  216, 12)];
+        _proAddressLabel.text = @"本卡信息已在蚂蚁金服区块链存证备查";
     }
     return _proAddressLabel;
 }
 
 -(UILabel *)proConfirmLabel{
     if (_proConfirmLabel == nil) {
-        _proConfirmLabel = [self createlabel2frame:CGRectMake(116, 213.5, 259-10, 9)];
-         _proConfirmLabel.text = @"由VECHAIN数字签名确认";
+        _proConfirmLabel = [self createlabel2frame:CGRectMake(self.proAddressLabel.right, 146.5, 80, 16)];
+         _proConfirmLabel.text = @"查看数字签名";
+        _proConfirmLabel.font = UIFontRegularOfSize(10);
+        _proConfirmLabel.textColor = Gray666Color;
+        _proConfirmLabel.textAlignment = NSTextAlignmentCenter;
+        _proConfirmLabel.layer.masksToBounds = YES;
+        _proConfirmLabel.layer.borderWidth = 0.5;
+        _proConfirmLabel.layer.borderColor = Gray666Color.CGColor;
+        _proConfirmLabel.layer.cornerRadius = 2;
     }
     return _proConfirmLabel;
 }
 
 -(UIImageView *)bgImageView{
     if (_bgImageView == nil) {
-        _bgImageView = [self createImageViewframe:CGRectMake(66, 7, 244, 244) WithImageName:@"fangweituan"];
+        _bgImageView = [self createImageViewframe:CGRectMake((SCREEN_WIDTH -120)/2, 52.5, 120, 120) WithImageName:@"fangweituan"];
     }
     return _bgImageView;
 }
 
 -(UIImageView *)ideitifylImageView{
     if (_ideitifylImageView == nil) {
-        _ideitifylImageView = [self createImageViewframe:CGRectMake(78, 63.5, 30, 32) WithImageName:@"fangwei"];
+        _ideitifylImageView = [self createImageViewframe:CGRectMake(22, 146, 21, 24) WithImageName:@"fangwei"];
     }
     return _ideitifylImageView;
 }
 
 -(UIImageView *)productImageView{
     if (_productImageView == nil) {
-        _productImageView = [self createImageViewframe:CGRectMake(78, 110, 30, 32) WithImageName:@"changshang"];
+        _productImageView = [self createImageViewframe:CGRectMake(22, 53.5, 21, 24) WithImageName:@"changshang"];
     }
     return _productImageView;
 }
 
 -(UIImageView *)addressImageView{
     if (_addressImageView == nil) {
-        _addressImageView = [self createImageViewframe:CGRectMake(78, 192.5, 30, 32) WithImageName:@"chandi"];
+        _addressImageView = [self createImageViewframe:CGRectMake(22, 100,21, 24) WithImageName:@"huoyuan"];
     }
     return _addressImageView;
 }
@@ -135,7 +145,7 @@
     UILabel * label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = Gray7F7Color;
-    label.font = UIFontRegularOfSize(14);
+    label.font = UIFontRegularOfSize(12);
     label.textAlignment = NSTextAlignmentLeft;
     return label;
 }
@@ -144,7 +154,7 @@
     UILabel * label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = Gray948Color;
-    label.font = UIFontRegularOfSize(10);
+    label.font = UIFontRegularOfSize(9);
     label.textAlignment = NSTextAlignmentLeft;
     return label;
 }
