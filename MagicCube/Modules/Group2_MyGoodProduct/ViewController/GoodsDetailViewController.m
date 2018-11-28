@@ -29,6 +29,7 @@
 -(void)initdata{
     self.title = @"我的好物";
     _dataArray = [NSMutableArray arrayWithCapacity:0];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)createfakeData{

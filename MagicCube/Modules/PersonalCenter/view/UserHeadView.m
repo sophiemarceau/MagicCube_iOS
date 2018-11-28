@@ -7,6 +7,7 @@
 //
 
 #import "UserHeadView.h"
+#import "MemberLevelView.h"
 
 @interface UserHeadView ()
 @property (strong,nonatomic) UIImageView * iconView;
@@ -36,9 +37,19 @@
         
         
         [self addSubview:self.magicPointLabel];
-//        [self addSubview:self.menberBtn];
         
         [self addSubview:self.shadowView];
+        [self.shadowView addSubview:self.menberBtn];
+        NSArray * array = @[@"普通会员",@"黄金会员",@"白金会员",@"砖石会员"];
+        CGFloat width = (SCREEN_WIDTH - 20) / 4.0;
+        for (int index = 0; index < array.count; index ++) {
+            MemberLevelView * memberView = [[MemberLevelView alloc] initWithFrame:CGRectMake(index * width, 0, width, SCALE_W(70))];
+            [memberView configView:[NSString stringWithFormat:@"memberLevel%d",index+1] levelText:array[index]];
+//            memberView.backgroundColor = [UIColor whiteColor];
+            [self.shadowView addSubview:memberView];
+        }
+        MagicLineView * lineview = [[MagicLineView alloc] initWithFrame:CGRectMake(0, frame.size.height - 0.5, SCREEN_WIDTH, 0.5)];
+        [self addSubview:lineview];
     }
     return self;
 }
@@ -58,7 +69,7 @@
     self.balenceLabel.text = @" 会员卡余额：￥28";
     self.magicPointLabel.text = @"魔方工分：466";
     self.memberTypeLabel.text = @"砖石会员";
-    [self.menberBtn setTitle:@"升级合伙人身份" forState:UIControlStateNormal];
+    [self.menberBtn setTitle:@"升级会员" forState:UIControlStateNormal];
 }
 
 -(UIImageView *)redBGView{
@@ -80,7 +91,7 @@
 
 - (UIButton *)nameBtn{
     if (!_nameBtn) {
-        _nameBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCALE_W(94), SCALE_W(61), 160, SCALE_W(16))];
+        _nameBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCALE_W(94), SCALE_W(61), SCALE_W(160), SCALE_W(16))];
         [_nameBtn setTitle:@"用户名" forState:UIControlStateNormal];
         [_nameBtn setTitleColor:BHColorWhite forState:UIControlStateNormal];
         _nameBtn.titleLabel.font = UIFontMediumOfSize(16);
@@ -122,12 +133,12 @@
 
 - (UIButton *)menberBtn{
     if (!_menberBtn) {
-        _menberBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCALE_W(244), 33, SCALE_W(121), 32)];
+        _menberBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCALE_W(235), SCALE_W(71), SCALE_W(110), 28)];
         _menberBtn.titleLabel.font = UIFontMediumOfSize(14);
-        _menberBtn.layer.cornerRadius = 5;
+        _menberBtn.layer.cornerRadius = 4;
         _menberBtn.layer.masksToBounds = YES;
-        _menberBtn.backgroundColor = BHColorWhite;
-        [_menberBtn setTitleColor:RedMagicColor forState:UIControlStateNormal];
+        _menberBtn.backgroundColor = RedMagicColor;
+        [_menberBtn setTitleColor:BHColorWhite forState:UIControlStateNormal];
         [_menberBtn addTarget:self action:@selector(joinClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _menberBtn;
@@ -143,7 +154,7 @@
 //        _shadowView.layer.shadowRadius = 2;
         
         _shadowView            = [UIView new];
-        _shadowView.frame               = CGRectMake(10, 130, SCREEN_WIDTH - 20, 112);
+        _shadowView.frame               = CGRectMake(10, SCALE_W(130), SCREEN_WIDTH - 20, SCALE_W(112));
         _shadowView.backgroundColor     = [UIColor whiteColor];
         _shadowView.layer.cornerRadius  = 5;
         _shadowView.layer.masksToBounds = NO;

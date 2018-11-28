@@ -361,6 +361,16 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         scrollView.pagingEnabled = YES;
         scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView = scrollView;
+
+        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleTextZoom];
+        
+        
+        
+        // 等宽,不可滑动
+        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+        // 设置代理
+        _pageMenu.delegate = self;
+
         // 这一行赋值，可实现pageMenu的跟踪器时刻跟随scrollView滑动的效果
         pageMenu.bridgeScrollView = scrollView;
         _pageMenu = pageMenu;
@@ -397,7 +407,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     }
     if (_isTopIsCanNotMoveTabView != _isTopIsCanNotMoveTabViewPre) {
         if (!_isTopIsCanNotMoveTabViewPre && _isTopIsCanNotMoveTabView) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kGoTopNotificationName object:nil userInfo:@{@"canScroll":@"1"}];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kGoTopNotificationName object:nil userInfo:@{@"canScroll":@"1"}];
             _canScroll = NO;
         }
         if(_isTopIsCanNotMoveTabViewPre && !_isTopIsCanNotMoveTabView){

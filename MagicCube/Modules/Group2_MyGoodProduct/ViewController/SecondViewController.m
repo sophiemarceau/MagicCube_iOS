@@ -8,7 +8,8 @@
 
 #import "SecondViewController.h"
 #import "MyGoodsTableViewCell.h"
-#import "GoodsDetailViewController.h"
+#import "TempImageTableViewCell.h"
+#import "DistributeDetailViewController.h"
 
 @interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) NSMutableArray * goodsArray;
@@ -28,12 +29,11 @@
 - (void)goodsInit{
     _goodsArray = [NSMutableArray arrayWithCapacity:0];
     self.title = @"我的好物";
+    self.view.backgroundColor =  [UIColor whiteColor];
 }
 
 - (void)createFakeData{
-    for (int i = 0; i < 20; i ++) {
-        [_goodsArray addObject:[NSString stringWithFormat:@"%d",i]];
-    }
+    [_goodsArray addObjectsFromArray:@[@"分销中心_1",@"分销中心_2"]];
 }
 
 - (void)addSubViews{
@@ -52,17 +52,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MyGoodsTableViewCell * goodsCell = [tableView dequeueReusableCellWithIdentifier:@"myGoods"];
+    TempImageTableViewCell * goodsCell = [tableView dequeueReusableCellWithIdentifier:@"myGoods"];
     if (!goodsCell) {
-        goodsCell = [[MyGoodsTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"myGoods"];
+        goodsCell = [[TempImageTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"myGoods"];
     }
-    [goodsCell configDict:@{}];
+    
+    [goodsCell configDict:_goodsArray[indexPath.row]];
     return goodsCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    GoodsDetailViewController * goodsDetail = [[GoodsDetailViewController alloc] init];
+    DistributeDetailViewController * goodsDetail = [[DistributeDetailViewController alloc] init];
     [self.navigationController pushViewController:goodsDetail animated:YES];
 }
 
