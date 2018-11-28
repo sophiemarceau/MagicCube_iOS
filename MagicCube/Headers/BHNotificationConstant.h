@@ -12,5 +12,6 @@
 // MARK: --通知统一放置位置----
 static NSString *const NotificationUpdateUserLoginStatus = @"UpdateUserLoginStatus";///< 用户登录状态更新导致页面显示隐藏的变化
 static NSString *const NotificationJGPush = @"JpushNotice";
-
+static NSString *const  kLeaveTopNotificationName  = @"leaveTop";//离开置顶命令
+static NSString *const  kGoTopNotificationName     = @"goTop";//进入置顶命令
 #endif /* BHNotificationConstant_h */

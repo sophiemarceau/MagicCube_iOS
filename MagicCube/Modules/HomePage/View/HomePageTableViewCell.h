@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HomePageTableViewCell : UITableViewCell
+@property (strong,nonatomic) UIImageView * bgImageView;
+
 - (void)configwidth:(NSDictionary *)dict;
 + (CGFloat)cellHeight;
 @end

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSAttributedString *)initWithString:(NSString *)str dict:(NSDictionary *)dict subString:(NSString *)subString;
 
 + (NSAttributedString *)initWithString:(NSString *)str attrbutes:(NSArray *)attributes;
+
++ (NSAttributedString *)initWithString:(NSString *)str dict:(NSDictionary *)dict subStringArray:(NSArray *)subStringArray;
 @end
 
 NS_ASSUME_NONNULL_END

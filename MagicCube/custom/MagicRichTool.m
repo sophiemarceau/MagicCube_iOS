@@ -33,4 +33,14 @@
     }
     return attributeString;
 }
+
+
++ (NSAttributedString *)initWithString:(NSString *)str dict:(NSDictionary *)dict subStringArray:(NSArray *)subStringArray{
+    NSMutableAttributedString * attributeString = [[NSMutableAttributedString alloc] initWithString:str];
+    for (NSString *subString in subStringArray) {
+        NSRange range = [str rangeOfString:subString];
+        [attributeString addAttributes:dict range:range];
+    }
+    return attributeString;
+}
 @end

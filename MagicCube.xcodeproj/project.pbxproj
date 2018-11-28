@@ -27,6 +27,7 @@
 		936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDB21A7FF6000CD1A4E /* TestJSObject.m */; };
 		936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDC21A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.m */; };
 		936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02B21AD4D4100CD1A4E /* SPPageMenu.m */; };
+		936EA03021AE407100CD1A4E /* HomeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02F21AE407100CD1A4E /* HomeListViewController.m */; };
 		93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2621A52E8C004D8111 /* MainViewController.m */; };
 		93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2721A52E8D004D8111 /* AppDelegate.m */; };
 		93CF8E3221A52ECA004D8111 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2C21A52ECA004D8111 /* Tools.m */; };
@@ -120,6 +121,8 @@
 		936E9FDD21A7FF6000CD1A4E /* SecondaryLevelWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondaryLevelWebViewController.h; sourceTree = "<group>"; };
 		936EA02B21AD4D4100CD1A4E /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		936EA02C21AD4D4100CD1A4E /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
+		936EA02E21AE407100CD1A4E /* HomeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListViewController.h; sourceTree = "<group>"; };
+		936EA02F21AE407100CD1A4E /* HomeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeListViewController.m; sourceTree = "<group>"; };
 		93CF8E2521A52E8C004D8111 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		93CF8E2621A52E8C004D8111 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		93CF8E2721A52E8D004D8111 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 			children = (
 				93CF8E8321A53705004D8111 /* HomePageViewController.h */,
 				93CF8E8421A53705004D8111 /* HomePageViewController.m */,
+				936EA02E21AE407100CD1A4E /* HomeListViewController.h */,
+				936EA02F21AE407100CD1A4E /* HomeListViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -884,6 +889,7 @@
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */,
+				936EA03021AE407100CD1A4E /* HomeListViewController.m in Sources */,
 				B2A76C2521A7AFFD00AFCC6C /* UserHeadView.m in Sources */,
 				93CF8E3421A52ECA004D8111 /* BHToast.m in Sources */,
 				7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */,

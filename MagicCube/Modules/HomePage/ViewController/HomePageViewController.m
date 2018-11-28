@@ -14,22 +14,12 @@
 #import "TYPageControl.h"
 #import "TYCyclePagerViewCell.h"
 #import "SecondaryLevelWebViewController.h"
-
-
-
 #import "SPPageMenu.h"
 #import "YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h"
+#import "HomeListViewController.h"
 
-
-
-#define pageMenuH 42
-#define kLeaveTopNotificationName           @"leaveTop"//离开置顶命令
-#define scrollViewHeight SCREEN_HEIGHT - NAVIGATION_HEIGHT - pageMenuH -TAB_BAR_HEIGHT
-
-
-
-
-@interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , SPPageMenuDelegate, UIScrollViewDelegate>{
+@interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,
+TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , SPPageMenuDelegate, UIScrollViewDelegate>{
     int current_page,total_count;
 }
 @property (nonatomic, strong) NSMutableArray *listArray;
@@ -43,17 +33,25 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) UIView *tableHeaderView;
-@property(nonatomic,assign)BOOL isTopIsCanNotMoveTabView;
-@property(nonatomic,assign)BOOL isTopIsCanNotMoveTabViewPre;
-@property(nonatomic,assign)BOOL canScroll;
-@property(nonatomic,strong)YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView *tableView;
+@property (nonatomic, assign) BOOL isTopIsCanNotMoveTabView;
+@property (nonatomic, assign) BOOL isTopIsCanNotMoveTabViewPre;
+@property (nonatomic, assign) BOOL canScroll;
+@property (nonatomic, strong) YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView *tableView;
 
+
+
+
+@property (nonatomic, strong) UIImageView *picImageView;
+@property (nonatomic, strong) UILabel *desLabel,*subLabel;
+@property (nonatomic, strong) UIButton *memberBtn;
+@property (nonatomic, strong) NSMutableArray *headImageViewArray;
 @end
 
 @implementation HomePageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"魔方好物";
     [self initDatas];
     [self initSubviews];
     [self requestData];
@@ -84,7 +82,7 @@
     
     _tableView = [[YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_HEIGHT-TAB_BAR_HEIGHT) style:UITableViewStylePlain];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kLeaveTopNotificationName object:nil];
-    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.backgroundColor = [UIColor yellowColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
@@ -108,6 +106,7 @@
 -(void)requestData{}
 
 -(void)giveMeMoreData{}
+
 //
 //#pragma mark - tableViewDelegate
 //-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -326,12 +325,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0;
-    
     NSInteger section = indexPath.section;
     if (section==0) {
         height = [self tableHeaderView].frame.size.height;
     }else if(section==1){
-        height = scrollViewHeight+pageMenuH;
+        height = scrollViewHeight + pageMenuH;
     }
     return height;
 }
@@ -344,87 +342,29 @@
         [cell.contentView addSubview:self.tableHeaderView];
         return cell;
     }else if(section==1){
-        
-//        //不是别人浏览 是自己的主页
-//        if (self.user_id == 0 ) {
-//            if([project_status_code isEqualToString:@"1"]){
-//
-//            }else{
-//                self.pProjectVC.reqeustURLStr = bossProjectH5Url;
-//                [self addChildViewController:self.pProjectVC];
-//                [self.myChildViewControllers addObject:self.pProjectVC];
-//            }
-//        }else{
-//            //是别人浏览 是他人的主页
-//            if (![project_status_code isEqualToString:@"3"] ) {
-//                self.pProjectVC.reqeustURLStr = bossProjectH5Url;
-//                [self addChildViewController:self.pProjectVC];
-//                [self.myChildViewControllers addObject:self.pProjectVC];
-//            }else{
-//
-//            }
-//        }
-//
-//
-//        self.pAnswerVC.answerArray = self.answerArray;
-//        self.pQuestionVC.questionArray = self.questionArray;
-//
-//        self.pAnswerVC.user_id = self.user_id;
-//        self.pQuestionVC.user_id = self.user_id;
-//
-//        self.pAnswerVC.total_count = total_count2;
-//        self.pQuestionVC.total_count = total_count3;
-        
-        // trackerStyle:跟踪器的样式
-        SPPageMenu *pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT - NAVIGATION_HEIGHT - pageMenuH -TAB_BAR_HEIGHT, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
-        // 传递数组，默认选中第2个
-        [pageMenu setItems:self.dataArr selectedItemIndex:0];
-        // 设置代理
-        pageMenu.delegate = self;
-        // 给pageMenu传递外界的大scrollView，内部监听self.scrollView的滚动，从而实现让跟踪器跟随self.scrollView移动的效果
-        pageMenu.bridgeScrollView = self.scrollView;
-        [self.view addSubview:pageMenu];
-        _pageMenu = pageMenu;
-        
-        
-        
         for (int i = 0; i < self.dataArr.count; i++) {
-            BaseViewController *baseVc = [[BaseViewController alloc] init];
+            HomeListViewController *baseVc = [[HomeListViewController alloc] init];
             [self addChildViewController:baseVc];
-             [self.myChildViewControllers addObject:baseVc];
+            [self.myChildViewControllers addObject:baseVc];
         }
         
-       
+        SPPageMenu *pageMenu  = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
+        
+        // 传递数组，默认选中第0个
+        [pageMenu setItems:self.dataArr selectedItemIndex:0];
+        // 等宽,不可滑动
+//        pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+        // 设置代理
+        pageMenu.delegate = self;
+        
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageMenuH, SCREEN_WIDTH, scrollViewHeight)];
         scrollView.delegate = self;
         scrollView.pagingEnabled = YES;
         scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView = scrollView;
-        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleTextZoom];
-        
-        //不是别人浏览 是自己的主页
-        if (self.user_id == 0 ) {
-            if([project_status_code isEqualToString:@"1"]){
-                [_pageMenu setItems:@[@"回答",@"提问",] selectedItemIndex:0];
-            }else{
-                [_pageMenu setItems:@[@"项目",@"回答",@"提问",] selectedItemIndex:0];
-            }
-        }else{
-            //是别人浏览 是他人的主页
-            if (![project_status_code isEqualToString:@"3"] ) {
-                [_pageMenu setItems:@[@"项目",@"回答",@"提问",] selectedItemIndex:0];
-            }else{
-                [_pageMenu setItems:@[@"回答",@"提问",] selectedItemIndex:0];
-            }
-        }
-        
-        // 等宽,不可滑动
-        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
-        // 设置代理
-        _pageMenu.delegate = self;
         // 这一行赋值，可实现pageMenu的跟踪器时刻跟随scrollView滑动的效果
-        _pageMenu.bridgeScrollView = scrollView;
-        
+        pageMenu.bridgeScrollView = scrollView;
+        _pageMenu = pageMenu;
         // pageMenu.selectedItemIndex就是选中的item下标
         if (self.pageMenu.selectedItemIndex < self.myChildViewControllers.count) {
             BaseViewController *baseVc = self.myChildViewControllers[_pageMenu.selectedItemIndex];
@@ -445,13 +385,12 @@
     if (![scrollView isKindOfClass:[YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView class]]) {
         return;
     }
-    CGFloat tabOffsetY = self.tableHeaderView.frame.size.height  ;
+    CGFloat tabOffsetY = self.tableHeaderView.frame.size.height;
     
     CGFloat offsetY = self.tableView.contentOffset.y;
-    //    NSLog(@"taboffestY------->%f",tabOffsetY);
-    //    NSLog(@"offsetY------->%f",offsetY);
+
     _isTopIsCanNotMoveTabViewPre = _isTopIsCanNotMoveTabView;
-    if (offsetY+1>=tabOffsetY) {
+    if (offsetY+1 >= tabOffsetY) {
         scrollView.contentOffset = CGPointMake(0, tabOffsetY);
         _isTopIsCanNotMoveTabView = YES;
     }else{
@@ -493,14 +432,129 @@
     [_scrollView addSubview:targetViewController.view];
 }
 
-
 -(UIView *)tableHeaderView{
     if (_tableHeaderView == nil) {
         _tableHeaderView = [UIView new];
-        _tableHeaderView.backgroundColor = [UIColor redColor];
+        _tableHeaderView.backgroundColor = KBGColor;
+        _tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 222.5);
+        UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 212.5)];
+        bg.backgroundColor = [UIColor whiteColor];
+        [_tableHeaderView addSubview:bg];
+        [bg addSubview:self.picImageView];
+        [bg addSubview:self.desLabel];
+        [bg addSubview:self.memberBtn];
+        [bg addSubview:self.subLabel];
+        UIImageView *headImageView;
+        for (int i=0; i<self.headImageViewArray.count; i++) {
+            headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10+i*(23
+                                                                                +10), 135.5, 23, 23)];
+            [bg addSubview:headImageView];
+            headImageView.backgroundColor = RedMagicColor;
+            headImageView.layer.cornerRadius = 11.5;
+            headImageView.layer.masksToBounds = YES;
+        }
+        UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(
+                                                                      10+(self.headImageViewArray.count - 1)*(23
+                                                                                                             +10)+23 +15, 140 , 96, 12)];
+        desLabel.text = @"正在使用魔方好物";
+        desLabel.font = UIFontRegularOfSize(12);
+        desLabel.textColor = Gray666Color;
+        desLabel.textAlignment = NSTextAlignmentLeft;
+        [bg addSubview:desLabel];
+        
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 172.5, SCREEN_WIDTH -20 +10, 26)];
+        messageLabel.font = UIFontRegularOfSize(12);
+        messageLabel.textAlignment = NSTextAlignmentRight;
+        messageLabel.textColor  = Gray666Color;
+        messageLabel.backgroundColor = BHHexColorAlpha(@"B5262F", 0.1);
+        messageLabel.layer.cornerRadius = 13;
+        messageLabel.layer.masksToBounds = YES;
+        messageLabel.layer.borderColor = RedMagicColor.CGColor;
+        messageLabel.layer.borderWidth = 1;
+        messageLabel.text = @"CAT刚刚分销了元正正山小种红茶武夷山茶叶卡,分销收益2048元";
+        [bg addSubview:messageLabel];
+        
         _tableHeaderView.userInteractionEnabled = YES;
     }
     return _tableHeaderView;
 }
 
+-(UIImageView *)picImageView{
+    if (_picImageView == nil) {
+        _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 16.5, 78, 78)];
+//        _picImageView.image = [UIImage imageNamed:@""];
+        _picImageView.backgroundColor = RedMagicColor;
+        _picImageView.layer.masksToBounds = YES;
+        _picImageView.layer.cornerRadius = 5;
+    }
+    return _picImageView;
+}
+
+
+-(NSMutableArray *)myChildViewControllers{
+    if (_myChildViewControllers == nil) {
+        _myChildViewControllers = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _myChildViewControllers;
+}
+
+-(UILabel *)desLabel{
+    if (_desLabel == nil) {
+        _desLabel = [[UILabel alloc] initWithFrame:CGRectMake(96.5, 20.5, 268.5, 72)];
+        _desLabel.font = UIFontRegularOfSize(12);
+        _desLabel.textColor = Gray666Color;
+        _desLabel.textAlignment = NSTextAlignmentLeft;
+        _desLabel.numberOfLines = 4;
+        _desLabel.text = @"创新商品卡分销网络\n领先区块链技术\n交易全程防伪保真\n分销无需进货，无需预缴货款";
+    }
+    return _desLabel;
+}
+
+-(UIButton *)memberBtn{
+    if (_memberBtn== nil) {
+        _memberBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 90- 10, 42, 90, 28)];
+        [_memberBtn setTitle:@"成为会员" forState:UIControlStateNormal];
+        _memberBtn.layer.masksToBounds = YES;
+        _memberBtn.layer.cornerRadius = 14;
+        _memberBtn.titleLabel.font = UIFontRegularOfSize(12);
+        [_memberBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _memberBtn.backgroundColor = RedMagicColor;
+    }
+    return _memberBtn;
+}
+
+
+-(UILabel *)subLabel{
+    if (_subLabel == nil) {
+        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 109.5, SCREEN_WIDTH -20, 12)];
+        _subLabel.font = UIFontRegularOfSize(12);
+        _subLabel.textColor = GrayMagicColor;;
+        _subLabel.textAlignment = NSTextAlignmentLeft;
+        _subLabel.text = @"全球已有 123998 人通过魔方好物交易了 2999008 件商品卡";
+        
+        
+        NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(12),NSForegroundColorAttributeName:Gray666Color};
+        NSString *deliveryPrice =@"全球已有 123998 人通过魔方好物交易了 2999008 件商品卡";
+        
+        NSString *price1 = @"123998";
+        NSString *price2 = @"2999008";
+        NSArray *attrArray = @[price1,price2];
+        NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
+     
+        _subLabel.attributedText = attributestring;
+    }
+    return _subLabel;
+}
+
+-(NSMutableArray *)headImageViewArray{
+    if (_headImageViewArray == nil) {
+        _headImageViewArray = [NSMutableArray array];
+        [_headImageViewArray addObject:@"1"];
+        [_headImageViewArray addObject:@"1"];
+        [_headImageViewArray addObject:@"1"];
+        [_headImageViewArray addObject:@"1"];
+        [_headImageViewArray addObject:@"1"];
+    }
+    return _headImageViewArray;
+}
 @end

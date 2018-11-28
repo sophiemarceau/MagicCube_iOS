@@ -41,4 +41,8 @@
 #define SCALE_W(x) (x*(SCREEN_WIDTH/375.0))
 #define SCALE_H(y) (y*(SCREEN_WIDTH/667.0))
 
+#define pageMenuH 42
+
+#define scrollViewHeight SCREEN_HEIGHT - NAVIGATION_HEIGHT - pageMenuH -TAB_BAR_HEIGHT
+
 #endif /* AdaptDevice_h */

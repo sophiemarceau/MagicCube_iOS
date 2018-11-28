@@ -673,12 +673,17 @@
 
 - (void)initialize {
     
-    _itemPadding = 30.0;
-    _selectedItemTitleColor = [UIColor redColor];
-    _unSelectedItemTitleColor = [UIColor blackColor];
-    _selectedItemTitleFont = [UIFont systemFontOfSize:16];
-    _unSelectedItemTitleFont = [UIFont systemFontOfSize:16];
-    _itemTitleFont = [UIFont systemFontOfSize:16];
+    _itemPadding = 19;
+    _selectedItemTitleColor = RedMagicColor;
+//    [UIColor redColor];
+    _unSelectedItemTitleColor = BlackMagicColor;
+    //[UIColor blackColor];
+    _selectedItemTitleFont = UIFontLightOfSize(14);
+//    [UIFont systemFontOfSize:16];
+    _unSelectedItemTitleFont = UIFontLightOfSize(14);
+//    [UIFont systemFontOfSize:16];
+    _itemTitleFont = UIFontLightOfSize(14);
+//    [UIFont systemFontOfSize:16];
     _trackerHeight = 3.0;
     _dividingLineHeight = 1.0 / [UIScreen mainScreen].scale; // 适配屏幕分辨率
     _contentInset = UIEdgeInsetsZero;
