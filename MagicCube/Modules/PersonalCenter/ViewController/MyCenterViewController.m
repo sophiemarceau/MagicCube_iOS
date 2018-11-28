@@ -28,8 +28,18 @@
     [self addSubView];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
 -(void)addSubView{
-    self.headView = [[UserHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 98)];
+    self.headView = [[UserHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(288))];
     WS(weakSelf);
     self.headView.joinMember = ^{
         weakSelf.isMemberShip = !weakSelf.isMemberShip;
@@ -38,14 +48,24 @@
     [self.headView configWithDict:@{}];
 //    [self.view addSubview:self.headView];
     
-    UITableView * tabelview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - 49) style:UITableViewStylePlain];
+    UITableView * tabelview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - 49) style:UITableViewStylePlain];
     tabelview.delegate = self;
     tabelview.dataSource = self;
     tabelview.tableHeaderView = self.headView;
     tabelview.separatorStyle = UITableViewCellSeparatorStyleNone;
     tabelview.tableFooterView = [UIView new];
+    tabelview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:tabelview];
     self.tableView = tabelview;
+    
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, TAB_BAR_HEIGHT, 0);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -171,21 +191,21 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }else{
-        return 0;
-    }
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
-        footView.backgroundColor = KBGColor;
-        return footView;
-    }else{
-        return [UIView new];
-    }
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    if (section == 0) {
+//        return 10;
+//    }else{
+//        return 0.01;
+//    }
+//}
+//
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    if (section == 0) {
+//        UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+//        footView.backgroundColor = KBGColor;
+//        return footView;
+//    }else{
+//        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.01)];
+//    }
+//}
 @end

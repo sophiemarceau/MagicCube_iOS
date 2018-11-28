@@ -92,7 +92,7 @@
 }
 
 + (CGFloat)cellHeight{
-    return 138;
+    return SCALE_W(145);
 }
 
 @end
