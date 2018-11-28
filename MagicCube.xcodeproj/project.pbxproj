@@ -10,6 +10,7 @@
 		5F42781BBF16DC229512A506 /* Pods_MagicCube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */; };
 		7D709BB521ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D709BB421ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m */; };
 		7D709BB821ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D709BB721ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m */; };
+		7D709BBD21AEDFE6004155C0 /* SendPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D709BBC21AEDFE6004155C0 /* SendPreviewViewController.m */; };
 		7DB9F88021A58DFE005D4DD4 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F87F21A58DFE005D4DD4 /* ProductDetailViewController.m */; };
 		7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F88221A59633005D4DD4 /* HomePageTableViewCell.m */; };
 		7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F88521A5A278005D4DD4 /* UIView+category.m */; };
@@ -94,6 +95,8 @@
 		7D709BB421ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXIgnoreHeaderTouchTableView.m; sourceTree = "<group>"; };
 		7D709BB621ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h; sourceTree = "<group>"; };
 		7D709BB721ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m; sourceTree = "<group>"; };
+		7D709BBB21AEDFE6004155C0 /* SendPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendPreviewViewController.h; sourceTree = "<group>"; };
+		7D709BBC21AEDFE6004155C0 /* SendPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendPreviewViewController.m; sourceTree = "<group>"; };
 		7DB9F87E21A58DFE005D4DD4 /* ProductDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		7DB9F87F21A58DFE005D4DD4 /* ProductDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		7DB9F88121A59633005D4DD4 /* HomePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomePageTableViewCell.h; path = MagicCube/Modules/HomePage/View/HomePageTableViewCell.h; sourceTree = SOURCE_ROOT; };
@@ -246,6 +249,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D709BB921AEDFAE004155C0 /* SendPreview */ = {
+			isa = PBXGroup;
+			children = (
+				7D709BBA21AEDFC5004155C0 /* ViewController */,
+			);
+			path = SendPreview;
+			sourceTree = "<group>";
+		};
+		7D709BBA21AEDFC5004155C0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D709BBB21AEDFE6004155C0 /* SendPreviewViewController.h */,
+				7D709BBC21AEDFE6004155C0 /* SendPreviewViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		7DB9F87A21A58D8C005D4DD4 /* ProductDdetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +416,7 @@
 		93CF8E7A21A5369C004D8111 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7D709BB921AEDFAE004155C0 /* SendPreview */,
 				936E9FCF21A7FF6000CD1A4E /* WebViewVC */,
 				93CF8E7B21A536AC004D8111 /* HomePage */,
 				93CF8E7C21A536B9004D8111 /* Group2_MyGoodProduct */,
@@ -913,6 +934,7 @@
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */,
+				7D709BBD21AEDFE6004155C0 /* SendPreviewViewController.m in Sources */,
 				B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */,
 				936EA03021AE407100CD1A4E /* HomeListViewController.m in Sources */,
 				B2A76C2521A7AFFD00AFCC6C /* UserHeadView.m in Sources */,
