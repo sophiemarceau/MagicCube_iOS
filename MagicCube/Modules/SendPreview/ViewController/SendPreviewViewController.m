@@ -37,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initDatas];
     [self initSubviews];
     [self requestData];
@@ -83,6 +83,18 @@
         _bgView.backgroundColor = [UIColor whiteColor];
         [_bgView addSubview:self.headView];
         [_bgView.layer addSublayer:self.playlayer];
+        
+        _bgView.layer.cornerRadius = 10;
+        // 阴影颜色
+        _bgView.layer.shadowColor = BHHexColorAlpha(@"000000", 0.4).CGColor;
+        // 阴影偏移，默认(0, -3)
+        _bgView.layer.shadowOffset = CGSizeMake(0,0);
+        // 阴影透明度，默认0
+        _bgView.layer.shadowOpacity = 0.5;
+        // 阴影半径，默认3
+        _bgView.layer.shadowRadius = 5;
+       
+        
     }
     return _bgView;
 }
