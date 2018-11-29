@@ -111,6 +111,7 @@
         _outCircle = [[UIView alloc] initWithFrame:CGRectMake(SCALE_W(25.5), (self.frame.size.height - SCALE_W(14)) * 0.5, SCALE_W(14), SCALE_W(14))];
         _outCircle.layer.borderWidth = 0.5;
         _outCircle.layer.masksToBounds = YES;
+        _outCircle.backgroundColor = [UIColor colorWithHexString:@"F6F6F6"];
         _outCircle.layer.cornerRadius = _outCircle.width * 0.5;
     }
     return _outCircle;
