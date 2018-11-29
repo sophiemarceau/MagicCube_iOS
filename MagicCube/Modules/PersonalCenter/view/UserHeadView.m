@@ -80,7 +80,7 @@
     
     self.balenceLabel.text = @" 会员卡余额：￥28";
     self.magicPointLabel.text = @"魔方工分：466";
-    self.memberTypeLabel.text = @"砖石会员";
+    self.memberTypeLabel.text = @"钻石会员";
     [self.menberBtn setTitle:@"升级会员" forState:UIControlStateNormal];
 }
 
@@ -115,7 +115,7 @@
 
 -(MagicLabel *)memberTypeLabel{
     if (!_memberTypeLabel) {
-        _memberTypeLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(167), SCALE_W(66), SCALE_W(80), SCALE_W(10))];
+        _memberTypeLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(167), SCALE_W(64), SCALE_W(80), SCALE_W(10))];
         _memberTypeLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:10];
         _memberTypeLabel.textColor = KBGCell;
     }

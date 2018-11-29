@@ -128,7 +128,7 @@
     memImageLevelView.image = [UIImage imageNamed:@"zuanshihuiyuan"];
     [redBgView addSubview:memImageLevelView];
     
-    UILabel *namedesLabel = [[UILabel alloc] initWithFrame:CGRectMake(memImageLevelView.right +3, 62, 40, 10)];
+    UILabel *namedesLabel = [[UILabel alloc] initWithFrame:CGRectMake(167, 64, 40, 10)];
     namedesLabel.text = @"钻石会员";
     namedesLabel.font = UIFontLightOfSize(10);
     namedesLabel.textColor = [UIColor whiteColor];
