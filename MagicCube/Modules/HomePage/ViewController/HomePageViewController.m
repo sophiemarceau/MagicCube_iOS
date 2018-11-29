@@ -478,7 +478,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,  self.subLabel.bottom +51, SCREEN_WIDTH -20 +10, 26)];
         messageLabel.font = UIFontRegularOfSize(12);
-        messageLabel.textAlignment = NSTextAlignmentRight;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
         messageLabel.textColor  = Gray666Color;
         messageLabel.backgroundColor = BHHexColorAlpha(@"B5262F", 0.1);
         messageLabel.layer.cornerRadius = 13;
