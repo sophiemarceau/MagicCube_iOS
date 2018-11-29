@@ -362,7 +362,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView = scrollView;
 
-        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleTextZoom];
+        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
         
         
         
@@ -407,7 +407,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     }
     if (_isTopIsCanNotMoveTabView != _isTopIsCanNotMoveTabViewPre) {
         if (!_isTopIsCanNotMoveTabViewPre && _isTopIsCanNotMoveTabView) {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kGoTopNotificationName object:nil userInfo:@{@"canScroll":@"1"}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGoTopNotificationName object:nil userInfo:@{@"canScroll":@"1"}];
             _canScroll = NO;
         }
         if(_isTopIsCanNotMoveTabViewPre && !_isTopIsCanNotMoveTabView){
