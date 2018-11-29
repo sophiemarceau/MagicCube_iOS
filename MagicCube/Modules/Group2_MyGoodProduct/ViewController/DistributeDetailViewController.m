@@ -71,7 +71,7 @@
     [distributePriceBGview addSubview:levelView3];
     
     DistributeLevelView * levelView4 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(top + levelheight * 3), SCREEN_WIDTH, levelheight)];
-    [levelView4 configTextRed:NO level:@"砖石会员" price:488 discount:@"5" grade:NO gradeText:@"升级砖石会员" line:LinePositionShowUp];
+    [levelView4 configTextRed:NO level:@"钻石会员" price:488 discount:@"5" grade:NO gradeText:@"升级钻石会员" line:LinePositionShowUp];
     [distributePriceBGview addSubview:levelView4];
     
     MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(185.5), SCREEN_WIDTH, SCALE_W(10))];
