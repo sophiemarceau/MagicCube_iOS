@@ -108,7 +108,7 @@
     UIView * goodsInfoBGView = [[UIView alloc] initWithFrame:CGRectMake(0, SCALE_W(635.5), SCREEN_WIDTH, SCALE_W(182.5))];
     [rootView addSubview:goodsInfoBGView];
     
-    UIImageView * goodsInfoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(182.5 - 46))];
+    UIImageView * goodsInfoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(56), SCREEN_WIDTH, SCALE_W(182.5 - 76))];
     goodsInfoView.image = [UIImage imageNamed:@"fangweituan"];
     goodsInfoView.contentMode = UIViewContentModeScaleAspectFit;
     [goodsInfoBGView addSubview:goodsInfoView];
@@ -155,9 +155,11 @@
         index++;
     }
     
+    MagicLineView * line4 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(45.5), SCREEN_WIDTH, 0.5)];
+    [goodsInfoBGView addSubview:line4];
+    
     MagicLineView * line3 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(172.5), SCREEN_WIDTH, SCALE_W(10))];
     [goodsInfoBGView addSubview:line3];
-    rootView.contentSize = CGSizeMake(0, SCREEN_HEIGHT * 2);
     
     UIButton * distributeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - SCALE_W(45) - HOME_INDICATOR_HEIGHT - NAVIGATION_HEIGHT, SCREEN_WIDTH, SCALE_W(45))];
     distributeBtn.backgroundColor = RedMagicColor;
