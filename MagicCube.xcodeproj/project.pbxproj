@@ -60,6 +60,8 @@
 		B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900721AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900821AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
+		B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */; };
+		B2633AF721AF8743001E1490 /* UIButton+ImgTitlePos.m in Sources */ = {isa = PBXBuildFile; fileRef = B2633AF621AF8743001E1490 /* UIButton+ImgTitlePos.m */; };
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
 		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
@@ -193,6 +195,10 @@
 		B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B240900421AEA1FF00887B6A /* DistributeGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeGoodsViewController.h; sourceTree = "<group>"; };
 		B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeGoodsViewController.m; sourceTree = "<group>"; };
+		B2633AEF21AF7B47001E1490 /* DistributionShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributionShareViewController.h; sourceTree = "<group>"; };
+		B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributionShareViewController.m; sourceTree = "<group>"; };
+		B2633AF521AF8743001E1490 /* UIButton+ImgTitlePos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ImgTitlePos.h"; sourceTree = "<group>"; };
+		B2633AF621AF8743001E1490 /* UIButton+ImgTitlePos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ImgTitlePos.m"; sourceTree = "<group>"; };
 		B2649BC721A50C0300C871C8 /* UIColor+YW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YW.m"; sourceTree = "<group>"; };
 		B2649BC821A50C0300C871C8 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		B2649BC921A50C0300C871C8 /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
@@ -473,6 +479,8 @@
 				B2408FF421AE478100887B6A /* DistributeDetailViewController.m */,
 				B240900421AEA1FF00887B6A /* DistributeGoodsViewController.h */,
 				B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */,
+				B2633AEF21AF7B47001E1490 /* DistributionShareViewController.h */,
+				B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */,
 				B27585D421A68A5500C9943A /* GoodsDetailViewController.h */,
 				B27585D521A68A5500C9943A /* GoodsDetailViewController.m */,
 			);
@@ -591,6 +599,8 @@
 				B2649BC821A50C0300C871C8 /* UIView+Frame.m */,
 				B2649BCA21A50C0300C871C8 /* UIColor+YW.h */,
 				B2649BC721A50C0300C871C8 /* UIColor+YW.m */,
+				B2633AF521AF8743001E1490 /* UIButton+ImgTitlePos.h */,
+				B2633AF621AF8743001E1490 /* UIButton+ImgTitlePos.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -882,6 +892,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */,
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
 				7D709BB521ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m in Sources */,
@@ -905,6 +916,7 @@
 				B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */,
 				7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */,
 				7DB9F88021A58DFE005D4DD4 /* ProductDetailViewController.m in Sources */,
+				B2633AF721AF8743001E1490 /* UIButton+ImgTitlePos.m in Sources */,
 				936E9FC721A67B9B00CD1A4E /* ProducDetailtHeaderView.m in Sources */,
 				93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */,
 				936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */,
