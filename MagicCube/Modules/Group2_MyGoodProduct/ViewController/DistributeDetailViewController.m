@@ -26,7 +26,7 @@
 }
 
 -(void)initdata{
-    self.title = @"我的好物";
+    self.title = @"商品卡详情";
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -47,6 +47,7 @@
     
     MagicLabel * distributeTitlelabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, SCALE_W(16), SCREEN_WIDTH - 20, SCALE_W(14))];
     distributeTitlelabel.text = @"分销提货价";
+    distributeTitlelabel.textColor = Gray666Color;
     [distributePriceBGview addSubview:distributeTitlelabel];
     
     DistributeLevelView * levelView = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(27.5), SCREEN_WIDTH, SCALE_W(35.5))];
@@ -105,7 +106,7 @@
     [goodsInfoBGView addSubview:infoLabel];
     
     NSArray * titles = @[@"本卡产品认证生产商为厦门燕之屋生物工程发展有限公司",@"本卡产品认证发货商为厦门燕之屋生物工程发展有限公司",@"本卡信息已在蚂蚁金服区块链存证备查"];
-    NSArray * imgs = @[@"changshang",@"chandi",@"fangwei"];
+    NSArray * imgs = @[@"changshang",@"huoyuan",@"fangwei"];
     int index = 0;
     for (NSString * title in titles) {
         UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(22), SCALE_W(11) + SCALE_W(42) + SCALE_W(45.5) * index, SCALE_W(21), SCALE_W(21))];

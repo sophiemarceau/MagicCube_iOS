@@ -684,7 +684,7 @@
 //    [UIFont systemFontOfSize:16];
     _itemTitleFont = UIFontLightOfSize(14);
 //    [UIFont systemFontOfSize:16];
-    _trackerHeight = 3.0;
+    _trackerHeight = 1.5;
     _dividingLineHeight = 1.0 / [UIScreen mainScreen].scale; // 适配屏幕分辨率
     _contentInset = UIEdgeInsetsZero;
     _selectedItemIndex = 0;

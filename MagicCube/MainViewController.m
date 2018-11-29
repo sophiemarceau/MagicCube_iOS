@@ -69,6 +69,10 @@
     
     Vc.tabBarItem.title = title;
     Vc.navigationItem.title = title;
+    if([title isEqualToString:@"好物中心"]){
+        Vc.navigationItem.title = @"魔方好物";
+    }
+    
     return nav;
 }
 

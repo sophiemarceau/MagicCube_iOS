@@ -19,7 +19,7 @@
     CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, NAVIGATION_HEIGHT);
     UIImage *barImg = [UIImage BgImageFromColors: colorArray withFrame: frame];
     [[UINavigationBar appearance] setBackgroundImage:barImg forBarMetrics:UIBarMetricsDefault];
-    [UINavigationBar appearance].shadowImage = [UIImage imageWithColor:KBGCell];
+    [UINavigationBar appearance].shadowImage = [UIImage imageWithColor:LineGrayColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:BlackMagicColor, NSFontAttributeName:UIFontRegularOfSize(18)}];
 }
 

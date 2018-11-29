@@ -445,33 +445,38 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     if (_tableHeaderView == nil) {
         _tableHeaderView = [UIView new];
         _tableHeaderView.backgroundColor = KBGColor;
-        _tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 222.5);
-        UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 212.5)];
+        _tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 117+ 150 +10);
+        UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117+ 150)];
         bg.backgroundColor = [UIColor whiteColor];
         [_tableHeaderView addSubview:bg];
-        [bg addSubview:self.picImageView];
-        [bg addSubview:self.desLabel];
-        [bg addSubview:self.memberBtn];
+        UIImageView *picImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"421543305740_.pic_hd"]];
+        picImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150);
+        [bg addSubview:picImageView];
+//        [bg addSubview:self.picImageView];
+//        [bg addSubview:self.desLabel];
+//        [bg addSubview:self.memberBtn];
         [bg addSubview:self.subLabel];
         UIImageView *headImageView;
         for (int i=0; i<self.headImageViewArray.count; i++) {
             headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10+i*(23
-                                                                                +10), 135.5, 23, 23)];
+                                                                                +10), self.subLabel.bottom +14, 23, 23)];
+            NSString *headStr = [NSString stringWithFormat:@"head-%d",i];
+            headImageView.image = [UIImage imageNamed:headStr];
             [bg addSubview:headImageView];
-            headImageView.backgroundColor = RedMagicColor;
+//            headImageView.backgroundColor = RedMagicColor;
             headImageView.layer.cornerRadius = 11.5;
             headImageView.layer.masksToBounds = YES;
         }
         UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(
                                                                       10+(self.headImageViewArray.count - 1)*(23
-                                                                                                             +10)+23 +15, 140 , 96, 12)];
+                                                                                                             +10)+23 +15, self.subLabel.bottom +18.5 , 96, 12)];
         desLabel.text = @"正在使用魔方好物";
         desLabel.font = UIFontRegularOfSize(12);
         desLabel.textColor = Gray666Color;
         desLabel.textAlignment = NSTextAlignmentLeft;
         [bg addSubview:desLabel];
         
-        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 172.5, SCREEN_WIDTH -20 +10, 26)];
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,  self.subLabel.bottom +51, SCREEN_WIDTH -20 +10, 26)];
         messageLabel.font = UIFontRegularOfSize(12);
         messageLabel.textAlignment = NSTextAlignmentRight;
         messageLabel.textColor  = Gray666Color;
@@ -535,7 +540,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
 -(UILabel *)subLabel{
     if (_subLabel == nil) {
-        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 109.5, SCREEN_WIDTH -20, 12)];
+        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 150+14, SCREEN_WIDTH -20, 12)];
         _subLabel.font = UIFontRegularOfSize(12);
         _subLabel.textColor = GrayMagicColor;;
         _subLabel.textAlignment = NSTextAlignmentLeft;

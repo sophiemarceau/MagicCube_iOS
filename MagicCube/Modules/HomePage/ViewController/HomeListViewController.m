@@ -9,7 +9,7 @@
 #import "HomeListViewController.h"
 #import "HomePageTableViewCell.h"
 #import "ProductDetailViewController.h"
-#import "SendPreviewViewController.h"
+#import "DistributeDetailViewController.h"
 
 @interface HomeListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, assign) BOOL canScroll;
@@ -68,7 +68,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-        SendPreviewViewController *vc= [[SendPreviewViewController alloc] init];
+        DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
 //    if ([self.questionArray count] == 0) {
 //
