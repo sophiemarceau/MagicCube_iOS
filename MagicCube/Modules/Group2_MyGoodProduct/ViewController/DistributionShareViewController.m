@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"分销中心";
     [self addSubViews];
     // Do any additional setup after loading the view.
 }

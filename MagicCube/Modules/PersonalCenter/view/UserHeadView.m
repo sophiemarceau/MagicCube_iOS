@@ -40,11 +40,23 @@
         
         [self addSubview:self.shadowView];
         [self.shadowView addSubview:self.menberBtn];
-        NSArray * array = @[@"普通会员",@"黄金会员",@"白金会员",@"砖石会员"];
+        NSArray * array = @[@"普通会员",@"黄金会员",@"白金会员",@"钻石会员"];
+        NSArray * imgArray = @[@"putong",@"huanjin",@"putong",@"zuanshi"];
         CGFloat width = (SCREEN_WIDTH - 20) / 4.0;
         for (int index = 0; index < array.count; index ++) {
             MemberLevelView * memberView = [[MemberLevelView alloc] initWithFrame:CGRectMake(index * width, 0, width, SCALE_W(70))];
-            [memberView configView:[NSString stringWithFormat:@"memberLevel%d",index+1] levelText:array[index]];
+            LineLRPosition pos = LinePositionShowLeftRight;
+            if (index == 0) {
+                
+                pos = LinePositionShowRight;
+            }else if (index == array.count - 1){
+                pos = LinePositionShowLeft;
+                [memberView removeFromSuperview];
+                memberView = [[MemberLevelView alloc] initWithFrame:CGRectMake(index * width, 0, width, SCALE_W(70)) imgW:SCALE_W(30)];
+            }else{
+                pos = LinePositionShowLeftRight;
+            }
+            [memberView configView:imgArray[index] levelText:array[index] LineLRPosition:pos];
 //            memberView.backgroundColor = [UIColor whiteColor];
             [self.shadowView addSubview:memberView];
         }

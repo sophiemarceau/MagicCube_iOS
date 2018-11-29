@@ -42,6 +42,8 @@
 #define Gray666Color BHHexColor(@"666666")
 //边框 常用灰色Layer
 #define GrayLayerColor BHHexColor(@"CCCCCC")
+//边框 常用d1Layer
+#define LineD1GrayColor BHHexColor(@"D1D1D1")
 
 
 // MARK: App中主要常用字体Font相关 
