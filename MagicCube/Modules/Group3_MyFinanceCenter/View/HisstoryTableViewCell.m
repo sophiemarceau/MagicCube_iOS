@@ -32,7 +32,7 @@
         self.contentView.backgroundColor = KBGCell;
         [self.contentView addSubview: self.lineView];
         [self.contentView addSubview:self.nameLabel];
-        [self.contentView addSubview:self.priceLabel];
+//        [self.contentView addSubview:self.priceLabel];
         [self.contentView addSubview:self.timeLabel];
     }
     return self;
@@ -40,8 +40,8 @@
 
 - (void)configwidth:(NSDictionary *)dict{
     self.nameLabel.text =[dict objectForKey:@"name"];
-    self.priceLabel.text =[dict objectForKey:@"price"];
-    self.timeLabel.text =[dict objectForKey:@"time"];
+//    self.priceLabel.text =[dict objectForKey:@"price"];
+    self.timeLabel.text =[dict objectForKey:@"price"];
 }
 
 + (CGFloat)cellHeight{
@@ -74,8 +74,9 @@
 
 -(UILabel *)timeLabel{
     if (_timeLabel == nil) {
-        _timeLabel = [self createlabelframe:CGRectMake(SCREEN_WIDTH - 40 - 20 , 0, 40, 46)];
+        _timeLabel = [self createlabelframe:CGRectMake(SCREEN_WIDTH - 80 - 20 , 0, 80, 46)];
         _timeLabel.textAlignment = NSTextAlignmentRight;
+        _timeLabel.font = UIFontRegularOfSize(16);
     }
     return _timeLabel;
 }
@@ -84,7 +85,7 @@
     UILabel * label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = Gray666Color;
-    label.font = UIFontRegularOfSize(16);
+    label.font = UIFontRegularOfSize(14);
     return label;
 }
 @end

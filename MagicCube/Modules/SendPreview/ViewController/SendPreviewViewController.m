@@ -52,27 +52,19 @@
 -(void)initSubviews{
     [self.view addSubview:self.envelopBGView];
     [self.view addSubview:self.bgView];
-    
     [self.bgView addSubview:self.bgImageView];
-    
     [self.bgView addSubview:self.ideitifylImageView];
     [self.bgView addSubview:self.identifylLabel];
     [self.bgView addSubview:self.identifySubLabel];
-    
     [self.bgView addSubview:self.proNameTitleLabel];
     [self.bgView addSubview:self.proNameSubLabel];
     [self.bgView addSubview:self.buyBtn];
-    
     [self.bgView addSubview:self.proAddressLabel];
     [self.bgView addSubview:self.proConfirmLabel];
-    
     [self.bgView addSubview:self.productImageView];
     [self.bgView addSubview:self.addressImageView];
-    
     [self.view addSubview:self.envelopView];
     [self.view addSubview:self.playBtn];
-    
-    
     [self.view addSubview:self.sendBtn];
 }
 

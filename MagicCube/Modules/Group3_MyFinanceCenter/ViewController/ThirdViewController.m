@@ -43,6 +43,7 @@
     self.listArray = [NSMutableArray array];
     [self.listArray addObject:@{@"name":@"代理收入",@"price":@"¥588",@"time":@"11/12"}];
     [self.listArray addObject:@{@"name":@"团队分红",@"price":@"¥2088",@"time":@"11/12"}];
+    [self.listArray addObject:@{@"name":@"工分分红",@"price":@"¥588",@"time":@"11/12"}];
 }
 
 -(void)initSubviews{
@@ -124,8 +125,14 @@
     [redBgView addSubview:self.nameLabel];
     
     UIImageView  *memImageLevelView = [[UIImageView alloc] initWithFrame:CGRectMake(147, 61, 15, 15)];
-    memImageLevelView.image = [UIImage imageNamed:@"用户等级_shuijing"];
+    memImageLevelView.image = [UIImage imageNamed:@"zuanshihuiyuan"];
     [redBgView addSubview:memImageLevelView];
+    
+    UILabel *namedesLabel = [[UILabel alloc] initWithFrame:CGRectMake(memImageLevelView.right +3, 62, 40, 10)];
+    namedesLabel.text = @"钻石会员";
+    namedesLabel.font = UIFontLightOfSize(10);
+    namedesLabel.textColor = [UIColor whiteColor];
+    [redBgView addSubview:namedesLabel];
     
     self.accountValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 90, 114, 14)];
     self.accountValueLabel.text = @"会员卡余额：¥28";
@@ -159,17 +166,18 @@
     footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
     footerView.backgroundColor = [UIColor whiteColor];
     
-    UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"huiyuanzhongxin_more"]];
-    pullArrowImageView.frame = CGRectMake(149.85, 16, 13, 12);
-    [footerView addSubview:pullArrowImageView];
+   
     
-    UILabel *pullLabel = [[UILabel alloc] initWithFrame:CGRectMake(170.5, 0, 56, 44)];
-    pullLabel.font = UIFontRegularOfSize(12);
+    UILabel *pullLabel = [[UILabel alloc] initWithFrame:CGRectMake(151, 0, 56, 44)];
+    pullLabel.font = UIFontRegularOfSize(14);
     pullLabel.textAlignment = NSTextAlignmentLeft;
     pullLabel.textColor = GrayMagicColor;
-    pullLabel.text = @"查看更多";
+    pullLabel.text = @"查看明细";
     [footerView addSubview:pullLabel];
     
+    UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"路径 2"]];
+    pullArrowImageView.frame = CGRectMake(pullLabel.right +5, 16.35, 12, 13);
+    [footerView addSubview:pullArrowImageView];
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
     lineView.backgroundColor = LineGrayColor;
     [footerView addSubview:lineView];
@@ -187,10 +195,10 @@
         lineView.backgroundColor = LineGrayColor;
         [_incomeView addSubview:lineView];
         
-        UILabel *incomeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 58, SCREEN_WIDTH / 2, 16)];
-        incomeTitleLabel.textColor = BlackMagicColor;
+        UILabel *incomeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 58, SCREEN_WIDTH / 2, 14)];
+        incomeTitleLabel.textColor = Gray666Color;
         incomeTitleLabel.textAlignment = NSTextAlignmentLeft;
-        incomeTitleLabel.font = UIFontRegularOfSize(16);
+        incomeTitleLabel.font = UIFontLightOfSize(14);
         [_incomeView addSubview:incomeTitleLabel];
         incomeTitleLabel.text = @"今日总收入";
         
@@ -198,7 +206,7 @@
         [_incomeView addSubview:incomeValueLabel];
         incomeValueLabel.textColor = Gray666Color;
         incomeValueLabel.textAlignment = NSTextAlignmentRight;
-        incomeValueLabel.font = UIFontRegularOfSize(16);
+        incomeValueLabel.font = UIFontMediumOfSize(16);
         [_incomeView addSubview:incomeValueLabel];
         incomeValueLabel.text = @"¥6380";
         
@@ -227,7 +235,7 @@
         [btn addSubview:delegateValueLabel];
         delegateValueLabel.backgroundColor  = [UIColor clearColor];
         delegateValueLabel.textAlignment = NSTextAlignmentCenter;
-        delegateValueLabel.font = UIFontSemiboldOfSize(SCALE_W(16));
+        delegateValueLabel.font = UIFontRegularOfSize(SCALE_W(16));
         delegateValueLabel.textColor = Gray666Color;
         [self.accountArray addObject:delegateValueLabel];
         
@@ -264,11 +272,11 @@
         _historyView = [[UIView alloc] initWithFrame:CGRectMake(0, self.incomeView.bottom + 10, SCREEN_WIDTH, 44)];
         _historyView.backgroundColor = [UIColor whiteColor];
         UILabel *incomeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH / 2, 44)];
-        incomeTitleLabel.textColor = BlackMagicColor;
+        incomeTitleLabel.textColor = Gray666Color;
         incomeTitleLabel.textAlignment = NSTextAlignmentLeft;
-        incomeTitleLabel.font = UIFontRegularOfSize(16);
+        incomeTitleLabel.font = UIFontLightOfSize(14);
         [_historyView addSubview:incomeTitleLabel];
-        incomeTitleLabel.text = @"历史收入明细";
+        incomeTitleLabel.text = @"历史收入汇总";
         
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, SCREEN_WIDTH, 0.5)];
@@ -288,21 +296,21 @@
         clientNameLabel.textAlignment = NSTextAlignmentLeft;
         clientNameLabel.font = UIFontRegularOfSize(14);
         [_listHeadView addSubview:clientNameLabel];
-        clientNameLabel.text = @"客户名称";
+        clientNameLabel.text = @"项目";
         
-        UILabel *getMoneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(197.5, 0, 28, 42)];
-        getMoneyLabel.textColor = GrayMagicColor;
-        getMoneyLabel.textAlignment = NSTextAlignmentRight;
-        getMoneyLabel.font = UIFontRegularOfSize(14);
-        [_listHeadView addSubview:getMoneyLabel];
-        getMoneyLabel.text = @"收入";
+//        UILabel *getMoneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(197.5, 0, 28, 42)];
+//        getMoneyLabel.textColor = GrayMagicColor;
+//        getMoneyLabel.textAlignment = NSTextAlignmentRight;
+//        getMoneyLabel.font = UIFontRegularOfSize(14);
+//        [_listHeadView addSubview:getMoneyLabel];
+//        getMoneyLabel.text = @"收入";
         
         UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 28 -20, 0, 28, 42)];
         timeLabel.textColor = GrayMagicColor;
         timeLabel.textAlignment = NSTextAlignmentRight;
         timeLabel.font = UIFontRegularOfSize(14);
         [_listHeadView addSubview:timeLabel];
-        timeLabel.text = @"时间";
+        timeLabel.text = @"收入";
     }
     return _listHeadView;
 }
@@ -323,7 +331,7 @@
         _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 26, 72 , 24)];
         _moneyLabel.textColor = Gray666Color;
         _moneyLabel.textAlignment = NSTextAlignmentLeft;
-        _moneyLabel.font = UIFontRegularOfSize(24);
+        _moneyLabel.font = UIFontMediumOfSize(24);
         _moneyLabel.text = @"¥6380";
     }
     return _moneyLabel;

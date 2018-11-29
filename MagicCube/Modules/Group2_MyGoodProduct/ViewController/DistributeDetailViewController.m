@@ -38,9 +38,15 @@
     UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(45))];
     [self.view addSubview:rootView];
     
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
+    UIView *head= [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
+    head.backgroundColor = KBGCell;
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(145))];
     [imageView setImage:[UIImage imageNamed:@"分销中心_详情"]];
-    [rootView addSubview:imageView];
+    [head addSubview:imageView];
+    UIView *linehead = [[UIView alloc] initWithFrame:CGRectMake(0, head.height -2, SCREEN_WIDTH, 0.5)];
+    linehead.backgroundColor = BHHexColor(@"D9D9D9");
+    [head addSubview:linehead];
+    [rootView addSubview:head];
     
     UIView * distributePriceBGview = [[UIView alloc] initWithFrame:CGRectMake(0, SCALE_W(173.5), SCREEN_WIDTH, SCALE_W(195.5))];
     [rootView addSubview:distributePriceBGview];
