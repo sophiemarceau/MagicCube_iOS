@@ -35,7 +35,7 @@
 
 - (void)addSubviews{
     
-    UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT)];
+    UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(45))];
     [self.view addSubview:rootView];
     
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
@@ -50,20 +50,22 @@
     distributeTitlelabel.textColor = Gray666Color;
     [distributePriceBGview addSubview:distributeTitlelabel];
     
-    DistributeLevelView * levelView = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(27.5), SCREEN_WIDTH, SCALE_W(35.5))];
-    [levelView configTextRed:NO level:@"普通会员" price:1088 discount:@"9" grade:YES gradeText:@"升级黄金会员" line:1];
+    CGFloat top = SCALE_W(35);
+    CGFloat levelheight = SCALE_W((185.5 - 40))/4.0;
+    DistributeLevelView * levelView = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, levelheight)];
+    [levelView configTextRed:NO level:@"普通会员" price:1088 discount:@"9" grade:YES gradeText:@"升级黄金会员" line:LinePositionShowDown];
     [distributePriceBGview addSubview:levelView];
     
-    DistributeLevelView * levelView2 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(27.5 + 35.5 * 1), SCREEN_WIDTH, SCALE_W(35.5))];
-    [levelView2 configTextRed:YES level:@"黄金会员" price:888 discount:@"8.5" grade:YES gradeText:@"升级白金会员" line:1];
+    DistributeLevelView * levelView2 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(top + levelheight * 1), SCREEN_WIDTH, levelheight)];
+    [levelView2 configTextRed:YES level:@"黄金会员" price:888 discount:@"8.5" grade:YES gradeText:@"升级白金会员" line:LinePositionShowUpDown];
     [distributePriceBGview addSubview:levelView2];
     
-    DistributeLevelView * levelView3 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(27.5 + 35.5 * 2), SCREEN_WIDTH, SCALE_W(35.5))];
-    [levelView3 configTextRed:NO level:@"白金会员" price:688 discount:@"7" grade:NO gradeText:@"升级白金会员" line:1];
+    DistributeLevelView * levelView3 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(top + levelheight * 2), SCREEN_WIDTH, levelheight)];
+    [levelView3 configTextRed:NO level:@"白金会员" price:688 discount:@"7" grade:NO gradeText:@"升级白金会员" line:LinePositionShowUpDown];
     [distributePriceBGview addSubview:levelView3];
     
-    DistributeLevelView * levelView4 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(27.5 + 35.5 * 3), SCREEN_WIDTH, SCALE_W(35.5))];
-    [levelView4 configTextRed:NO level:@"砖石会员" price:488 discount:@"5" grade:NO gradeText:@"升级砖石会员" line:1];
+    DistributeLevelView * levelView4 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(top + levelheight * 3), SCREEN_WIDTH, levelheight)];
+    [levelView4 configTextRed:NO level:@"砖石会员" price:488 discount:@"5" grade:NO gradeText:@"升级砖石会员" line:LinePositionShowUp];
     [distributePriceBGview addSubview:levelView4];
     
     MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(185.5), SCREEN_WIDTH, SCALE_W(10))];
@@ -99,6 +101,13 @@
     
     UIView * goodsInfoBGView = [[UIView alloc] initWithFrame:CGRectMake(0, SCALE_W(635.5), SCREEN_WIDTH, SCALE_W(182.5))];
     [rootView addSubview:goodsInfoBGView];
+    
+    UIImageView * goodsInfoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(182.5 - 46))];
+    goodsInfoView.image = [UIImage imageNamed:@"fangweituan"];
+    goodsInfoView.contentMode = UIViewContentModeScaleAspectFit;
+    [goodsInfoBGView addSubview:goodsInfoView];
+    
+    
     
     MagicLabel * infoLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, SCALE_W(46))];
     infoLabel.text = @"商品信息";
@@ -144,9 +153,9 @@
     [goodsInfoBGView addSubview:line3];
     rootView.contentSize = CGSizeMake(0, SCREEN_HEIGHT * 2);
     
-    UIButton * distributeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, SCALE_W(818), SCREEN_WIDTH, SCALE_W(45))];
+    UIButton * distributeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - SCALE_W(45) - HOME_INDICATOR_HEIGHT - NAVIGATION_HEIGHT, SCREEN_WIDTH, SCALE_W(45))];
     distributeBtn.backgroundColor = RedMagicColor;
-    [rootView addSubview:distributeBtn];
+    [self.view addSubview:distributeBtn];
     
     
     MagicLabel * distributeLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(0, SCALE_W(8), SCREEN_WIDTH, SCALE_W(16))];
@@ -165,7 +174,7 @@
     distributeDescLabel.font  =UIFontRegularOfSize(10);
     [distributeBtn addSubview:distributeDescLabel];
     [distributeBtn addTarget:self action:@selector(distriute:) forControlEvents:UIControlEventTouchUpInside];
-    rootView.contentSize = CGSizeMake(0, SCALE_W(863));
+    rootView.contentSize = CGSizeMake(0, SCALE_W(818));
 }
 
 

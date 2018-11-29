@@ -10,6 +10,7 @@
 #import "MyGoodsTableViewCell.h"
 #import "TempImageTableViewCell.h"
 #import "DistributionShareViewController.h"
+#import "DistributeDetailViewController.h"
 
 @interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) NSMutableArray * goodsArray;
@@ -63,6 +64,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+//    DistributeDetailViewController * goodsDetail = [[DistributeDetailViewController alloc] init];
     DistributionShareViewController * goodsDetail = [[DistributionShareViewController alloc] init];
     [self.navigationController pushViewController:goodsDetail animated:YES];
 }

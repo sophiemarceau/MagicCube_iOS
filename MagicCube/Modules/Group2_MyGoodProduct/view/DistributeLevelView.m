@@ -27,6 +27,8 @@
     if (self) {
         [self addSubview:self.outCircle];
         [self addSubview:self.inCircle];
+        [self addSubview:self.upLine];
+        [self addSubview:self.downLine];
         [self addSubview:self.levelLabel];
         [self addSubview:self.priceLabel];
         [self addSubview:self.gradeBtn];
@@ -128,6 +130,7 @@
 - (MagicLineView *)upLine{
     if (!_upLine) {
         _upLine = [[MagicLineView alloc] initWithFrame:CGRectMake(SCALE_W(32.5), 0, 0.5, (self.frame.size.height - SCALE_W(14)) * 0.5)];
+        _upLine.backgroundColor = [UIColor colorWithHexString:@"D1D1D1"];
     }
     return _upLine;
 }
@@ -135,6 +138,7 @@
 -(MagicLineView *)downLine{
     if (!_downLine) {
         _downLine = [[MagicLineView alloc] initWithFrame:CGRectMake(SCALE_W(32.5), SCALE_W(7) + self.frame.size.height * 0.5, 0.5, (self.frame.size.height - SCALE_W(14)) * 0.5)];
+        _downLine.backgroundColor = [UIColor colorWithHexString:@"D1D1D1"];
     }
     return _downLine;
 }
