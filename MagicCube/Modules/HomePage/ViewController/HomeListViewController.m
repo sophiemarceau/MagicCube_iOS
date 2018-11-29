@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     self.listArray = [NSMutableArray array];
     [self.listArray addObject:@{@"url":@""}];
     [self.listArray addObject:@{@"url":@""}];
@@ -90,7 +91,7 @@
 }
 
 -(void)acceptMsg:(NSNotification *)notification{
-        NSLog(@"acceptMsg----%@",notification);
+//        NSLog(@"acceptMsg----%@",notification);
     NSDictionary *userInfo = notification.userInfo;
     NSString *canScroll = userInfo[@"canScroll"];
     if ([canScroll isEqualToString:@"1"]) {
@@ -101,7 +102,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"scrollView----%f",scrollView.contentOffset.y);
+//    NSLog(@"scrollView----%f",scrollView.contentOffset.y);
     if (self.DidScrollBlock) {
         self.DidScrollBlock(scrollView.contentOffset.y);
     }
@@ -143,3 +144,4 @@
     return _baseTableView;
 }
 @end
+
