@@ -8,7 +8,7 @@
 
 #import "DistributionShareViewController.h"
 #import "UIButton+ImgTitlePos.h"
-
+#import "SendPreviewViewController.h"
 @interface DistributionShareViewController ()
 @property (strong,nonatomic) UIButton * distributeShareBtn;
 @property (strong,nonatomic) UIButton * distributeRecordBtn;
@@ -111,7 +111,8 @@
 }
 
 - (void)shareClick:(UIButton *)btn{
-    
+    SendPreviewViewController * sendVC = [[SendPreviewViewController alloc] init];
+    [self.navigationController pushViewController:sendVC animated:YES];
 }
 
 -(UIButton *)createSelectBtn:(CGRect)frame{
