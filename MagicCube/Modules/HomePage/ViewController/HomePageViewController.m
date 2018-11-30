@@ -51,7 +51,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"魔方好物";
+//    self.title = @"魔方好物";
     [self initDatas];
     [self initSubviews];
     [self requestData];
@@ -79,6 +79,20 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 }
 
 -(void)initSubviews{
+   UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/4, STATUS_BAR_HEIGHT, SCREEN_WIDTH/2, TAB_BAR_HEIGHT-STATUS_BAR_HEIGHT)];
+
+    tempView.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2-72)/2 +18, 0, 72, TAB_BAR_HEIGHT - STATUS_BAR_HEIGHT)];
+    titleLabel.text = @"魔方好物";
+    titleLabel.textColor = BHHexColor(@"3F3F3F");
+    titleLabel.font = UIFontRegularOfSize(18);
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [tempView addSubview:titleLabel];
+    UIImageView *titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(titleLabel.left -8 -18 , (TAB_BAR_HEIGHT -STATUS_BAR_HEIGHT -18)/2, 18, 18)];
+    titleImageView.image = [UIImage imageNamed:@"navTitle"];
+    [tempView addSubview:titleImageView];
+    self.navigationItem.titleView = tempView;
     
     _tableView = [[YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_HEIGHT-TAB_BAR_HEIGHT) style:UITableViewStylePlain];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kLeaveTopNotificationName object:nil];
@@ -352,7 +366,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         // 传递数组，默认选中第0个
         [pageMenu setItems:self.dataArr selectedItemIndex:0];
         // 等宽,不可滑动
-//        pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+        pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
         // 设置代理
         pageMenu.delegate = self;
         
