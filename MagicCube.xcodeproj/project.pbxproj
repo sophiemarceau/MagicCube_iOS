@@ -29,6 +29,7 @@
 		936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDC21A7FF6000CD1A4E /* UIWebView+TS_JavaScriptContext.m */; };
 		936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02B21AD4D4100CD1A4E /* SPPageMenu.m */; };
 		936EA03021AE407100CD1A4E /* HomeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02F21AE407100CD1A4E /* HomeListViewController.m */; };
+		936EA03221B0E2CA00CD1A4E /* localvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 936EA03121B0E2C900CD1A4E /* localvideo.mp4 */; };
 		93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2621A52E8C004D8111 /* MainViewController.m */; };
 		93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2721A52E8D004D8111 /* AppDelegate.m */; };
 		93CF8E3221A52ECA004D8111 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2C21A52ECA004D8111 /* Tools.m */; };
@@ -54,9 +55,6 @@
 		B2408FF221AE434000887B6A /* TempImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF121AE434000887B6A /* TempImageTableViewCell.m */; };
 		B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF421AE478100887B6A /* DistributeDetailViewController.m */; };
 		B2408FF821AE69E100887B6A /* DistributeLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF721AE69E100887B6A /* DistributeLevelView.m */; };
-		B2408FFA21AE88F600887B6A /* localvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B2408FF921AE88F600887B6A /* localvideo.mp4 */; };
-		B2408FFB21AE88F600887B6A /* localvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B2408FF921AE88F600887B6A /* localvideo.mp4 */; };
-		B2408FFC21AE88F600887B6A /* localvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B2408FF921AE88F600887B6A /* localvideo.mp4 */; };
 		B2408FFE21AE8CFF00887B6A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */; };
 		B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900721AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
@@ -136,6 +134,7 @@
 		936EA02C21AD4D4100CD1A4E /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
 		936EA02E21AE407100CD1A4E /* HomeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListViewController.h; sourceTree = "<group>"; };
 		936EA02F21AE407100CD1A4E /* HomeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeListViewController.m; sourceTree = "<group>"; };
+		936EA03121B0E2C900CD1A4E /* localvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = localvideo.mp4; sourceTree = "<group>"; };
 		93CF8E2521A52E8C004D8111 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		93CF8E2621A52E8C004D8111 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		93CF8E2721A52E8D004D8111 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -194,7 +193,6 @@
 		B2408FF421AE478100887B6A /* DistributeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeDetailViewController.m; sourceTree = "<group>"; };
 		B2408FF621AE69E100887B6A /* DistributeLevelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeLevelView.h; sourceTree = "<group>"; };
 		B2408FF721AE69E100887B6A /* DistributeLevelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeLevelView.m; sourceTree = "<group>"; };
-		B2408FF921AE88F600887B6A /* localvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = localvideo.mp4; sourceTree = "<group>"; };
 		B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B240900421AEA1FF00887B6A /* DistributeGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeGoodsViewController.h; sourceTree = "<group>"; };
 		B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeGoodsViewController.m; sourceTree = "<group>"; };
@@ -662,10 +660,10 @@
 				93CF8E2721A52E8D004D8111 /* AppDelegate.m */,
 				93CF8E2521A52E8C004D8111 /* MainViewController.h */,
 				93CF8E2621A52E8C004D8111 /* MainViewController.m */,
-				B2408FF921AE88F600887B6A /* localvideo.mp4 */,
 				B2D8C55921A405FE00BBC74F /* Assets.xcassets */,
 				B2D8C55E21A405FE00BBC74F /* Info.plist */,
 				B2D8C55F21A405FE00BBC74F /* main.m */,
+				936EA03121B0E2C900CD1A4E /* localvideo.mp4 */,
 			);
 			path = MagicCube;
 			sourceTree = "<group>";
@@ -813,7 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */,
-				B2408FFA21AE88F600887B6A /* localvideo.mp4 in Resources */,
+				936EA03221B0E2CA00CD1A4E /* localvideo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,7 +819,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2408FFB21AE88F600887B6A /* localvideo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,7 +826,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2408FFC21AE88F600887B6A /* localvideo.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
