@@ -51,6 +51,7 @@
 		B209F19321A7F5AB0043E485 /* TableTitleHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F19221A7F5AB0043E485 /* TableTitleHeadView.m */; };
 		B209F19621A7F9160043E485 /* InviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F19521A7F9160043E485 /* InviteView.m */; };
 		B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B229A66121A692A900A5B23B /* SalerTableViewCell.m */; };
+		B22D178E21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D178D21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m */; };
 		B2408FEF21AE2D3B00887B6A /* MemberLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FEE21AE2D3B00887B6A /* MemberLevelView.m */; };
 		B2408FF221AE434000887B6A /* TempImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF121AE434000887B6A /* TempImageTableViewCell.m */; };
 		B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF421AE478100887B6A /* DistributeDetailViewController.m */; };
@@ -60,7 +61,6 @@
 		B240900721AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900821AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */; };
-		B2633AF721AF8743001E1490 /* UIButton+ImgTitlePos.m in Sources */ = {isa = PBXBuildFile; fileRef = B2633AF621AF8743001E1490 /* UIButton+ImgTitlePos.m */; };
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
 		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
@@ -180,6 +180,8 @@
 		B209F19521A7F9160043E485 /* InviteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteView.m; sourceTree = "<group>"; };
 		B229A66021A692A900A5B23B /* SalerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalerTableViewCell.h; sourceTree = "<group>"; };
 		B229A66121A692A900A5B23B /* SalerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalerTableViewCell.m; sourceTree = "<group>"; };
+		B22D178C21B0E6F200D49DFA /* UIButton+ImageTitleAlign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ImageTitleAlign.h"; sourceTree = "<group>"; };
+		B22D178D21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ImageTitleAlign.m"; sourceTree = "<group>"; };
 		B22E4A2C21A4FCCD003F37BD /* BHAppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAppConfig.h; sourceTree = "<group>"; };
 		B22E4A2D21A4FCCD003F37BD /* BHStaticConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHStaticConstant.h; sourceTree = "<group>"; };
 		B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHNotificationConstant.h; sourceTree = "<group>"; };
@@ -198,8 +200,6 @@
 		B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeGoodsViewController.m; sourceTree = "<group>"; };
 		B2633AEF21AF7B47001E1490 /* DistributionShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributionShareViewController.h; sourceTree = "<group>"; };
 		B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributionShareViewController.m; sourceTree = "<group>"; };
-		B2633AF521AF8743001E1490 /* UIButton+ImgTitlePos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ImgTitlePos.h"; sourceTree = "<group>"; };
-		B2633AF621AF8743001E1490 /* UIButton+ImgTitlePos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ImgTitlePos.m"; sourceTree = "<group>"; };
 		B2649BC721A50C0300C871C8 /* UIColor+YW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YW.m"; sourceTree = "<group>"; };
 		B2649BC821A50C0300C871C8 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		B2649BC921A50C0300C871C8 /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
@@ -618,8 +618,8 @@
 				B2649BC821A50C0300C871C8 /* UIView+Frame.m */,
 				B2649BCA21A50C0300C871C8 /* UIColor+YW.h */,
 				B2649BC721A50C0300C871C8 /* UIColor+YW.m */,
-				B2633AF521AF8743001E1490 /* UIButton+ImgTitlePos.h */,
-				B2633AF621AF8743001E1490 /* UIButton+ImgTitlePos.m */,
+				B22D178C21B0E6F200D49DFA /* UIButton+ImageTitleAlign.h */,
+				B22D178D21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -933,7 +933,6 @@
 				B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */,
 				7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */,
 				7DB9F88021A58DFE005D4DD4 /* ProductDetailViewController.m in Sources */,
-				B2633AF721AF8743001E1490 /* UIButton+ImgTitlePos.m in Sources */,
 				936E9FC721A67B9B00CD1A4E /* ProducDetailtHeaderView.m in Sources */,
 				93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */,
 				936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */,
@@ -942,6 +941,7 @@
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */,
+				B22D178E21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m in Sources */,
 				7D709BBD21AEDFE6004155C0 /* SendPreviewViewController.m in Sources */,
 				B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */,
 				936EA03021AE407100CD1A4E /* HomeListViewController.m in Sources */,

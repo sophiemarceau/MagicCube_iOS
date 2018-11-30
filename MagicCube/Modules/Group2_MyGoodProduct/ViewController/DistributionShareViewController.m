@@ -7,7 +7,7 @@
 //
 
 #import "DistributionShareViewController.h"
-#import "UIButton+ImgTitlePos.h"
+#import "UIButton+ImageTitleAlign.h"
 #import "SendPreviewViewController.h"
 @interface DistributionShareViewController ()
 @property (strong,nonatomic) UIButton * distributeShareBtn;
@@ -79,7 +79,7 @@
     for (NSString * sharetitle in array) {
          UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(intevalw + (intevalw + btnw) * (i % 4), SCALE_W(15) + (SCALE_W(15) + btnh) * (i / 4), btnw, btnh)];
         [btn setTitleColor:Gray666Color forState:UIControlStateNormal];
-        [btn setTitle:[NSString stringWithFormat:@" %@",sharetitle] forState:UIControlStateNormal];
+        [btn setTitle:sharetitle forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:imgarray[i]] forState:UIControlStateNormal];
         btn.titleLabel.font = UIFontRegularOfSize(12);
         [btn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,11 +87,7 @@
         btn.layer.masksToBounds = YES;
         btn.layer.borderColor = GrayMagicColor.CGColor;
         btn.layer.borderWidth = 0.5;
-//        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//        [btn setImageEdgeInsets:UIEdgeInsetsMake(0, -btn.titleLabel.width, 0, btn.titleLabel.width )];
-//        [btn setImageEdgeInsets:UIEdgeInsetsMake(0, -btn.titleLabel.width - 2.5, 0, btn.titleLabel.width + 2.5 )];
-//
-//        [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, btn.imageView.width - 10, 0,-btn.imageView.width + 10)];
+        [btn centerAlignmentImgLeftTitleRight:YES space:5];
         [shareBgView addSubview:btn];
 
         i ++;
