@@ -9,7 +9,9 @@
 
 #import "SendPreviewViewController.h"
 #import <AVFoundation/AVFoundation.h>
-@interface SendPreviewViewController ()
+#import "WXApi.h"
+#import "WXApiManager.h"
+@interface SendPreviewViewController ()<WXApiManagerDelegate>
 @property(nonatomic,strong)UIView *bgView;
 @property(nonatomic,strong)UIImageView *envelopBGView,*envelopView,*headView;
 @property(nonatomic,strong)AVPlayerLayer *playlayer;
@@ -37,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [WXApiManager sharedManager].delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
     [self initDatas];
     [self initSubviews];
@@ -75,6 +78,47 @@
         [self.player play];
     }
     sender.selected = !sender.selected;
+}
+
+-(void)gotoSmallProgrammer:(id)sender{
+    if ([WXApi isWXAppInstalled]) {
+        WXMiniProgramObject *wxMiniObject = [WXMiniProgramObject object];
+        wxMiniObject.webpageUrl = @"";
+        wxMiniObject.userName = kWechatMiniAppKey;  //拉起的小程序的username 小程序原始id
+        wxMiniObject.path = @"";
+        wxMiniObject.hdImageData = nil;
+        // launchMiniProgramReq.path = path;    //拉起小程序页面的可带参路径，不填默认拉起小程序首页
+        //  WXMiniProgramTypeRelease = 0,       //**< 正式版  */
+        // WXMiniProgramTypeTest = 1,        //**< 开发版  */
+        //WXMiniProgramTypePreview = 2,         //**< 体验版  */
+//        launchMiniProgramReq.miniProgramType = WXMiniProgramTypePreview; //拉起小程序的类型
+        
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = @"小程序title";
+        message.description = @"小程序tdesc";
+        message.mediaObject = wxMiniObject;
+//        UIImage *thumbImage = [UIImage imageNamed:@"详情页"];
+//        NSData *imageData = UIImagePNGRepresentation(thumbImage);
+        message.thumbData = nil;
+        //imageData;//兼容酒颁布节点图片，小于32k
+        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+        req.message = message;
+        req.scene = WXSceneSession;
+        BOOL returnFlag =  [WXApi sendReq:req];
+        
+        
+        
+//        [WXApi sendReq:launchMiniProgramReq];
+    } else {
+        [BHToast showMessage:@"请您先安装微信"];
+    }
+    NSLog(@"gotoSmallProgrammer");
+}
+
+
+- (void)managerDidRecvLaunchMiniProgram:(WXLaunchMiniProgramResp *)response {
+     NSString *strMsg = [NSString stringWithFormat:@"errMsg:%@,errcode:%d", response.extMsg, response.errCode];
+    NSLog(@"strMsg---->%@",strMsg);
 }
 
 -(UIView *)bgView{
@@ -204,6 +248,8 @@
         [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
         _sendBtn.backgroundColor = [UIColor clearColor];
         _sendBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_sendBtn addTarget:self
+                     action:@selector(gotoSmallProgrammer:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sendBtn;
 }
@@ -284,4 +330,5 @@
     tempImageView.image = [UIImage imageNamed:imageNameStr];
     return tempImageView;
 }
+
 @end

@@ -30,6 +30,7 @@
 		936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02B21AD4D4100CD1A4E /* SPPageMenu.m */; };
 		936EA03021AE407100CD1A4E /* HomeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02F21AE407100CD1A4E /* HomeListViewController.m */; };
 		936EA03221B0E2CA00CD1A4E /* localvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 936EA03121B0E2C900CD1A4E /* localvideo.mp4 */; };
+		936EA03521B506CF00CD1A4E /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA03421B506CF00CD1A4E /* WXApiManager.m */; };
 		93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2621A52E8C004D8111 /* MainViewController.m */; };
 		93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2721A52E8D004D8111 /* AppDelegate.m */; };
 		93CF8E3221A52ECA004D8111 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2C21A52ECA004D8111 /* Tools.m */; };
@@ -135,6 +136,8 @@
 		936EA02E21AE407100CD1A4E /* HomeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListViewController.h; sourceTree = "<group>"; };
 		936EA02F21AE407100CD1A4E /* HomeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeListViewController.m; sourceTree = "<group>"; };
 		936EA03121B0E2C900CD1A4E /* localvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = localvideo.mp4; sourceTree = "<group>"; };
+		936EA03321B506CF00CD1A4E /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		936EA03421B506CF00CD1A4E /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
 		93CF8E2521A52E8C004D8111 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		93CF8E2621A52E8C004D8111 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		93CF8E2721A52E8D004D8111 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 		93CF8E2B21A52ECA004D8111 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				936EA03321B506CF00CD1A4E /* WXApiManager.h */,
+				936EA03421B506CF00CD1A4E /* WXApiManager.m */,
 				93CF8E2F21A52ECA004D8111 /* Tools.h */,
 				93CF8E2C21A52ECA004D8111 /* Tools.m */,
 				93CF8E2D21A52ECA004D8111 /* BHToast.h */,
@@ -948,6 +953,7 @@
 				B2A76C2521A7AFFD00AFCC6C /* UserHeadView.m in Sources */,
 				93CF8E3421A52ECA004D8111 /* BHToast.m in Sources */,
 				7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */,
+				936EA03521B506CF00CD1A4E /* WXApiManager.m in Sources */,
 				936E9FDE21A7FF6100CD1A4E /* BaseWebViewController.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
 				B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */,
@@ -1124,7 +1130,7 @@
 				DEVELOPMENT_TEAM = 696JEW54Q7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MagicCube/Headers/MagicPrefixHeader.pch";
 				INFOPLIST_FILE = MagicCube/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1145,7 +1151,7 @@
 				DEVELOPMENT_TEAM = 696JEW54Q7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MagicCube/Headers/MagicPrefixHeader.pch";
 				INFOPLIST_FILE = MagicCube/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

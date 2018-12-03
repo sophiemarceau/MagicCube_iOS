@@ -18,7 +18,8 @@
 
 //微信开放平台开发
 #define kWechatAppKey @"wx82c2aa4fde147029" //wechat appkey
-
+//微信小程序ID
+#define kWechatMiniAppKey @"wx104305ac9900d74b"
 //微信开放平台开发AppSecret
 #define kWechatAppSecret @"c5b6fc7cc21fbfb5feee9361fbf03798"
 
