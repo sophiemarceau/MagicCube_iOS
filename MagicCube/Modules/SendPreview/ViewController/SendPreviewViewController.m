@@ -105,7 +105,7 @@
         req.message = message;
         req.scene = WXSceneSession;
         BOOL returnFlag =  [WXApi sendReq:req];
-        
+        NSLog(@"returnFlag --->%d",returnFlag);
         
         
 //        [WXApi sendReq:launchMiniProgramReq];
