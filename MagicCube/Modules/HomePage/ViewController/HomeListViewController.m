@@ -10,7 +10,7 @@
 #import "HomePageTableViewCell.h"
 #import "ProductDetailViewController.h"
 #import "DistributeDetailViewController.h"
-
+#import "LoginViewController.h"
 @interface HomeListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, assign) BOOL canScroll;
 @property (nonatomic,strong) UITableView *baseTableView;
@@ -69,7 +69,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-        DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
+//        DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
+     LoginViewController *vc= [[LoginViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
 //    if ([self.questionArray count] == 0) {
 //

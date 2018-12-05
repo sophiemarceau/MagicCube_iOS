@@ -31,6 +31,9 @@
 		936EA03021AE407100CD1A4E /* HomeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA02F21AE407100CD1A4E /* HomeListViewController.m */; };
 		936EA03221B0E2CA00CD1A4E /* localvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 936EA03121B0E2C900CD1A4E /* localvideo.mp4 */; };
 		936EA03521B506CF00CD1A4E /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA03421B506CF00CD1A4E /* WXApiManager.m */; };
+		936EA03921B7A23200CD1A4E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA03821B7A23200CD1A4E /* LoginViewController.m */; };
+		936EA03C21B7AEF200CD1A4E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA03B21B7AEF200CD1A4E /* RegisterViewController.m */; };
+		936EA04021B7D1EE00CD1A4E /* CircularProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA03E21B7D1EE00CD1A4E /* CircularProgressBar.m */; };
 		93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2621A52E8C004D8111 /* MainViewController.m */; };
 		93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2721A52E8D004D8111 /* AppDelegate.m */; };
 		93CF8E3221A52ECA004D8111 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2C21A52ECA004D8111 /* Tools.m */; };
@@ -138,6 +141,12 @@
 		936EA03121B0E2C900CD1A4E /* localvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = localvideo.mp4; sourceTree = "<group>"; };
 		936EA03321B506CF00CD1A4E /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		936EA03421B506CF00CD1A4E /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		936EA03721B7A23200CD1A4E /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		936EA03821B7A23200CD1A4E /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		936EA03A21B7AEF200CD1A4E /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		936EA03B21B7AEF200CD1A4E /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		936EA03E21B7D1EE00CD1A4E /* CircularProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressBar.m; sourceTree = "<group>"; };
+		936EA03F21B7D1EE00CD1A4E /* CircularProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressBar.h; sourceTree = "<group>"; };
 		93CF8E2521A52E8C004D8111 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		93CF8E2621A52E8C004D8111 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		93CF8E2721A52E8D004D8111 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -360,6 +369,26 @@
 			path = SPPageMenu;
 			sourceTree = "<group>";
 		};
+		936EA03621B7865D00CD1A4E /* Login&Register */ = {
+			isa = PBXGroup;
+			children = (
+				936EA03721B7A23200CD1A4E /* LoginViewController.h */,
+				936EA03821B7A23200CD1A4E /* LoginViewController.m */,
+				936EA03A21B7AEF200CD1A4E /* RegisterViewController.h */,
+				936EA03B21B7AEF200CD1A4E /* RegisterViewController.m */,
+			);
+			path = "Login&Register";
+			sourceTree = "<group>";
+		};
+		936EA03D21B7D1DB00CD1A4E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				936EA03F21B7D1EE00CD1A4E /* CircularProgressBar.h */,
+				936EA03E21B7D1EE00CD1A4E /* CircularProgressBar.m */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		93CF8E2B21A52ECA004D8111 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +454,7 @@
 		93CF8E7A21A5369C004D8111 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				936EA03621B7865D00CD1A4E /* Login&Register */,
 				7D709BB921AEDFAE004155C0 /* SendPreview */,
 				936E9FCF21A7FF6000CD1A4E /* WebViewVC */,
 				93CF8E7B21A536AC004D8111 /* HomePage */,
@@ -561,6 +591,7 @@
 		B2059C4321A65CAD00F70C07 /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				936EA03D21B7D1DB00CD1A4E /* New Group */,
 				B2059C4421A65CC900F70C07 /* MagicLabel.h */,
 				B2059C4521A65CC900F70C07 /* MagicLabel.m */,
 				B2059C4721A6603500F70C07 /* MagicLineView.h */,
@@ -914,6 +945,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936EA03921B7A23200CD1A4E /* LoginViewController.m in Sources */,
 				B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */,
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
@@ -956,6 +988,7 @@
 				936EA03521B506CF00CD1A4E /* WXApiManager.m in Sources */,
 				936E9FDE21A7FF6100CD1A4E /* BaseWebViewController.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
+				936EA04021B7D1EE00CD1A4E /* CircularProgressBar.m in Sources */,
 				B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */,
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
 				7DB9F89321A5AB3C005D4DD4 /* TYPageControl.m in Sources */,
@@ -965,6 +998,7 @@
 				936E9FCA21A684BA00CD1A4E /* ProductInfoView.m in Sources */,
 				93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */,
 				B27585D321A6864800C9943A /* MagicRichTool.m in Sources */,
+				936EA03C21B7AEF200CD1A4E /* RegisterViewController.m in Sources */,
 				93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */,
 				B2408FEF21AE2D3B00887B6A /* MemberLevelView.m in Sources */,
 				93CF8E4721A52EFC004D8111 /* BaseNavigationViewController.m in Sources */,

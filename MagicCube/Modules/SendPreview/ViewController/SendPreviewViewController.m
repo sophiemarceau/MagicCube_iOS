@@ -87,6 +87,7 @@
         wxMiniObject.userName = kWechatMiniAppKey;  //拉起的小程序的username 小程序原始id
         wxMiniObject.path = @"";
         wxMiniObject.hdImageData = nil;
+        wxMiniObject.miniProgramType = WXMiniProgramTypePreview;
         // launchMiniProgramReq.path = path;    //拉起小程序页面的可带参路径，不填默认拉起小程序首页
         //  WXMiniProgramTypeRelease = 0,       //**< 正式版  */
         // WXMiniProgramTypeTest = 1,        //**< 开发版  */
