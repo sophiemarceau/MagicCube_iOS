@@ -7,17 +7,21 @@
 //
 
 #import "LoginViewController.h"
-#import "CircularProgressBar.h"
+
 @interface LoginViewController (){
     UIView *lineView1,*lineView2;
     NSInteger i;
 }
+@property (nonatomic,strong) UIButton *wechatBtn;
+@property(nonatomic,strong) UILabel *wechatLabel;
 @property (nonatomic,strong) UITextField *phoneTextField;
 @property (nonatomic,strong) UITextField *codeTextField;
-@property (nonatomic,strong) UIButton *codeMessageBtn;
+@property (nonatomic,strong) UIButton *codeMessageBtn,*eyeBtn;
 @property (nonatomic,strong) UIButton *loginBtn;
-@property(nonatomic,strong)UILabel *timeLabel;//60秒后重发
-@property(nonatomic,strong)NSTimer *timer;
+@property (nonatomic,strong) UILabel *timeLabel;//60秒后重发
+@property (nonatomic,strong) NSTimer *timer;
+@property (nonatomic,strong) UILabel *forgetPwdLabel;
+@property (nonatomic,strong) UILabel *gotoCodeLabel;
 @end
 
 @implementation LoginViewController
@@ -42,7 +46,11 @@
     [self.view addSubview:lineView2];
     [self.view addSubview:self.codeMessageBtn];
     [self.view addSubview:self.loginBtn];
-    
+    [self.view addSubview:self.gotoCodeLabel];
+    [self.view addSubview:self.forgetPwdLabel];
+    [self.view addSubview:self.wechatLabel];
+    [self.view addSubview:self.eyeBtn];
+    [self.view addSubview:self.wechatBtn];
 }
 
 -(void)runClock{
@@ -68,7 +76,7 @@
 
 -(void)sendRequest:(UIButton *)sender{
     [self.codeMessageBtn removeFromSuperview];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self.codeMessageBtn selector:@selector(runClock) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(runClock) userInfo:nil repeats:YES];
     [self.timer fire];
 }
 
@@ -140,14 +148,71 @@
     if (_timeLabel == nil) {
         self.timeLabel = [[UILabel alloc]init];
         self.timeLabel.textColor = GrayMagicColor;
-        self.timeLabel.frame = CGRectMake(SCREEN_WIDTH - 40 -SCALE_W(46), SCALE_W(169), SCALE_W(46), SCALE_W(27));
-//        self.timeLabel.backgroundColor = UIColorFromRGB(0xdddddd);
+        self.timeLabel.frame = CGRectMake(SCREEN_WIDTH - 40 -SCALE_W(46), SCALE_W(179), SCALE_W(46), SCALE_W(27));
+        self.timeLabel.backgroundColor = [UIColor whiteColor];
         self.timeLabel.font = UIFontRegularOfSize(14);
         self.timeLabel.textAlignment = NSTextAlignmentCenter;
         self.timeLabel.layer.masksToBounds = YES;
         self.timeLabel.layer.cornerRadius =13.5;
+        self.timeLabel.layer.borderColor = GrayLayerColor.CGColor;
+        self.timeLabel.layer.borderWidth = 0.5;
     }
     return _timeLabel;
 }
 
+-(UILabel *)forgetPwdLabel{
+    if (_forgetPwdLabel == nil) {
+        _forgetPwdLabel  = [[UILabel alloc]init];
+        _forgetPwdLabel.textColor = Gray666Color;
+        _forgetPwdLabel.frame = CGRectMake(SCREEN_WIDTH - 40 -SCALE_W(70), SCALE_W(279.5), SCALE_W(70), SCALE_W(14));
+        _forgetPwdLabel.backgroundColor = [UIColor whiteColor];
+        _forgetPwdLabel.font = UIFontRegularOfSize(14);
+        _forgetPwdLabel.textAlignment = NSTextAlignmentRight;
+        _forgetPwdLabel.text = @"忘记密码?";
+        _forgetPwdLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *gotoLoginGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickforgetBtn:)];
+        [_forgetPwdLabel addGestureRecognizer:gotoLoginGesture];
+    }
+    return _forgetPwdLabel;
+}
+
+
+-(UILabel *)gotoCodeLabel{
+    if (_gotoCodeLabel == nil) {
+        _gotoCodeLabel = [[UILabel alloc]init];
+        _gotoCodeLabel.textColor = RedMagicColor;
+        _gotoCodeLabel.frame = CGRectMake( 0, SCALE_W(382),SCREEN_WIDTH , SCALE_W(14));
+        _gotoCodeLabel.backgroundColor = [UIColor clearColor];
+        _gotoCodeLabel.font = UIFontRegularOfSize(14);
+        _gotoCodeLabel.textAlignment = NSTextAlignmentCenter;
+        _gotoCodeLabel.text = @"短信验证码登录";
+        _gotoCodeLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *gotoLoginGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLoginType:)];
+        [_gotoCodeLabel addGestureRecognizer:gotoLoginGesture];
+    }
+    return _gotoCodeLabel;
+}
+
+-(UIButton *)wechatBtn{
+    if (_wechatBtn == nil) {
+        _wechatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _wechatBtn.frame = CGRectMake((SCREEN_WIDTH - SCALE_W(36))/2 , SCALE_W(519), SCALE_W(36), SCALE_W(36));
+        [_wechatBtn setImage:[UIImage imageNamed:@"wechat"] forState:UIControlStateNormal];
+        [_wechatBtn addTarget:self action:@selector(onClickWechatBtn:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _wechatBtn;
+}
+
+- (UILabel *)wechatLabel{
+    if (_wechatLabel == nil) {
+        _wechatLabel = [[UILabel alloc]init];
+        _wechatLabel.textColor = Gray666Color;
+        _wechatLabel.frame = CGRectMake(0, SCALE_W(569), SCREEN_WIDTH, SCALE_W(14));
+        _wechatLabel.backgroundColor = [UIColor clearColor];
+        _wechatLabel.font = UIFontRegularOfSize(14);
+        _wechatLabel.textAlignment = NSTextAlignmentCenter;
+        _wechatLabel.text = @"微信授权登录";
+    }
+    return _wechatLabel;
+}
 @end
