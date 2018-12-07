@@ -78,6 +78,8 @@
     i=60;
 }
 
+-(void)loginOnclick:(UIButton *)sender{}
+
 -(void)sendRequest:(UIButton *)sender{
     [self.codeMessageBtn removeFromSuperview];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(runClock) userInfo:nil repeats:YES];
