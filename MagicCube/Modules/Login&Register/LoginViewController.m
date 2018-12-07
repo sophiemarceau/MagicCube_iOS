@@ -84,6 +84,13 @@
     
 }
 
+-(void)changeLoginType:(id)sender{
+    
+}
+
+-(void)onClickWechatBtn:(UIButton *)sender{
+    
+}
 
 -(UITextField *)phoneTextField{
     if (_phoneTextField == nil) {
