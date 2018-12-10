@@ -9,12 +9,12 @@
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
 
-@interface RegisterViewController (){
+@interface RegisterViewController ()<UITextFieldDelegate>{
      NSInteger i;
 }
 @property (nonatomic,strong) UITextField *phoneTextField;
 @property (nonatomic,strong) UITextField *codeTextField;
-@property (nonatomic,strong) UIButton *codeMessageBtn,*wechatBtn;
+@property (nonatomic,strong) UIButton *codeMessageBtn,*wechatBtn,*pwdChangeBtn;
 @property (nonatomic,strong) UITextField *pwdTextField;
 @property (nonatomic,strong) UITextField *inviteTextField;
 @property (nonatomic,strong) UIButton *registerBtn;
@@ -59,6 +59,8 @@
     
     [self.view addSubview:self.wechatBtn];
     [self.view addSubview:self.wechatLabel];
+    
+    [self.view addSubview:self.pwdChangeBtn];
 }
 
 -(void)runClock{
@@ -86,7 +88,7 @@
     [self.timer fire];
 }
 
--(void) gotoLogin:(UITapGestureRecognizer *)recognizer{
+-(void)gotoLogin:(UITapGestureRecognizer *)recognizer{
     UILabel *label=(UILabel*)recognizer.view;
     NSLog(@"%@被点击了",label.text);
     LoginViewController *vc = [[LoginViewController alloc] init];
@@ -99,6 +101,35 @@
 
 -(void)loginOnclick:(UIButton *)sender{
     
+}
+
+-(void)registernclick:(UIButton *)sender{
+    
+}
+
+- (void)pwdTextSwitch:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) { // 按下去了就是明文
+        NSString *tempPwdStr = self.pwdTextField.text;
+        self.pwdTextField.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.pwdTextField.secureTextEntry = NO;
+        self.pwdTextField.text = tempPwdStr;
+    } else { // 暗文
+        NSString *tempPwdStr = self.pwdTextField.text;
+        self.pwdTextField.text = @"";
+        self.pwdTextField.secureTextEntry = YES;
+        self.pwdTextField.text = tempPwdStr;
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
+}
+
+//实现UITextField代理方法
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];//取消第一响应者
+    return YES;
 }
 
 -(UIImageView *)iconImageView{
@@ -114,7 +145,11 @@
         _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(166.5 -14), SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
         _phoneTextField.placeholder = @"请输入手机号";
         _phoneTextField.textAlignment = NSTextAlignmentLeft;
-        _phoneTextField.tintColor = GrayLayerColor;
+        _phoneTextField.tintColor = GrayMagicColor;
+        _phoneTextField.font = UIFontRegularOfSize(14);
+        _phoneTextField.textColor = GrayMagicColor;
+        _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
+         _phoneTextField.returnKeyType = UIReturnKeyDone;
     }
     return _phoneTextField;
 }
@@ -165,8 +200,12 @@
     if (_codeTextField == nil) {
         _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView1.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
         _codeTextField.placeholder = @"请输入短信验证码";
+        _codeTextField.keyboardType = UIKeyboardTypePhonePad;
         _codeTextField.textAlignment = NSTextAlignmentLeft;
-        _codeTextField.tintColor = GrayLayerColor;
+        _codeTextField.tintColor = GrayMagicColor;
+        _codeTextField.font = UIFontRegularOfSize(14);
+        _codeTextField.textColor = GrayMagicColor;
+         _codeTextField.returnKeyType = UIReturnKeyDone;
     }
     return _codeTextField;
 }
@@ -184,7 +223,12 @@
         _pwdTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView2.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
         _pwdTextField.placeholder = @"请设置6～20位密码";
         _pwdTextField.textAlignment = NSTextAlignmentLeft;
-        _pwdTextField.tintColor = GrayLayerColor;
+        _pwdTextField.tintColor = GrayMagicColor;
+        _pwdTextField.font = UIFontRegularOfSize(14);
+        _pwdTextField.textColor = GrayMagicColor;
+        _pwdTextField.secureTextEntry = YES;
+        _pwdTextField.returnKeyType = UIReturnKeyDone;
+        _pwdTextField.delegate = self;
     }
     return _pwdTextField;
 }
@@ -202,7 +246,11 @@
         _inviteTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView3.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
         _inviteTextField.placeholder = @"请输入邀请码（选填）";
         _inviteTextField.textAlignment = NSTextAlignmentLeft;
-        _inviteTextField.tintColor = GrayLayerColor;
+        _inviteTextField.tintColor = GrayMagicColor;
+        _inviteTextField.font = UIFontRegularOfSize(14);
+        _inviteTextField.textColor = GrayMagicColor;
+        _inviteTextField.returnKeyType = UIReturnKeyDone;
+        _inviteTextField.delegate = self;
     }
     return _inviteTextField;
 }
@@ -225,7 +273,7 @@
         [_registerBtn setTitle:@"注册" forState:UIControlStateNormal];
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _registerBtn.backgroundColor = RedMagicColor;
-        [_registerBtn addTarget:self action:@selector(loginOnclick:) forControlEvents:UIControlEventTouchUpInside];
+        [_registerBtn addTarget:self action:@selector(registernclick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registerBtn;
 }
@@ -274,4 +322,19 @@
     }
     return _wechatLabel;
 }
+
+
+-(UIButton *)pwdChangeBtn{
+    if (_pwdChangeBtn == nil) {
+        _pwdChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, 278, SCALE_W(15), SCALE_W(7));
+        [_pwdChangeBtn setImage:[UIImage imageNamed:@"鼻炎"] forState:UIControlStateNormal];
+        [_pwdChangeBtn setImage:[UIImage imageNamed:@"睁眼"] forState:UIControlStateSelected];
+        [_pwdChangeBtn addTarget:self action:@selector(pwdTextSwitch:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _pwdChangeBtn;
+}
+
+
+
 @end

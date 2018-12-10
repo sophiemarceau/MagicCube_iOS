@@ -15,8 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
  @param isComplete 是否完成登录
  */
 typedef void (^BHLoginCompletion)(BOOL isComplete);
-@interface LoginViewController : BaseViewController
 
+typedef NS_ENUM(NSInteger, LoginStyle) {
+    pwdLogin = 0,
+    codeMessageLogin
+};
+
+
+@interface LoginViewController : BaseViewController
+@property (nonatomic, assign) LoginStyle loginStyle;
 +(void) OpenLogin:(UIViewController *)viewController callback:(BHLoginCompletion) loginComplation;
 
 @end

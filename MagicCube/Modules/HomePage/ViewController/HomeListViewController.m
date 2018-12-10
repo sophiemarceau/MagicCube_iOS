@@ -13,6 +13,8 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "wechatLoginViewController.h"
+#import "forgetViewController.h"
+
 @interface HomeListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, assign) BOOL canScroll;
 @property (nonatomic,strong) UITableView *baseTableView;
@@ -73,8 +75,26 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //        DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
     
-     wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//     wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    if (indexPath.row == 0) {
+        wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.row == 1) {
+        LoginViewController *vc= [[LoginViewController alloc] init];
+        vc.loginStyle = pwdLogin;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.row == 2) {
+        forgetViewController *vc= [[forgetViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.row == 3) {
+        RegisterViewController *vc= [[RegisterViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 //    if ([self.questionArray count] == 0) {
 //
 //    }else{

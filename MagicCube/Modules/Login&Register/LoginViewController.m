@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "forgetViewController.h"
 @interface LoginViewController (){
     UIView *lineView1,*lineView2;
     NSInteger i;
@@ -16,7 +16,7 @@
 @property(nonatomic,strong) UILabel *wechatLabel;
 @property (nonatomic,strong) UITextField *phoneTextField;
 @property (nonatomic,strong) UITextField *codeTextField;
-@property (nonatomic,strong) UIButton *codeMessageBtn,*eyeBtn;
+@property (nonatomic,strong) UIButton *codeMessageBtn,*pwdChangeBtn;
 @property (nonatomic,strong) UIButton *loginBtn;
 @property (nonatomic,strong) UILabel *timeLabel;//60秒后重发
 @property (nonatomic,strong) NSTimer *timer;
@@ -29,28 +29,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      i = 60;
-    self.title = @"登录魔方好物";
+    
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"图标"]];
     iconImageView.frame = CGRectMake((SCREEN_WIDTH - 79)/2, 39.5, 79, 79);
                            [self.view addSubview:iconImageView];
     
-    [ self.view addSubview:self.phoneTextField ];
+    [self.view addSubview:self.phoneTextField ];
+    
     lineView1 = [[UIView alloc] initWithFrame:CGRectMake(40, SCALE_W(214.5), SCREEN_WIDTH - 80, 0.5)];
     lineView1.backgroundColor = LineGrayColor;
-                                [self.view addSubview:lineView1];
+    [self.view addSubview:lineView1];
+    
     [self.view addSubview:self.codeTextField];
     [self.view addSubview:self.codeMessageBtn];
+    
     lineView2 = [[UIView alloc] initWithFrame:CGRectMake(40, SCALE_W(268.5), SCREEN_WIDTH - 80, 0.5)];
     lineView2.backgroundColor = LineGrayColor;
     [self.view addSubview:lineView2];
+    
     [self.view addSubview:self.codeMessageBtn];
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.gotoCodeLabel];
     [self.view addSubview:self.forgetPwdLabel];
     [self.view addSubview:self.wechatLabel];
-    [self.view addSubview:self.eyeBtn];
+    [self.view addSubview:self.pwdChangeBtn];
     [self.view addSubview:self.wechatBtn];
+    
+   
+    if (self.loginStyle == pwdLogin) {
+        self.title = @"账号密码登录";
+        self.wechatLabel.hidden = NO;
+        self.wechatBtn.hidden = NO;
+        self.gotoCodeLabel.hidden = NO;
+        self.forgetPwdLabel.hidden = NO;
+        self.pwdChangeBtn.hidden = NO;
+        self.codeTextField.secureTextEntry = YES;
+    }else if (self.loginStyle == codeMessageLogin) {
+        self.title = @"登录魔方好物";
+        self.codeTextField.placeholder = @"请输入短信验证码";
+        self.wechatLabel.hidden = YES;
+        self.wechatBtn.hidden = YES;
+        self.gotoCodeLabel.hidden = YES;
+        self.forgetPwdLabel.hidden = YES;
+        self.pwdChangeBtn.hidden = YES;
+         self.codeTextField.secureTextEntry = NO;
+    }
 }
 
 -(void)runClock{
@@ -85,11 +109,44 @@
 }
 
 -(void)changeLoginType:(id)sender{
-    
+
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    vc.loginStyle = codeMessageLogin;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)onClickWechatBtn:(UIButton *)sender{
     
+}
+
+-(void)onClickforgetBtn:(UIButton *)sender{
+    forgetViewController *vc = [[forgetViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)pwdTextSwitch:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) { // 按下去了就是明文
+        NSString *tempPwdStr = self.codeTextField.text;
+        self.codeTextField.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.codeTextField.secureTextEntry = NO;
+        self.codeTextField.text = tempPwdStr;
+    } else { // 暗文
+        NSString *tempPwdStr = self.codeTextField.text;
+        self.codeTextField.text = @"";
+        self.codeTextField.secureTextEntry = YES;
+        self.codeTextField.text = tempPwdStr;
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
+}
+
+//实现UITextField代理方法
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];//取消第一响应者
+    return YES;
 }
 
 -(UITextField *)phoneTextField{
@@ -98,8 +155,6 @@
         _phoneTextField.placeholder = @"请输入手机号";
         _phoneTextField.textAlignment = NSTextAlignmentLeft;
         _phoneTextField.tintColor = GrayLayerColor;
-        
-        
     }
     return _phoneTextField;
 }
@@ -107,11 +162,10 @@
 -(UITextField *)codeTextField{
     if (_codeTextField == nil) {
         _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, lineView1.bottom +25-14, SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
-        _codeTextField.placeholder = @"请输入短信验证码";
+        _codeTextField.placeholder = @"请输入您的登录密码";
+        //请输入您的登录密码
         _codeTextField.textAlignment = NSTextAlignmentLeft;
         _codeTextField.tintColor = GrayLayerColor;
-        
-        
     }
     return _codeTextField;
 }
@@ -221,5 +275,18 @@
         _wechatLabel.text = @"微信授权登录";
     }
     return _wechatLabel;
+}
+
+
+
+-(UIButton *)pwdChangeBtn{
+    if (_pwdChangeBtn == nil) {
+        _pwdChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, 244, SCALE_W(15), SCALE_W(7));
+        [_pwdChangeBtn setImage:[UIImage imageNamed:@"鼻炎"] forState:UIControlStateNormal];
+        [_pwdChangeBtn setImage:[UIImage imageNamed:@"睁眼"] forState:UIControlStateSelected];
+        [_pwdChangeBtn addTarget:self action:@selector(pwdTextSwitch:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _pwdChangeBtn;
 }
 @end
