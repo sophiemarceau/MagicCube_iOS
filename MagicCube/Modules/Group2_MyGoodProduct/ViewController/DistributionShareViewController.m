@@ -9,9 +9,13 @@
 #import "DistributionShareViewController.h"
 #import "UIButton+ImageTitleAlign.h"
 #import "SendPreviewViewController.h"
-@interface DistributionShareViewController ()
+#import "SalerTableViewCell.h"
+
+@interface DistributionShareViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) UIButton * distributeShareBtn;
 @property (strong,nonatomic) UIButton * distributeRecordBtn;
+@property (strong,nonatomic) NSMutableArray * recordsArray;
+@property (strong,nonatomic) UIScrollView * bottomScrollview;
 @end
 
 @implementation DistributionShareViewController
@@ -19,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"分销中心";
+    self.recordsArray = [NSMutableArray arrayWithCapacity:0];
     [self addSubViews];
     // Do any additional setup after loading the view.
 }
@@ -65,6 +70,7 @@
     UIScrollView * selectBottomView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCREEN_HEIGHT - top - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT)];
     selectBottomView.backgroundColor = KBGColor;
     [rootView addSubview:selectBottomView];
+    self.bottomScrollview = selectBottomView;
     
     UIView * shareBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(105))];
     shareBgView.backgroundColor = [UIColor whiteColor];
@@ -92,6 +98,49 @@
 
         i ++;
     }
+    
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - top - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT) style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.rowHeight = [SalerTableViewCell cellHeight];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.tableFooterView = [UIView new];
+    [selectBottomView addSubview:tableView];
+    
+    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,62)];
+    headView.backgroundColor = [UIColor whiteColor];
+   
+
+    CGFloat width = (SCREEN_WIDTH - 20) / 3.0;
+    NSArray * titles = @[@"客户名称",@"销售时间",@"销售价格"];
+    index = 0;
+    for (NSString * title in titles) {
+        MagicLabel * label = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + index * width, 20, width, 41.5)];
+        label.textColor = Gray666Color;
+        [headView addSubview:label];
+        label.text = title;
+        if (index != 0) {
+            label.textAlignment = NSTextAlignmentRight;
+        }
+        index ++;
+    }
+    MagicLineView *lineView2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, 61.5, SCREEN_WIDTH, 0.5)];
+    [headView addSubview:lineView2];
+    tableView.tableHeaderView = headView;
+}
+
+#pragma --mark tableview 代理
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;//self.recordsArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SalerTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"record"];
+    if (!cell) {
+        cell = [[SalerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"record"];
+    }
+    [cell configDict:@{}];
+    return cell;
 }
 
 #pragma --mark 按钮
@@ -100,9 +149,17 @@
     if (btn == self.distributeShareBtn) {
         self.distributeShareBtn.selected = YES;
         self.distributeRecordBtn.selected = NO;
+        
+        CGPoint contentOffset = self.bottomScrollview.contentOffset;
+        contentOffset.x = 0 * SCREEN_WIDTH;
+        [self.bottomScrollview setContentOffset:contentOffset animated:YES];
     }else{
         self.distributeShareBtn.selected = NO;
         self.distributeRecordBtn.selected = YES;
+        
+        CGPoint contentOffset = self.bottomScrollview.contentOffset;
+        contentOffset.x = 1 * SCREEN_WIDTH;
+        [self.bottomScrollview setContentOffset:contentOffset animated:YES];
     }
 }
 

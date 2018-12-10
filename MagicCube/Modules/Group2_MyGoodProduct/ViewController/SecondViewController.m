@@ -29,7 +29,7 @@
 
 - (void)goodsInit{
     _goodsArray = [NSMutableArray arrayWithCapacity:0];
-    self.title = @"我的好物";
+    self.title = @"分销中心";
     self.view.backgroundColor =  [UIColor whiteColor];
 }
 

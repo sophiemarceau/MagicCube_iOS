@@ -44,13 +44,13 @@
         self.nameLabel.textColor = Gray666Color;
         [self.contentView addSubview:self.nameLabel];
         
-        self.priceLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + width, 0, width, cellHeight)];
+        self.priceLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + 2 * width, 0, width, cellHeight)];
         self.priceLabel.textAlignment = NSTextAlignmentRight;
         self.priceLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
         self.priceLabel.textColor = Gray666Color;
         [self.contentView addSubview:self.priceLabel];
         
-        self.dateLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + 2 * width, 0, width, cellHeight)];
+        self.dateLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10 + width, 0, width, cellHeight)];
         self.dateLabel.textAlignment = NSTextAlignmentRight;
         self.dateLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
         self.dateLabel.textColor = Gray666Color;
