@@ -318,7 +318,7 @@
 -(UIImageView *)moneyView{
     if (_moneyView == nil) {
         _moneyView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 365)/2, 125, 365 ,76)];
-        _moneyView.image = [UIImage imageNamed:@"矩形"];
+        _moneyView.image = [UIImage imageNamed:@"白底矩形"];
         [_moneyView addSubview:self.moneyLabel];
         [_moneyView addSubview:self.moneyTitleLabel];
         [_moneyView addSubview:self.checkMoneyBtn];
