@@ -77,6 +77,7 @@
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
 		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
+		B272875F21BF92FD0002FE0A /* ZTYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B272875E21BF92FD0002FE0A /* ZTYAlertView.m */; };
 		B27585D321A6864800C9943A /* MagicRichTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D221A6864800C9943A /* MagicRichTool.m */; };
 		B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D521A68A5500C9943A /* GoodsDetailViewController.m */; };
 		B2A76C2521A7AFFD00AFCC6C /* UserHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A76C2421A7AFFD00AFCC6C /* UserHeadView.m */; };
@@ -245,6 +246,8 @@
 		B2649BCA21A50C0300C871C8 /* UIColor+YW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YW.h"; sourceTree = "<group>"; };
 		B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		B2649BCC21A50C0300C871C8 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		B272875D21BF92FD0002FE0A /* ZTYAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZTYAlertView.h; sourceTree = "<group>"; };
+		B272875E21BF92FD0002FE0A /* ZTYAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZTYAlertView.m; sourceTree = "<group>"; };
 		B27585D121A6864800C9943A /* MagicRichTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicRichTool.h; sourceTree = "<group>"; };
 		B27585D221A6864800C9943A /* MagicRichTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicRichTool.m; sourceTree = "<group>"; };
 		B27585D421A68A5500C9943A /* GoodsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
@@ -710,6 +713,8 @@
 			children = (
 				B2A76C2321A7AFFD00AFCC6C /* UserHeadView.h */,
 				B2A76C2421A7AFFD00AFCC6C /* UserHeadView.m */,
+				B272875D21BF92FD0002FE0A /* ZTYAlertView.h */,
+				B272875E21BF92FD0002FE0A /* ZTYAlertView.m */,
 				B2408FED21AE2D3B00887B6A /* MemberLevelView.h */,
 				B2408FEE21AE2D3B00887B6A /* MemberLevelView.m */,
 				B209F19421A7F9160043E485 /* InviteView.h */,
@@ -1042,6 +1047,7 @@
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
 				936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */,
 				93CF8E3721A52ED2004D8111 /* UIImage+help.m in Sources */,
+				B272875F21BF92FD0002FE0A /* ZTYAlertView.m in Sources */,
 				B209F19321A7F5AB0043E485 /* TableTitleHeadView.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,
 				9333626E21B92DF9001065C7 /* forgetViewController.m in Sources */,

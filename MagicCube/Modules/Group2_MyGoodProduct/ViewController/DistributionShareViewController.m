@@ -48,7 +48,7 @@
     [rootView addSubview:selectBgView];
     top += SCALE_W(30 + 15);
     
-    NSArray * selectTitles = @[@"分销到",@"分销记录"];
+    NSArray * selectTitles = @[@"分销到",@"分销记录 (10条)"];
     int index = 0;
     for (NSString * selectTitle in selectTitles) {
         UIButton * selectBtn = [self createSelectBtn:CGRectMake(index *SCALE_W(133), 0, SCALE_W(133), SCALE_W(30))];
@@ -160,6 +160,8 @@
         CGPoint contentOffset = self.bottomScrollview.contentOffset;
         contentOffset.x = 1 * SCREEN_WIDTH;
         [self.bottomScrollview setContentOffset:contentOffset animated:YES];
+        
+        [self.distributeRecordBtn setTitle:@"分销记录 (10条)" forState:UIControlStateNormal];
     }
 }
 
