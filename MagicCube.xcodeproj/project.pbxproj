@@ -19,6 +19,7 @@
 		7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F88C21A5AB3B005D4DD4 /* TYCyclePagerViewCell.m */; };
 		7DB9F89521A5AB3C005D4DD4 /* TYCyclePagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F88E21A5AB3C005D4DD4 /* TYCyclePagerView.m */; };
 		7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F89021A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m */; };
+		932DFD5A21BF56D20052051B /* ChangeDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD5921BF56D20052051B /* ChangeDeviceViewController.m */; };
 		9333626E21B92DF9001065C7 /* forgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9333626D21B92DF9001065C7 /* forgetViewController.m */; };
 		9333627121B93080001065C7 /* wechatLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9333627021B93080001065C7 /* wechatLoginViewController.m */; };
 		936E9FC421A66AC300CD1A4E /* MemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FC321A66AC300CD1A4E /* MemberView.m */; };
@@ -119,6 +120,8 @@
 		7DB9F89121A5AB3C005D4DD4 /* TYPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPageControl.h; sourceTree = "<group>"; };
 		7DB9F89221A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCyclePagerTransformLayout.h; sourceTree = "<group>"; };
 		7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicCube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		932DFD5821BF56D20052051B /* ChangeDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeDeviceViewController.h; sourceTree = "<group>"; };
+		932DFD5921BF56D20052051B /* ChangeDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeDeviceViewController.m; sourceTree = "<group>"; };
 		9333626C21B92DF9001065C7 /* forgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = forgetViewController.h; sourceTree = "<group>"; };
 		9333626D21B92DF9001065C7 /* forgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = forgetViewController.m; sourceTree = "<group>"; };
 		9333626F21B93080001065C7 /* wechatLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wechatLoginViewController.h; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 				9333626D21B92DF9001065C7 /* forgetViewController.m */,
 				9333626F21B93080001065C7 /* wechatLoginViewController.h */,
 				9333627021B93080001065C7 /* wechatLoginViewController.m */,
+				932DFD5821BF56D20052051B /* ChangeDeviceViewController.h */,
+				932DFD5921BF56D20052051B /* ChangeDeviceViewController.m */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -996,6 +1001,7 @@
 				936E9FCA21A684BA00CD1A4E /* ProductInfoView.m in Sources */,
 				93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */,
 				B27585D321A6864800C9943A /* MagicRichTool.m in Sources */,
+				932DFD5A21BF56D20052051B /* ChangeDeviceViewController.m in Sources */,
 				936EA03C21B7AEF200CD1A4E /* RegisterViewController.m in Sources */,
 				93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */,
 				B2408FEF21AE2D3B00887B6A /* MemberLevelView.m in Sources */,

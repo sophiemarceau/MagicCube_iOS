@@ -14,6 +14,7 @@
 #import "RegisterViewController.h"
 #import "wechatLoginViewController.h"
 #import "forgetViewController.h"
+#import "ChangeDeviceViewController.h"
 
 @interface HomeListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, assign) BOOL canScroll;
@@ -92,7 +93,8 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (indexPath.row == 3) {
-        RegisterViewController *vc= [[RegisterViewController alloc] init];
+        ChangeDeviceViewController *vc= [[ChangeDeviceViewController alloc] init];
+        vc.changeDeviceStyle = changeByCodeMessage;
         [self.navigationController pushViewController:vc animated:YES];
     }
 //    if ([self.questionArray count] == 0) {
