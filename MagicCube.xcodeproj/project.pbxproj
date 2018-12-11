@@ -20,6 +20,13 @@
 		7DB9F89521A5AB3C005D4DD4 /* TYCyclePagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F88E21A5AB3C005D4DD4 /* TYCyclePagerView.m */; };
 		7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9F89021A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m */; };
 		932DFD5A21BF56D20052051B /* ChangeDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD5921BF56D20052051B /* ChangeDeviceViewController.m */; };
+		932DFD6E21BFB8D80052051B /* BTERequestTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD5D21BFB8D80052051B /* BTERequestTools.m */; };
+		932DFD6F21BFB8D80052051B /* YQLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD6221BFB8D80052051B /* YQLRUManager.m */; };
+		932DFD7021BFB8D80052051B /* YQDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD6321BFB8D80052051B /* YQDiskCache.m */; };
+		932DFD7121BFB8D80052051B /* YQMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD6421BFB8D80052051B /* YQMemoryCache.m */; };
+		932DFD7221BFB8D80052051B /* YQCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD6821BFB8D80052051B /* YQCacheManager.m */; };
+		932DFD7321BFB8D80052051B /* YQNetworking+RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD6C21BFB8D80052051B /* YQNetworking+RequestManager.m */; };
+		932DFD7421BFB8D80052051B /* YQNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DFD6D21BFB8D80052051B /* YQNetworking.m */; };
 		9333626E21B92DF9001065C7 /* forgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9333626D21B92DF9001065C7 /* forgetViewController.m */; };
 		9333627121B93080001065C7 /* wechatLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9333627021B93080001065C7 /* wechatLoginViewController.m */; };
 		936E9FC421A66AC300CD1A4E /* MemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FC321A66AC300CD1A4E /* MemberView.m */; };
@@ -122,6 +129,20 @@
 		7F2CBBCB71DB2375DCEAFCC5 /* Pods_MagicCube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicCube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		932DFD5821BF56D20052051B /* ChangeDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeDeviceViewController.h; sourceTree = "<group>"; };
 		932DFD5921BF56D20052051B /* ChangeDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeDeviceViewController.m; sourceTree = "<group>"; };
+		932DFD5D21BFB8D80052051B /* BTERequestTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTERequestTools.m; sourceTree = "<group>"; };
+		932DFD5E21BFB8D80052051B /* BTERequestTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTERequestTools.h; sourceTree = "<group>"; };
+		932DFD6021BFB8D80052051B /* YQNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQNetworking.h; sourceTree = "<group>"; };
+		932DFD6221BFB8D80052051B /* YQLRUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQLRUManager.m; sourceTree = "<group>"; };
+		932DFD6321BFB8D80052051B /* YQDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQDiskCache.m; sourceTree = "<group>"; };
+		932DFD6421BFB8D80052051B /* YQMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQMemoryCache.m; sourceTree = "<group>"; };
+		932DFD6521BFB8D80052051B /* YQCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQCacheManager.h; sourceTree = "<group>"; };
+		932DFD6621BFB8D80052051B /* YQDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQDiskCache.h; sourceTree = "<group>"; };
+		932DFD6721BFB8D80052051B /* YQLRUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQLRUManager.h; sourceTree = "<group>"; };
+		932DFD6821BFB8D80052051B /* YQCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQCacheManager.m; sourceTree = "<group>"; };
+		932DFD6921BFB8D80052051B /* YQMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQMemoryCache.h; sourceTree = "<group>"; };
+		932DFD6B21BFB8D80052051B /* YQNetworking+RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YQNetworking+RequestManager.h"; sourceTree = "<group>"; };
+		932DFD6C21BFB8D80052051B /* YQNetworking+RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YQNetworking+RequestManager.m"; sourceTree = "<group>"; };
+		932DFD6D21BFB8D80052051B /* YQNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQNetworking.m; sourceTree = "<group>"; };
 		9333626C21B92DF9001065C7 /* forgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = forgetViewController.h; sourceTree = "<group>"; };
 		9333626D21B92DF9001065C7 /* forgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = forgetViewController.m; sourceTree = "<group>"; };
 		9333626F21B93080001065C7 /* wechatLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wechatLoginViewController.h; sourceTree = "<group>"; };
@@ -329,6 +350,59 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		932DFD5B21BFB8D80052051B /* HttpTool */ = {
+			isa = PBXGroup;
+			children = (
+				932DFD5C21BFB8D80052051B /* NetRequest */,
+				932DFD5F21BFB8D80052051B /* YQNetworking */,
+			);
+			path = HttpTool;
+			sourceTree = "<group>";
+		};
+		932DFD5C21BFB8D80052051B /* NetRequest */ = {
+			isa = PBXGroup;
+			children = (
+				932DFD5D21BFB8D80052051B /* BTERequestTools.m */,
+				932DFD5E21BFB8D80052051B /* BTERequestTools.h */,
+			);
+			path = NetRequest;
+			sourceTree = "<group>";
+		};
+		932DFD5F21BFB8D80052051B /* YQNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				932DFD6021BFB8D80052051B /* YQNetworking.h */,
+				932DFD6D21BFB8D80052051B /* YQNetworking.m */,
+				932DFD6121BFB8D80052051B /* Cache */,
+				932DFD6A21BFB8D80052051B /* RequestManager */,
+			);
+			path = YQNetworking;
+			sourceTree = "<group>";
+		};
+		932DFD6121BFB8D80052051B /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				932DFD6221BFB8D80052051B /* YQLRUManager.m */,
+				932DFD6321BFB8D80052051B /* YQDiskCache.m */,
+				932DFD6421BFB8D80052051B /* YQMemoryCache.m */,
+				932DFD6521BFB8D80052051B /* YQCacheManager.h */,
+				932DFD6621BFB8D80052051B /* YQDiskCache.h */,
+				932DFD6721BFB8D80052051B /* YQLRUManager.h */,
+				932DFD6821BFB8D80052051B /* YQCacheManager.m */,
+				932DFD6921BFB8D80052051B /* YQMemoryCache.h */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		932DFD6A21BFB8D80052051B /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				932DFD6B21BFB8D80052051B /* YQNetworking+RequestManager.h */,
+				932DFD6C21BFB8D80052051B /* YQNetworking+RequestManager.m */,
+			);
+			path = RequestManager;
+			sourceTree = "<group>";
+		};
 		936E9FC121A66A6100CD1A4E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +469,7 @@
 		93CF8E2B21A52ECA004D8111 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				932DFD5B21BFB8D80052051B /* HttpTool */,
 				936EA03321B506CF00CD1A4E /* WXApiManager.h */,
 				936EA03421B506CF00CD1A4E /* WXApiManager.m */,
 				93CF8E2F21A52ECA004D8111 /* Tools.h */,
@@ -948,7 +1023,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				936EA03921B7A23200CD1A4E /* LoginViewController.m in Sources */,
+				932DFD7321BFB8D80052051B /* YQNetworking+RequestManager.m in Sources */,
+				932DFD6F21BFB8D80052051B /* YQLRUManager.m in Sources */,
 				B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */,
+				932DFD7121BFB8D80052051B /* YQMemoryCache.m in Sources */,
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
 				7D709BB521ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m in Sources */,
@@ -991,12 +1069,16 @@
 				7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */,
 				936EA03521B506CF00CD1A4E /* WXApiManager.m in Sources */,
 				936E9FDE21A7FF6100CD1A4E /* BaseWebViewController.m in Sources */,
+				932DFD6E21BFB8D80052051B /* BTERequestTools.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
 				B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */,
+				932DFD7421BFB8D80052051B /* YQNetworking.m in Sources */,
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
 				7DB9F89321A5AB3C005D4DD4 /* TYPageControl.m in Sources */,
+				932DFD7021BFB8D80052051B /* YQDiskCache.m in Sources */,
 				B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */,
 				B2408FF821AE69E100887B6A /* DistributeLevelView.m in Sources */,
+				932DFD7221BFB8D80052051B /* YQCacheManager.m in Sources */,
 				7DB9F88A21A5A739005D4DD4 /* LineTabbarView.m in Sources */,
 				936E9FCA21A684BA00CD1A4E /* ProductInfoView.m in Sources */,
 				93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */,

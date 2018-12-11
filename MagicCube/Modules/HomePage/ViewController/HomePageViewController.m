@@ -117,7 +117,11 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 }
 
 
--(void)requestData{}
+-(void)requestData{
+    
+    
+    
+}
 
 -(void)giveMeMoreData{}
 
