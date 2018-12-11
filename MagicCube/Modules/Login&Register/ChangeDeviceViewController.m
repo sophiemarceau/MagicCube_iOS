@@ -124,8 +124,10 @@
         _codeTextField.placeholder = @"请输入您的登录密码";
         //请输入您的登录密码
         _codeTextField.textAlignment = NSTextAlignmentLeft;
-        _codeTextField.tintColor = GrayLayerColor;
+        _codeTextField.tintColor = GrayMagicColor;
         _codeTextField.secureTextEntry = YES;
+        _codeTextField.font =  UIFontRegularOfSize(14);
+        _codeTextField.textColor = GrayMagicColor;
     }
     return _codeTextField;
 }
@@ -186,7 +188,9 @@
         _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(87.5 -14), SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
         _phoneTextField.placeholder = @"请输入手机号";
         _phoneTextField.textAlignment = NSTextAlignmentLeft;
-        _phoneTextField.tintColor = GrayLayerColor;
+        _phoneTextField.tintColor = GrayMagicColor;
+        _phoneTextField.font =  UIFontRegularOfSize(14);
+        _phoneTextField.textColor = GrayMagicColor;
     }
     return _phoneTextField;
 }

@@ -41,9 +41,9 @@
 -(void)initDatas{
     self.title = @"产品详情";
     self.listArray = [NSMutableArray array];
-    [self.listArray addObject:@{@"name":@"代理收入",@"price":@"¥588",@"time":@"11/12"}];
-    [self.listArray addObject:@{@"name":@"团队分红",@"price":@"¥2088",@"time":@"11/12"}];
-    [self.listArray addObject:@{@"name":@"工分分红",@"price":@"¥588",@"time":@"11/12"}];
+    [self.listArray addObject:@{@"name":@"11月9日",@"price":@"¥588",@"time":@"11/12"}];
+    [self.listArray addObject:@{@"name":@"11月8日",@"price":@"¥2088",@"time":@"11/12"}];
+    [self.listArray addObject:@{@"name":@"11月7日",@"price":@"¥588",@"time":@"11/12"}];
 }
 
 -(void)initSubviews{
@@ -165,9 +165,6 @@
     footerView = [[UIView alloc] initWithFrame:CGRectZero];
     footerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
     footerView.backgroundColor = [UIColor whiteColor];
-    
-   
-    
     UILabel *pullLabel = [[UILabel alloc] initWithFrame:CGRectMake(151, 0, 56, 44)];
     pullLabel.font = UIFontRegularOfSize(14);
     pullLabel.textAlignment = NSTextAlignmentLeft;
@@ -175,7 +172,7 @@
     pullLabel.text = @"查看明细";
     [footerView addSubview:pullLabel];
     
-    UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"路径 2"]];
+    UIImageView *pullArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"huiyuanzhongxin_more"]];
     pullArrowImageView.frame = CGRectMake(pullLabel.right +5, 16.35, 12, 13);
     [footerView addSubview:pullArrowImageView];
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
@@ -296,7 +293,7 @@
         clientNameLabel.textAlignment = NSTextAlignmentLeft;
         clientNameLabel.font = UIFontRegularOfSize(14);
         [_listHeadView addSubview:clientNameLabel];
-        clientNameLabel.text = @"项目";
+        clientNameLabel.text = @"日期";
         
 //        UILabel *getMoneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(197.5, 0, 28, 42)];
 //        getMoneyLabel.textColor = GrayMagicColor;
