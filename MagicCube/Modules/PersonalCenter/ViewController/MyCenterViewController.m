@@ -29,7 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
-    [[UIApplication sharedApplication].keyWindow addSubview:self.alertView];
+    
     
 }
 
@@ -43,7 +43,7 @@
     WS(weakSelf);
     self.headView.joinMember = ^(NSInteger clickIndex) {
 //        [weakSelf.tableView reloadData];
-        
+        [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.alertView];
         
     };
     [self.headView configWithDict:@{}];
@@ -79,7 +79,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -99,7 +99,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return SCALE_W(181.5);
+    return SCALE_W(181.5 + 60);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -134,6 +134,37 @@
     
     MagicLineView * line2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(181.5) - SCALE_W(10), SCREEN_WIDTH, SCALE_W(10))];
     [headView addSubview:line2];
+    
+    UIButton * inviteBGView = [[UIButton alloc] initWithFrame:CGRectMake(0, SCALE_W(181.5), SCREEN_WIDTH, SCALE_W(60))];
+    
+    UIImageView * iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(10), SCALE_W(12), SCALE_W(34), SCALE_W(36))];
+    iconImg.image = [UIImage imageNamed:@"invitefriend"];
+    [inviteBGView addSubview:iconImg];
+    
+    MagicLabel * titleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(54), SCALE_W(14), SCREEN_WIDTH - SCALE_W(54) - SCALE_W(50), SCALE_W(14))];
+    titleLabel.textColor = Gray666Color;
+    [inviteBGView addSubview:titleLabel];
+    
+    
+    MagicLabel *detailLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(54), SCALE_W(34),SCREEN_WIDTH - SCALE_W(54) - SCALE_W(50), SCALE_W(12))];
+    detailLabel.font = UIFontRegularOfSize(12);
+    [inviteBGView addSubview:detailLabel];
+    
+    titleLabel.text = @"邀请好友加入魔方";
+    
+    
+    NSDictionary * inviteattubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
+    NSString *inviteString =@"我的邀请码：48484953";
+    NSString *inviteNum = @"48484953";
+    NSAttributedString * inviteattributestring = [MagicRichTool initWithString:inviteString dict:inviteattubtrDict subString:inviteNum];
+    detailLabel.attributedText = inviteattributestring;
+    
+    
+    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(34), SCALE_W(22), SCALE_W(15), SCALE_W(16))];
+    imgView.image = [UIImage imageNamed:@"rightArrow"];
+    [inviteBGView addSubview:imgView];
+    
+    [headView addSubview:inviteBGView];
     return headView;
 }
 
