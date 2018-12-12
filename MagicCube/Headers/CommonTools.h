@@ -50,6 +50,8 @@ __REF = nil;\
 //数据返回结果是字典
 #define IsSafeDictionary(_ref)   [_ref isKindOfClass:[NSDictionary class]]
 
+#define IsSucess(result)   [[result objectForKey:@"code"] isEqualToString:@"0000"]
+
 //数据返回结果是数组
 #define IsSafeArray(_ref)        [_ref isKindOfClass:[NSArray class]]
 //app版本相关
@@ -63,9 +65,14 @@ __REF = nil;\
 
 
 /* BHUserDefault*/
-#define BHUserDefaults [NSUserDefaults standardUserDefaults]
+#define APPDefaults [NSUserDefaults standardUserDefaults]
 //加载动画
 #define NMShowLoadIng  [Tools imageWithImage]
 //删除动画
 #define NMRemovLoadIng [Tools removeLoadingView]
+
+
+/** 用户BHUser */
+#define User [UserObject shareInstance]
+
 #endif /* CommonTools_h */

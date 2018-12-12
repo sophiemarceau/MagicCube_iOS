@@ -28,13 +28,14 @@
 #import "BHStaticConstant.h"
 #import "ColorOrFontConstants.h"
 #import "AdaptDevice.h"
-
+#import "BTERequestTools.h"
 // MARK: --------Category---------
 #import "UIImage+help.h"
 #import "UIView+category.h"
 #import "UIColor+YW.h"
 #import "UIView+Frame.h"
 #import "UIButton+EnlargeEdge.h"
+#import "NSString+category.h"
 
 //MARK: --------Tools---------
 #import "BHHexColor.h"
@@ -45,4 +46,5 @@
 #import "MagicLineView.h"
 #import "MagicRichTool.h"
 #import "RedButton.h"
+#import "UserObject.h"
 #endif /* MagicPrefixHeader_pch */

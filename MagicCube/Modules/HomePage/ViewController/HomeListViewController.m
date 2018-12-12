@@ -74,29 +74,29 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//        DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
+        DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
     
 //     wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
     
-    if (indexPath.row == 0) {
-        wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+//    if (indexPath.row == 0) {
+//        wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }
-    if (indexPath.row == 1) {
-        LoginViewController *vc= [[LoginViewController alloc] init];
-        vc.loginStyle = pwdLogin;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    if (indexPath.row == 2) {
-        forgetViewController *vc= [[forgetViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    if (indexPath.row == 3) {
-        ChangeDeviceViewController *vc= [[ChangeDeviceViewController alloc] init];
-        vc.changeDeviceStyle = changeByCodeMessage;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    }
+//    if (indexPath.row == 1) {
+//        LoginViewController *vc= [[LoginViewController alloc] init];
+//        vc.loginStyle = pwdLogin;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    if (indexPath.row == 2) {
+//        forgetViewController *vc= [[forgetViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    if (indexPath.row == 3) {
+//        ChangeDeviceViewController *vc= [[ChangeDeviceViewController alloc] init];
+//        vc.changeDeviceStyle = changeByCodeMessage;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 //    if ([self.questionArray count] == 0) {
 //
 //    }else{

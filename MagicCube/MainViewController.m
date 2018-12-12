@@ -12,7 +12,9 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 #import "MyCenterViewController.h"
-@interface MainViewController ()
+#import "RegisterViewController.h"
+
+@interface MainViewController ()<UITabBarControllerDelegate>
 
 @end
 
@@ -27,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
     [[UITabBar appearance] setTranslucent:NO];
     [self initChildVC];
@@ -87,4 +90,26 @@
     childVc.title = title; // 同时设置tabbar和navigationBar的文字
     childVc.tabBarItem.title = title;
 }
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    if([viewController.tabBarItem.title isEqualToString:@"分销中心"]){
+        return YES;
+    }else if([viewController.tabBarItem.title isEqualToString:@"好物中心"]){
+        return YES;
+    }else {
+        if (!User.userToken) {
+            //跳到登录 注册页面
+            RegisterViewController *login = [[RegisterViewController alloc] init];
+//            login.isModalButton = YES;
+            BaseNavigationViewController *loginNav = [[BaseNavigationViewController alloc] initWithRootViewController:login];
+            //隐藏tabbar
+            [((UINavigationController *)tabBarController.selectedViewController) presentViewController:loginNav animated:YES completion:nil];
+            return NO;
+        }else{
+            return YES;
+        }
+    }
+    return YES;
+}
+
 @end

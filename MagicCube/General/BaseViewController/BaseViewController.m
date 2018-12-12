@@ -20,6 +20,28 @@
     if (@available(iOS 11.0, *)){
     }else{self.automaticallyAdjustsScrollViewInsets = NO;}
     self.view.backgroundColor = KBGColor;
+    
+    if (self.presentingViewController) {
+         UIImage *dismissImage = [[UIImage imageNamed:@"fanhui"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton setImage:dismissImage forState:UIControlStateNormal];
+        [backButton sizeToFit];
+        //点击事件
+        [backButton addTarget:self action:@selector(dissMiss:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *leftBackItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        //    [[UIBarButtonItem alloc] initWithImage:goBackImage style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+        //    leftBackItem.tintColor = UIColorFromRGB(0x1A1A1A);
+        [leftBackItem setTitle:@""];
+        self.navigationItem.leftBarButtonItem = leftBackItem;
+    }
+}
+
+- (void)dissMiss:(id)sender {
+    if (self.presentingViewController) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

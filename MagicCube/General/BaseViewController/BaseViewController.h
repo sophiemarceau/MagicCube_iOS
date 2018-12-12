@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
-
+@property(nonatomic,assign)BOOL isModalButton; //weather or not presentviewcontrller
 @end
 
 NS_ASSUME_NONNULL_END

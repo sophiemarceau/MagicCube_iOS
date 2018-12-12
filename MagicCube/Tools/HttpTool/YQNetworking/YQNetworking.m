@@ -118,7 +118,8 @@ static NSTimeInterval   requestTimeout = 20.f;
     __block YQURLSessionTask *session = nil;
     
     AFHTTPSessionManager *manager = [self manager];
-    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+   manager.requestSerializer = [AFJSONRequestSerializer serializer];
     if (networkStatus == YQNetworkStatusNotReachable) {
         if (failBlock) failBlock(YQ_ERROR);
         [BHToast showMessage:@"网络未连接"];
@@ -179,7 +180,9 @@ static NSTimeInterval   requestTimeout = 20.f;
     __block YQURLSessionTask *session = nil;
     
     AFHTTPSessionManager *manager = [self manager];
-
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     if (networkStatus == YQNetworkStatusNotReachable) {
         if (failBlock) failBlock(YQ_ERROR);
         [BHToast showMessage:@"网络未连接"];

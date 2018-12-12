@@ -8,7 +8,7 @@
 
 #import "BTERequestTools.h"
 #import "YQNetworking.h"
-//#import "PhoneInfo.h"
+#import "PhoneInfo.h"
 
 @implementation BTERequestTools
 
@@ -19,24 +19,20 @@
                      success:(void (^)(id responseObject))success
                      failure:(void (^)(NSError *error))failure
 {
-    //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    //    manager.requestSerializer.timeoutInterval = 30.0f;
-    //vType为参数名，1为参数的值
-    //    [manager.requestSerializer setValue:@"1" forHTTPHeaderField:@"vType"];
-//    PhoneInfo * phone = [[PhoneInfo alloc] init];
-//    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:parameters];
-//    [params setObject:kCurrentVersion forKey:@"version"];
-//    [params setObject:@"ios" forKey:@"channel"];
-//    [params setObject:phone.phoneVersion forKey:@"sdkVersionName"];
-//    [params setObject:phone.phoneVersion forKey:@"sdkVersionCode"];
-//    [params setObject:@"iphone" forKey:@"Brand"];
-//    [params setObject:phone.platform forKey:@"Model"];
+
+    PhoneInfo * phone = [[PhoneInfo alloc] init];
+    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    [params setObject:kCurrentVersion forKey:@"version"];
+    [params setObject:@"ios" forKey:@"channel"];
+    [params setObject:phone.phoneVersion forKey:@"sdkVersionName"];
+    [params setObject:phone.phoneVersion forKey:@"sdkVersionCode"];
+    [params setObject:@"iphone" forKey:@"Brand"];
+    [params setObject:phone.platform forKey:@"Model"];
     
     switch (type) {
-        case HttpRequestTypeGet:
+        case HttpRequestTypePost:
         {
-            [YQNetworking postWithUrl:URLString refreshRequest:NO cache:NO params:parameters progressBlock:nil successBlock:^(id response) {
+            [YQNetworking postWithUrl:URLString refreshRequest:NO cache:NO params:params progressBlock:nil successBlock:^(id response) {
                 if (success) {
                     success(response);
                 }
@@ -47,9 +43,9 @@
             }];
         }
             break;
-        case HttpRequestTypePost:
+        case HttpRequestTypeGet:
         {
-            [YQNetworking getWithUrl:URLString refreshRequest:NO cache:NO params:parameters progressBlock:nil successBlock:^(id response) {
+            [YQNetworking getWithUrl:URLString refreshRequest:NO cache:NO params:params progressBlock:nil successBlock:^(id response) {
                 if (success) {
                     success(response);
                 }

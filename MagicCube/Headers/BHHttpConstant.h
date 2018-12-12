@@ -18,7 +18,7 @@ static NSString * const kHeader = @"https://m.bte.top/";
 #define TimeString 7 * 24 * 3600
 #else
 //测试环境
-static NSString * const kDomain = @"https://m.bte.top/";
+static NSString * const kDomain = @"http://47.94.217.12:8090/";
 static NSString * const kHeader = @"https://l.bte.top/";
 #define TimeString 7
 #endif
@@ -26,7 +26,8 @@ static NSString * const kHeader = @"https://l.bte.top/";
 // h5入口地址 合伙人
 #define kAppPartnerAddress [NSString stringWithFormat:@"%@%@",kHeader,@"ad/partner"]
 /*************************************************************/
-
+//发送短信验证码
+#define kAppSendMs [NSString stringWithFormat:@"%@%@",kDomain,@"api/sms"]
 //获取用户账户信息
 #define kAppApiGetAccount [NSString stringWithFormat:@"%@%@",kDomain,@"api/account"]
 //获取收益信息

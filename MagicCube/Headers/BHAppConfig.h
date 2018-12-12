@@ -17,12 +17,13 @@
 //微信开放平台开发
 #define kWechatAppKey @"wx82c2aa4fde147029" //wechat appkey
 //微信小程序ID
-#define kWechatMiniAppKey @"gh_548a5b46acf7"
+#define kWechatMiniAppKey @"gh_a262152021db"
 //微信开放平台开发AppSecret
 #define kWechatAppSecret @"c5b6fc7cc21fbfb5feee9361fbf03798"
 /*公众号原始ID*/
 #define kWechatPublicBTEID @"gh_969a4152b4a9"
 
+#define knetEaseID @"9040bdc428034e98ae5fd0661ca03014"
 #endif /* BHAppConfig_h */
 
 #define AppStore
