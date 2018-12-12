@@ -29,6 +29,7 @@
 #import "ColorOrFontConstants.h"
 #import "AdaptDevice.h"
 #import "BTERequestTools.h"
+#import "UUID.h"
 // MARK: --------Category---------
 #import "UIImage+help.h"
 #import "UIView+category.h"

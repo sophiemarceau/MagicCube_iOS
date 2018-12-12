@@ -7,7 +7,7 @@
 //
 
 #import "UserObject.h"
-#import "OpenUDID.h"
+
 #define LOGIN_DATA_KEY @"BTE_LOGIN_KEY"
 
 static UserObject * info = nil;

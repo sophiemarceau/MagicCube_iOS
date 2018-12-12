@@ -137,7 +137,7 @@
     [pramaDic setObject:code forKey:@"smsCode"];
     [pramaDic setObject:sendaccount forKey:@"tel"];
     [pramaDic setObject:@"IOS" forKey:@"terminal"];
-    [pramaDic setObject:sendaccount forKey:@"terminalIdentifier"];
+    [pramaDic setObject:[UUID getUUID] forKey:@"terminalIdentifier"];
     
     WS(weakSelf)
     NSLog(@"-----requestCheckApi--->%@",pramaDic);
