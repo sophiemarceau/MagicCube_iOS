@@ -12,25 +12,9 @@
  *  网络请求类型
  */
 typedef NS_ENUM(NSUInteger,HttpRequestType) {
-    /**
-     *  get请求
-     */
-    HttpRequestTypeGet = 1,
-    /**
-     *  post请求
-     */
-    HttpRequestTypePost = 2,
-    /**
-     *  post请求 错误码正常返回
-     */
-    HttpRequestTypeNormalPost = 3,
-    
-    /**
-     *  get请求 错误码正常返回
-     */
-    HttpRequestTypeNormalGet = 4,
-    
-    HttpRequestSyncGET = 5,
+    HttpRequestTypeGet = 0,
+    HttpRequestTypePost,
+    HttpRequestSyncGET ,
 };
 
 @interface BTERequestTools : NSObject
