@@ -9,7 +9,7 @@
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
 #import <VerifyCode/NTESVerifyCodeManager.h>
-
+#import "JPUSHService.h"
 @interface RegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>{
      NSInteger i;
     NSString * sendaccount;
@@ -131,22 +131,28 @@
     NSString *invite = self.inviteTextField.text.trimString;
     NSString *code = self.codeTextField.text.trimString;
     NSString *pwd = self.pwdTextField.text.trimString;
+    NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     [pramaDic setObject:invite forKey:@"inviteCode"];
 //    [pramaDic setObject:@"REG" forKey:@"operationCode"];
     [pramaDic setObject:pwd forKey:@"password"];
     [pramaDic setObject:code forKey:@"smsCode"];
     [pramaDic setObject:sendaccount forKey:@"tel"];
     [pramaDic setObject:@"IOS" forKey:@"terminal"];
-    [pramaDic setObject:[UUID getUUID] forKey:@"terminalIdentifier"];
-    
+    [pramaDic setObject:idString forKey:@"terminalIdentifier"];
     WS(weakSelf)
-    NSLog(@"-----requestCheckApi--->%@",pramaDic);
+    NSLog(@"-----kAppApiReg--->%@",pramaDic);
     NMShowLoadIng;
-    [BTERequestTools requestWithURLString:kAppSendMs parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
+    [BTERequestTools requestWithURLString:kAppApiReg parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"-----responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiReg--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            [weakSelf startClick];
+            
+            [JPUSHService setAlias:idString completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+                NSLog(@"isrescode=%ld",iResCode);
+            } seq:1];
+            UserObject * yy = [UserObject yy_modelWithDictionary:responseObject];
+            [yy save];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
         [self.view endEditing:YES];
     } failure:^(NSError *error)  {
@@ -229,7 +235,7 @@
         _phoneTextField.font = UIFontRegularOfSize(14);
         _phoneTextField.textColor = GrayMagicColor;
         _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
-         _phoneTextField.returnKeyType = UIReturnKeyDone;
+        _phoneTextField.returnKeyType = UIReturnKeyDone;
     }
     return _phoneTextField;
 }
@@ -403,7 +409,6 @@
     return _wechatLabel;
 }
 
-
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {
         _pwdChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -466,6 +471,5 @@
     //用户关闭验证后执行的方法
     NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
 }
-
 
 @end
