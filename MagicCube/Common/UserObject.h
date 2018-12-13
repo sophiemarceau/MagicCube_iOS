@@ -12,7 +12,7 @@
 
 @interface UserObject : NSObject
 
-@property (nonatomic, copy) NSString * userToken;
+@property (nonatomic, copy) NSString *token;
 
 #pragma mark - methods
 + (instancetype)shareInstance;

@@ -45,7 +45,6 @@
         self.pwdChangeBtn.hidden = YES;
         self.codeTextField.secureTextEntry = NO;
     }
-    
 }
 
 -(void)runClock{

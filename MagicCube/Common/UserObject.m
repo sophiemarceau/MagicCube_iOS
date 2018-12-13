@@ -8,7 +8,7 @@
 
 #import "UserObject.h"
 
-#define LOGIN_DATA_KEY @"BTE_LOGIN_KEY"
+#define LOGIN_DATA_KEY @"Magic_LOGIN_KEY"
 
 static UserObject * info = nil;
 
@@ -42,13 +42,17 @@ static UserObject * info = nil;
 
 -(void)removeLoginData {
     info = [UserObject new];
-    info.userToken = nil;
+    info.token = nil;
 //    _isLogin = NO;
     [self remove];
 }
 
 - (void)save {
-    NSMutableDictionary *dic = [self yy_modelToJSONObject];
+//    NSMutableDictionary *dic = [self yy_modelToJSONObject];
+    NSMutableDictionary *dic
+    = @{}.mutableCopy;
+    [dic setObject:_token forKey:@"token"];
+    NSLog(@"---save--responseObject--->%@",dic);
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:dic forKey:LOGIN_DATA_KEY];
     [userDefaults synchronize];

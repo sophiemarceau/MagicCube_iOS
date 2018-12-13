@@ -14,7 +14,9 @@
 #import "MyCenterViewController.h"
 #import "RegisterViewController.h"
 
-@interface MainViewController ()<UITabBarControllerDelegate>
+@interface MainViewController ()<UITabBarControllerDelegate>{
+   NSUInteger selectedIndex;
+}
 
 @end
 
@@ -30,9 +32,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
+    //在登陆界面判断登陆成功之后发送通知,将所选的TabbarItem传回,使用通知传值
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logSelect:) name:NOTIFICATION_NAME_LOGINSELECT object:nil];     //接收
     self.view.backgroundColor = [UIColor whiteColor];
     [[UITabBar appearance] setTranslucent:NO];
     [self initChildVC];
+}
+
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)initChildVC{
@@ -92,12 +101,26 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    if([viewController.tabBarItem.title isEqualToString:@"好物中心"]){
+        selectedIndex = 0;
+    }
+    if([viewController.tabBarItem.title isEqualToString:@"分销中心"]){
+        selectedIndex = 1;
+    }
+    if([viewController.tabBarItem.title isEqualToString:@"财务中心"]){
+        selectedIndex = 2;
+    }
+    if([viewController.tabBarItem.title isEqualToString:@"会员中心"]){
+        selectedIndex = 3;
+    }
+    
     if([viewController.tabBarItem.title isEqualToString:@"分销中心"]){
         return YES;
     }else if([viewController.tabBarItem.title isEqualToString:@"好物中心"]){
         return YES;
     }else {
-        if (!User.userToken) {
+        NSLog(@"token------>%@",User.token);
+        if (!User.token) {
             //跳到登录 注册页面
             RegisterViewController *login = [[RegisterViewController alloc] init];
 //            login.isModalButton = YES;
@@ -112,4 +135,8 @@
     return YES;
 }
 
+- (void)logSelect:(NSNotification *)text{
+    //    NSLog(@"selectindex----logSelect------->%ld",selectedIndex);
+    self.selectedIndex = selectedIndex;
+}
 @end

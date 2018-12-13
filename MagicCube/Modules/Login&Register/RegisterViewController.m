@@ -106,9 +106,11 @@
     if (!sendaccount.isValidateMobile) {
         [BHToast showMessage:@"手机号有误，请重新输入"];
         return;
+    }else{
+        [self checkPhoneNumberWhetherRegister];
     }
     [self.view endEditing:YES];
-    [self.manager openVerifyCodeView:nil];
+//    [self.manager openVerifyCodeView:nil];
 }
 
 -(void)gotoLogin:(UITapGestureRecognizer *)recognizer{
@@ -126,11 +128,50 @@
     
 }
 
+-(void)checkPhoneNumberWhetherRegister{
+    NSString *url = [NSString stringWithFormat:@"%@/%@",kAppApiCheck,sendaccount];
+    NSLog(@"checkPhoneNumberWhetherRegister---->%@",url);
+    [BTERequestTools requestWithURLString:url parameters:nil type:HttpRequestTypeGet success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiCheck--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+           Boolean flag = [[responseObject objectForKey:@"data"] boolValue];
+            if (!flag) {
+                [BHToast showMessage:@"手机号号已注册，请直接去登录"];
+                
+            }else{
+                [self.manager openVerifyCodeView:nil];
+            }
+        }
+        [self.view endEditing:YES];
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        //        RequestError(error);
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
 -(void)registernclick:(UIButton *)sender{
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
     NSString *invite = self.inviteTextField.text.trimString;
     NSString *code = self.codeTextField.text.trimString;
     NSString *pwd = self.pwdTextField.text.trimString;
+    if (!sendaccount.isValidateMobile) {
+        [BHToast showMessage:@"手机号有误，请重新输入"];
+        return;
+    }
+    if (code.length < 4) {
+        [BHToast showMessage:@"请输入正确的验证码"];
+        return;
+    }
+    if (pwd.length < 6) {
+        [BHToast showMessage:@"请输入6-12位正确密码"];
+        return;
+    }
+    if (![pwd isValidatePassword]) {
+        [BHToast showMessage:@"密码格式有误，请重新输入"];
+        return;
+    }
     NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     [pramaDic setObject:invite forKey:@"inviteCode"];
 //    [pramaDic setObject:@"REG" forKey:@"operationCode"];
@@ -146,12 +187,15 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiReg--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            
             [JPUSHService setAlias:idString completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
                 NSLog(@"isrescode=%ld",iResCode);
             } seq:1];
-            UserObject * yy = [UserObject yy_modelWithDictionary:responseObject];
+//            UserObject * yy = [UserObject yy_modelWithDictionary:responseObject];
+            UserObject * yy =  [UserObject shareInstance];
+            yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
             [yy save];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINSELECT object:nil userInfo:nil];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
         [self.view endEditing:YES];
