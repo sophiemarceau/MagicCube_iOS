@@ -8,9 +8,13 @@
 
 #import "LoginViewController.h"
 #import "forgetViewController.h"
-@interface LoginViewController (){
+#import <VerifyCode/NTESVerifyCodeManager.h>
+#import "WXApiManager.h"
+
+@interface LoginViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate,WXApiManagerDelegate>{
     UIView *lineView1,*lineView2;
     NSInteger i;
+    NSString * sendaccount;
 }
 @property (nonatomic,strong) UIButton *wechatBtn;
 @property(nonatomic,strong) UILabel *wechatLabel;
@@ -22,18 +26,20 @@
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,strong) UILabel *forgetPwdLabel;
 @property (nonatomic,strong) UILabel *gotoCodeLabel;
+@property (nonatomic, strong) NTESVerifyCodeManager *manager;
 @end
 
 @implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     i = 60;
-    
+    i = 60;
+     [WXApiManager sharedManager].delegate = self;
+    [self initProtectMessageAttack];
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"图标"]];
     iconImageView.frame = CGRectMake((SCREEN_WIDTH - 79)/2, 39.5, 79, 79);
-                           [self.view addSubview:iconImageView];
+    [self.view addSubview:iconImageView];
     
     [self.view addSubview:self.phoneTextField ];
     
@@ -65,6 +71,7 @@
         self.forgetPwdLabel.hidden = NO;
         self.pwdChangeBtn.hidden = NO;
         self.codeTextField.secureTextEntry = YES;
+        self.codeMessageBtn.hidden = YES;
     }else if (self.loginStyle == codeMessageLogin) {
         self.title = @"登录魔方好物";
         self.codeTextField.placeholder = @"请输入短信验证码";
@@ -73,50 +80,107 @@
         self.gotoCodeLabel.hidden = YES;
         self.forgetPwdLabel.hidden = YES;
         self.pwdChangeBtn.hidden = YES;
-         self.codeTextField.secureTextEntry = NO;
+        self.codeTextField.secureTextEntry = NO;
+        self.codeMessageBtn.hidden = NO;
     }
 }
 
--(void)runClock{
-    self.timeLabel.text = [NSString stringWithFormat:@"%ldS",i];
-    [self.view addSubview:self.timeLabel];
-    i--;
-    if (i<0) {
-        [self.timer invalidate];
-        [self.timeLabel removeFromSuperview];
-        [self.view addSubview:self.codeMessageBtn];
-       
-        i=60;
-    }
+-(void)initProtectMessageAttack{
+    // sdk调用
+    self.manager = [NTESVerifyCodeManager sharedInstance];
+    self.manager.delegate = self;
+    // 设置透明度
+    self.manager.alpha = 0.7;
+    // 设置frame
+    self.manager.frame = CGRectNull;
+    // captchaId从网易申请，比如@"a05f036b70ab447b87cc788af9a60974"
+    NSString *captchaId = knetEaseID;
+    [self.manager configureVerifyCode:captchaId timeout:5];
 }
-
--  (void)invalidateRetryTime{
-    [self.timer invalidate];
-    [self.timeLabel removeFromSuperview];
-    self.timer = nil;
-    i=60;
-}
-
 
 -(void)sendRequest:(UIButton *)sender{
-    [self.codeMessageBtn removeFromSuperview];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(runClock) userInfo:nil repeats:YES];
-    [self.timer fire];
+    sendaccount = self.phoneTextField.text.trimString;
+    if (!sendaccount.isValidateMobile) {
+        [BHToast showMessage:@"手机号有误，请重新输入"];
+        return;
+    }
+    [self.manager openVerifyCodeView:nil];
 }
 
 -(void)loginOnclick:(UIButton *)sender{
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [self.view endEditing:YES];
+    NSString *code = self.codeTextField.text.trimString;
+    NSString *phoneStr = self.phoneTextField.text.trimString;
+    if (self.loginStyle == pwdLogin) {
+        if (code.length < 6) {
+            [BHToast showMessage:@"请输入6-12位正确密码"];
+            return;
+        }
+        if (![code isValidatePassword]) {
+            [BHToast showMessage:@"密码格式有误，请重新输入"];
+            return;
+        }
+        [pramaDic setObject:code forKey:@"password"];
+    }else if (self.loginStyle == codeMessageLogin) {
+        if (code.length < 4) {
+            [BHToast showMessage:@"请输入正确的验证码"];
+            return;
+        }
+        [pramaDic setObject:code forKey:@"smsCode"];
+    }
+    if (!phoneStr.isValidateMobile) {
+        [BHToast showMessage:@"手机号有误，请重新输入"];
+        return;
+    }
     
+    NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    //    [pramaDic setObject:@"REG" forKey:@"operationCode"];
+    
+    [pramaDic setObject:phoneStr forKey:@"tel"];
+    [pramaDic setObject:@"IOS" forKey:@"terminal"];
+    [pramaDic setObject:idString forKey:@"terminalIdentifier"];
+    WS(weakSelf)
+    NSLog(@"-----kAppApiLogin--->%@",pramaDic);
+    NMShowLoadIng;
+    [BTERequestTools requestWithURLString:kAppApiLogin parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiLogin--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            //            UserObject * yy = [UserObject yy_modelWithDictionary:responseObject];
+            UserObject * yy =  [UserObject shareInstance];
+            yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
+            [yy save];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINSELECT object:nil userInfo:nil];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        //        RequestError(error);
+        NSLog(@"error-------->%@",error);
+    }];
 }
 
--(void)changeLoginType:(id)sender{
-
+-(void)changeLoginType:(UIButton *)sender{
     LoginViewController *vc = [[LoginViewController alloc] init];
     vc.loginStyle = codeMessageLogin;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)onClickWechatBtn:(UIButton *)sender{
-    
+    if ([WXApi isWXAppInstalled]) {
+        //构造SendAuthReq结构体
+        SendAuthReq* req = [[SendAuthReq alloc] init];
+        req.scope = @"snsapi_userinfo";
+        req.state = @"123";
+        //第三方向微信终端发送一个SendAuthReq消息结构
+        [WXApi sendReq:req];
+    }
 }
 
 -(void)onClickforgetBtn:(UIButton *)sender{
@@ -124,7 +188,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)pwdTextSwitch:(UIButton *)sender {
+-(void)pwdTextSwitch:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected) { // 按下去了就是明文
         NSString *tempPwdStr = self.codeTextField.text;
@@ -139,6 +203,59 @@
     }
 }
 
+-(void)startClick{
+    [BHToast showMessage:@"验证码已发送"];
+    [self.codeMessageBtn removeFromSuperview];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(runClock) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    [self.timer fire];
+}
+
+-(void)runClock{
+    self.timeLabel.text = [NSString stringWithFormat:@"%ldS",i];
+    [self.view addSubview:self.timeLabel];
+    i--;
+    if (i<0) {
+        [self.timer invalidate];
+        [self.timeLabel removeFromSuperview];
+        [self.view addSubview:self.codeMessageBtn];
+        i=60;
+    }
+}
+
+-(void)invalidateRetryTime{
+    [self.timer invalidate];
+    [self.timeLabel removeFromSuperview];
+    self.timer = nil;
+    i=60;
+}
+
+#pragma mark - server
+- (void)requestCheckApi:(NSString *)sessionId{
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [pramaDic setObject:sessionId forKey:@"validate"];
+    [pramaDic setObject:@"LOGIN" forKey:@"type"];
+    [pramaDic setObject:sendaccount forKey:@"mobile"];
+    WS(weakSelf)
+    NSLog(@"-----requestCheckApi--->%@",pramaDic);
+    NMShowLoadIng;
+    [BTERequestTools requestWithURLString:kAppSendMs parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"-----responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf startClick];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+        [self.view endEditing:YES];
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        //        RequestError(error);
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES]; //实现该方法是需要注意view需要是继承UIControl而来的
 }
@@ -147,6 +264,66 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];//取消第一响应者
     return YES;
+}
+
+- (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
+    NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
+    NSString *strMsg = [NSString stringWithFormat:@"code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
+    
+    NSLog(@"strTitle-------->%@",strTitle);
+     NSLog(@"strMsg-------->%@",strMsg);
+}
+
+#pragma mark - NTESVerifyCodeManagerDelegate
+/**
+ * 验证码组件初始化完成
+ */
+- (void)verifyCodeInitFinish{
+    NSLog(@"收到初始化完成的回调");
+}
+
+/**
+ * 验证码组件初始化出错
+ *
+ * @param message 错误信息
+ */
+- (void)verifyCodeInitFailed:(NSString *)message{
+    NSLog(@"收到初始化失败的回调:%@",message);
+}
+
+/**
+ * 完成验证之后的回调
+ *
+ * @param result 验证结果 BOOL:YES/NO
+ * @param validate 二次校验数据，如果验证结果为false，validate返回空
+ * @param message 结果描述信息
+ *
+ */
+- (void)verifyCodeValidateFinish:(BOOL)result validate:(NSString *)validate message:(NSString *)message{
+    NSLog(@"%@",validate);
+    if (result) {
+        [self requestCheckApi:validate];
+    }else{
+        NSLog(@"收到验证结果的回调:(%d,%@,%@)", result, validate, message);
+    }
+}
+
+/**
+ * 关闭验证码窗口后的回调
+ */
+- (void)verifyCodeCloseWindow{
+    //用户关闭验证后执行的方法
+    NSLog(@"收到关闭验证码视图的回调");
+}
+
+/**
+ * 网络错误
+ *
+ * @param error 网络错误信息
+ */
+- (void)verifyCodeNetError:(NSError *)error{
+    //用户关闭验证后执行的方法
+    NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
 }
 
 -(UITextField *)phoneTextField{
@@ -173,7 +350,6 @@
     }
     return _codeTextField;
 }
-
 
 -(UIButton *)codeMessageBtn{
     if (_codeMessageBtn == nil) {
@@ -208,7 +384,6 @@
     return _loginBtn;
 }
 
-
 - (UILabel *)timeLabel {
     if (_timeLabel == nil) {
         self.timeLabel = [[UILabel alloc]init];
@@ -240,7 +415,6 @@
     }
     return _forgetPwdLabel;
 }
-
 
 -(UILabel *)gotoCodeLabel{
     if (_gotoCodeLabel == nil) {
@@ -280,8 +454,6 @@
     }
     return _wechatLabel;
 }
-
-
 
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {

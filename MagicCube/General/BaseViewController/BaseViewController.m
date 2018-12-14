@@ -21,7 +21,7 @@
     }else{self.automaticallyAdjustsScrollViewInsets = NO;}
     self.view.backgroundColor = KBGColor;
     
-    if (self.presentingViewController) {
+    if (self.isModalButton) {
          UIImage *dismissImage = [[UIImage imageNamed:@"fanhui"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [backButton setImage:dismissImage forState:UIControlStateNormal];
@@ -37,7 +37,7 @@
 }
 
 - (void)dissMiss:(id)sender {
-    if (self.presentingViewController) {
+    if (self.isModalButton) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self.navigationController popViewControllerAnimated:YES];

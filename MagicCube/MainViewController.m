@@ -123,7 +123,7 @@
         if (!User.token) {
             //跳到登录 注册页面
             RegisterViewController *login = [[RegisterViewController alloc] init];
-//            login.isModalButton = YES;
+            login.isModalButton = YES;
             BaseNavigationViewController *loginNav = [[BaseNavigationViewController alloc] initWithRootViewController:login];
             //隐藏tabbar
             [((UINavigationController *)tabBarController.selectedViewController) presentViewController:loginNav animated:YES completion:nil];

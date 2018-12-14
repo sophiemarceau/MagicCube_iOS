@@ -37,7 +37,8 @@
 //            SendAuthResp *authResp = (SendAuthResp *)resp;
 //            [_delegate managerDidRecvAuthResponse:authResp];
 //        }
-//    } else if ([resp isKindOfClass:[AddCardToWXCardPackageResp class]]) {
+//    }
+    //else if ([resp isKindOfClass:[AddCardToWXCardPackageResp class]]) {
 //        if (_delegate
 //            && [_delegate respondsToSelector:@selector(managerDidRecvAddCardResponse:)]) {
 //            AddCardToWXCardPackageResp *addCardResp = (AddCardToWXCardPackageResp *)resp;

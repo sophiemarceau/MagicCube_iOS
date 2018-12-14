@@ -10,7 +10,8 @@
 #import "LoginViewController.h"
 #import <VerifyCode/NTESVerifyCodeManager.h>
 #import "JPUSHService.h"
-@interface RegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>{
+#import "WXApiManager.h"
+@interface RegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate,WXApiManagerDelegate>{
      NSInteger i;
     NSString * sendaccount;
 }
@@ -121,11 +122,14 @@
 }
 
 -(void)onClickWechatBtn:(UIButton *)sender{
-   
-}
-
--(void)loginOnclick:(UIButton *)sender{
-    
+    if ([WXApi isWXAppInstalled]) {
+        //构造SendAuthReq结构体
+        SendAuthReq* req = [[SendAuthReq alloc] init];
+        req.scope = @"snsapi_userinfo";
+        req.state = @"123";
+        //第三方向微信终端发送一个SendAuthReq消息结构
+        [WXApi sendReq:req];
+    }
 }
 
 -(void)checkPhoneNumberWhetherRegister{
@@ -260,6 +264,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];//取消第一响应者
     return YES;
+}
+
+- (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
+    NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
+    NSString *strMsg = [NSString stringWithFormat:@"code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
+    NSLog(@"strTitle-------->%@",strTitle);
+    NSLog(@"strMsg-------->%@",strMsg);
 }
 
 -(UIImageView *)iconImageView{

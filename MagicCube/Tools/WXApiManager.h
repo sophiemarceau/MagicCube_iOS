@@ -14,6 +14,7 @@
 
 - (void)managerDidRecvAuthResponse:(SendAuthResp *_Nullable)response;
 - (void)managerDidRecvLaunchMiniProgram:(WXLaunchMiniProgramResp *)response;
+- (void)managerDidRecvAuthResponse:(SendAuthResp *)response;
 @end
 NS_ASSUME_NONNULL_BEGIN
 

@@ -7,31 +7,134 @@
 //
 
 #import "forgetViewController.h"
+#import <VerifyCode/NTESVerifyCodeManager.h>
 
-@interface forgetViewController ()
-{
+@interface forgetViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>{
     NSInteger i;
+    NSString * sendaccount;
 }
 @property (nonatomic,strong) UITextField *phoneTextField;
 @property (nonatomic,strong) UITextField *codeTextField;
 @property (nonatomic,strong) UIButton *codeMessageBtn,*pwdChangeBtn;
 @property (nonatomic,strong) UITextField *pwdTextField;
 @property (nonatomic,strong) UIButton *finishBtn;
-@property(nonatomic,strong) UILabel *timeLabel;//60秒后重发
-@property(nonatomic,strong) NSTimer *timer;
-@property(nonatomic,strong) UIView *lineView1;
-@property(nonatomic,strong) UIView *lineView2;
-@property(nonatomic,strong) UIView *lineView3;
-@property(nonatomic,strong) UILabel *wechatLabel;
+@property (nonatomic,strong) UILabel *timeLabel;//60秒后重发
+@property (nonatomic,strong) NSTimer *timer;
+@property (nonatomic,strong) UIView *lineView1;
+@property (nonatomic,strong) UIView *lineView2;
+@property (nonatomic,strong) UIView *lineView3;
+@property (nonatomic,strong) UILabel *wechatLabel;
+@property (nonatomic,strong) NTESVerifyCodeManager *manager;
 @end
 
 @implementation forgetViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    i = 60;
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"请设置登录密码";
+    [self initProtectMessageAttack];
     [self initSubViews];
+}
+
+- (void)initSubViews {
+    [self.view addSubview:self.phoneTextField];
+    [self.view addSubview:self.lineView1];
+    [self.view addSubview:self.codeTextField];
+    [self.view addSubview:self.lineView2];
+    [self.view addSubview:self.pwdTextField];
+    [self.view addSubview:self.pwdChangeBtn];
+    [self.view addSubview:self.lineView3];
+    [self.view addSubview:self.finishBtn];
+    [self.view addSubview:self.codeMessageBtn];
+}
+
+-(void)initProtectMessageAttack{
+    // sdk调用
+    self.manager = [NTESVerifyCodeManager sharedInstance];
+    self.manager.delegate = self;
+    // 设置透明度
+    self.manager.alpha = 0.7;
+    // 设置frame
+    self.manager.frame = CGRectNull;
+    // captchaId从网易申请，比如@"a05f036b70ab447b87cc788af9a60974"
+    NSString *captchaId = knetEaseID;
+    [self.manager configureVerifyCode:captchaId timeout:5];
+}
+
+-(void)sendRequest:(UIButton *)sender{
+    sendaccount = self.phoneTextField.text.trimString;
+    if (!sendaccount.isValidateMobile) {
+        [BHToast showMessage:@"手机号有误，请重新输入"];
+        return;
+    }
+    [self.manager openVerifyCodeView:nil];
+}
+
+- (void)submit:(UIButton *)sender{
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [self.view endEditing:YES];
+    NSString *code = self.codeTextField.text.trimString;
+    NSString *pwdStr = self.pwdTextField.text.trimString;
+    NSString *phoneStr = self.phoneTextField.text.trimString;
+    if (!phoneStr.isValidateMobile) {
+        [BHToast showMessage:@"手机号有误，请重新输入"];
+        return;
+    }
+    if (code.length < 4) {
+        [BHToast showMessage:@"请输入正确的验证码"];
+        return;
+    }
+    if (pwdStr.length < 6) {
+        [BHToast showMessage:@"请输入6-12位正确密码"];
+        return;
+    }
+    if (![pwdStr isValidatePassword]) {
+        [BHToast showMessage:@"密码格式有误，请重新输入"];
+        return;
+    }
+    NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    [pramaDic setObject:pwdStr forKey:@"password"];
+    [pramaDic setObject:code forKey:@"smsCode"];
+    //    [pramaDic setObject:@"REG" forKey:@"operationCode"];
+    [pramaDic setObject:phoneStr forKey:@"tel"];
+    [pramaDic setObject:@"IOS" forKey:@"terminal"];
+    [pramaDic setObject:idString forKey:@"terminalIdentifier"];
+    WS(weakSelf)
+    NSLog(@"-----kAppApiLogin--->%@",pramaDic);
+    NMShowLoadIng;
+    [BTERequestTools requestWithURLString:kAppApiFP parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiFP--responseObject--->%@",responseObject);
+        if(IsSucess(responseObject)) {
+            [BHToast showMessage:@"修改成功 请去登录"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        //        RequestError(error);
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+- (void)pwdTextSwitch:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) { // 按下去了就是明文
+        NSString *tempPwdStr = self.pwdTextField.text;
+        self.pwdTextField.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.pwdTextField.secureTextEntry = NO;
+        self.pwdTextField.text = tempPwdStr;
+    } else { // 暗文
+        NSString *tempPwdStr = self.pwdTextField.text;
+        self.pwdTextField.text = @"";
+        self.pwdTextField.secureTextEntry = YES;
+        self.pwdTextField.text = tempPwdStr;
+    }
 }
 
 -(void)runClock{
@@ -53,29 +156,35 @@
     i=60;
 }
 
--(void)sendRequest:(UIButton *)sender{
+-(void)startClick{
+    [BHToast showMessage:@"验证码已发送"];
     [self.codeMessageBtn removeFromSuperview];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(runClock) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     [self.timer fire];
 }
 
-- (void)submit:(UIButton *)sender{
-    
-}
-
-- (void)pwdTextSwitch:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    if (sender.selected) { // 按下去了就是明文
-        NSString *tempPwdStr = self.pwdTextField.text;
-        self.pwdTextField.text = @""; // 这句代码可以防止切换的时候光标偏移
-        self.pwdTextField.secureTextEntry = NO;
-        self.pwdTextField.text = tempPwdStr;
-    } else { // 暗文
-        NSString *tempPwdStr = self.pwdTextField.text;
-        self.pwdTextField.text = @"";
-        self.pwdTextField.secureTextEntry = YES;
-        self.pwdTextField.text = tempPwdStr;
-    }
+#pragma mark - message server
+- (void)requestCheckApi:(NSString *)sessionId{
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [pramaDic setObject:sessionId forKey:@"validate"];
+    [pramaDic setObject:@"FP" forKey:@"type"];
+    [pramaDic setObject:sendaccount forKey:@"mobile"];
+    WS(weakSelf)
+    NSLog(@"-----requestCheckApi--->%@",pramaDic);
+    NMShowLoadIng;
+    [BTERequestTools requestWithURLString:kAppSendMs parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"-----responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf startClick];
+        }
+        [self.view endEditing:YES];
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        //        RequestError(error);
+        NSLog(@"error-------->%@",error);
+    }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -87,17 +196,56 @@
     [textField resignFirstResponder];//取消第一响应者
     return YES;
 }
+#pragma mark - NTESVerifyCodeManagerDelegate
+/**
+ * 验证码组件初始化完成
+ */
+- (void)verifyCodeInitFinish{
+    NSLog(@"收到初始化完成的回调");
+}
 
-- (void)initSubViews {
-    [self.view addSubview:self.phoneTextField];
-    [self.view addSubview:self.lineView1];
-    [self.view addSubview:self.codeTextField];
-    [self.view addSubview:self.lineView2];
-    [self.view addSubview:self.pwdTextField];
-    [self.view addSubview:self.pwdChangeBtn];
-    [self.view addSubview:self.lineView3];
-    [self.view addSubview:self.finishBtn];
-    [self.view addSubview:self.codeMessageBtn];
+/**
+ * 验证码组件初始化出错
+ *
+ * @param message 错误信息
+ */
+- (void)verifyCodeInitFailed:(NSString *)message{
+    NSLog(@"收到初始化失败的回调:%@",message);
+}
+
+/**
+ * 完成验证之后的回调
+ *
+ * @param result 验证结果 BOOL:YES/NO
+ * @param validate 二次校验数据，如果验证结果为false，validate返回空
+ * @param message 结果描述信息
+ *
+ */
+- (void)verifyCodeValidateFinish:(BOOL)result validate:(NSString *)validate message:(NSString *)message{
+    NSLog(@"%@",validate);
+    if (result) {
+        [self requestCheckApi:validate];
+    }else{
+        NSLog(@"收到验证结果的回调:(%d,%@,%@)", result, validate, message);
+    }
+}
+
+/**
+ * 关闭验证码窗口后的回调
+ */
+- (void)verifyCodeCloseWindow{
+    //用户关闭验证后执行的方法
+    NSLog(@"收到关闭验证码视图的回调");
+}
+
+/**
+ * 网络错误
+ *
+ * @param error 网络错误信息
+ */
+- (void)verifyCodeNetError:(NSError *)error{
+    //用户关闭验证后执行的方法
+    NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
 }
 
 -(UITextField *)phoneTextField{
@@ -197,7 +345,6 @@
     return _lineView3;
 }
 
-
 -(UIButton *)finishBtn{
     if (_finishBtn == nil) {
         _finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -212,7 +359,6 @@
     }
     return _finishBtn;
 }
-
 
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {

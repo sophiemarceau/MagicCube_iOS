@@ -35,7 +35,7 @@ static NSString * const kHeader = @"https://l.bte.top/";
 //登录用户信息获取
 #define kAppApiGetUser [NSString stringWithFormat:@"%@%@",kDomain,@"api/user"]
 //app端用户密码重置功能接口
-#define kAppApiFP [NSString stringWithFormFat:@"%@%@",kDomain,@"api/user/app/fp"]
+#define kAppApiFP [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/fp"]
 //app端用户登录接口,需上送终端和终端识别信息，如果与上次登录不符，则会触发二次校验
 #define kAppApiLogin [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/login"]
 //app端用户登录二次校验接口,需上送登录信息、终端、终端识别信息和授权操作码
