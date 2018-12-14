@@ -44,6 +44,22 @@ static NSString * const kHeader = @"https://l.bte.top/";
 #define kAppApiReg [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/reg"]
 //判断手机号是否注册,true为可用 false为不可用
 #define kAppApiCheck [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/check"]
+
+
+
+/*************************************************************/
+//好物中心 商品模块菜单
+#define kAppApiHomePageModuleMenu [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/module"]
+//好物中心 商品列表
+#define kAppApiHomePageList [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/list"]
+//好物中心 商品详情
+#define kAppApiGoodsDetail [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods"]
+//好物中心 最近的分销信息
+#define kAppApiHomePageDistriRecent [NSString stringWithFormat:@"%@%@",kDomain,@"api/statistics/distribution/recent"]
+//好物中心 统计平台整体信息
+#define kAppApiHomePagePlatform [NSString stringWithFormat:@"%@%@",kDomain,@"api/statistics/platform"]
+//好物中心 最近的使用用户列表接口
+#define kAppApiiHomePageUserRecentList [NSString stringWithFormat:@"%@%@",kDomain,@"api/statistics/user/recent"]
 #endif /* BHHttpConstant_h */
 
 

@@ -28,7 +28,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 @property (nonatomic, strong) NSMutableArray *bannerArray;
 @property (nonatomic, strong) LineTabbarView *headTabbarView;
 @property (nonatomic, strong) TYPageControl *pageControl;
-@property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) NSMutableArray *navigationListArray;
 @property (nonatomic, weak) SPPageMenu *pageMenu;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
@@ -69,13 +69,13 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [self.listArray addObject:@{@"url":@""}];
     [self.listArray addObject:@{@"url":@""}];
     [self.listArray addObject:@{@"url":@""}];
-    self.bannerArray = [NSMutableArray array];
-    [self.bannerArray addObject:@"1"];
-    [self.bannerArray addObject:@"2"];
-    [self.bannerArray addObject:@"3"];
+//    self.bannerArray = [NSMutableArray array];
+//    [self.bannerArray addObject:@"1"];
+//    [self.bannerArray addObject:@"2"];
+//    [self.bannerArray addObject:@"3"];
     
     
-    self.dataArr = @[@"爆款好物",@"品质好物",@"赚钱好物",@"特色好物",@"海外好物"];
+    [self.navigationListArray addObjectsFromArray:@[@"爆款好物",@"品质好物",@"赚钱好物",@"特色好物",@"海外好物"]];
 }
 
 -(void)initSubviews{
@@ -359,7 +359,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         [cell.contentView addSubview:self.tableHeaderView];
         return cell;
     }else if(section==1){
-        for (int i = 0; i < self.dataArr.count; i++) {
+        for (int i = 0; i < self.navigationListArray.count; i++) {
             HomeListViewController *baseVc = [[HomeListViewController alloc] init];
             [self addChildViewController:baseVc];
             [self.myChildViewControllers addObject:baseVc];
@@ -368,7 +368,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         SPPageMenu *pageMenu  = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
         
         // 传递数组，默认选中第0个
-        [pageMenu setItems:self.dataArr selectedItemIndex:0];
+        [pageMenu setItems:self.navigationListArray selectedItemIndex:0];
         // 等宽,不可滑动
         pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
         // 设置代理
@@ -588,5 +588,12 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         [_headImageViewArray addObject:@"1"];
     }
     return _headImageViewArray;
+}
+
+-(NSMutableArray *)navigationListArray{
+    if (_navigationListArray == nil) {
+        _navigationListArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _navigationListArray;
 }
 @end
