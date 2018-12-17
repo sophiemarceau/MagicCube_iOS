@@ -15,9 +15,10 @@
     UIView *lineView1,*lineView2;
     NSInteger i;
     NSString * sendaccount;
+    Boolean isLoginAuthFlag;
 }
 @property (nonatomic,strong) UIButton *wechatBtn;
-@property(nonatomic,strong) UILabel *wechatLabel;
+@property (nonatomic,strong) UILabel *wechatLabel;
 @property (nonatomic,strong) UITextField *phoneTextField;
 @property (nonatomic,strong) UITextField *codeTextField;
 @property (nonatomic,strong) UIButton *codeMessageBtn,*pwdChangeBtn;
@@ -33,8 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isLoginAuthFlag = NO;
     i = 60;
-     [WXApiManager sharedManager].delegate = self;
+    [WXApiManager sharedManager].delegate = self;
     [self initProtectMessageAttack];
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"图标"]];
@@ -52,8 +54,8 @@
     
     lineView2 = [[UIView alloc] initWithFrame:CGRectMake(40, SCALE_W(268.5), SCREEN_WIDTH - 80, 0.5)];
     lineView2.backgroundColor = LineGrayColor;
-    [self.view addSubview:lineView2];
     
+    [self.view addSubview:lineView2];
     [self.view addSubview:self.codeMessageBtn];
     [self.view addSubview:self.loginBtn];
     [self.view addSubview:self.gotoCodeLabel];

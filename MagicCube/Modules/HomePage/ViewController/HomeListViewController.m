@@ -16,7 +16,10 @@
 #import "forgetViewController.h"
 #import "ChangeDeviceViewController.h"
 
-@interface HomeListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HomeListViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger current_page,total_count;
+    
+}
 @property (nonatomic, assign) BOOL canScroll;
 @property (nonatomic,strong) UITableView *baseTableView;
 
@@ -32,21 +35,71 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
     self.listArray = [NSMutableArray array];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-     [self.view addSubview:self.baseTableView];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kGoTopNotificationName object:nil];
+    [self.view addSubview:self.baseTableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kGoTopNotificationName object:nil];
+    [self requestData];
 }
+
+-(void)requestData{
+    current_page = 1;
+    NSMutableDictionary *pramaDic = @{}.mutableCopy;
+    [pramaDic setObject:self.tagid forKey:@"module"];
+    [pramaDic setObject:@"1" forKey:@"pageNum"];
+//    [pramaDic setObject:self.tagid forKey:@"pageSize"];
+    [BTERequestTools requestWithURLString:kAppApiHomePageList parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        [self.baseTableView.mj_header endRefreshing];
+        [self.baseTableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiHomePageList--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            Boolean isLastPage = [[[responseObject objectForKey:@"data"] objectForKey:@"isLastPage"] boolValue];
+            NSArray *array = [[responseObject objectForKey:@"data"] objectForKey:@"list"];
+            [self.listArray removeAllObjects];
+            [self.listArray addObjectsFromArray:array];
+            [self.baseTableView reloadData];
+
+            if (isLastPage) {
+                 [self.baseTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+        [self.baseTableView.mj_header endRefreshing];
+        [self.baseTableView.mj_footer endRefreshing];
+    }];
+}
+
+-(void)giveMeMoreData{
+    current_page++;
+    NSString *page = [NSString stringWithFormat:@"%ld",(long)current_page];
+    NSMutableDictionary *pramaDic = @{}.mutableCopy;
+    [pramaDic setObject:self.tagid forKey:@"module"];
+    [pramaDic setObject:page forKey:@"pageNum"];
+    
+    [BTERequestTools requestWithURLString:kAppApiHomePageList parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        [self.baseTableView.mj_header endRefreshing];
+        [self.baseTableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            Boolean isLastPage = [[[responseObject objectForKey:@"data"] objectForKey:@"isLastPage"] boolValue];
+            NSArray *array = [[responseObject objectForKey:@"data"] objectForKey:@"list"];
+            [self.listArray addObjectsFromArray:array];
+            [self.baseTableView reloadData];
+            if (isLastPage) {
+                [self.baseTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+        [self.baseTableView.mj_header endRefreshing];
+        [self.baseTableView.mj_footer endRefreshing];
+    }];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:
 (NSInteger)section{
@@ -165,7 +218,12 @@
         //            [self loadData];
         //        }];
         //设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-//        _baseTableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(moreData)];
+         WS(weakSelf)
+        MJRefreshBackNormalFooter *allfooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            [weakSelf giveMeMoreData];
+        }];
+        _baseTableView.mj_footer = allfooter;
+        _baseTableView.mj_footer.ignoredScrollViewContentInsetBottom = HOME_INDICATOR_HEIGHT;
     }
     return _baseTableView;
 }

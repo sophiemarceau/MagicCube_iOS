@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeListViewController : BaseViewController
 @property (nonatomic,copy) void(^DidScrollBlock)(CGFloat scrollY);
+@property(nonatomic,assign)NSString *tagid;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,10 +9,10 @@
 #import "HomePageTableViewCell.h"
 @interface HomePageTableViewCell ()
 //@property (strong,nonatomic) UIView * *redBgView;
-//@property (strong,nonatomic) UIImageView * picImageView;
-//@property (strong,nonatomic) UILabel* titleLabel;
-//@property (strong,nonatomic) UILabel * priceLabel;
-//@property (strong,nonatomic) UILabel * numLabel;
+@property (strong,nonatomic) UIImageView * picImageView;
+@property (strong,nonatomic) UILabel* titleLabel;
+@property (strong,nonatomic) UILabel * priceLabel;
+@property (strong,nonatomic) UILabel * numLabel;
 //@property (strong,nonatomic) UILabel * redBgLabel;
 
 @end
@@ -32,16 +32,17 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = KBGCell;
         [self.contentView addSubview: self.bgImageView];
-//        [self.bgView addSubview:self.picImageView];
-//        [self.bgView addSubview:self.titleLabel];
-//        [self.bgView addSubview:self.priceLabel];
-//        [self.bgView addSubview:self.numLabel];
+        [self.bgImageView addSubview:self.picImageView];
+        [self.bgImageView addSubview:self.titleLabel];
+        [self.bgImageView addSubview:self.priceLabel];
+        [self.bgImageView addSubview:self.numLabel];
 //        [self.bgView addSubview:self.redBgView];
     }
     return self;
 }
 
 - (void)configwidth:(NSDictionary *)dict{
+    NSLog(@"dict----->%@",dict);
 //    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
 //    self.titleLabel.text = @"【商品名称】Asnières 工坊是品牌的灵魂Asnières 工坊是品牌的灵魂";
 //

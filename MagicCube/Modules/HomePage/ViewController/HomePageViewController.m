@@ -21,6 +21,7 @@
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,
 TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , SPPageMenuDelegate, UIScrollViewDelegate>{
     int current_page,total_count;
+    
 }
 @property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) UITableView *listView;
@@ -29,7 +30,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 @property (nonatomic, strong) LineTabbarView *headTabbarView;
 @property (nonatomic, strong) TYPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *navigationListArray;
-@property (nonatomic, weak) SPPageMenu *pageMenu;
+@property (nonatomic, strong) SPPageMenu *pageMenu;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *myChildViewControllers;
 @property (nonatomic, strong) UIView *tableHeaderView;
@@ -37,14 +38,13 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 @property (nonatomic, assign) BOOL isTopIsCanNotMoveTabViewPre;
 @property (nonatomic, assign) BOOL canScroll;
 @property (nonatomic, strong) YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView *tableView;
-
-
-
-
 @property (nonatomic, strong) UIImageView *picImageView;
 @property (nonatomic, strong) UILabel *desLabel,*subLabel;
 @property (nonatomic, strong) UIButton *memberBtn;
 @property (nonatomic, strong) NSMutableArray *headImageViewArray;
+@property (nonatomic, strong) NSDictionary *moduleResultDic,*goodListResultDic;
+@property (nonatomic, strong)NSString * navID;
+
 @end
 
 @implementation HomePageViewController
@@ -59,16 +59,16 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
 -(void)initDatas{
     self.listArray = [NSMutableArray array];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
-    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
+//    [self.listArray addObject:@{@"url":@""}];
 //    self.bannerArray = [NSMutableArray array];
 //    [self.bannerArray addObject:@"1"];
 //    [self.bannerArray addObject:@"2"];
@@ -80,7 +80,6 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
 -(void)initSubviews{
    UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/4, STATUS_BAR_HEIGHT, SCREEN_WIDTH/2, TAB_BAR_HEIGHT-STATUS_BAR_HEIGHT)];
-
     tempView.backgroundColor = [UIColor whiteColor];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2-72)/2 +18, 0, 72, TAB_BAR_HEIGHT - STATUS_BAR_HEIGHT)];
@@ -103,8 +102,6 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     _tableView.bounces = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
-    
-    
 //    [self.view addSubview:self.listView];
 }
 
@@ -116,15 +113,120 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     }
 }
 
-
 -(void)requestData{
+    [self.myChildViewControllers removeAllObjects];
+    [self.navigationListArray removeAllObjects];
     
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [BTERequestTools requestWithURLString:kAppApiHomePageModuleMenu parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            NSArray *array = [responseObject objectForKey:@"data"];
+            self.moduleResultDic = (NSDictionary *)responseObject;
+            [self.navigationListArray removeAllObjects];
+            [self.navigationListArray addObjectsFromArray:array];
+            NSMutableArray *tagNameList = [NSMutableArray arrayWithCapacity:0];
+            for (int i = 0; i < self.navigationListArray.count; i++) {
+                [tagNameList addObject:self.navigationListArray[i][@"name"]];
+                self.navID = [NSString stringWithFormat:@"%d",[[[self.navigationListArray objectAtIndex:i] objectForKey:@"value"] intValue]];
+                BaseViewController *vc;
+                vc = [[HomeListViewController alloc] init];
+                ((HomeListViewController *)vc).tagid = self.navID;
+                [self addChildViewController:vc];
+                // 控制器本来自带childViewControllers,但是遗憾的是该数组的元素顺序永远无法改变，只要是addChildViewController,都是添加到最后一个，而控制器不像数组那样，可以插入或删除任意位置，所以这里自己定义可变数组，以便插入(删除)(如果没有插入(删除)功能，直接用自带的childViewControllers即可)
+                [self.myChildViewControllers addObject:vc];
+            }
+            [self.pageMenu setItems:tagNameList selectedItemIndex:0];
+            // 这一行赋值，可实现pageMenu的跟踪器时刻跟随scrollView滑动的效果
+            self.pageMenu.bridgeScrollView = self.scrollView;
+            // pageMenu.selectedItemIndex就是选中的item下标
+            if (self.pageMenu.selectedItemIndex < self.myChildViewControllers.count) {
+                BaseViewController *baseVc = self.myChildViewControllers[self.pageMenu.selectedItemIndex];
+                [self.scrollView addSubview:baseVc.view];
+                baseVc.view.frame = CGRectMake(SCREEN_WIDTH*self.pageMenu.selectedItemIndex, 0, SCREEN_WIDTH, scrollViewHeight);
+                self.scrollView.contentOffset = CGPointMake(SCREEN_WIDTH*self.pageMenu.selectedItemIndex, 0);
+                self.scrollView.contentSize = CGSizeMake(self.myChildViewControllers.count*SCREEN_WIDTH, 0);
+            }
+            [self.tableView reloadData];
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
     
-    
+//    // 创建组
+//    dispatch_group_t group = dispatch_group_create();
+//    // 将第1个网络请求任务添加到组中
+//    //菜单有什么选项的获取 接口
+//    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        // 创建信号量
+//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//
+//        NSMutableDictionary * pramaDic = @{}.mutableCopy;
+//        [BTERequestTools requestWithURLString:kAppApiHomePageModuleMenu parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+//            NMRemovLoadIng;
+//            NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
+//            if (IsSucess(responseObject)) {
+//                self.moduleResultDic = (NSDictionary *)responseObject;
+//            }
+//            // 如果请求成功，发送信号量
+//            dispatch_semaphore_signal(semaphore);
+//        } failure:^(NSError *error)  {
+//            NMRemovLoadIng;
+//            // 如果请求失败，也发送信号量
+//            dispatch_semaphore_signal(semaphore);
+//            NSLog(@"error-------->%@",error);
+//        }];
+//
+//        // 在网络请求任务成功之前，信号量等待中
+//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//    });
+//    // 将第2个网络请求任务添加到组中
+//    //获取 商品列表
+//    dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        // 创建信号量
+//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//        // 开始网络请求任务
+//        NSMutableDictionary * pramaDic = @{}.mutableCopy;
+//        [BTERequestTools requestWithURLString:kAppApiHomePageList parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+//            NMRemovLoadIng;
+//            NSLog(@"---kAppApiHomePageList--responseObject--->%@",responseObject);
+//            if (IsSucess(responseObject)) {
+//               self.goodListResultDic = (NSDictionary *)responseObject;
+//            }
+//            // 如果请求成功，发送信号量
+//            dispatch_semaphore_signal(semaphore);
+//        } failure:^(NSError *error)  {
+//            NMRemovLoadIng;
+//            // 如果请求失败，也发送信号量
+//            dispatch_semaphore_signal(semaphore);
+//            NSLog(@"error-------->%@",error);
+//        }];
+//        // 在网络请求任务成功之前，信号量等待中
+//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//    });
+//
+//    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        if (self.goodListResultDic==nil || self.moduleResultDic==nil) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//
+////                self.failView.hidden = NO;
+//                [BHToast showMessage:@"网络加载失败,请重试"];
+//            });
+//        }else{
+//            dispatch_async(dispatch_get_main_queue(), ^{
+////                self.failView.hidden = YES;
+//                [self initUIView];
+//            });
+//        }
+//    });
 }
 
 -(void)giveMeMoreData{}
 
+
+-(void)initUIView{}
 //
 //#pragma mark - tableViewDelegate
 //-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -359,53 +461,11 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         [cell.contentView addSubview:self.tableHeaderView];
         return cell;
     }else if(section==1){
-        for (int i = 0; i < self.navigationListArray.count; i++) {
-            HomeListViewController *baseVc = [[HomeListViewController alloc] init];
-            [self addChildViewController:baseVc];
-            [self.myChildViewControllers addObject:baseVc];
-        }
-        
-        SPPageMenu *pageMenu  = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
-        
-        // 传递数组，默认选中第0个
-        [pageMenu setItems:self.navigationListArray selectedItemIndex:0];
-        // 等宽,不可滑动
-        pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
-        // 设置代理
-        pageMenu.delegate = self;
-        
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageMenuH, SCREEN_WIDTH, scrollViewHeight)];
-        scrollView.delegate = self;
-        scrollView.pagingEnabled = YES;
-        scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView = scrollView;
-
-        _pageMenu = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
-        
-        
-        
-        // 等宽,不可滑动
-        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
-        // 设置代理
-        _pageMenu.delegate = self;
-
-        // 这一行赋值，可实现pageMenu的跟踪器时刻跟随scrollView滑动的效果
-        pageMenu.bridgeScrollView = scrollView;
-        _pageMenu = pageMenu;
-        // pageMenu.selectedItemIndex就是选中的item下标
-        if (self.pageMenu.selectedItemIndex < self.myChildViewControllers.count) {
-            BaseViewController *baseVc = self.myChildViewControllers[_pageMenu.selectedItemIndex];
-            [scrollView addSubview:baseVc.view];
-            baseVc.view.frame = CGRectMake(SCREEN_WIDTH*_pageMenu.selectedItemIndex, 0, SCREEN_WIDTH, scrollViewHeight);
-            scrollView.contentOffset = CGPointMake(SCREEN_WIDTH*_pageMenu.selectedItemIndex, 0);
-            scrollView.contentSize = CGSizeMake(self.myChildViewControllers.count*SCREEN_WIDTH, 0);
-        }
-        [cell.contentView addSubview:_pageMenu];
+        [cell.contentView addSubview:self.pageMenu];
         [cell.contentView addSubview:self.scrollView];
         return cell;
     }
     return cell;
-    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -522,7 +582,6 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     return _picImageView;
 }
 
-
 -(NSMutableArray *)myChildViewControllers{
     if (_myChildViewControllers == nil) {
         _myChildViewControllers = [NSMutableArray arrayWithCapacity:0];
@@ -563,8 +622,6 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         _subLabel.textColor = GrayMagicColor;;
         _subLabel.textAlignment = NSTextAlignmentLeft;
         _subLabel.text = @"全球已有 123998 人通过魔方好物交易了 2999008 件商品卡";
-        
-        
         NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(12),NSForegroundColorAttributeName:Gray666Color};
         NSString *deliveryPrice =@"全球已有 123998 人通过魔方好物交易了 2999008 件商品卡";
         
@@ -596,4 +653,27 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     }
     return _navigationListArray;
 }
+
+-(SPPageMenu *)pageMenu{
+    if (_pageMenu == nil) {
+        _pageMenu  = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
+        // 等宽,不可滑动
+        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+        // 设置代理
+        _pageMenu.delegate = self;
+    }
+    return _pageMenu;
+}
+
+
+-(UIScrollView *)scrollView{
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageMenuH, SCREEN_WIDTH, scrollViewHeight)];
+        _scrollView.delegate = self;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _scrollView;
+}
+
 @end

@@ -47,11 +47,14 @@
 - (void)initChildVC{
     HomePageViewController *homeVc = [[HomePageViewController alloc] init];
     BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"home_normal" selectedImage:@"home_selected" title:@"好物中心"];
+    
     SecondViewController *secondVc = [[SecondViewController alloc] init];
     BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"wodehaowu_normal" selectedImage:@"wodehaowu_selected" title:@"分销中心"];
-    ThirdViewController * thirdVc = [[ThirdViewController alloc] init];
+    
+    ThirdViewController *thirdVc = [[ThirdViewController alloc] init];
     BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"caiwuzhongxin_normal" selectedImage:@"caiwuzhongxin_selected" title:@"财务中心"];
-    MyCenterViewController * myCVc = [[MyCenterViewController alloc] init];
+    
+    MyCenterViewController *myCVc = [[MyCenterViewController alloc] init];
     BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"huiyuanzhongxin_normal" selectedImage:@"huiyuanzhongxin_selected" title:@"会员中心"];
     [self addChildViewController:nav1];
     [self addChildViewController:nav2];
