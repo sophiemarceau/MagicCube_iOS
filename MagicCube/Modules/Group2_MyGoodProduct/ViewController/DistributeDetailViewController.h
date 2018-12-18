@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DistributeDetailViewController : BaseViewController
-
+@property(nonatomic,strong)NSString *snStr;
 @end
 
 NS_ASSUME_NONNULL_END

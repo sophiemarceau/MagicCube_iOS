@@ -120,15 +120,16 @@
         cell = [[HomePageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     [cell configwidth:[self.listArray objectAtIndex:indexPath.row]];
-    NSString *nameStr =  [NSString stringWithFormat:@"首页_%d",[self getRandomNumber:1 to:3]];
-    cell.bgImageView.image = [UIImage imageNamed:nameStr];
+//    NSString *nameStr =  [NSString stringWithFormat:@"首页_%d",[self getRandomNumber:1 to:3]];
+//    cell.bgImageView.image = [UIImage imageNamed:nameStr];
 
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
-    
+     NSDictionary *dic = [self.listArray objectAtIndex:indexPath.row];
+     vc.snStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"sn"]];
 //     wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
     

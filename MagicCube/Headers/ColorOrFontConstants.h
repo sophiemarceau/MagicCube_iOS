@@ -26,6 +26,8 @@
 #define BlackMagicColor BHHexColor(@"333333")
 //字体 常用黑色1
 #define Black626A75Color BHHexColor(@"626A75")
+
+#define Black1Color BHHexColor(@"32312F")
 //App中 字体主灰色
 #define GrayMagicColor BHHexColor(@"999999")
 //View 背景色
@@ -42,6 +44,8 @@
 #define Gray666Color BHHexColor(@"666666")
 //边框 常用灰色Layer
 #define GrayLayerColor BHHexColor(@"CCCCCC")
+
+#define Gray858Color BHHexColor(@"858181")
 //边框 常用d1Layer
 #define LineD1GrayColor BHHexColor(@"D1D1D1")
 
