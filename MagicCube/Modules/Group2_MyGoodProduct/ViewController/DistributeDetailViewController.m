@@ -11,8 +11,17 @@
 #import <AVFoundation/AVFoundation.h>
 #import "DistributeGoodsViewController.h"
 
-@interface DistributeDetailViewController ()
+@interface DistributeDetailViewController (){
+    NSDictionary *returnDataDic;
+}
 @property (strong,nonatomic) AVPlayer * player;
+@property (strong,nonatomic) UIImageView * picImageView;
+@property (strong,nonatomic) UILabel *titleLabel;
+@property (strong,nonatomic) UILabel *subLabel;
+@property (strong,nonatomic) UILabel *desLabel;
+@property (strong,nonatomic) UILabel *numLabel;
+@property (strong,nonatomic) UIView *redBgView;
+@property (strong,nonatomic) UILabel *redBgLabel;
 @end
 
 @implementation DistributeDetailViewController
@@ -20,9 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initdata];
-    [self createfakeData];
-    [self addSubviews];
-    // Do any additional setup after loading the view.
+    
+    [self requestData];
 }
 
 -(void)initdata{
@@ -30,19 +38,68 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)createfakeData{
+- (void)requestData{
+    
+//    NSMutableDictionary *pramaDic = @{}.mutableCopy;
+//    [pramaDic setObject:self.snStr forKey:@"sn"];
+    NSString *url = [NSString stringWithFormat:@"%@/%@",kAppApiGoodsDetail,self.snStr];
+    NMShowLoadIng;
+    //    [pramaDic setObject:self.tagid forKey:@"pageSize"];
+    [BTERequestTools requestWithURLString:url parameters:nil type:HttpRequestTypeGet success:^(id responseObject) {
+   
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiGoodsDetail--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            self->returnDataDic = [responseObject objectForKey:@"data"];
+            [self addSubviews];
+            
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
 }
 
 - (void)addSubviews{
-    
     UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(45))];
     [self.view addSubview:rootView];
     
     UIView *head= [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
     head.backgroundColor = KBGCell;
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(145))];
-    [imageView setImage:[UIImage imageNamed:@"分销中心_详情"]];
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
+    [imageView setImage:[UIImage imageNamed:@"homeCellBgIcon"]];
+    
+    [imageView addSubview:self.picImageView];
+    [imageView addSubview:self.titleLabel];
+    [imageView addSubview:self.subLabel];
+    [imageView addSubview:self.desLabel];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(172.5, 109.65, 162.5, 0.5)];
+    lineView.backgroundColor = GrayMagicColor;
+    [imageView addSubview:lineView];
+    [imageView addSubview:self.numLabel];
+    [imageView addSubview:self.redBgView];
     [head addSubview:imageView];
+    
+    
+    self.titleLabel.text = [returnDataDic objectForKey:@"name"];
+//    //    @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
+    self.subLabel.text = [returnDataDic objectForKey:@"subTitle"];
+//    //    @"干燕窝原料印尼进口 CAIQ溯源";
+//
+    self.redBgLabel.text = [NSString stringWithFormat:@"%@元", [returnDataDic objectForKey:@"price"]];
+//    //    @"低至6折";
+
+    NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
+    NSString *deliveryPrice =@"6666位会员分销了这张卡,已售出9986件";
+    NSString *price1 = @"6666";
+    NSString *price2 = @"9986";
+    NSArray *attrArray = @[price1,price2];
+    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
+
+    self.numLabel.attributedText = attributestring;
+    
+    
+    
     UIView *linehead = [[UIView alloc] initWithFrame:CGRectMake(0, head.height -2, SCREEN_WIDTH, 0.5)];
     linehead.backgroundColor = BHHexColor(@"D9D9D9");
     [head addSubview:linehead];
@@ -58,21 +115,31 @@
     
     CGFloat top = SCALE_W(35);
     CGFloat levelheight = SCALE_W((185.5 - 40))/4.0;
-    DistributeLevelView * levelView = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, levelheight)];
-    [levelView configTextRed:NO level:@"普通会员" price:1088 discount:@"9" grade:YES gradeText:@"升级黄金会员" line:LinePositionShowDown];
-    [distributePriceBGview addSubview:levelView];
-    
-    DistributeLevelView * levelView2 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(top + levelheight * 1), SCREEN_WIDTH, levelheight)];
-    [levelView2 configTextRed:YES level:@"黄金会员" price:888 discount:@"8.5" grade:YES gradeText:@"升级白金会员" line:LinePositionShowUpDown];
-    [distributePriceBGview addSubview:levelView2];
-    
-    DistributeLevelView * levelView3 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(top + levelheight * 2), SCREEN_WIDTH, levelheight)];
-    [levelView3 configTextRed:NO level:@"白金会员" price:688 discount:@"7" grade:NO gradeText:@"升级白金会员" line:LinePositionShowUpDown];
-    [distributePriceBGview addSubview:levelView3];
-    
-    DistributeLevelView * levelView4 = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, SCALE_W(top + levelheight * 3), SCREEN_WIDTH, levelheight)];
-    [levelView4 configTextRed:NO level:@"钻石会员" price:488 discount:@"5" grade:NO gradeText:@"升级钻石会员" line:LinePositionShowUp];
-    [distributePriceBGview addSubview:levelView4];
+
+    NSArray *memberArray = [returnDataDic objectForKey:@"memberRuleRes"];
+    if(memberArray && memberArray.count >0){
+        for (int i = 0; i < memberArray.count; i++) {
+            DistributeLevelView *levelView = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, top+levelheight * i, SCREEN_WIDTH, levelheight)];
+            NSDictionary *tmpDic = [memberArray objectAtIndex:i];
+            NSString *nameStr = [tmpDic objectForKey:@"name"];
+            NSString *levelStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"level"]];
+            NSString *discountStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"discount"]];
+             CGFloat priceStr = [[tmpDic objectForKey:@"price"] floatValue];
+            if ([levelStr isEqualToString:@"1"] ) {
+                 [levelView configTextRed:NO level:nameStr price:priceStr discount:discountStr grade:YES gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowDown];
+            }
+            if ([levelStr isEqualToString:@"2"]) {
+                [levelView configTextRed:YES level:nameStr price:priceStr discount:discountStr grade:YES gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowUpDown];
+            }
+            if ([levelStr isEqualToString:@"3"]) {
+                [levelView configTextRed:NO level:nameStr price:priceStr discount:discountStr grade:NO gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowUpDown];
+            }
+            if ([levelStr isEqualToString:@"4"]) {
+                 [levelView configTextRed:NO level:nameStr price:priceStr discount:discountStr grade:NO gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowUp];
+            }
+            [distributePriceBGview addSubview:levelView];
+        }
+    }
     
     MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(185.5), SCREEN_WIDTH, SCALE_W(10))];
     [distributePriceBGview addSubview:line];
@@ -85,10 +152,10 @@
     introduceLabel.textColor = Gray666Color;
     [introduceBGView addSubview:introduceLabel];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
-    NSURL * url = [NSURL fileURLWithPath:path];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
+    NSURL * url = [NSURL URLWithString:[returnDataDic objectForKey:@"video"]];
 
-    AVPlayer * player = [AVPlayer playerWithURL:url];
+    AVPlayer *player = [AVPlayer playerWithURL:url];
 
     AVPlayerLayer * playlayer = [AVPlayerLayer playerLayerWithPlayer:player];
 
@@ -113,7 +180,7 @@
     goodsInfoView.contentMode = UIViewContentModeScaleAspectFit;
     [goodsInfoBGView addSubview:goodsInfoView];
     
-    
+
     
     MagicLabel * infoLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, SCALE_W(46))];
     infoLabel.text = @"商品信息";
@@ -204,4 +271,69 @@
 }
 
 
+-(UILabel *)titleLabel{
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, 13,SCALE_W(110 +72.5), 40)];
+        _titleLabel.backgroundColor = [UIColor clearColor];
+        _titleLabel.textColor = Black1Color;
+        _titleLabel.font = UIFontMediumOfSize(14);
+        _titleLabel.numberOfLines = 2;
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _titleLabel;
+}
+
+-(UILabel *)subLabel{
+    if (_subLabel == nil) {
+        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, self.titleLabel.bottom + 1.9, SCALE_W(110 +72.5), 14)];
+        _subLabel.textColor = Gray858Color;
+        _subLabel.font = UIFontRegularOfSize(12);
+        _subLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _subLabel;
+}
+
+-(UILabel *)desLabel{
+    if (_desLabel == nil) {
+        _desLabel= [[UILabel alloc] initWithFrame:CGRectMake(172.5, 84, 60, 12)];
+        _desLabel.textAlignment= NSTextAlignmentLeft;
+        _desLabel.textColor = RedMagicColor;
+        _desLabel.font = UIFontLightOfSize(12);
+        _desLabel.text = @"会员分销价";
+    }
+    return _desLabel;
+}
+
+-(UILabel *)numLabel{
+    if (_numLabel == nil) {
+        _numLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, 117.5, SCALE_W(110 + 72.5),8.5)];
+        _numLabel.backgroundColor = [UIColor clearColor];
+        _numLabel.textColor = BlackMagicColor;
+        _numLabel.font = UIFontRegularOfSize(8.5);
+        _numLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _numLabel;
+}
+
+-(UILabel *)redBgLabel{
+    if (_redBgLabel == nil) {
+        _redBgLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , self.redBgView.width, self.redBgView.height)];
+        _redBgLabel.backgroundColor = [UIColor clearColor];
+        _redBgLabel.textColor = [UIColor whiteColor];
+        _redBgLabel.textAlignment = NSTextAlignmentCenter;
+        _redBgLabel.font = UIFontRegularOfSize(14);
+    }
+    return _redBgLabel;
+}
+
+-(UIView *)redBgView{
+    if (_redBgView == nil) {
+        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 20 - 90 - 20, 78 , SCALE_W(90), SCALE_W(23))];
+        _redBgView.backgroundColor = RedMagicColor;
+        _redBgView.layer.masksToBounds = YES;
+        _redBgView.layer.cornerRadius = 11.5;
+        [_redBgView addSubview:self.redBgLabel];
+    }
+    return _redBgView;
+}
 @end

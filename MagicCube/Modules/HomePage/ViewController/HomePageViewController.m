@@ -55,6 +55,9 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [self initDatas];
     [self initSubviews];
     [self requestData];
+    [self requestHomePageRecent];
+    [self requestHomePagePlatform];
+    [self requestHomePageRecentUserList];
 }
 
 -(void)initDatas{
@@ -111,6 +114,48 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     if ([canScroll isEqualToString:@"1"]) {
         _canScroll = YES;
     }
+}
+
+-(void)requestHomePageRecent{
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [BTERequestTools requestWithURLString:kAppApiHomePageDistriRecent parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+-(void)requestHomePagePlatform{
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [BTERequestTools requestWithURLString:kAppApiHomePagePlatform parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiHomePagePlatform--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+-(void)requestHomePageRecentUserList{
+    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [BTERequestTools requestWithURLString:kAppApiiHomePageUserRecentList parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiiHomePageUserRecentList--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
 }
 
 -(void)requestData{

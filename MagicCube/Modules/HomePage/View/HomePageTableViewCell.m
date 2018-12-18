@@ -48,7 +48,7 @@
 }
 
 - (void)configwidth:(NSDictionary *)dict{
-    NSLog(@"dict----->%@",dict);
+//    NSLog(@"dict----->%@",dict);
 //    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
 //    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]]];
     self.titleLabel.text = [dict objectForKey:@"name"];
