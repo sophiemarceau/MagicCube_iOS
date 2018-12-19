@@ -58,11 +58,12 @@
     
     self.redBgLabel.text =  [dict objectForKey:@"discountDesc"];
 //    @"低至6折";
-    
+    NSString *salesVolume = [NSString stringWithFormat:@"%@",[dict objectForKey:@"salesVolume"]];
+     NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"distribuionCount"]];
     NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
-    NSString *deliveryPrice =@"6666位会员分销了这张卡,已售出9986件";
-    NSString *price1 = @"6666";
-    NSString *price2 = @"9986";
+    NSString *deliveryPrice = [NSString stringWithFormat:@"%@位会员分销了这张卡,已售出%@件",salesVolume,distribuionCount];
+    NSString *price1 = salesVolume;
+    NSString *price2 = distribuionCount;
     NSArray *attrArray = @[price1,price2];
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
     
