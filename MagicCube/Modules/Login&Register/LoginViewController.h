@@ -24,6 +24,8 @@ typedef NS_ENUM(NSInteger, LoginStyle) {
 
 @interface LoginViewController : BaseViewController
 @property (nonatomic, assign) LoginStyle loginStyle;
+@property (nonatomic, strong) NSString *phoneStr,*operationCodeStr;
+@property (nonatomic, assign) Boolean authFlag;
 +(void) OpenLogin:(UIViewController *)viewController callback:(BHLoginCompletion) loginComplation;
 
 @end

@@ -39,7 +39,7 @@ static NSString * const kHeader = @"https://l.bte.top/";
 //app端用户登录接口,需上送终端和终端识别信息，如果与上次登录不符，则会触发二次校验
 #define kAppApiLogin [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/login"]
 //app端用户登录二次校验接口,需上送登录信息、终端、终端识别信息和授权操作码
-#define kAppApiAuth [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/auth"]
+#define kAppApiAuth [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/login/auth"]
 //app端用户注册接口,需上送终端和终端识别信息
 #define kAppApiReg [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/reg"]
 //判断手机号是否注册,true为可用 false为不可用

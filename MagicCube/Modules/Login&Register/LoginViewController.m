@@ -15,7 +15,7 @@
     UIView *lineView1,*lineView2;
     NSInteger i;
     NSString * sendaccount;
-    Boolean isLoginAuthFlag;
+    
 }
 @property (nonatomic,strong) UIButton *wechatBtn;
 @property (nonatomic,strong) UILabel *wechatLabel;
@@ -34,7 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    isLoginAuthFlag = NO;
+    if (self.authFlag) {
+        self.phoneTextField.text = self.phoneStr;
+    }
     i = 60;
     [WXApiManager sharedManager].delegate = self;
     [self initProtectMessageAttack];
@@ -138,17 +140,23 @@
     
     NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
-    //    [pramaDic setObject:@"REG" forKey:@"operationCode"];
-    
     [pramaDic setObject:phoneStr forKey:@"tel"];
     [pramaDic setObject:@"IOS" forKey:@"terminal"];
     [pramaDic setObject:idString forKey:@"terminalIdentifier"];
     WS(weakSelf)
-    NSLog(@"-----kAppApiLogin--->%@",pramaDic);
+    
+    NSString *url;
+    if (self.authFlag) {
+        url = kAppApiAuth;
+        [pramaDic setObject:self.operationCodeStr forKey:@"operationCode"];
+    }else{
+        url = kAppApiLogin;
+    }
+    NSLog(@"-----%@--->%@",url,pramaDic);
     NMShowLoadIng;
-    [BTERequestTools requestWithURLString:kAppApiLogin parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
+    [BTERequestTools requestWithURLString:url parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiLogin--responseObject--->%@",responseObject);
+        NSLog(@"---%@--responseObject--->%@",url,responseObject);
         if (IsSucess(responseObject)) {
             //            UserObject * yy = [UserObject yy_modelWithDictionary:responseObject];
             UserObject * yy =  [UserObject shareInstance];
@@ -158,6 +166,22 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINSELECT object:nil userInfo:nil];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }else{
+            NSString *codeStr = [NSString stringWithFormat:@"%@",[responseObject  objectForKey:@"code"]];
+            if ([codeStr isEqualToString:@"4000"]) {
+                NSString *operationCodeStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"operationCode"]];
+                LoginViewController *vc = [[LoginViewController alloc] init];
+                
+                if (weakSelf.loginStyle == pwdLogin) {
+                     vc.loginStyle = codeMessageLogin;
+                }else if (weakSelf.loginStyle == codeMessageLogin) {
+                     vc.loginStyle = pwdLogin;
+                }
+                vc.authFlag = YES;
+                vc.phoneStr = phoneStr;
+                vc.operationCodeStr = operationCodeStr;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+                return ;
+            }
             NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
             [BHToast showMessage:message];
         }
