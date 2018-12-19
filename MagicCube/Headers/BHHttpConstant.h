@@ -44,7 +44,8 @@ static NSString * const kHeader = @"https://l.bte.top/";
 #define kAppApiReg [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/reg"]
 //判断手机号是否注册,true为可用 false为不可用
 #define kAppApiCheck [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/check"]
-
+//app端用退出登录
+#define kAppApiLogout [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/logout"]
 
 
 /*************************************************************/

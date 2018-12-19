@@ -20,19 +20,19 @@
                      failure:(void (^)(NSError *error))failure
 {
 
-    PhoneInfo * phone = [[PhoneInfo alloc] init];
-    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    [params setObject:kCurrentVersion forKey:@"version"];
-    [params setObject:@"ios" forKey:@"channel"];
-    [params setObject:phone.phoneVersion forKey:@"sdkVersionName"];
-    [params setObject:phone.phoneVersion forKey:@"sdkVersionCode"];
-    [params setObject:@"iphone" forKey:@"Brand"];
-    [params setObject:phone.platform forKey:@"Model"];
+//    PhoneInfo * phone = [[PhoneInfo alloc] init];
+//    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:parameters];
+//    [params setObject:kCurrentVersion forKey:@"version"];
+//    [params setObject:@"ios" forKey:@"channel"];
+//    [params setObject:phone.phoneVersion forKey:@"sdkVersionName"];
+//    [params setObject:phone.phoneVersion forKey:@"sdkVersionCode"];
+//    [params setObject:@"iphone" forKey:@"Brand"];
+//    [params setObject:phone.platform forKey:@"Model"];
     
     switch (type) {
         case HttpRequestTypePost:
         {
-            [YQNetworking postWithUrl:URLString refreshRequest:NO cache:NO params:params progressBlock:nil successBlock:^(id response) {
+            [YQNetworking postWithUrl:URLString refreshRequest:NO cache:NO params:parameters progressBlock:nil successBlock:^(id response) {
                 if (success) {
                     success(response);
                 }
@@ -45,7 +45,7 @@
             break;
         case HttpRequestTypeGet:
         {
-            [YQNetworking getWithUrl:URLString refreshRequest:NO cache:NO params:params progressBlock:nil successBlock:^(id response) {
+            [YQNetworking getWithUrl:URLString refreshRequest:NO cache:NO params:parameters progressBlock:nil successBlock:^(id response) {
                 if (success) {
                     success(response);
                 }

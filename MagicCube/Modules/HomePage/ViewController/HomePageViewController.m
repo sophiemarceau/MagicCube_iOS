@@ -17,13 +17,14 @@
 #import "SPPageMenu.h"
 #import "YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h"
 #import "HomeListViewController.h"
+#import "ZTGCDTimerManager.h"
 
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,
 TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , SPPageMenuDelegate, UIScrollViewDelegate>{
     int current_page,total_count;
-    
+    UIView *bg;
 }
-@property (nonatomic, strong) NSMutableArray *listArray;
+//@property (nonatomic, strong) NSMutableArray *listArray;
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) TYCyclePagerView *bannrView;
 @property (nonatomic, strong) NSMutableArray *bannerArray;
@@ -39,7 +40,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 @property (nonatomic, assign) BOOL canScroll;
 @property (nonatomic, strong) YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView *tableView;
 @property (nonatomic, strong) UIImageView *picImageView;
-@property (nonatomic, strong) UILabel *desLabel,*subLabel;
+@property (nonatomic, strong) UILabel *desLabel,*subLabel,*describeLabel,*messageLabel;
 @property (nonatomic, strong) UIButton *memberBtn;
 @property (nonatomic, strong) NSMutableArray *headImageViewArray;
 @property (nonatomic, strong) NSDictionary *moduleResultDic,*goodListResultDic;
@@ -51,17 +52,14 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"魔方好物";
     [self initDatas];
     [self initSubviews];
     [self requestData];
-    [self requestHomePageRecent];
-    [self requestHomePagePlatform];
-    [self requestHomePageRecentUserList];
+   
 }
 
 -(void)initDatas{
-    self.listArray = [NSMutableArray array];
+//    self.listArray = [NSMutableArray array];
 //    [self.listArray addObject:@{@"url":@""}];
 //    [self.listArray addObject:@{@"url":@""}];
 //    [self.listArray addObject:@{@"url":@""}];
@@ -78,7 +76,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 //    [self.bannerArray addObject:@"3"];
     
     
-    [self.navigationListArray addObjectsFromArray:@[@"爆款好物",@"品质好物",@"赚钱好物",@"特色好物",@"海外好物"]];
+//    [self.navigationListArray addObjectsFromArray:@[@"爆款好物",@"品质好物",@"赚钱好物",@"特色好物",@"海外好物"]];
 }
 
 -(void)initSubviews{
@@ -118,11 +116,19 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
 -(void)requestHomePageRecent{
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    [pramaDic setObject:[self getNowTimeTimestamp] forKey:@"time"];
     [BTERequestTools requestWithURLString:kAppApiHomePageDistriRecent parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
         NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
+            NSArray *array = [responseObject objectForKey:@"data"];
+            NSDictionary *dic = array[0];
+            NSString *nickNameStr,*commissionStr,*goodsNameStr;
             
+            nickNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
+            commissionStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"commission"]];
+            goodsNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"goodsName"]];
+            self.messageLabel.text = [NSString stringWithFormat:@"%@刚刚分销了%@,分销收益%@元",nickNameStr,goodsNameStr,commissionStr];
         }
     } failure:^(NSError *error)  {
         NMRemovLoadIng;
@@ -136,6 +142,18 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         NMRemovLoadIng;
         NSLog(@"---kAppApiHomePagePlatform--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            NSString *price1 = [NSString stringWithFormat:@"%@",[dic objectForKey:@"user"]];
+            NSString *price2 = [NSString stringWithFormat:@"%@",[dic objectForKey:@"card"]];
+
+            NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(12),NSForegroundColorAttributeName:Gray666Color};
+            NSString *deliveryPrice = [NSString stringWithFormat:@"全球已有 %@ 人通过魔方好物交易了 %@ 件商品卡",price1,price2];
+            
+            
+            NSArray *attrArray = @[price1,price2];
+            NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
+            
+            self.subLabel.attributedText = attributestring;
             
         }
     } failure:^(NSError *error)  {
@@ -151,6 +169,33 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         NSLog(@"---kAppApiiHomePageUserRecentList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             
+            NSArray *array = [responseObject objectForKey:@"data"];
+            for (int i=0; i<self.headImageViewArray.count; i++) {
+               UIImageView *temp  =[self.view viewWithTag:2000+i];
+                [temp removeFromSuperview];
+                temp = nil;
+            }
+            
+            [self.headImageViewArray removeAllObjects];
+            [self.headImageViewArray addObjectsFromArray:array];
+            
+            UIImageView *headImageView;
+            for (int i=0; i<self.headImageViewArray.count; i++) {
+                headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10+i*(23
+                                                                                    +10), self.subLabel.bottom +14, 23, 23)];
+                NSString *headStr = [NSString stringWithFormat:@"%@",[self.headImageViewArray[i] objectForKey:@"avatar"]];
+
+                [headImageView sd_setImageWithURL:[NSURL URLWithString:headStr] placeholderImage: [UIImage imageNamed:[NSString stringWithFormat:@"head-%d",i]]];
+                [self->bg addSubview:headImageView];
+                //            headImageView.backgroundColor = RedMagicColor;
+                headImageView.layer.cornerRadius = 11.5;
+                headImageView.layer.masksToBounds = YES;
+                headImageView.tag = 2000 + i;
+            }
+           
+            self.describeLabel.frame = CGRectMake(
+                                                  10+(self.headImageViewArray.count - 1)*(23
+                                                                                          +10)+23 +15, self.subLabel.bottom +18.5 , 96, 12);
         }
     } failure:^(NSError *error)  {
         NMRemovLoadIng;
@@ -569,7 +614,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         _tableHeaderView = [UIView new];
         _tableHeaderView.backgroundColor = KBGColor;
         _tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 117+ 150 +10);
-        UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117+ 150)];
+        bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117+ 150)];
         bg.backgroundColor = [UIColor whiteColor];
         [_tableHeaderView addSubview:bg];
         UIImageView *picImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"421543305740_.pic_hd"]];
@@ -579,37 +624,9 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 //        [bg addSubview:self.desLabel];
 //        [bg addSubview:self.memberBtn];
         [bg addSubview:self.subLabel];
-        UIImageView *headImageView;
-        for (int i=0; i<self.headImageViewArray.count; i++) {
-            headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10+i*(23
-                                                                                +10), self.subLabel.bottom +14, 23, 23)];
-            NSString *headStr = [NSString stringWithFormat:@"head-%d",i];
-            headImageView.image = [UIImage imageNamed:headStr];
-            [bg addSubview:headImageView];
-//            headImageView.backgroundColor = RedMagicColor;
-            headImageView.layer.cornerRadius = 11.5;
-            headImageView.layer.masksToBounds = YES;
-        }
-        UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(
-                                                                      10+(self.headImageViewArray.count - 1)*(23
-                                                                                                             +10)+23 +15, self.subLabel.bottom +18.5 , 96, 12)];
-        desLabel.text = @"正在使用魔方好物";
-        desLabel.font = UIFontRegularOfSize(12);
-        desLabel.textColor = Gray666Color;
-        desLabel.textAlignment = NSTextAlignmentLeft;
-        [bg addSubview:desLabel];
-        
-        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,  self.subLabel.bottom +51, SCREEN_WIDTH -20 +10, 26)];
-        messageLabel.font = UIFontRegularOfSize(12);
-        messageLabel.textAlignment = NSTextAlignmentCenter;
-        messageLabel.textColor  = Gray666Color;
-        messageLabel.backgroundColor = BHHexColorAlpha(@"B5262F", 0.1);
-        messageLabel.layer.cornerRadius = 13;
-        messageLabel.layer.masksToBounds = YES;
-        messageLabel.layer.borderColor = RedMagicColor.CGColor;
-        messageLabel.layer.borderWidth = 1;
-        messageLabel.text = @"CAT刚刚分销了元正正山小种红茶武夷山茶叶卡,分销收益2048元";
-        [bg addSubview:messageLabel];
+        [bg addSubview:self.describeLabel];
+       
+        [bg addSubview:self.messageLabel];
         
         _tableHeaderView.userInteractionEnabled = YES;
     }
@@ -666,16 +683,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         _subLabel.font = UIFontRegularOfSize(12);
         _subLabel.textColor = GrayMagicColor;;
         _subLabel.textAlignment = NSTextAlignmentLeft;
-        _subLabel.text = @"全球已有 123998 人通过魔方好物交易了 2999008 件商品卡";
-        NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(12),NSForegroundColorAttributeName:Gray666Color};
-        NSString *deliveryPrice =@"全球已有 123998 人通过魔方好物交易了 2999008 件商品卡";
-        
-        NSString *price1 = @"123998";
-        NSString *price2 = @"2999008";
-        NSArray *attrArray = @[price1,price2];
-        NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
-     
-        _subLabel.attributedText = attributestring;
+       
     }
     return _subLabel;
 }
@@ -683,11 +691,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 -(NSMutableArray *)headImageViewArray{
     if (_headImageViewArray == nil) {
         _headImageViewArray = [NSMutableArray array];
-        [_headImageViewArray addObject:@"1"];
-        [_headImageViewArray addObject:@"1"];
-        [_headImageViewArray addObject:@"1"];
-        [_headImageViewArray addObject:@"1"];
-        [_headImageViewArray addObject:@"1"];
+       
     }
     return _headImageViewArray;
 }
@@ -710,7 +714,6 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     return _pageMenu;
 }
 
-
 -(UIScrollView *)scrollView{
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageMenuH, SCREEN_WIDTH, scrollViewHeight)];
@@ -721,4 +724,56 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     return _scrollView;
 }
 
+-(NSString *)getNowTimeTimestamp{
+    NSDate *startDate = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: startDate];
+    NSDate *localeNowDate = [startDate  dateByAddingTimeInterval: interval];
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localeNowDate timeIntervalSince1970]];
+    return timeSp;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[ZTGCDTimerManager sharedInstance] cancelTimerWithName:@"beck.wang.singleTimer"];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[ZTGCDTimerManager sharedInstance] scheduleGCDTimerWithName:@"beck.wang.singleTimer" interval:3 queue:dispatch_get_main_queue() repeats:YES option:CancelPreviousTimerAction action:^{
+        [self requestHomePageRecent];
+        [self requestHomePagePlatform];
+        [self requestHomePageRecentUserList];
+    }];
+
+}
+
+-(UILabel *) describeLabel{
+    if (_describeLabel == nil) {
+        _describeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _describeLabel.text = @"正在使用魔方好物";
+        _describeLabel.font = UIFontRegularOfSize(12);
+        _describeLabel.textColor = Gray666Color;
+        _describeLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _describeLabel;
+}
+
+-(UILabel *)messageLabel{
+    if (_messageLabel == nil) {
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,  self.subLabel.bottom +51, SCREEN_WIDTH -20 +10, 26)];
+        _messageLabel.font = UIFontRegularOfSize(12);
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.textColor  = Gray666Color;
+        _messageLabel.backgroundColor = BHHexColorAlpha(@"B5262F", 0.1);
+        _messageLabel.layer.cornerRadius = 13;
+        _messageLabel.layer.masksToBounds = YES;
+        _messageLabel.layer.borderColor = RedMagicColor.CGColor;
+        _messageLabel.layer.borderWidth = 1;
+        
+    }
+    return _messageLabel;
+}
 @end
