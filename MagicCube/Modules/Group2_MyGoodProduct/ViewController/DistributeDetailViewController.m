@@ -7,7 +7,7 @@
 //
 
 #import "DistributeDetailViewController.h"
-#import "DistributeLevelView.h"
+#import "DetailMemberView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "DistributeGoodsViewController.h"
 
@@ -15,6 +15,9 @@
     NSDictionary *returnDataDic;
 }
 @property (strong,nonatomic) AVPlayer * player;
+@property (strong,nonatomic) AVPlayerLayer * playerLayer;
+@property (strong,nonatomic) DetailMemberView * memberView;
+
 @property (strong,nonatomic) UIImageView * picImageView;
 @property (strong,nonatomic) UILabel *titleLabel;
 @property (strong,nonatomic) UILabel *subLabel;
@@ -22,6 +25,10 @@
 @property (strong,nonatomic) UILabel *numLabel;
 @property (strong,nonatomic) UIView *redBgView;
 @property (strong,nonatomic) UILabel *redBgLabel;
+
+
+
+
 @end
 
 @implementation DistributeDetailViewController
@@ -29,35 +36,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initdata];
+
+
+    [self addSubviews];
+    [self requestDetail];
+    // Do any additional setup after loading the view.
+
+}
+
+#pragma mark -- 数据
+- (void)requestDetail{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
     
-    [self requestData];
+    WS(weakSelf)
+    NSLog(@"-----kAppApiDistributionList--->%@",params);
+    NMShowLoadIng;
+    NSString * requestUrl = [NSString stringWithFormat:@"%@/%@",kAppApiGoodsDetail,self.snStr];
+    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiLogin--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf performSelectorOnMainThread:@selector(dealDetailData:) withObject:responseObject waitUntilDone:YES];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+- (void)dealDetailData:(NSDictionary *)dict{
+    NSDictionary * dataDict = [dict objectForKey:@"data"];
+    NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
+    [self.memberView setUpdata:memberRuleRes];
+    
+    NSString * videoUrl = [dataDict objectForKey:@"video"];
+    NSURL * url = [NSURL URLWithString:videoUrl];
+    self.player = [AVPlayer playerWithURL:url];
+    self.playerLayer.player = self.player;
+    
 }
 
 -(void)initdata{
     self.title = @"商品卡详情";
     self.view.backgroundColor = [UIColor whiteColor];
-}
-
-- (void)requestData{
-    
-//    NSMutableDictionary *pramaDic = @{}.mutableCopy;
-//    [pramaDic setObject:self.snStr forKey:@"sn"];
-    NSString *url = [NSString stringWithFormat:@"%@/%@",kAppApiGoodsDetail,self.snStr];
-    NMShowLoadIng;
-    //    [pramaDic setObject:self.tagid forKey:@"pageSize"];
-    [BTERequestTools requestWithURLString:url parameters:nil type:HttpRequestTypeGet success:^(id responseObject) {
-   
-        NMRemovLoadIng;
-        NSLog(@"---kAppApiGoodsDetail--responseObject--->%@",responseObject);
-        if (IsSucess(responseObject)) {
-            self->returnDataDic = [responseObject objectForKey:@"data"];
-            [self addSubviews];
-            
-        }
-    } failure:^(NSError *error)  {
-        NMRemovLoadIng;
-        NSLog(@"error-------->%@",error);
-    }];
 }
 
 - (void)addSubviews{
@@ -66,6 +92,7 @@
     
     UIView *head= [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
     head.backgroundColor = KBGCell;
+
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
     [imageView setImage:[UIImage imageNamed:@"homeCellBgIcon"]];
     
@@ -97,52 +124,16 @@
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
 
     self.numLabel.attributedText = attributestring;
-    
-    
-    
-    UIView *linehead = [[UIView alloc] initWithFrame:CGRectMake(0, head.height -2, SCREEN_WIDTH, 0.5)];
-    linehead.backgroundColor = BHHexColor(@"D9D9D9");
-    [head addSubview:linehead];
-    [rootView addSubview:head];
-    
-    UIView * distributePriceBGview = [[UIView alloc] initWithFrame:CGRectMake(0, SCALE_W(173.5), SCREEN_WIDTH, SCALE_W(195.5))];
-    [rootView addSubview:distributePriceBGview];
-    
-    MagicLabel * distributeTitlelabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, SCALE_W(16), SCREEN_WIDTH - 20, SCALE_W(14))];
-    distributeTitlelabel.text = @"分销提货价";
-    distributeTitlelabel.textColor = Gray666Color;
-    [distributePriceBGview addSubview:distributeTitlelabel];
-    
-    CGFloat top = SCALE_W(35);
-    CGFloat levelheight = SCALE_W((185.5 - 40))/4.0;
 
-    NSArray *memberArray = [returnDataDic objectForKey:@"memberRuleRes"];
-    if(memberArray && memberArray.count >0){
-        for (int i = 0; i < memberArray.count; i++) {
-            DistributeLevelView *levelView = [[DistributeLevelView alloc] initWithFrame:CGRectMake(0, top+levelheight * i, SCREEN_WIDTH, levelheight)];
-            NSDictionary *tmpDic = [memberArray objectAtIndex:i];
-            NSString *nameStr = [tmpDic objectForKey:@"name"];
-            NSString *levelStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"level"]];
-            NSString *discountStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"discount"]];
-             CGFloat priceStr = [[tmpDic objectForKey:@"price"] floatValue];
-            if ([levelStr isEqualToString:@"1"] ) {
-                 [levelView configTextRed:NO level:nameStr price:priceStr discount:discountStr grade:YES gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowDown];
-            }
-            if ([levelStr isEqualToString:@"2"]) {
-                [levelView configTextRed:YES level:nameStr price:priceStr discount:discountStr grade:YES gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowUpDown];
-            }
-            if ([levelStr isEqualToString:@"3"]) {
-                [levelView configTextRed:NO level:nameStr price:priceStr discount:discountStr grade:NO gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowUpDown];
-            }
-            if ([levelStr isEqualToString:@"4"]) {
-                 [levelView configTextRed:NO level:nameStr price:priceStr discount:discountStr grade:NO gradeText:[NSString stringWithFormat:@"升级%@",nameStr] line:LinePositionShowUp];
-            }
-            [distributePriceBGview addSubview:levelView];
-        }
-    }
+    [rootView addSubview:head];
+
+    DetailMemberView * memberView = [[DetailMemberView alloc] initWithFrame:CGRectMake(0, SCALE_W(173.5), SCREEN_WIDTH, SCALE_W(195.5))];
+    self.memberView = memberView;
+    [rootView addSubview:memberView];
+
     
     MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(185.5), SCREEN_WIDTH, SCALE_W(10))];
-    [distributePriceBGview addSubview:line];
+    [memberView addSubview:line];
     
     UIView * introduceBGView = [[UIView alloc] initWithFrame:CGRectMake(0, SCALE_W(369), SCREEN_WIDTH, SCALE_W(266.5))];
     [rootView addSubview:introduceBGView];
@@ -151,19 +142,13 @@
     introduceLabel.text = @"产品介绍";
     introduceLabel.textColor = Gray666Color;
     [introduceBGView addSubview:introduceLabel];
-    
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
-    NSURL * url = [NSURL URLWithString:[returnDataDic objectForKey:@"video"]];
 
-    AVPlayer *player = [AVPlayer playerWithURL:url];
-
-    AVPlayerLayer * playlayer = [AVPlayerLayer playerLayerWithPlayer:player];
+    AVPlayerLayer * playlayer = [[AVPlayerLayer alloc] init];
+    self.playerLayer = playlayer;
 
     playlayer.frame = CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(210.5));
     
     [introduceBGView.layer addSublayer:playlayer];
-    self.player = player;
-//    [player play];
     UIButton * playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(62)) * 0.5, SCALE_W(210.5 - 62) * 0.5 + SCALE_W(46), SCALE_W(62), SCALE_W(62))];
     [playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
     playBtn.selected = NO;

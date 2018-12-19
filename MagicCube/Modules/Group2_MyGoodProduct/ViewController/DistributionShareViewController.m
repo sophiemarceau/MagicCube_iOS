@@ -22,12 +22,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"分销中心";
-    self.recordsArray = [NSMutableArray arrayWithCapacity:0];
+    
+    [self initdata];
     [self addSubViews];
+    [self requestInfo];
     // Do any additional setup after loading the view.
 }
 
+#pragma mark -- 数据
+- (void)requestInfo{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+   
+    WS(weakSelf)
+    NSLog(@"-----kAppApiDistributionList--->%@",params);
+    NMShowLoadIng;
+    
+    [BTERequestTools requestWithURLString:kAppApiDistributionList parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiLogin--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+       
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+- (void)initdata{
+    self.title = @"分销中心";
+    self.recordsArray = [NSMutableArray arrayWithCapacity:0];
+}
+
+#pragma mark -- 视图
 - (void)addSubViews{
     
     UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT)];
@@ -143,7 +175,7 @@
     return cell;
 }
 
-#pragma --mark 按钮
+#pragma --mark 按钮事件
 -(void)selectClick:(UIButton *)btn{
     
     if (btn == self.distributeShareBtn) {

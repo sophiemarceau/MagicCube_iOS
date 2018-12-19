@@ -46,7 +46,6 @@ static NSString * const kHeader = @"https://l.bte.top/";
 #define kAppApiCheck [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/check"]
 
 
-
 /*************************************************************/
 //好物中心 商品模块菜单
 #define kAppApiHomePageModuleMenu [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/module"]
@@ -60,6 +59,27 @@ static NSString * const kHeader = @"https://l.bte.top/";
 #define kAppApiHomePagePlatform [NSString stringWithFormat:@"%@%@",kDomain,@"api/statistics/platform"]
 //好物中心 最近的使用用户列表接口
 #define kAppApiiHomePageUserRecentList [NSString stringWithFormat:@"%@%@",kDomain,@"api/statistics/user/recent"]
+
+/*************************************************************/
+/**
+ * 分销中心接口
+ */
+//分销商品列表
+#define kAppApiDistributionList [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/list"]
+
+//创建代销信息转发记录,返回代销信息
+#define kAppApiDistributionForward [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/forward"]
+
+//通过代销转发明细SN获取商品信息
+#define kAppApiDistributionDetails [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/details/sn-sn"]
+
+//某个分销商品的销售记录
+#define kAppApiDistributionrecords [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/sn-sn/records"]
+
+//通过代销记录SN获取商品信息
+#define kAppApiDistributionInfo [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/sn-sn"]
+
+
 #endif /* BHHttpConstant_h */
 
 
