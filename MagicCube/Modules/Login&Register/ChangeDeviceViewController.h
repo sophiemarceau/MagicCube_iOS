@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, ChangeDeviceType) {
 
 @interface ChangeDeviceViewController : BaseViewController
 @property (nonatomic, assign) ChangeDeviceType changeDeviceStyle;
+@property (nonatomic, strong) NSString *phoneStr,*operationCodeStr;
 @end
 
 NS_ASSUME_NONNULL_END

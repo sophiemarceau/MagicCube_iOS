@@ -10,6 +10,7 @@
 #import "forgetViewController.h"
 #import <VerifyCode/NTESVerifyCodeManager.h>
 #import "WXApiManager.h"
+#import "ChangeDeviceViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate,WXApiManagerDelegate>{
     UIView *lineView1,*lineView2;
@@ -169,14 +170,17 @@
             NSString *codeStr = [NSString stringWithFormat:@"%@",[responseObject  objectForKey:@"code"]];
             if ([codeStr isEqualToString:@"4000"]) {
                 NSString *operationCodeStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"operationCode"]];
-                LoginViewController *vc = [[LoginViewController alloc] init];
+//                LoginViewController *vc = [[LoginViewController alloc] init];
+                ChangeDeviceViewController *vc= [[ChangeDeviceViewController alloc] init];
                 
                 if (weakSelf.loginStyle == pwdLogin) {
-                     vc.loginStyle = codeMessageLogin;
+                     vc.changeDeviceStyle = changeByCodeMessage;
+//                     vc.loginStyle = codeMessageLogin;
                 }else if (weakSelf.loginStyle == codeMessageLogin) {
-                     vc.loginStyle = pwdLogin;
+//                     vc.loginStyle = pwdLogin;
+                     vc.changeDeviceStyle = changeByPwd;
                 }
-                vc.authFlag = YES;
+//                vc.authFlag = YES;
                 vc.phoneStr = phoneStr;
                 vc.operationCodeStr = operationCodeStr;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
