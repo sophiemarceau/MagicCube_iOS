@@ -12,10 +12,7 @@
 @interface ThirdViewController ()<UITableViewDelegate,UITableViewDataSource>{
     int current_page,total_count;
     UIImageView *redBgView;
-    
-    
 }
-
 @property (nonatomic, strong) NSMutableArray *listArray,*btnViewsArray,*accountArray;
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) UIImageView *headerImageView,*memImageLevelView;
@@ -43,15 +40,17 @@
     [pramaDic setObject:User.token forKey:@"CUBE_TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetAccount parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiGetAccount--responseObject--->%@",responseObject);
+//        NSLog(@"---kAppApiGetAccount--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSDictionary *infoDic = [dic objectForKey:@"userInfo"];
             NSArray *memberRuleArray = [dic objectForKey:@"memberRule"];
+            NSDictionary *todayDic = [dic objectForKey:@"todayIncome"];
+             NSArray *accountArray = [dic objectForKey:@"account"];
+            
             NSString *telStr =  stringFormat([infoDic objectForKey:@"tel"]);
             NSString *nickNameStr =  stringFormat([infoDic objectForKey:@"nickname"]);
             if ([telStr isEqualToString:nickNameStr]) {
-//
               NSString *nameStr =  [NSString stringWithFormat:@"%@****%@",[nickNameStr substringToIndex:4],[nickNameStr substringFromIndex:7]];
               CGFloat widh = [nameStr widthWithFont: UIFontMediumOfSize(16) constrainedToHeight:16];
                 if (widh < SCREEN_WIDTH - self.nameLabel.frame.origin.x - 85) {
@@ -66,7 +65,7 @@
             self.memImageLevelView.frame = CGRectMake(self.nameLabel.right +10, 61, 15, 15);
             self.namedesLabel.frame = CGRectMake(self.memImageLevelView.right +10, 64, 40, 10);
 
-            NSArray *accountArray = [dic objectForKey:@"account"];
+           
             if(accountArray && accountArray.count > 0){
                 for (NSDictionary *tempDic  in accountArray) {
                     if ([tempDic[@"type"] isEqualToString:@"BALANCE"]) {
@@ -82,7 +81,6 @@
             }
             
             if(memberRuleArray && memberRuleArray.count > 0){
-                
                 NSString *memberLevel = stringFormat([infoDic objectForKey:@"memberLevel"]);
                 for (NSDictionary *tempDic  in memberRuleArray) {
                     if ([stringFormat([infoDic objectForKey:@"level"]) isEqualToString:memberLevel]) {
@@ -107,7 +105,8 @@
                     }
                 }
             }
-            NSDictionary *todayDic = [dic objectForKey:@"todayIncome"];
+            
+            
             for(int i = 0; i < self.accountArray.count ;i++){
                 UILabel *tempLabel = self.accountArray[i];
                 if (i == 0) {
@@ -129,11 +128,11 @@
 }
 
 -(void)requestInfoData{
-    NSMutableDictionary * pramaDic = @{}.mutableCopy;
+    NSMutableDictionary *pramaDic = @{}.mutableCopy;
     [pramaDic setObject:User.token forKey:@"CUBE_TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetIncome parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiGetIncome--responseObject--->%@",responseObject);
+//        NSLog(@"---kAppApiGetIncome--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"][@"list"];
             if (array && array.count> 0) {
@@ -197,7 +196,6 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
-  
 }
 
 #pragma mark  initView
@@ -286,7 +284,6 @@
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
     lineView.backgroundColor = LineGrayColor;
     [footerView addSubview:lineView];
-    
     
     self.listView.tableFooterView = footerView;
 }
@@ -465,6 +462,5 @@
     }
     return _checkMoneyBtn;
 }
-
 
 @end

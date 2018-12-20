@@ -41,8 +41,6 @@
     [self initdata];
     [self addSubviews];
     [self requestDetail];
-    // Do any additional setup after loading the view.
-
 }
 
 #pragma mark -- 数据

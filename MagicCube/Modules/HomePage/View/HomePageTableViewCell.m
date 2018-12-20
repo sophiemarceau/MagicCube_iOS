@@ -34,7 +34,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = KBGCell;
         [self.contentView addSubview:self.bgImageView];
-        [self.bgImageView addSubview:self.picImageView];
+//        [self.bgImageView addSubview:self.picImageView];
         [self.bgImageView addSubview:self.titleLabel];
         [self.bgImageView addSubview:self.subLabel];
         [self.bgImageView addSubview:self.desLabel];
@@ -68,7 +68,7 @@
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
     
     self.numLabel.attributedText = attributestring;
-    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
 //    NSDictionary * attubtrDict1 = @{NSFontAttributeName:UIFontRegularOfSize(22),NSForegroundColorAttributeName:[UIColor whiteColor]};
 //    NSString *deliveryPrice1 =@"代理价低至 3 折";
 //    NSString *price1 = @"3";
@@ -93,7 +93,7 @@
 
 -(UIImageView *)picImageView{
     if (_picImageView == nil) {
-        _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(35), SCALE_W(25), SCALE_W(100), SCALE_W(139- 50))];
+        _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(35), SCALE_W(25), SCALE_W(100), SCALE_W(139 - 50))];
     }
     return _picImageView;
 }
