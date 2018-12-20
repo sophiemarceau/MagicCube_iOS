@@ -46,8 +46,8 @@
         if (IsSucess(responseObject)) {
             
         }else{
-            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
-            [BHToast showMessage:message];
+//            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+//            [BHToast showMessage:message];
         }
     } failure:^(NSError *error)  {
         [self.tableView.mj_header endRefreshing];

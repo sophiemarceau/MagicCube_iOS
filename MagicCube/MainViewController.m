@@ -117,12 +117,10 @@
         selectedIndex = 3;
     }
     
-    if([viewController.tabBarItem.title isEqualToString:@"分销中心"]){
-        return YES;
-    }else if([viewController.tabBarItem.title isEqualToString:@"好物中心"]){
+    if([viewController.tabBarItem.title isEqualToString:@"好物中心"]){
         return YES;
     }else {
-        NSLog(@"token------>%@",User.token);
+//        NSLog(@"token------>%@",User.token);
         if (!User.token) {
             //跳到登录 注册页面
             RegisterViewController *login = [[RegisterViewController alloc] init];
@@ -139,7 +137,6 @@
 }
 
 - (void)logSelect:(NSNotification *)text{
-    //    NSLog(@"selectindex----logSelect------->%ld",selectedIndex);
     self.selectedIndex = selectedIndex;
 }
 @end

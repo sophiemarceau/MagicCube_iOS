@@ -55,7 +55,9 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [self initDatas];
     [self initSubviews];
     [self requestData];
-   
+    [self requestHomePageRecent];
+    [self requestHomePagePlatform];
+    [self requestHomePageRecentUserList];
 }
 
 -(void)initDatas{
