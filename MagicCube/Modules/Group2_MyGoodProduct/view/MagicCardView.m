@@ -55,7 +55,7 @@
     self.distrubePriceLabel.frame = CGRectMake(SCALE_W(173), SCALE_W(108.5), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), SCALE_W(12));
     self.distrubeInfoLabel.text = @"36客户浏览  已分销8张，分销利润23765元";
     self.distrubeInfoLabel.hidden = NO;
-    self.lineView.y = 105.5;
+    self.lineView.y = SCALE_W(105.5);
     
 }
 
@@ -84,7 +84,7 @@
     
     self.distrubePriceLabel.frame = CGRectMake(SCALE_W(173), SCALE_W(117.5), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), 8.5);
     self.distrubeInfoLabel.hidden = YES;
-    self.lineView.y = 110;
+    self.lineView.y = SCALE_W(110);
 }
 
 -(UIImageView *)cardBGView{
@@ -123,9 +123,9 @@
 
 -(MagicLabel *)opinionLabel{
     if (!_opinionLabel) {
-        _opinionLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(84), SCALE_W(60), SCALE_W(12))];
+        _opinionLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(84), SCALE_W(75), SCALE_W(12))];
         _opinionLabel.textColor = RedMagicColor;
-        _opinionLabel.font = UIFontLightOfSize(12);
+        _opinionLabel.font = UIFontLightOfSize(SCALE_W(12));
     }
     return _opinionLabel;
 }
