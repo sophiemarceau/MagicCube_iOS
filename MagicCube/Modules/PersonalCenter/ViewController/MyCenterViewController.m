@@ -49,9 +49,7 @@
     WS(weakSelf)
     NSLog(@"-----kAppApiGetUser--->%@",params);
     NMShowLoadIng;
-//
-    NSString * url = [NSString stringWithFormat:@"%@?CUBE_TOKEN=%@",kAppApiGetUser,User.token];
-    NSLog(@"%@",User.token);
+    
     [BTERequestTools requestWithURLString:kAppApiGetUser parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
 
         NMRemovLoadIng;

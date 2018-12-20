@@ -11,6 +11,7 @@
 #import "GoodsInfoView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "DistributeGoodsViewController.h"
+#import "MagicCardView.h"
 
 @interface DistributeDetailViewController (){
     NSDictionary *returnDataDic;
@@ -20,14 +21,14 @@
 @property (strong,nonatomic) DetailMemberView * memberView;
 @property (strong,nonatomic) GoodsInfoView * goodsInfoView;
 
-@property (strong,nonatomic) UIImageView * picImageView;
-@property (strong,nonatomic) UILabel *titleLabel;
-@property (strong,nonatomic) UILabel *subLabel;
-@property (strong,nonatomic) UILabel *desLabel;
-@property (strong,nonatomic) UILabel *numLabel;
-@property (strong,nonatomic) UIView *redBgView;
-@property (strong,nonatomic) UILabel *redBgLabel;
-
+@property (strong,nonatomic) MagicCardView * cardView;
+//@property (strong,nonatomic) UIImageView * picImageView;
+//@property (strong,nonatomic) UILabel *titleLabel;
+//@property (strong,nonatomic) UILabel *subLabel;
+//@property (strong,nonatomic) UILabel *desLabel;
+//@property (strong,nonatomic) UILabel *numLabel;
+//@property (strong,nonatomic) UIView *redBgView;
+//@property (strong,nonatomic) UILabel *redBgLabel;
 
 
 
@@ -80,6 +81,8 @@
     self.playerLayer.player = self.player;
     
     [self.goodsInfoView setUPdata:dataDict];
+    
+    [self.cardView setUpGoodsDict:dataDict];
 }
 
 -(void)initdata{
@@ -91,42 +94,8 @@
     UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(45))];
     [self.view addSubview:rootView];
     
-    UIView *head= [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
-    head.backgroundColor = KBGCell;
-
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
-    [imageView setImage:[UIImage imageNamed:@"homeCellBgIcon"]];
-    
-    [imageView addSubview:self.picImageView];
-    [imageView addSubview:self.titleLabel];
-    [imageView addSubview:self.subLabel];
-    [imageView addSubview:self.desLabel];
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(172.5, 109.65, 162.5, 0.5)];
-    lineView.backgroundColor = GrayMagicColor;
-    [imageView addSubview:lineView];
-    [imageView addSubview:self.numLabel];
-    [imageView addSubview:self.redBgView];
-    [head addSubview:imageView];
-    
-    
-    self.titleLabel.text = [returnDataDic objectForKey:@"name"];
-//    //    @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
-    self.subLabel.text = [returnDataDic objectForKey:@"subTitle"];
-//    //    @"干燕窝原料印尼进口 CAIQ溯源";
-//
-    self.redBgLabel.text = [NSString stringWithFormat:@"%@元", [returnDataDic objectForKey:@"price"]];
-//    //    @"低至6折";
-
-    NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
-    NSString *deliveryPrice =@"6666位会员分销了这张卡,已售出9986件";
-    NSString *price1 = @"6666";
-    NSString *price2 = @"9986";
-    NSArray *attrArray = @[price1,price2];
-    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
-
-    self.numLabel.attributedText = attributestring;
-
-    [rootView addSubview:head];
+    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 173.5)];
+    [rootView addSubview:self.cardView];
 
     DetailMemberView * memberView = [[DetailMemberView alloc] initWithFrame:CGRectMake(0, SCALE_W(173.5), SCREEN_WIDTH, SCALE_W(195.5))];
     self.memberView = memberView;
@@ -161,59 +130,7 @@
     GoodsInfoView * goodsInfoView = [[GoodsInfoView alloc] initWithFrame:CGRectMake(0, SCALE_W(635.5), SCREEN_WIDTH, SCALE_W(182.5))];
     [rootView addSubview:goodsInfoView];
     self.goodsInfoView = goodsInfoView;
-//    UIView * goodsInfoBGView = [[UIView alloc] initWithFrame:CGRectMake(0, SCALE_W(635.5), SCREEN_WIDTH, SCALE_W(182.5))];
-//    [rootView addSubview:goodsInfoBGView];
-//
-//    UIImageView * goodsInfoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(56), SCREEN_WIDTH, SCALE_W(182.5 - 76))];
-//    goodsInfoView.image = [UIImage imageNamed:@"fangweituan"];
-//    goodsInfoView.contentMode = UIViewContentModeScaleAspectFit;
-//    [goodsInfoBGView addSubview:goodsInfoView];
-//
-//
-//
-//    MagicLabel * infoLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, SCALE_W(46))];
-//    infoLabel.text = @"商品信息";
-//    infoLabel.textColor = Gray666Color;
-//    [goodsInfoBGView addSubview:infoLabel];
-//
-//    NSArray * titles = @[@"本卡产品认证生产商为厦门燕之屋生物工程发展有限公司",@"本卡产品认证发货商为厦门燕之屋生物工程发展有限公司",@"本卡信息已在蚂蚁金服区块链存证备查"];
-//    NSArray * imgs = @[@"changshang",@"huoyuan",@"fangwei"];
-//    int index = 0;
-//    for (NSString * title in titles) {
-//        UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(22), SCALE_W(11) + SCALE_W(42) + SCALE_W(45.5) * index, SCALE_W(21), SCALE_W(21))];
-//        imgView.image = [UIImage imageNamed:imgs[index]];
-//        [goodsInfoBGView addSubview:imgView];
-//
-//        MagicLabel * label = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(50), SCALE_W(16.5) + SCALE_W(42)+ SCALE_W(45.5) * index, SCREEN_WIDTH - 10 - SCALE_W(50), 12)];
-//        label.textColor = [UIColor colorWithHexString:@"7F7569"];
-//        label.text = title;
-//        label.font = UIFontRegularOfSize(SCALE_W(12));
-//        [goodsInfoBGView addSubview:label];
-//
-//        if (index < 2) {
-//            MagicLabel *descLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(15), SCALE_W(38)  + SCALE_W(42) + SCALE_W(45.5) * index, SCREEN_WIDTH - SCALE_W(30), 9)];
-//            descLabel.font  = UIFontRegularOfSize(SCALE_W(9));
-//            descLabel.text = @"由厦门燕之屋生物工程发展有限公司数字签名确认";
-//            descLabel.textColor = [UIColor colorWithHexString:@"948B7F" alpha:0.6];
-//            [goodsInfoBGView addSubview:descLabel];
-//        }else{
-//            UIButton * lookbtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(112), SCALE_W(12.5) + SCALE_W(42)+ SCALE_W(45.5) * index, SCALE_W(80), 16)];
-//            lookbtn.layer.cornerRadius = 2;
-//            lookbtn.titleLabel.font = UIFontRegularOfSize(10);
-//            lookbtn.layer.borderColor = Gray666Color.CGColor;
-//            lookbtn.layer.borderWidth = 0.5;
-//            lookbtn.layer.masksToBounds = YES;
-//            [lookbtn setTitleColor:Gray666Color forState:UIControlStateNormal];
-//            [lookbtn setTitle:@"查看数字签名" forState:UIControlStateNormal];
-//            [goodsInfoBGView addSubview:lookbtn];
-//
-//        }
-//        index++;
-//    }
-//
-//    MagicLineView * line4 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(45.5), SCREEN_WIDTH, 0.5)];
-//    [goodsInfoBGView addSubview:line4];
-    
+
     MagicLineView * line3 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(172.5), SCREEN_WIDTH, SCALE_W(10))];
     [goodsInfoView addSubview:line3];
     
@@ -259,70 +176,4 @@
     [self.navigationController pushViewController:distributeVC animated:YES];
 }
 
-
--(UILabel *)titleLabel{
-    if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, 13,SCALE_W(110 +72.5), 40)];
-        _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.textColor = Black1Color;
-        _titleLabel.font = UIFontMediumOfSize(14);
-        _titleLabel.numberOfLines = 2;
-        _titleLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _titleLabel;
-}
-
--(UILabel *)subLabel{
-    if (_subLabel == nil) {
-        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, self.titleLabel.bottom + 1.9, SCALE_W(110 +72.5), 14)];
-        _subLabel.textColor = Gray858Color;
-        _subLabel.font = UIFontRegularOfSize(12);
-        _subLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _subLabel;
-}
-
--(UILabel *)desLabel{
-    if (_desLabel == nil) {
-        _desLabel= [[UILabel alloc] initWithFrame:CGRectMake(172.5, 84, 60, 12)];
-        _desLabel.textAlignment= NSTextAlignmentLeft;
-        _desLabel.textColor = RedMagicColor;
-        _desLabel.font = UIFontLightOfSize(12);
-        _desLabel.text = @"会员分销价";
-    }
-    return _desLabel;
-}
-
--(UILabel *)numLabel{
-    if (_numLabel == nil) {
-        _numLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, 117.5, SCALE_W(110 + 72.5),8.5)];
-        _numLabel.backgroundColor = [UIColor clearColor];
-        _numLabel.textColor = BlackMagicColor;
-        _numLabel.font = UIFontRegularOfSize(8.5);
-        _numLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _numLabel;
-}
-
--(UILabel *)redBgLabel{
-    if (_redBgLabel == nil) {
-        _redBgLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , self.redBgView.width, self.redBgView.height)];
-        _redBgLabel.backgroundColor = [UIColor clearColor];
-        _redBgLabel.textColor = [UIColor whiteColor];
-        _redBgLabel.textAlignment = NSTextAlignmentCenter;
-        _redBgLabel.font = UIFontRegularOfSize(14);
-    }
-    return _redBgLabel;
-}
-
--(UIView *)redBgView{
-    if (_redBgView == nil) {
-        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 20 - 90 - 20, 78 , SCALE_W(90), SCALE_W(23))];
-        _redBgView.backgroundColor = RedMagicColor;
-        _redBgView.layer.masksToBounds = YES;
-        _redBgView.layer.cornerRadius = 11.5;
-        [_redBgView addSubview:self.redBgLabel];
-    }
-    return _redBgView;
-}
 @end

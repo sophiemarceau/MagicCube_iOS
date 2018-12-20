@@ -1,8 +1,8 @@
 //
-//  TempImageTableViewCell.h
+//  MagicCardTableViewCell.h
 //  MagicCube
 //
-//  Created by wanmeizty on 28/11/18.
+//  Created by wanmeizty on 20/12/18.
 //  Copyright © 2018年 wanmeizty. All rights reserved.
 //
 
@@ -10,10 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TempImageTableViewCell : UITableViewCell
+@interface MagicCardTableViewCell : UITableViewCell
 + (CGFloat)cellHeight;
 + (CGFloat)cellDetailHeight;
 - (void)configDict:(NSString *)imageName;
+- (void)configDataDict:(NSDictionary *)dict;
 @end
 
 NS_ASSUME_NONNULL_END

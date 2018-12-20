@@ -73,11 +73,11 @@
 		B209F19621A7F9160043E485 /* InviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F19521A7F9160043E485 /* InviteView.m */; };
 		B218A4A621CB2BA500CFBA19 /* GoodsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4A521CB2BA500CFBA19 /* GoodsInfoView.m */; };
 		B218A4A921CB66BB00CFBA19 /* MagicCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4A821CB66BB00CFBA19 /* MagicCardView.m */; };
+		B218A4AC21CB7F9700CFBA19 /* MagicCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */; };
 		B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22476CB21C9DA9200D08F63 /* DetailMemberView.m */; };
 		B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B229A66121A692A900A5B23B /* SalerTableViewCell.m */; };
 		B22D178E21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D178D21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m */; };
 		B2408FEF21AE2D3B00887B6A /* MemberLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FEE21AE2D3B00887B6A /* MemberLevelView.m */; };
-		B2408FF221AE434000887B6A /* TempImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF121AE434000887B6A /* TempImageTableViewCell.m */; };
 		B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF421AE478100887B6A /* DistributeDetailViewController.m */; };
 		B2408FF821AE69E100887B6A /* DistributeLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF721AE69E100887B6A /* DistributeLevelView.m */; };
 		B2408FFE21AE8CFF00887B6A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */; };
@@ -247,6 +247,8 @@
 		B218A4A521CB2BA500CFBA19 /* GoodsInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsInfoView.m; sourceTree = "<group>"; };
 		B218A4A721CB66BB00CFBA19 /* MagicCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicCardView.h; sourceTree = "<group>"; };
 		B218A4A821CB66BB00CFBA19 /* MagicCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCardView.m; sourceTree = "<group>"; };
+		B218A4AA21CB7F9700CFBA19 /* MagicCardTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicCardTableViewCell.h; sourceTree = "<group>"; };
+		B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCardTableViewCell.m; sourceTree = "<group>"; };
 		B22476CA21C9DA9200D08F63 /* DetailMemberView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailMemberView.h; sourceTree = "<group>"; };
 		B22476CB21C9DA9200D08F63 /* DetailMemberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailMemberView.m; sourceTree = "<group>"; };
 		B229A66021A692A900A5B23B /* SalerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalerTableViewCell.h; sourceTree = "<group>"; };
@@ -260,8 +262,6 @@
 		B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicPrefixHeader.pch; sourceTree = "<group>"; };
 		B2408FED21AE2D3B00887B6A /* MemberLevelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberLevelView.h; sourceTree = "<group>"; };
 		B2408FEE21AE2D3B00887B6A /* MemberLevelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberLevelView.m; sourceTree = "<group>"; };
-		B2408FF021AE434000887B6A /* TempImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TempImageTableViewCell.h; sourceTree = "<group>"; };
-		B2408FF121AE434000887B6A /* TempImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TempImageTableViewCell.m; sourceTree = "<group>"; };
 		B2408FF321AE478100887B6A /* DistributeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeDetailViewController.h; sourceTree = "<group>"; };
 		B2408FF421AE478100887B6A /* DistributeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeDetailViewController.m; sourceTree = "<group>"; };
 		B2408FF621AE69E100887B6A /* DistributeLevelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeLevelView.h; sourceTree = "<group>"; };
@@ -726,8 +726,8 @@
 			children = (
 				B2059C3F21A659A100F70C07 /* MyGoodsTableViewCell.h */,
 				B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */,
-				B2408FF021AE434000887B6A /* TempImageTableViewCell.h */,
-				B2408FF121AE434000887B6A /* TempImageTableViewCell.m */,
+				B218A4AA21CB7F9700CFBA19 /* MagicCardTableViewCell.h */,
+				B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */,
 				B229A66021A692A900A5B23B /* SalerTableViewCell.h */,
 				B229A66121A692A900A5B23B /* SalerTableViewCell.m */,
 				B2408FF621AE69E100887B6A /* DistributeLevelView.h */,
@@ -1121,6 +1121,7 @@
 				B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */,
 				936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */,
 				7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */,
+				B218A4AC21CB7F9700CFBA19 /* MagicCardTableViewCell.m in Sources */,
 				B209F19621A7F9160043E485 /* InviteView.m in Sources */,
 				932DFD7821C0E0920052051B /* UserObject.m in Sources */,
 				936E9FC421A66AC300CD1A4E /* MemberView.m in Sources */,
@@ -1135,7 +1136,6 @@
 				B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */,
 				93CF8E4821A52EFC004D8111 /* BaseViewController.m in Sources */,
 				9333627121B93080001065C7 /* wechatLoginViewController.m in Sources */,
-				B2408FF221AE434000887B6A /* TempImageTableViewCell.m in Sources */,
 				B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */,
 				B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */,
 				7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */,

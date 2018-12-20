@@ -38,6 +38,8 @@
 #define LineGrayColor BHHexColor(@"D6DAE2")
 //字体 常用灰色1
 #define Gray7F7Color BHHexColor(@"7F7569")
+#define Gray2A2Color BHHexColor(@"2A2A2A")
+
 //字体 常用灰色2
 #define Gray948Color BHHexColor(@"948B7F")
 //字体 常用灰色3
@@ -48,6 +50,8 @@
 #define Gray858Color BHHexColor(@"858181")
 //边框 常用d1Layer
 #define LineD1GrayColor BHHexColor(@"D1D1D1")
+
+
 
 
 // MARK: App中主要常用字体Font相关 

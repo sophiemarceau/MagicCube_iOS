@@ -9,7 +9,7 @@
 #import "MemberLevelView.h"
 
 @interface MemberLevelView ()
-@property (strong,nonatomic) UIImageView * imgView;
+@property (strong,nonatomic) UIButton * imgView;
 @property (strong,nonatomic) MagicLabel * levelLabel;
 @property (assign,nonatomic) CGFloat imgW;
 @property (strong,nonatomic) UIView * leftLine;
@@ -29,7 +29,8 @@
 
 - (void)createImgW:(CGFloat)width{
     if (width <= 0) width = SCALE_W(23);
-    self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake((self.frame.size.width - width) * 0.5, (SCALE_W(42) - width) * 0.5, width, width)];
+    self.imgView = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width - width) * 0.5, (SCALE_W(42) - width) * 0.5, width, width)];
+    self.imgView.userInteractionEnabled = NO;
     [self addSubview:self.imgView];
     
     self.levelLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(0, SCALE_W(42), self.frame.size.width, 14)];
@@ -54,7 +55,7 @@
 }
 
 - (void)configView:(NSString *)imgName levelText:(NSString *)levelStr LineLRPosition:(LineLRPosition)pos{
-    self.imgView.image = [UIImage imageNamed:imgName];
+    [self.imgView setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];;
     self.levelLabel.text = levelStr;
     
     if (pos == LinePositionShowLeftRight) {

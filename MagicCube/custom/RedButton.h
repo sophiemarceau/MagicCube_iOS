@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RedButton : UIButton
-
+- (void)setLayerCornerRadius:(CGFloat)radius;
 @end
 
 NS_ASSUME_NONNULL_END
