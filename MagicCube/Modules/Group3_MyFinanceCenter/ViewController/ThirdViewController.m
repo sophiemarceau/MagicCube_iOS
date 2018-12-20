@@ -35,7 +35,7 @@
     [self initSubviews];
 }
 
--(void)requestIncomeData{
+-(void)requestInfoData{
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
     [pramaDic setObject:User.token forKey:@"CUBE_TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetAccount parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
@@ -46,8 +46,9 @@
             NSDictionary *infoDic = [dic objectForKey:@"userInfo"];
             NSArray *memberRuleArray = [dic objectForKey:@"memberRule"];
             NSDictionary *todayDic = [dic objectForKey:@"todayIncome"];
-             NSArray *accountArray = [dic objectForKey:@"account"];
-            
+            NSArray *accountArray = [dic objectForKey:@"account"];
+    
+            [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[infoDic objectForKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
             NSString *telStr =  stringFormat([infoDic objectForKey:@"tel"]);
             NSString *nickNameStr =  stringFormat([infoDic objectForKey:@"nickname"]);
             if ([telStr isEqualToString:nickNameStr]) {
@@ -127,7 +128,7 @@
     }];
 }
 
--(void)requestInfoData{
+-(void)requestIncomeData{
     NSMutableDictionary *pramaDic = @{}.mutableCopy;
     [pramaDic setObject:User.token forKey:@"CUBE_TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetIncome parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
@@ -223,7 +224,6 @@
     self.headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 50, 60, 60)];
     self.headerImageView.layer.masksToBounds = YES;
     self.headerImageView.layer.cornerRadius = 30;
-    self.headerImageView.image = [UIImage imageNamed:@"Bitmap"];
     [redBgView addSubview:self.headerImageView];
     
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 61, SCREEN_WIDTH / 2, 16)];

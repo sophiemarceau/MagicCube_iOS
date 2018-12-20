@@ -31,10 +31,6 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [self requestGetUserInfo];
-    
-    
-    
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
