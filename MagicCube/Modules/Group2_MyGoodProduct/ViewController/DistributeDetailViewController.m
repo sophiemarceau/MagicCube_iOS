@@ -20,17 +20,7 @@
 @property (strong,nonatomic) AVPlayerLayer * playerLayer;
 @property (strong,nonatomic) DetailMemberView * memberView;
 @property (strong,nonatomic) GoodsInfoView * goodsInfoView;
-
 @property (strong,nonatomic) MagicCardView * cardView;
-//@property (strong,nonatomic) UIImageView * picImageView;
-//@property (strong,nonatomic) UILabel *titleLabel;
-//@property (strong,nonatomic) UILabel *subLabel;
-//@property (strong,nonatomic) UILabel *desLabel;
-//@property (strong,nonatomic) UILabel *numLabel;
-//@property (strong,nonatomic) UIView *redBgView;
-//@property (strong,nonatomic) UILabel *redBgLabel;
-
-
 
 @end
 
@@ -92,9 +82,14 @@
     UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(45))];
     [self.view addSubview:rootView];
     
-    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 173.5)];
-    [rootView addSubview:self.cardView];
+    
 
+    UIView * cardBGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
+    [rootView addSubview:cardBGView];
+    
+    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
+    [cardBGView addSubview:self.cardView];
+    
     DetailMemberView * memberView = [[DetailMemberView alloc] initWithFrame:CGRectMake(0, SCALE_W(173.5), SCREEN_WIDTH, SCALE_W(195.5))];
     self.memberView = memberView;
     [rootView addSubview:memberView];

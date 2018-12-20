@@ -32,7 +32,7 @@
         self.selectionStyle = UITableViewCellSeparatorStyleNone;
         //        self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, heigth)];
         //        [self.contentView addSubview:self.imgView];
-        self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH , heigth)];
+        self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(1),SCREEN_WIDTH , heigth - SCALE_W(5))];
         [self.contentView addSubview:self.cardView];
     }
     return self;

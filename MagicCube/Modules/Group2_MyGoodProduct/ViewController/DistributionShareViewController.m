@@ -10,12 +10,14 @@
 #import "UIButton+ImageTitleAlign.h"
 #import "SendPreviewViewController.h"
 #import "SalerTableViewCell.h"
+#import "MagicCardView.h"
 
 @interface DistributionShareViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) UIButton * distributeShareBtn;
 @property (strong,nonatomic) UIButton * distributeRecordBtn;
 @property (strong,nonatomic) NSMutableArray * recordsArray;
 @property (strong,nonatomic) UIScrollView * bottomScrollview;
+@property (strong,nonatomic) MagicCardView * cardView;
 @end
 
 @implementation DistributionShareViewController
@@ -40,7 +42,7 @@
     [BTERequestTools requestWithURLString:kAppApiDistributionList parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
         
         NMRemovLoadIng;
-        NSLog(@"---kAppApiLogin--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             
         }else{
@@ -67,9 +69,12 @@
     [self.view addSubview:rootView];
     
     CGFloat top = 0;
-    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(163.5))];
-    imgView.image = [UIImage imageNamed:@"分销中心_详情"];
-    [rootView addSubview:imgView];
+   
+    
+    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
+    [self.cardView setUpDistributeDict:@{}];
+    [rootView addSubview:self.cardView];
+    
     top += SCALE_W(163.5);
     
     UIView * selectBgView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(266)) * 0.5, SCALE_W(15) + top, SCALE_W(266), SCALE_W(30))];
