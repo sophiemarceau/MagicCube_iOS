@@ -32,6 +32,10 @@
     self.titleLabel.font = UIFontRegularOfSize(14);
 }
 
+- (void)setLayerCornerRadius:(CGFloat)radius{
+    self.layer.cornerRadius = radius;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

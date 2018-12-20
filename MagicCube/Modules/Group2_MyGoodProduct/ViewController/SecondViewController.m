@@ -7,8 +7,8 @@
 //
 
 #import "SecondViewController.h"
-#import "MyGoodsTableViewCell.h"
-#import "TempImageTableViewCell.h"
+//#import "MyGoodsTableViewCell.h"
+#import "MagicCardTableViewCell.h"
 #import "DistributionShareViewController.h"
 #import "DistributeDetailViewController.h"
 
@@ -73,7 +73,7 @@
     UITableView * tabelview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - 49) style:UITableViewStylePlain];
     tabelview.delegate = self;
     tabelview.dataSource = self;
-    tabelview.rowHeight = [MyGoodsTableViewCell cellHeight];
+    tabelview.rowHeight = [MagicCardTableViewCell cellHeight];
     tabelview.separatorStyle = UITableViewCellSeparatorStyleNone;
     tabelview.tableFooterView = [UIView new];
     [self.view addSubview:tabelview];
@@ -99,12 +99,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TempImageTableViewCell * goodsCell = [tableView dequeueReusableCellWithIdentifier:@"myGoods"];
+    MagicCardTableViewCell * goodsCell = [tableView dequeueReusableCellWithIdentifier:@"myGoods"];
     if (!goodsCell) {
-        goodsCell = [[TempImageTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"myGoods"];
+        goodsCell = [[MagicCardTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"myGoods"];
     }
     
-    [goodsCell configDict:_goodsArray[indexPath.row]];
+    [goodsCell configDataDict:_goodsArray[indexPath.row]];
     return goodsCell;
 }
 
