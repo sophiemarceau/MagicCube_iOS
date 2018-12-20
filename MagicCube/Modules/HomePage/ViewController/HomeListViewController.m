@@ -82,7 +82,7 @@
         [self.baseTableView.mj_header endRefreshing];
         [self.baseTableView.mj_footer endRefreshing];
         NMRemovLoadIng;
-        NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiHomePageList--responseObject--giveMeMoreData->%@",responseObject);
         if (IsSucess(responseObject)) {
             Boolean isLastPage = [[[responseObject objectForKey:@"data"] objectForKey:@"isLastPage"] boolValue];
             NSArray *array = [[responseObject objectForKey:@"data"] objectForKey:@"list"];

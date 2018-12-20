@@ -48,9 +48,9 @@
 }
 
 - (void)configwidth:(NSDictionary *)dict{
-//    NSLog(@"dict----->%@",dict);
-//    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"url"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
-//    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]]];
+    NSLog(@"dict----->%@",dict);
+   
+
     self.titleLabel.text = [dict objectForKey:@"name"];
 //    @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.subLabel.text = [dict objectForKey:@"subTitle"];
@@ -59,7 +59,7 @@
     self.redBgLabel.text =  [dict objectForKey:@"discountDesc"];
 //    @"低至6折";
     NSString *salesVolume = [NSString stringWithFormat:@"%@",[dict objectForKey:@"salesVolume"]];
-     NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"distribuionCount"]];
+     NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"distributionCount"]];
     NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
     NSString *deliveryPrice = [NSString stringWithFormat:@"%@位会员分销了这张卡,已售出%@件",salesVolume,distribuionCount];
     NSString *price1 = salesVolume;
@@ -68,7 +68,7 @@
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
     
     self.numLabel.attributedText = attributestring;
-
+    [self.picImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"首页_列表"]];
 //    NSDictionary * attubtrDict1 = @{NSFontAttributeName:UIFontRegularOfSize(22),NSForegroundColorAttributeName:[UIColor whiteColor]};
 //    NSString *deliveryPrice1 =@"代理价低至 3 折";
 //    NSString *price1 = @"3";
@@ -91,12 +91,12 @@
     return _bgImageView;
 }
 
-//-(UIImageView *)picImageView{
-//    if (_picImageView == nil) {
-//        _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, 175)];
-//    }
-//    return _picImageView;
-//}
+-(UIImageView *)picImageView{
+    if (_picImageView == nil) {
+        _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(35), SCALE_W(25), SCALE_W(100), SCALE_W(139- 50))];
+    }
+    return _picImageView;
+}
 //
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {

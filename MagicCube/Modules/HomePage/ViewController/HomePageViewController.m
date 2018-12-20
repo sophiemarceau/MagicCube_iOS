@@ -210,7 +210,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
     [BTERequestTools requestWithURLString:kAppApiHomePageModuleMenu parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
+//        NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"];
             self.moduleResultDic = (NSDictionary *)responseObject;
