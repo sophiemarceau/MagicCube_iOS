@@ -1,8 +1,8 @@
 //
-//  CardDetailView.h
+//  GoodsInfoView.h
 //  MagicCube
 //
-//  Created by wanmeizty on 19/12/18.
+//  Created by wanmeizty on 20/12/18.
 //  Copyright © 2018年 wanmeizty. All rights reserved.
 //
 
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CardDetailView : UIView
-
+@interface GoodsInfoView : UIView
+- (void)setUPdata:(NSDictionary *)dict;
 @end
 
 NS_ASSUME_NONNULL_END

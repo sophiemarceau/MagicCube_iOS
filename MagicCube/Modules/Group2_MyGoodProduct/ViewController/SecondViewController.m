@@ -42,7 +42,7 @@
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         NMRemovLoadIng;
-        NSLog(@"---kAppApiLogin--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             
         }else{

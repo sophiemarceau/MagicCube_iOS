@@ -119,7 +119,12 @@ static NSTimeInterval   requestTimeout = 20.f;
     
     AFHTTPSessionManager *manager = [self manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-   manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    if (User.token) {
+        [manager.requestSerializer setValue:User.token forHTTPHeaderField:@"CUBE_TOKEN"];
+    }
+   
+   
     if (networkStatus == YQNetworkStatusNotReachable) {
         if (failBlock) failBlock(YQ_ERROR);
         [BHToast showMessage:@"网络未连接"];
@@ -183,6 +188,9 @@ static NSTimeInterval   requestTimeout = 20.f;
     
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    if (User.token) {
+        [manager.requestSerializer setValue:User.token forHTTPHeaderField:@"CUBE_TOKEN"];
+    }
     if (networkStatus == YQNetworkStatusNotReachable) {
         if (failBlock) failBlock(YQ_ERROR);
         [BHToast showMessage:@"网络未连接"];

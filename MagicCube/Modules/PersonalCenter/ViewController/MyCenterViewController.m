@@ -24,11 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addSubView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
+    [self requestGetUserInfo];
+    
+    
     
     
 }
@@ -36,6 +40,34 @@
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.navigationController.navigationBar setHidden:NO];
+}
+
+#pragma mark -- 数据
+- (void)requestGetUserInfo{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    WS(weakSelf)
+    NSLog(@"-----kAppApiGetUser--->%@",params);
+    NMShowLoadIng;
+//
+    NSString * url = [NSString stringWithFormat:@"%@?CUBE_TOKEN=%@",kAppApiGetUser,User.token];
+    NSLog(@"%@",User.token);
+    [BTERequestTools requestWithURLString:kAppApiGetUser parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiGetUser--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+//            [weakSelf performSelectorOnMainThread:@selector(dealDetailData:) withObject:responseObject waitUntilDone:YES];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+    
 }
 
 -(void)addSubView{

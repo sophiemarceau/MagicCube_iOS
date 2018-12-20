@@ -1,24 +1,14 @@
 //
-//  CardDetailView.m
+//  MagicCardView.m
 //  MagicCube
 //
-//  Created by wanmeizty on 19/12/18.
+//  Created by wanmeizty on 20/12/18.
 //  Copyright © 2018年 wanmeizty. All rights reserved.
 //
 
-#import "CardDetailView.h"
+#import "MagicCardView.h"
 
-@implementation CardDetailView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-    }
-    return self;
-}
-
+@implementation MagicCardView
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
