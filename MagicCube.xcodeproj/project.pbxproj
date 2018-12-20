@@ -51,6 +51,7 @@
 		936EA03921B7A23200CD1A4E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA03821B7A23200CD1A4E /* LoginViewController.m */; };
 		936EA03C21B7AEF200CD1A4E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936EA03B21B7AEF200CD1A4E /* RegisterViewController.m */; };
 		93B6C87021CA2D44002A920C /* ZTGCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B6C86E21CA2D44002A920C /* ZTGCDTimerManager.m */; };
+		93B6C87321CB72DF002A920C /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B6C87121CB72DF002A920C /* NSString+Size.m */; };
 		93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2621A52E8C004D8111 /* MainViewController.m */; };
 		93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2721A52E8D004D8111 /* AppDelegate.m */; };
 		93CF8E3221A52ECA004D8111 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E2C21A52ECA004D8111 /* Tools.m */; };
@@ -200,6 +201,8 @@
 		936EA03B21B7AEF200CD1A4E /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		93B6C86E21CA2D44002A920C /* ZTGCDTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTGCDTimerManager.m; sourceTree = "<group>"; };
 		93B6C86F21CA2D44002A920C /* ZTGCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTGCDTimerManager.h; sourceTree = "<group>"; };
+		93B6C87121CB72DF002A920C /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		93B6C87221CB72DF002A920C /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		93CF8E2521A52E8C004D8111 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		93CF8E2621A52E8C004D8111 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		93CF8E2721A52E8D004D8111 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -799,6 +802,8 @@
 		B2649BC621A50C0300C871C8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				93B6C87221CB72DF002A920C /* NSString+Size.h */,
+				93B6C87121CB72DF002A920C /* NSString+Size.m */,
 				932DFD7D21C0FB890052051B /* NSString+category.h */,
 				932DFD7E21C0FB890052051B /* NSString+category.m */,
 				7DB9F88621A5A278005D4DD4 /* UIView+category.h */,
@@ -1128,6 +1133,7 @@
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
 				936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */,
 				93CF8E3721A52ED2004D8111 /* UIImage+help.m in Sources */,
+				93B6C87321CB72DF002A920C /* NSString+Size.m in Sources */,
 				B272875F21BF92FD0002FE0A /* ZTYAlertView.m in Sources */,
 				B209F19321A7F5AB0043E485 /* TableTitleHeadView.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,

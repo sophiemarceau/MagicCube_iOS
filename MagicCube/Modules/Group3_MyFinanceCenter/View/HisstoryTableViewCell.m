@@ -39,9 +39,8 @@
 }
 
 - (void)configwidth:(NSDictionary *)dict{
-    self.nameLabel.text =[dict objectForKey:@"name"];
-//    self.priceLabel.text =[dict objectForKey:@"price"];
-    self.timeLabel.text =[dict objectForKey:@"price"];
+    self.nameLabel.text = stringFormat([dict objectForKey:@"date"]);
+    self.timeLabel.text = [NSString stringWithFormat:@"¥%@",stringFormat([dict objectForKey:@"income"])];
 }
 
 + (CGFloat)cellHeight{

@@ -119,7 +119,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [pramaDic setObject:[self getNowTimeTimestamp] forKey:@"time"];
     [BTERequestTools requestWithURLString:kAppApiHomePageDistriRecent parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
+//        NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"];
             NSDictionary *dic = array[0];
@@ -140,7 +140,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
     [BTERequestTools requestWithURLString:kAppApiHomePagePlatform parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiHomePagePlatform--responseObject--->%@",responseObject);
+//        NSLog(@"---kAppApiHomePagePlatform--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSString *price1 = [NSString stringWithFormat:@"%@",[dic objectForKey:@"user"]];
@@ -166,7 +166,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
     [BTERequestTools requestWithURLString:kAppApiiHomePageUserRecentList parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiiHomePageUserRecentList--responseObject--->%@",responseObject);
+//        NSLog(@"---kAppApiiHomePageUserRecentList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             
             NSArray *array = [responseObject objectForKey:@"data"];

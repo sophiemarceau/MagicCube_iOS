@@ -48,7 +48,7 @@
 }
 
 - (void)configwidth:(NSDictionary *)dict{
-    NSLog(@"dict----->%@",dict);
+//    NSLog(@"dict----->%@",dict);
    
 
     self.titleLabel.text = [dict objectForKey:@"name"];
@@ -97,7 +97,7 @@
     }
     return _picImageView;
 }
-//
+
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, 13,SCALE_W(110 +72.5), 40)];
