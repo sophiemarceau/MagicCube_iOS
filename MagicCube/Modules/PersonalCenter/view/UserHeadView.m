@@ -47,6 +47,7 @@
         CGFloat width = (SCREEN_WIDTH - 20) / 4.0;
         for (int index = 0; index < array.count; index ++) {
             MemberLevelView * memberView = [[MemberLevelView alloc] initWithFrame:CGRectMake(index * width, 0, width, SCALE_W(70))];
+            memberView.tag = 500 + index;
             LineLRPosition pos = LinePositionShowLeftRight;
             if (index == 0) {
                 
@@ -58,7 +59,7 @@
             }else{
                 pos = LinePositionShowLeftRight;
             }
-            [memberView configView:imgArray[index] levelText:array[index] LineLRPosition:pos];
+            [memberView configView:imgArray[index] lightImage:imgArray[index] levelText:array[index] LineLRPosition:pos];
 //            memberView.backgroundColor = [UIColor whiteColor];
             [self.shadowView addSubview:memberView];
         }
@@ -73,6 +74,25 @@
 }
 
 - (void)configWithDict:(NSDictionary *)dict{
+    NSArray * levels = [dict objectForKey:@"memberRule"];
+    
+    NSDictionary * userInfo = [dict objectForKey:@"userInfo"];
+    
+    NSInteger memberLevel = [[userInfo objectForKey:@"memberLevel"] integerValue];
+    
+    int index = 0;
+    for (NSDictionary * subdict in levels) {
+        MemberLevelView * memberView = [self.shadowView viewWithTag:500+index];
+        NSString * name = [subdict objectForKey:@"name"];
+        NSInteger level = [[userInfo objectForKey:@"level"] integerValue];
+        if (level <= memberLevel) {
+            [memberView setUpName:name imgLight:YES];
+        }else{
+            [memberView setUpName:name imgLight:NO];
+        }
+        
+        index ++;
+    }
 //    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Bitmap"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
     [self.memberTypeBtn setImage:[UIImage imageNamed:@"zuanshihuiyuan"] forState:UIControlStateNormal];
     [self.memberTypeBtn setTitle:@"钻石会员" forState:UIControlStateNormal];
@@ -90,7 +110,7 @@
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subString:price];
     self.magicPointLabel.attributedText = attributestring;
     [self.detailBtn setTitle:@"奖励细则？" forState:UIControlStateNormal];
-    self.nameLabel.text = @"用户名";
+    self.nameLabel.text = [userInfo objectForKey:@"nickname"];//@"用户名";
     [self.menberBtn setTitle:@"升级会员" forState:UIControlStateNormal];
 }
 

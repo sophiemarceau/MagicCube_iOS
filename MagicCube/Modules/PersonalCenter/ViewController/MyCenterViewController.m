@@ -51,13 +51,44 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiGetUser--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-//            [weakSelf performSelectorOnMainThread:@selector(dealDetailData:) withObject:responseObject waitUntilDone:YES];
+            [weakSelf performSelectorOnMainThread:@selector(dealUserInfo:) withObject:responseObject waitUntilDone:YES];
         }else{
             NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
             [BHToast showMessage:message];
         }
     } failure:^(NSError *error)  {
 
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+    
+}
+
+- (void)dealUserInfo:(NSDictionary *)responseObject{
+    
+    NSDictionary * dataDict = [responseObject objectForKey:@"data"];
+    [self.headView configWithDict:dataDict];
+}
+
+- (void)requestCreateDistribution{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    WS(weakSelf)
+    NSLog(@"-----kAppApiGetUser--->%@",params);
+    NMShowLoadIng;
+    
+    [BTERequestTools requestWithURLString:kAppApiGetUser parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiGetUser--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf performSelectorOnMainThread:@selector(dealUserInfo:) withObject:responseObject waitUntilDone:YES];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        
         NMRemovLoadIng;
         NSLog(@"error-------->%@",error);
     }];

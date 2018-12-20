@@ -16,8 +16,11 @@ typedef NS_ENUM(NSInteger , LineLRPosition) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MemberLevelView : UIView
+
 - (instancetype)initWithFrame:(CGRect)frame imgW:(CGFloat)width;
-- (void)configView:(NSString *)imgName levelText:(NSString *)levelStr LineLRPosition:(LineLRPosition)pos;
+- (void)setUpName:(NSString *)name imgLight:(BOOL)light;
+//- (void)configView:(NSString *)imgName levelText:(NSString *)levelStr LineLRPosition:(LineLRPosition)pos;
+- (void)configView:(NSString *)imgName lightImage:(NSString *)lightImg levelText:(NSString *)levelStr LineLRPosition:(LineLRPosition)pos;
 @end
 
 NS_ASSUME_NONNULL_END

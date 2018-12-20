@@ -54,8 +54,14 @@
     return self;
 }
 
-- (void)configView:(NSString *)imgName levelText:(NSString *)levelStr LineLRPosition:(LineLRPosition)pos{
-    [self.imgView setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];;
+- (void)setUpName:(NSString *)name imgLight:(BOOL)light{
+    self.levelLabel.text = name;
+    self.imgView.selected = light;
+}
+
+- (void)configView:(NSString *)imgName lightImage:(NSString *)lightImg levelText:(NSString *)levelStr LineLRPosition:(LineLRPosition)pos{
+    [self.imgView setBackgroundImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
+     [self.imgView setBackgroundImage:[UIImage imageNamed:lightImg] forState:UIControlStateSelected];
     self.levelLabel.text = levelStr;
     
     if (pos == LinePositionShowLeftRight) {

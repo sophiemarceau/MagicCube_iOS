@@ -73,6 +73,32 @@
     [self.cardView setUpGoodsDict:dataDict];
 }
 
+- (void)requestCreateDistribution{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [params setObject:self.snStr forKey:@"sn"];
+    WS(weakSelf)
+    NSLog(@"-----CreateDistribution--->%@",params);
+    NMShowLoadIng;
+    NSString * requestUrl = [NSString stringWithFormat:@"%@/%@/distribution",kAppApiGoodsDetail,self.snStr];
+    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypePost success:^(id responseObject) {
+        
+        NMRemovLoadIng;
+        NSLog(@"---CreateDistribution--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            DistributeGoodsViewController * distributeVC = [[DistributeGoodsViewController alloc] init];
+            [self.navigationController pushViewController:distributeVC animated:YES];
+
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
 -(void)initdata{
     self.title = @"商品卡详情";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -165,8 +191,10 @@
 }
 
 -(void)distriute:(UIButton *)btn{
-    DistributeGoodsViewController * distributeVC = [[DistributeGoodsViewController alloc] init];
-    [self.navigationController pushViewController:distributeVC animated:YES];
+    
+    [self requestCreateDistribution];
+//    DistributeGoodsViewController * distributeVC = [[DistributeGoodsViewController alloc] init];
+//    [self.navigationController pushViewController:distributeVC animated:YES];
 }
 
 @end

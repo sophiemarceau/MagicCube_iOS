@@ -22,13 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.pageNum = 1;
+    
     [self goodsInit];
-    [self createFakeData];
     [self addSubViews];
     [self requestList:self.pageNum];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 #pragma mark -- 数据
 - (void)requestList:(NSInteger)pageNum{
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
@@ -39,19 +41,21 @@
     NMShowLoadIng;
     
     [BTERequestTools requestWithURLString:kAppApiDistributionList parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
         NMRemovLoadIng;
         NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            
+            NSArray * list = [[responseObject objectForKey:@"data"] objectForKey:@"list"];
+            [weakSelf.goodsArray addObjectsFromArray:list];
+            [weakSelf.tableView reloadData];
         }else{
 //            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
 //            [BHToast showMessage:message];
         }
     } failure:^(NSError *error)  {
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
         NMRemovLoadIng;
         NSLog(@"error-------->%@",error);
     }];
@@ -59,14 +63,10 @@
 
 - (void)goodsInit{
     _goodsArray = [NSMutableArray arrayWithCapacity:0];
+    self.pageNum = 1;
     self.title = @"分销中心";
     self.view.backgroundColor =  [UIColor whiteColor];
 }
-
-- (void)createFakeData{
-    [_goodsArray addObjectsFromArray:@[@"分销中心_1",@"分销中心_2"]];
-}
-
 
 #pragma mark -- 视图
 - (void)addSubViews{
@@ -84,6 +84,7 @@
     WS(weakSelf);
     MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.pageNum = 1;
+        [weakSelf.goodsArray removeAllObjects];
         [self requestList:weakSelf.pageNum];
     }];
     tabelview.mj_header = header;

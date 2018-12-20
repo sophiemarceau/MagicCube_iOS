@@ -45,13 +45,23 @@
 
 - (void)setUpDistributeDict:(NSDictionary *)dataDict{
     
-//    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
-//    [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
-    self.titleLabel.text = @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
-    self.unitLabel.text = @"干燕窝原料印尼进口 CAIQ溯源";
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
+    [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+    self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
+    self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.opinionLabel.text = @"会员分销价";
-    [self.priceBtn setTitle:@"低至6折" forState:UIControlStateNormal];
-    self.distrubePriceLabel.text = @"分销提货价 688元（5折）";
+    NSString * originalPrice = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"originalPrice"] doubleValue]];
+    [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
+    
+    
+    NSDictionary * attubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
+    NSString *discount = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"discount"]];
+    NSString *price = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];;
+    NSString *deliveryPrice =[NSString stringWithFormat:@"分销提货价 %@元（%@折）",price,discount];
+    NSArray *attrArray = @[price,discount];
+    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
+    self.distrubePriceLabel.attributedText = attributestring;//@"分销提货价 688元（5折）";
+//    self.distrubePriceLabel.text = @"分销提货价 688元（5折）";
     self.distrubePriceLabel.frame = CGRectMake(SCALE_W(173), SCALE_W(108.5), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), SCALE_W(12));
     self.distrubeInfoLabel.text = @"36客户浏览  已分销8张，分销利润23765元";
     self.distrubeInfoLabel.hidden = NO;
@@ -72,9 +82,8 @@
     self.opinionLabel.text = @"会员分销价";
     [self.priceBtn setTitle:[dataDict objectForKey:@"discountDesc"] forState:UIControlStateNormal];
     // 位会员分销了这张卡,已售出
+    
     NSDictionary * attubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
-    
-    
     NSString *distributionCount = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"distributionCount"] integerValue]];
     NSString *salesVolume = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"salesVolume"] integerValue]];;
     NSString *deliveryPrice =[NSString stringWithFormat:@"%@位会员分销了这张卡,已售出%@件",salesVolume,distributionCount];
