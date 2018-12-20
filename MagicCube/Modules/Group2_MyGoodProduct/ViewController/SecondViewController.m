@@ -76,6 +76,8 @@
     tabelview.rowHeight = [MagicCardTableViewCell cellHeight];
     tabelview.separatorStyle = UITableViewCellSeparatorStyleNone;
     tabelview.tableFooterView = [UIView new];
+    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(14.5))];
+    tabelview.tableHeaderView = headView;
     [self.view addSubview:tabelview];
     self.tableView = tabelview;
     
