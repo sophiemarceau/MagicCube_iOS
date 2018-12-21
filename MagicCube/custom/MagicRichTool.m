@@ -40,7 +40,17 @@
     for (NSString *subString in subStringArray) {
         NSRange range = [str rangeOfString:subString];
         [attributeString addAttributes:dict range:range];
+        str = [self replaceStr:str subString:subString];
     }
     return attributeString;
+}
+
++(NSString *)replaceStr:(NSString *)string subString:(NSString *)subString{
+    NSRange range = [string rangeOfString:subString];
+    NSMutableString * mutString = [NSMutableString stringWithString:string];
+    for (NSInteger i = range.location; i <range.length; i++) {
+        [mutString replaceCharactersInRange:NSMakeRange(i, 1) withString:@"#"];
+    }
+    return mutString;
 }
 @end

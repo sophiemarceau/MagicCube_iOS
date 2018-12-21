@@ -16,7 +16,15 @@ typedef NS_ENUM(NSInteger , LinePosition) {
 };
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol gradeUpDelegate <NSObject>
+
+- (void)gradeUp;
+- (void)gradeUpLevel:(NSInteger)level;
+
+@end
+
 @interface DistributeLevelView : UIView
+@property (weak,nonatomic) id<gradeUpDelegate>delegate;
 - (void)configTextRed:(BOOL)isred
                 level:(NSString *)level
                 price:(CGFloat)price

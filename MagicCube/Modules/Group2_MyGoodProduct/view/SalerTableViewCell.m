@@ -64,10 +64,11 @@
 }
 
 - (void)configDict:(NSDictionary *)dict{
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"icon"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
-    self.nameLabel.text = @"张某某";
-    self.priceLabel.text = @"￥888";
-    self.dateLabel.text = @"12/12";
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"userAvatar"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
+    
+    self.nameLabel.text = [dict objectForKey:@"userNickname"];
+    self.priceLabel.text = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"price"] doubleValue]];
+    self.dateLabel.text = [dict objectForKey:@"date"];
 }
 
 + (CGFloat)cellHeight{

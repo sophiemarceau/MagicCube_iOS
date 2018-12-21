@@ -85,6 +85,13 @@
 		B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900721AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900821AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
+		B25F70F221CCB5D9002EFA10 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F121CCB5D9002EFA10 /* SettingViewController.m */; };
+		B25F70F521CCB720002EFA10 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F421CCB720002EFA10 /* SettingTableViewCell.m */; };
+		B25F70F821CCC59A002EFA10 /* JoinClubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F721CCC59A002EFA10 /* JoinClubViewController.m */; };
+		B25F70FB21CCCAC2002EFA10 /* MyInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70FA21CCCAC2002EFA10 /* MyInviteViewController.m */; };
+		B25F70FE21CCCE8F002EFA10 /* InviteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70FD21CCCE8F002EFA10 /* InviteTableViewCell.m */; };
+		B25F710121CCD321002EFA10 /* OpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F710021CCD321002EFA10 /* OpinionViewController.m */; };
+		B25F710421CCD376002EFA10 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F710321CCD376002EFA10 /* AboutViewController.m */; };
 		B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */; };
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
@@ -272,6 +279,20 @@
 		B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B240900421AEA1FF00887B6A /* DistributeGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeGoodsViewController.h; sourceTree = "<group>"; };
 		B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeGoodsViewController.m; sourceTree = "<group>"; };
+		B25F70F021CCB5D9002EFA10 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		B25F70F121CCB5D9002EFA10 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		B25F70F321CCB720002EFA10 /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
+		B25F70F421CCB720002EFA10 /* SettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
+		B25F70F621CCC59A002EFA10 /* JoinClubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoinClubViewController.h; sourceTree = "<group>"; };
+		B25F70F721CCC59A002EFA10 /* JoinClubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoinClubViewController.m; sourceTree = "<group>"; };
+		B25F70F921CCCAC2002EFA10 /* MyInviteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInviteViewController.h; sourceTree = "<group>"; };
+		B25F70FA21CCCAC2002EFA10 /* MyInviteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInviteViewController.m; sourceTree = "<group>"; };
+		B25F70FC21CCCE8F002EFA10 /* InviteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteTableViewCell.h; sourceTree = "<group>"; };
+		B25F70FD21CCCE8F002EFA10 /* InviteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteTableViewCell.m; sourceTree = "<group>"; };
+		B25F70FF21CCD321002EFA10 /* OpinionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpinionViewController.h; sourceTree = "<group>"; };
+		B25F710021CCD321002EFA10 /* OpinionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpinionViewController.m; sourceTree = "<group>"; };
+		B25F710221CCD376002EFA10 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		B25F710321CCD376002EFA10 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		B2633AEF21AF7B47001E1490 /* DistributionShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributionShareViewController.h; sourceTree = "<group>"; };
 		B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributionShareViewController.m; sourceTree = "<group>"; };
 		B2649BC721A50C0300C871C8 /* UIColor+YW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YW.m"; sourceTree = "<group>"; };
@@ -662,6 +683,16 @@
 			children = (
 				93CF8E8C21A53734004D8111 /* MyCenterViewController.h */,
 				93CF8E8D21A53734004D8111 /* MyCenterViewController.m */,
+				B25F70F021CCB5D9002EFA10 /* SettingViewController.h */,
+				B25F70F121CCB5D9002EFA10 /* SettingViewController.m */,
+				B25F70F621CCC59A002EFA10 /* JoinClubViewController.h */,
+				B25F70F721CCC59A002EFA10 /* JoinClubViewController.m */,
+				B25F70F921CCCAC2002EFA10 /* MyInviteViewController.h */,
+				B25F70FA21CCCAC2002EFA10 /* MyInviteViewController.m */,
+				B25F70FF21CCD321002EFA10 /* OpinionViewController.h */,
+				B25F710021CCD321002EFA10 /* OpinionViewController.m */,
+				B25F710221CCD376002EFA10 /* AboutViewController.h */,
+				B25F710321CCD376002EFA10 /* AboutViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -795,6 +826,10 @@
 				B2408FEE21AE2D3B00887B6A /* MemberLevelView.m */,
 				B209F19421A7F9160043E485 /* InviteView.h */,
 				B209F19521A7F9160043E485 /* InviteView.m */,
+				B25F70F321CCB720002EFA10 /* SettingTableViewCell.h */,
+				B25F70F421CCB720002EFA10 /* SettingTableViewCell.m */,
+				B25F70FC21CCCE8F002EFA10 /* InviteTableViewCell.h */,
+				B25F70FD21CCCE8F002EFA10 /* InviteTableViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1116,6 +1151,7 @@
 				932DFD7121BFB8D80052051B /* YQMemoryCache.m in Sources */,
 				7DC3BA2921C15A3700612DAA /* UUID.m in Sources */,
 				93CF8E3221A52ECA004D8111 /* Tools.m in Sources */,
+				B25F710121CCD321002EFA10 /* OpinionViewController.m in Sources */,
 				93CF8E3E21A52EEF004D8111 /* FLAnimatedImage.m in Sources */,
 				932DFD7F21C0FB8A0052051B /* NSString+category.m in Sources */,
 				7D709BB521ADC0FB004155C0 /* YXIgnoreHeaderTouchTableView.m in Sources */,
@@ -1132,17 +1168,22 @@
 				936E9FC421A66AC300CD1A4E /* MemberView.m in Sources */,
 				7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */,
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
+				B25F70FB21CCCAC2002EFA10 /* MyInviteViewController.m in Sources */,
 				936EA02D21AD4D4100CD1A4E /* SPPageMenu.m in Sources */,
 				93CF8E3721A52ED2004D8111 /* UIImage+help.m in Sources */,
 				93B6C87321CB72DF002A920C /* NSString+Size.m in Sources */,
 				B272875F21BF92FD0002FE0A /* ZTYAlertView.m in Sources */,
 				B209F19321A7F5AB0043E485 /* TableTitleHeadView.m in Sources */,
+				B25F70F821CCC59A002EFA10 /* JoinClubViewController.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,
 				9333626E21B92DF9001065C7 /* forgetViewController.m in Sources */,
 				B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */,
 				93CF8E4821A52EFC004D8111 /* BaseViewController.m in Sources */,
+				B25F70F221CCB5D9002EFA10 /* SettingViewController.m in Sources */,
 				9333627121B93080001065C7 /* wechatLoginViewController.m in Sources */,
+				B25F70FE21CCCE8F002EFA10 /* InviteTableViewCell.m in Sources */,
 				B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */,
+				B25F710421CCD376002EFA10 /* AboutViewController.m in Sources */,
 				B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */,
 				7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */,
 				932DFD8221C105ED0052051B /* PhoneInfo.m in Sources */,
@@ -1152,6 +1193,7 @@
 				936E9FE421A7FF6100CD1A4E /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				7DB9F89521A5AB3C005D4DD4 /* TYCyclePagerView.m in Sources */,
 				936E9FCE21A6B10300CD1A4E /* HisstoryTableViewCell.m in Sources */,
+				B25F70F521CCB720002EFA10 /* SettingTableViewCell.m in Sources */,
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */,

@@ -13,7 +13,7 @@
 #import "DistributeGoodsViewController.h"
 #import "MagicCardView.h"
 #import "AppDelegate.h"
-@interface DistributeDetailViewController (){
+@interface DistributeDetailViewController ()<gradeUpDelegate>{
     NSDictionary *returnDataDic;
 }
 @property (strong,nonatomic) AVPlayer * player;
@@ -33,6 +33,72 @@
     [self requestDetail];
 }
 
+#pragma mark -- 数据
+- (void)requestDetail{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    WS(weakSelf)
+    NSLog(@"-----kAppApiGoodsDetail--->%@",params);
+    NMShowLoadIng;
+    NSString * requestUrl = [NSString stringWithFormat:@"%@/%@",kAppApiGoodsDetail,self.snStr];
+    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiGoodsDetail--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf performSelectorOnMainThread:@selector(dealDetailData:) withObject:responseObject waitUntilDone:YES];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+- (void)dealDetailData:(NSDictionary *)dict{
+    NSDictionary * dataDict = [dict objectForKey:@"data"];
+    
+    NSString * videoUrl = [dataDict objectForKey:@"video"];
+    NSURL * url = [NSURL URLWithString:videoUrl];
+    self.player = [AVPlayer playerWithURL:url];
+    self.playerLayer.player = self.player;
+    
+    [self.goodsInfoView setUPdata:dataDict];
+    
+    [self.cardView setUpGoodsDict:dataDict];
+    
+    NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
+    NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
+    [self.memberView setUpdata:memberRuleRes currentUserMemberLevel:currentUserMemberLevel];
+}
+
+- (void)requestCreateDistribution{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [params setObject:self.snStr forKey:@"sn"];
+    WS(weakSelf)
+    NSLog(@"-----CreateDistribution--->%@",params);
+    NMShowLoadIng;
+    NSString * requestUrl = [NSString stringWithFormat:@"%@/%@/distribution",kAppApiGoodsDetail,self.snStr];
+    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypePost success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---CreateDistribution--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.mainVc setSelectedIndex:1];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
 -(void)initdata{
     self.title = @"商品卡详情";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -49,6 +115,7 @@
     [cardBGView addSubview:self.cardView];
     
     DetailMemberView * memberView = [[DetailMemberView alloc] initWithFrame:CGRectMake(0, SCALE_W(173.5), SCREEN_WIDTH, SCALE_W(195.5))];
+    memberView.gradeDelegate = self;
     self.memberView = memberView;
     [rootView addSubview:memberView];
     
@@ -106,65 +173,9 @@
     rootView.contentSize = CGSizeMake(0, SCALE_W(818));
 }
 
-#pragma mark -- 数据
-- (void)requestCreateDistribution{
-    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-    [params setObject:self.snStr forKey:@"sn"];
-    WS(weakSelf)
-    NSLog(@"-----CreateDistribution--->%@",params);
-    NMShowLoadIng;
-    NSString * requestUrl = [NSString stringWithFormat:@"%@/%@/distribution",kAppApiGoodsDetail,self.snStr];
-    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypePost success:^(id responseObject) {
-        NMRemovLoadIng;
-        NSLog(@"---CreateDistribution--responseObject--->%@",responseObject);
-        if (IsSucess(responseObject)) {
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
-            AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            [appDelegate.mainVc setSelectedIndex:1];
-        }else{
-            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
-            [BHToast showMessage:message];
-        }
-    } failure:^(NSError *error)  {
-        NMRemovLoadIng;
-        NSLog(@"error-------->%@",error);
-    }];
-}
 
-- (void)requestDetail{
-    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-    WS(weakSelf)
-    NSLog(@"-----kAppApiGoodsDetail--->%@",params);
-    NMShowLoadIng;
-    NSString * requestUrl = [NSString stringWithFormat:@"%@/%@",kAppApiGoodsDetail,self.snStr];
-    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
-        
-        NMRemovLoadIng;
-        NSLog(@"---kAppApiGoodsDetail--responseObject--->%@",responseObject);
-        if (IsSucess(responseObject)) {
-            [weakSelf performSelectorOnMainThread:@selector(dealDetailData:) withObject:responseObject waitUntilDone:YES];
-        }else{
-            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
-            [BHToast showMessage:message];
-        }
-    } failure:^(NSError *error)  {
-        NMRemovLoadIng;
-        NSLog(@"error-------->%@",error);
-    }];
-}
-
-- (void)dealDetailData:(NSDictionary *)dict{
-    NSDictionary * dataDict = [dict objectForKey:@"data"];
-    NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
-    [self.memberView setUpdata:memberRuleRes];
-    
-    NSString * videoUrl = [dataDict objectForKey:@"video"];
-    NSURL * url = [NSURL URLWithString:videoUrl];
-    self.player = [AVPlayer playerWithURL:url];
-    self.playerLayer.player = self.player;
-    
-    [self.goodsInfoView setUPdata:dataDict];
-    [self.cardView setUpGoodsDict:dataDict];
+-(void)gradeUpLevel:(NSInteger)level{
+    NSLog(@"%ld",level);
 }
 
 #pragma mark -- btn

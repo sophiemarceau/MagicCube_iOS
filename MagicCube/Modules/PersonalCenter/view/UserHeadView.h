@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserHeadView : UIView
-@property (copy,nonatomic) void(^joinMember)(NSInteger clickIndex);
+@property (copy,nonatomic) void(^btnClickBlock)(NSInteger clickIndex);
 - (void)configWithDict:(NSDictionary *)dict;
 @end
 

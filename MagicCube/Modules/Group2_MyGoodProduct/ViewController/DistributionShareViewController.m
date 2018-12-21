@@ -16,8 +16,10 @@
 @property (strong,nonatomic) UIButton * distributeShareBtn;
 @property (strong,nonatomic) UIButton * distributeRecordBtn;
 @property (strong,nonatomic) NSMutableArray * recordsArray;
+@property (strong,nonatomic) UITableView * recordsTableView;
 @property (strong,nonatomic) UIScrollView * bottomScrollview;
 @property (strong,nonatomic) MagicCardView * cardView;
+@property (assign,nonatomic) NSInteger pageNum;
 @end
 
 @implementation DistributionShareViewController
@@ -28,21 +30,24 @@
     [self initdata];
     [self addSubViews];
     [self requestInfo];
+    [self requestRecords:1];
     // Do any additional setup after loading the view.
 }
 
 #pragma mark -- 数据
 - (void)requestInfo{
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-   
-    WS(weakSelf)
-    NSLog(@"-----kAppApiDistributionList--->%@",params);
-    NMShowLoadIng;
+    NSString * goodsSn = [self.goodsdict objectForKey:@"goodsSn"];
     
-    [BTERequestTools requestWithURLString:kAppApiDistributionList parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+    [params setObject:goodsSn forKey:@"sn"];
+    WS(weakSelf)
+    NSLog(@"-----kAppApiDistribution--->%@",params);
+    NMShowLoadIng;
+    NSString * urlStr = [NSString stringWithFormat:@"%@%@",kAppApiDistribution,goodsSn];
+    [BTERequestTools requestWithURLString:urlStr parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
         
         NMRemovLoadIng;
-        NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiDistribution--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             
         }else{
@@ -56,9 +61,47 @@
     }];
 }
 
+- (void)requestRecords:(NSInteger)pageNum{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    WS(weakSelf)
+    NSLog(@"-----requestRecords--->%@",params);
+    NMShowLoadIng;
+    NSString * goodsSn = [self.goodsdict objectForKey:@"goodsSn"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@%@/records",kAppApiDistribution,goodsSn];
+    [BTERequestTools requestWithURLString:urlStr parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        [weakSelf.recordsTableView.mj_header endRefreshing];
+        [weakSelf.recordsTableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"---requestRecords--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            NSDictionary * dataDict = [responseObject objectForKey:@"data"];
+            if (dataDict) {
+                
+                NSString * recordBtnTitle = [NSString stringWithFormat:@"分销记录 (%ld条)",[[dataDict objectForKey:@"total"] integerValue]];
+                [weakSelf.distributeRecordBtn setTitle:recordBtnTitle forState:UIControlStateNormal];
+                
+                NSArray *list = [dataDict objectForKey:@"list"];
+                [weakSelf.recordsArray addObjectsFromArray:list];
+                [weakSelf.recordsTableView reloadData];
+            }
+        }else{
+            
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        [weakSelf.recordsTableView.mj_header endRefreshing];
+        [weakSelf.recordsTableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
 - (void)initdata{
     self.title = @"分销中心";
     self.recordsArray = [NSMutableArray arrayWithCapacity:0];
+    self.pageNum = 1;
 }
 
 #pragma mark -- 视图
@@ -72,7 +115,7 @@
    
     
     self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
-    [self.cardView setUpDistributeDict:@{}];
+    [self.cardView setUpDistributeDict:self.goodsdict];
     [rootView addSubview:self.cardView];
     
     top += SCALE_W(163.5);
@@ -85,12 +128,12 @@
     [rootView addSubview:selectBgView];
     top += SCALE_W(30 + 15);
     
-    NSArray * selectTitles = @[@"分销到",@"分销记录 (10条)"];
+    NSArray * selectTitles = @[@"分销到",@"分销记录"];
     int index = 0;
     for (NSString * selectTitle in selectTitles) {
         UIButton * selectBtn = [self createSelectBtn:CGRectMake(index *SCALE_W(133), 0, SCALE_W(133), SCALE_W(30))];
         [selectBtn setTitle:selectTitle forState:UIControlStateNormal];
-        [selectBtn setTitle:selectTitle forState:UIControlStateSelected];
+//        [selectBtn setTitle:selectTitle forState:UIControlStateSelected];
         [selectBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
         [selectBgView addSubview:selectBtn];
         if (index == 0) {
@@ -143,6 +186,21 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.tableFooterView = [UIView new];
     [selectBottomView addSubview:tableView];
+    self.recordsTableView = tableView;
+    
+    WS(weakSelf);
+    MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.pageNum = 1;
+        [weakSelf.recordsArray removeAllObjects];
+        [self requestRecords:weakSelf.pageNum];
+    }];
+    tableView.mj_header = header;
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageNum ++;
+        [self requestRecords:weakSelf.pageNum];
+    }];
+    tableView.mj_footer = footer;
     
     UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,62)];
     headView.backgroundColor = [UIColor whiteColor];
@@ -168,7 +226,7 @@
 
 #pragma --mark tableview 代理
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;//self.recordsArray.count;
+    return self.recordsArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -176,7 +234,8 @@
     if (!cell) {
         cell = [[SalerTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"record"];
     }
-    [cell configDict:@{}];
+    NSDictionary * cellDict = self.recordsArray[indexPath.row];
+    [cell configDict:cellDict];
     return cell;
 }
 
@@ -197,8 +256,10 @@
         CGPoint contentOffset = self.bottomScrollview.contentOffset;
         contentOffset.x = 1 * SCREEN_WIDTH;
         [self.bottomScrollview setContentOffset:contentOffset animated:YES];
-        
-        [self.distributeRecordBtn setTitle:@"分销记录 (10条)" forState:UIControlStateNormal];
+
+        if (self.recordsArray.count == 0) {
+            [self requestRecords:1];
+        }
     }
 }
 

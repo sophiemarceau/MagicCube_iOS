@@ -90,6 +90,7 @@
     tabelview.mj_header = header;
     
     MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageNum ++;
         [self requestList:weakSelf.pageNum];
     }];
     tabelview.mj_footer = footer;
@@ -113,9 +114,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    NSDictionary * goodsDict = _goodsArray[indexPath.row];
 //    DistributeDetailViewController * goodsDetail = [[DistributeDetailViewController alloc] init];
     DistributionShareViewController * goodsDetail = [[DistributionShareViewController alloc] init];
+    goodsDetail.goodsdict = goodsDict;
     [self.navigationController pushViewController:goodsDetail animated:YES];
 }
 
