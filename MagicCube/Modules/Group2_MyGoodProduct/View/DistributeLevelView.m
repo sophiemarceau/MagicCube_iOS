@@ -80,12 +80,13 @@
     
     [self.gradeBtn setTitle:gradetext forState:UIControlStateNormal];
     if (isgreaded) {
-        [self.gradeBtn setTitleColor:[UIColor colorWithHexString:@"999999" alpha:0.3] forState:UIControlStateNormal];
-        self.gradeBtn.layer.borderColor = [UIColor colorWithHexString:@"999999" alpha:0.3].CGColor;
-    }else{
         [self.gradeBtn setTitleColor:RedMagicColor forState:UIControlStateNormal];
         self.gradeBtn.layer.borderColor = RedMagicColor.CGColor;
+    }else{
+        [self.gradeBtn setTitleColor:[UIColor colorWithHexString:@"999999" alpha:0.3] forState:UIControlStateNormal];
+        self.gradeBtn.layer.borderColor = [UIColor colorWithHexString:@"999999" alpha:0.3].CGColor;
     }
+//    self.gradeBtn.userInteractionEnabled = isgreaded;
     
     if (posision == LinePositionShowUp) {
      // 只有上
@@ -166,10 +167,17 @@
         _gradeBtn.layer.cornerRadius = 2;
         _gradeBtn.titleLabel.font = UIFontRegularOfSize(SCALE_W(12));
         _gradeBtn.layer.borderColor = [UIColor colorWithHexString:@"999999" alpha:0.3].CGColor;
+        [_gradeBtn addTarget:self action:@selector(gradeUp:) forControlEvents:UIControlEventTouchUpInside];
         _gradeBtn.layer.borderWidth = 0.5;
         _gradeBtn.layer.masksToBounds = YES;
     }
     return _gradeBtn;
+}
+
+- (void)gradeUp:(UIButton *)btn{
+    if ([self.delegate respondsToSelector:@selector(gradeUp)]) {
+        [self.delegate gradeUp];
+    }
 }
 
 /*

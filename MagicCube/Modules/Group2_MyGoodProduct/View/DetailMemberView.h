@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DistributeLevelView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailMemberView : UIView
+@property (weak,nonatomic) id<gradeUpDelegate>gradeDelegate;
 -(void)setUpdata:(NSArray *)array;
+-(void)setUpdata:(NSArray *)array currentUserMemberLevel:(NSInteger)currentUserMemberLevel;
 @end
 
 NS_ASSUME_NONNULL_END

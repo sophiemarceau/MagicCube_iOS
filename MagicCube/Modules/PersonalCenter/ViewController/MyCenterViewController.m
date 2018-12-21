@@ -8,6 +8,8 @@
 //
 
 #import "MyCenterViewController.h"
+#import "SettingViewController.h"
+
 #import "UserHeadView.h"
 #import "TableTitleHeadView.h"
 #import "InviteView.h"
@@ -98,9 +100,14 @@
 -(void)addSubView{
     self.headView = [[UserHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(288))];
     WS(weakSelf);
-    self.headView.joinMember = ^(NSInteger clickIndex) {
+    self.headView.btnClickBlock = ^(NSInteger clickIndex) {
 //        [weakSelf.tableView reloadData];
-        [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.alertView];
+        if (clickIndex == 3000) {
+            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.alertView];
+        }else if(clickIndex == 3001){
+            SettingViewController * settingVC = [[SettingViewController alloc] init];
+            [weakSelf.navigationController pushViewController:settingVC animated:YES];
+        }
         
     };
     [self.headView configWithDict:@{}];

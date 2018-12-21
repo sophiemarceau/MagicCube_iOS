@@ -78,7 +78,7 @@ static NSString * const kHeader = @"https://l.bte.top/";
 #define kAppApiDistributionrecords [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/sn-sn/records"]
 
 //通过代销记录SN获取商品信息
-#define kAppApiDistributionInfo [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/sn-sn"]
+#define kAppApiDistribution [NSString stringWithFormat:@"%@%@",kDomain,@"api/goods/distribution/"]
 
 
 #endif /* BHHttpConstant_h */

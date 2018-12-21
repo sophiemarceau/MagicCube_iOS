@@ -19,6 +19,7 @@
 @property (strong,nonatomic) UIImageView * redBGView;
 @property (strong,nonatomic) MagicLabel * nameLabel;
 @property (strong,nonatomic) UIButton * detailBtn;
+@property (strong,nonatomic) UIButton * settingBtn;
 
 @property (strong,nonatomic) UIView * shadowView;
 
@@ -41,7 +42,9 @@
         [self addSubview:self.magicPointLabel];
         [self addSubview:self.detailBtn];
         [self addSubview:self.shadowView];
+       
         [self.shadowView addSubview:self.menberBtn];
+        
         NSArray * array = @[@"普通会员",@"黄金会员",@"白金会员",@"钻石会员"];
         NSArray * imgArray = @[@"putong",@"huanjin",@"putong",@"zuanshi"];
         CGFloat width = (SCREEN_WIDTH - 20) / 4.0;
@@ -63,6 +66,7 @@
 //            memberView.backgroundColor = [UIColor whiteColor];
             [self.shadowView addSubview:memberView];
         }
+         [self addSubview:self.settingBtn];
         MagicLineView * lineview = [[MagicLineView alloc] initWithFrame:CGRectMake(0, frame.size.height - 0.5, SCREEN_WIDTH, 0.5)];
         [self addSubview:lineview];
     }
@@ -93,7 +97,7 @@
         
         index ++;
     }
-//    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Bitmap"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Bitmap"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
     [self.memberTypeBtn setImage:[UIImage imageNamed:@"zuanshihuiyuan"] forState:UIControlStateNormal];
     [self.memberTypeBtn setTitle:@"钻石会员" forState:UIControlStateNormal];
     [self.memberTypeBtn leftAlignmentImgLeftTitleRight:YES middleSpace:5 leftSpace:0];
@@ -194,8 +198,21 @@
         _detailBtn.titleLabel.textAlignment = NSTextAlignmentRight;
         [_detailBtn setTitleColor:RedMagicColor forState:UIControlStateNormal];
         [_detailBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _detailBtn.tag = 3000;
     }
     return _detailBtn;
+}
+
+-(UIButton *)settingBtn{
+    if (!_settingBtn) {
+        _settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(68), SCALE_W(68), SCALE_W(68), SCALE_W(24))];
+        [_settingBtn setTitleColor:BHColorWhite forState:UIControlStateNormal];
+        [_settingBtn setTitle:@"设置" forState:UIControlStateNormal];
+        [_settingBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _settingBtn.titleLabel.font = UIFontRegularOfSize(14);
+        _settingBtn.tag = 3001;
+    }
+    return _settingBtn;
 }
 
 -(UIView *)shadowView{
@@ -223,8 +240,8 @@
 }
 
 - (void)btnClick:(UIButton *)btn{
-    if (self.joinMember) {
-        self.joinMember(btn.tag);
+    if (self.btnClickBlock) {
+        self.btnClickBlock(btn.tag);
     }
 }
 /*
