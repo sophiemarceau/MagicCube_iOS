@@ -15,5 +15,5 @@ static NSString *const NotificationJGPush = @"JpushNotice";
 static NSString *const  kLeaveTopNotificationName  = @"leaveTop";//离开置顶命令
 static NSString *const  kGoTopNotificationName     = @"goTop";//进入置顶命令
 
-static NSString *const NOTIFICATION_NAME_LOGINSELECT  =     @"logSelect";
+static NSString *const NOTIFICATION_NAME_LOGINStatusChange  =     @"logSelect";
 #endif /* BHNotificationConstant_h */

@@ -199,7 +199,7 @@
             yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
             [yy save];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINSELECT object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
         [self.view endEditing:YES];

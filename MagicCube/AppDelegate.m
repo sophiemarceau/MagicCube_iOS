@@ -7,11 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
+#import "RegisterViewController.h"
 #import "WXApiManager.h"
 #import "WXApi.h"
+#import "BaseNavigationViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+   
+}
 
 @end
 
@@ -19,17 +22,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //在登陆界面判断登陆成功之后发送通知,将所选的TabbarItem传回,使用通知传值
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logSelect:) name:NOTIFICATION_NAME_LOGINStatusChange object:nil];     //接收
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    MainViewController *mainVc = [[MainViewController alloc] init];
-    self.window.rootViewController = mainVc;
-    
-    
+    self.mainVc = [[MainViewController alloc] init];
+    [self setupKeyWindow];
     [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString *log) {
         NSLog(@"log : %@", log);
     }];
-    
     //向微信注册
     [WXApi registerApp:kWechatAppKey enableMTA:YES];
     return YES;
@@ -62,5 +64,21 @@
     return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 
+- (void)logSelect:(NSNotification *)text{
+    [self setupKeyWindow];
+}
+
+- (void)setupKeyWindow {
+    if(User.token){
+        self.window.rootViewController = self.mainVc;
+    }else{
+        RegisterViewController *vc = [[RegisterViewController alloc] init];
+        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc] initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+    }
+}
 @end
