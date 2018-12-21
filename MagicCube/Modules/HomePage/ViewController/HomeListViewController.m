@@ -130,8 +130,7 @@
         DistributeDetailViewController *vc= [[DistributeDetailViewController alloc] init];
      NSDictionary *dic = [self.listArray objectAtIndex:indexPath.row];
      vc.snStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"sn"]];
-//     wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+
     
 //    if (indexPath.row == 0) {
 //        wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];

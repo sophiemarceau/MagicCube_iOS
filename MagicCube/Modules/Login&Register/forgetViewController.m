@@ -250,7 +250,7 @@
 
 -(UITextField *)phoneTextField{
     if (_phoneTextField == nil) {
-        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(47.5 -14), SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
+        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(47.5 -14), SCREEN_WIDTH - 80 - 100 - 10,  SCALE_W(14*3))];
         _phoneTextField.placeholder = @"请输入手机号";
         _phoneTextField.textAlignment = NSTextAlignmentLeft;
         _phoneTextField.tintColor = GrayMagicColor;
@@ -273,7 +273,7 @@
 -(UIButton *)codeMessageBtn{
     if (_codeMessageBtn == nil) {
         _codeMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - 40 -99.5, SCALE_W(40), 99.5, 27);
+        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - 40 -99.5, SCALE_W(40),  SCALE_W(99.5),  SCALE_W(27));
         _codeMessageBtn.titleLabel.font = UIFontRegularOfSize(14);
         _codeMessageBtn.titleLabel.textColor = Gray666Color;
         _codeMessageBtn.layer.masksToBounds = YES;
@@ -306,7 +306,7 @@
 
 -(UITextField *)codeTextField{
     if (_codeTextField == nil) {
-        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView1.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
+        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView1.bottom + SCALE_W(25-14), SCREEN_WIDTH - 80 ,  SCALE_W(14*3))];
         _codeTextField.placeholder = @"请输入短信验证码";
         _codeTextField.textAlignment = NSTextAlignmentLeft;
         _codeTextField.tintColor = GrayMagicColor;
@@ -326,7 +326,7 @@
 
 -(UITextField *)pwdTextField{
     if (_pwdTextField == nil) {
-        _pwdTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView2.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
+        _pwdTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView2.bottom + SCALE_W(25-14), SCREEN_WIDTH - 80 , SCALE_W( 14*3))];
         _pwdTextField.placeholder = @"请设置6～20位密码";
         _pwdTextField.textAlignment = NSTextAlignmentLeft;
         _pwdTextField.tintColor = GrayMagicColor;
@@ -348,7 +348,7 @@
 -(UIButton *)finishBtn{
     if (_finishBtn == nil) {
         _finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _finishBtn.frame = CGRectMake(40, SCALE_W(234), SCREEN_WIDTH - 80, 45);
+        _finishBtn.frame = CGRectMake(40, SCALE_W(234), SCREEN_WIDTH - 80,  SCALE_W(45));
         _finishBtn.titleLabel.font = UIFontMediumOfSize(18);
         _finishBtn.layer.masksToBounds = YES;
         _finishBtn.layer.cornerRadius = 45/2;
@@ -363,7 +363,7 @@
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {
         _pwdChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, 159, SCALE_W(15), SCALE_W(7));
+        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15,  SCALE_W(159), SCALE_W(15), SCALE_W(7));
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"鼻炎"] forState:UIControlStateNormal];
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"睁眼"] forState:UIControlStateSelected];
         [_pwdChangeBtn addTarget:self action:@selector(pwdTextSwitch:) forControlEvents:UIControlEventTouchUpInside];

@@ -11,7 +11,7 @@
 #import <VerifyCode/NTESVerifyCodeManager.h>
 #import "WXApiManager.h"
 #import "ChangeDeviceViewController.h"
-
+#import "wechatLoginViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate,WXApiManagerDelegate>{
     UIView *lineView1,*lineView2;
     NSInteger i;
@@ -211,6 +211,8 @@
         //第三方向微信终端发送一个SendAuthReq消息结构
         [WXApi sendReq:req];
     }
+//    wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)onClickforgetBtn:(UIButton *)sender{
@@ -358,7 +360,7 @@
 
 -(UITextField *)phoneTextField{
     if (_phoneTextField == nil) {
-        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(186.5 -14), SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
+        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(186.5)-SCALE_W(14), SCREEN_WIDTH - 80 - 100 - 10, SCALE_W(14*3))];
         _phoneTextField.placeholder = @"请输入手机号";
         _phoneTextField.textAlignment = NSTextAlignmentLeft;
         _phoneTextField.tintColor = GrayMagicColor;
@@ -370,7 +372,7 @@
 
 -(UITextField *)codeTextField{
     if (_codeTextField == nil) {
-        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, lineView1.bottom +25-14, SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
+        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, lineView1.bottom +SCALE_W(25-14), SCREEN_WIDTH - 80 - 100 - 10, SCALE_W(14*3))];
         _codeTextField.placeholder = @"请输入您的登录密码";
         //请输入您的登录密码
         _codeTextField.textAlignment = NSTextAlignmentLeft;
@@ -384,7 +386,7 @@
 -(UIButton *)codeMessageBtn{
     if (_codeMessageBtn == nil) {
         _codeMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - 40 -99.5, SCALE_W(179), 99.5, 27);
+        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - 40 -99.5, SCALE_W(179), SCALE_W(99.5), SCALE_W(27));
         _codeMessageBtn.titleLabel.font = UIFontRegularOfSize(14);
         _codeMessageBtn.titleLabel.textColor = Gray666Color;
         _codeMessageBtn.layer.masksToBounds = YES;
@@ -402,7 +404,7 @@
 -(UIButton *)loginBtn{
     if (_loginBtn == nil) {
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _loginBtn.frame = CGRectMake(40, SCALE_W(317), SCREEN_WIDTH - 80, 45);
+        _loginBtn.frame = CGRectMake(40, SCALE_W(317), SCREEN_WIDTH - 80, SCALE_W(45));
         _loginBtn.titleLabel.font = UIFontMediumOfSize(18);
         _loginBtn.layer.masksToBounds = YES;
         _loginBtn.layer.cornerRadius = 45/2;
@@ -488,7 +490,7 @@
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {
         _pwdChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, 244, SCALE_W(15), SCALE_W(7));
+        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 - 15, SCALE_W(244), SCALE_W(15), SCALE_W(7));
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"鼻炎"] forState:UIControlStateNormal];
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"睁眼"] forState:UIControlStateSelected];
         [_pwdChangeBtn addTarget:self action:@selector(pwdTextSwitch:) forControlEvents:UIControlEventTouchUpInside];

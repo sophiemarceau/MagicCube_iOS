@@ -293,7 +293,7 @@
 
 -(UITextField *)codeTextField{
     if (_codeTextField == nil) {
-        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(87.25-14), SCREEN_WIDTH - 80 - 15 - 45 - 10, 14*3)];
+        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(87.25-14), SCREEN_WIDTH -  SCALE_W(80 )-SCALE_W( 15) - SCALE_W(45) -SCALE_W( 10),  SCALE_W(14*3))];
         _codeTextField.placeholder = @"请输入您的登录密码";
         //请输入您的登录密码
         _codeTextField.textAlignment = NSTextAlignmentLeft;
@@ -339,7 +339,7 @@
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {
         _pwdChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, 91, SCALE_W(15), SCALE_W(7));
+        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, SCALE_W(91), SCALE_W(15), SCALE_W(7));
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"鼻炎"] forState:UIControlStateNormal];
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"睁眼"] forState:UIControlStateSelected];
         [_pwdChangeBtn addTarget:self action:@selector(pwdTextSwitch:) forControlEvents:UIControlEventTouchUpInside];
@@ -358,7 +358,7 @@
 
 -(UITextField *)phoneTextField{
     if (_phoneTextField == nil) {
-        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(87.5 -14), SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
+        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(87.5 -14), SCREEN_WIDTH - SCALE_W(80) - SCALE_W(100) - SCALE_W(10), SCALE_W(14*3))];
         _phoneTextField.placeholder = @"请输入手机号";
         _phoneTextField.textAlignment = NSTextAlignmentLeft;
         _phoneTextField.tintColor = GrayMagicColor;
@@ -372,7 +372,7 @@
 -(UIButton *)codeMessageBtn{
     if (_codeMessageBtn == nil) {
         _codeMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - 40 -99.5, SCALE_W(80), 99.5, 27);
+        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - SCALE_W(40) -SCALE_W(99.5), SCALE_W(80), SCALE_W(99.5), SCALE_W(27));
         _codeMessageBtn.titleLabel.font = UIFontRegularOfSize(14);
         _codeMessageBtn.titleLabel.textColor = Gray666Color;
         _codeMessageBtn.layer.masksToBounds = YES;

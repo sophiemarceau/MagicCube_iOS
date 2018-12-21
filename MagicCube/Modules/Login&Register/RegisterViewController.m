@@ -11,6 +11,8 @@
 #import <VerifyCode/NTESVerifyCodeManager.h>
 #import "JPUSHService.h"
 #import "WXApiManager.h"
+#import "wechatLoginViewController.h"
+
 @interface RegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate,WXApiManagerDelegate>{
      NSInteger i;
     NSString * sendaccount;
@@ -130,6 +132,9 @@
         //第三方向微信终端发送一个SendAuthReq消息结构
         [WXApi sendReq:req];
     }
+//    wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 -(void)checkPhoneNumberWhetherRegister{
@@ -276,14 +281,14 @@
 -(UIImageView *)iconImageView{
     if (_iconImageView == nil) {
         _iconImageView  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"图标"]];
-        _iconImageView.frame = CGRectMake((SCREEN_WIDTH - 79)/2, 40, 79, 79);
+        _iconImageView.frame = CGRectMake((SCREEN_WIDTH - 79)/2, SCALE_W(40), SCALE_W(79), SCALE_W(79));
     }
     return _iconImageView;
 }
 
 -(UITextField *)phoneTextField{
     if (_phoneTextField == nil) {
-        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(166.5 -14), SCREEN_WIDTH - 80 - 100 - 10, 14*3)];
+        _phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, SCALE_W(194.5)-SCALE_W(14*3), SCREEN_WIDTH - 80 - 100 - 10,SCALE_W(14*3) )];
         _phoneTextField.placeholder = @"请输入手机号";
         _phoneTextField.textAlignment = NSTextAlignmentLeft;
         _phoneTextField.tintColor = GrayMagicColor;
@@ -306,7 +311,7 @@
 -(UIButton *)codeMessageBtn{
     if (_codeMessageBtn == nil) {
         _codeMessageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - 40 -99.5, SCALE_W(159), 99.5, 27);
+        _codeMessageBtn.frame = CGRectMake(SCREEN_WIDTH - 40 -99.5, SCALE_W(159),SCALE_W(99.5) , SCALE_W(27));
         _codeMessageBtn.titleLabel.font = UIFontRegularOfSize(14);
         _codeMessageBtn.titleLabel.textColor = Gray666Color;
         _codeMessageBtn.layer.masksToBounds = YES;
@@ -339,7 +344,7 @@
 
 -(UITextField *)codeTextField{
     if (_codeTextField == nil) {
-        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView1.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
+        _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView1.bottom +SCALE_W(25-14), SCREEN_WIDTH - 80 , SCALE_W(14*3))];
         _codeTextField.placeholder = @"请输入短信验证码";
         _codeTextField.keyboardType = UIKeyboardTypePhonePad;
         _codeTextField.textAlignment = NSTextAlignmentLeft;
@@ -361,7 +366,7 @@
 
 -(UITextField *)pwdTextField{
     if (_pwdTextField == nil) {
-        _pwdTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView2.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
+        _pwdTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView2.bottom +SCALE_W(25-14), SCREEN_WIDTH - 80 , SCALE_W(14*3))];
         _pwdTextField.placeholder = @"请设置6～20位密码";
         _pwdTextField.textAlignment = NSTextAlignmentLeft;
         _pwdTextField.tintColor = GrayMagicColor;
@@ -384,7 +389,7 @@
 
 -(UITextField *)inviteTextField{
     if (_inviteTextField == nil) {
-        _inviteTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView3.bottom +25-14, SCREEN_WIDTH - 80 , 14*3)];
+        _inviteTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, self.lineView3.bottom +SCALE_W(25-14), SCREEN_WIDTH - 80 , SCALE_W(14*3))];
         _inviteTextField.placeholder = @"请输入邀请码（选填）";
         _inviteTextField.textAlignment = NSTextAlignmentLeft;
         _inviteTextField.tintColor = GrayMagicColor;
@@ -407,7 +412,7 @@
 -(UIButton *)registerBtn{
     if (_registerBtn == nil) {
         _registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _registerBtn.frame = CGRectMake(40, SCALE_W(387.5), SCREEN_WIDTH - 80, 45);
+        _registerBtn.frame = CGRectMake(40, SCALE_W(387.5), SCREEN_WIDTH - 80, SCALE_W(45));
         _registerBtn.titleLabel.font = UIFontMediumOfSize(18);
         _registerBtn.layer.masksToBounds = YES;
         _registerBtn.layer.cornerRadius = 45/2;
@@ -467,7 +472,7 @@
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {
         _pwdChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, 278, SCALE_W(15), SCALE_W(7));
+        _pwdChangeBtn.frame = CGRectMake(SCREEN_WIDTH - 45 -15, SCALE_W(278), SCALE_W(15), SCALE_W(7));
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"鼻炎"] forState:UIControlStateNormal];
         [_pwdChangeBtn setImage:[UIImage imageNamed:@"睁眼"] forState:UIControlStateSelected];
         [_pwdChangeBtn addTarget:self action:@selector(pwdTextSwitch:) forControlEvents:UIControlEventTouchUpInside];
