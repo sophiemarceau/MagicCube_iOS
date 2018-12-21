@@ -138,7 +138,6 @@
     NMShowLoadIng;
     NSString * requestUrl = [NSString stringWithFormat:@"%@/%@",kAppApiGoodsDetail,self.snStr];
     [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
-        
         NMRemovLoadIng;
         NSLog(@"---kAppApiGoodsDetail--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
@@ -158,7 +157,7 @@
     NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
     [self.memberView setUpdata:memberRuleRes];
     
-    NSString * videoUrl = [dataDict objectForKey:@"video"];
+    NSString *videoUrl = [dataDict objectForKey:@"video"];
     NSURL * url = [NSURL URLWithString:videoUrl];
     self.player = [AVPlayer playerWithURL:url];
     self.playerLayer.player = self.player;

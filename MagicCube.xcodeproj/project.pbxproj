@@ -630,8 +630,8 @@
 		93CF8E7C21A536B9004D8111 /* Group2_MyGoodProduct */ = {
 			isa = PBXGroup;
 			children = (
-				B2059C3D21A6596300F70C07 /* model */,
-				B2059C3E21A6596300F70C07 /* view */,
+				B2059C3D21A6596300F70C07 /* Model */,
+				B2059C3E21A6596300F70C07 /* View */,
 				93CF8E8121A536E8004D8111 /* ViewController */,
 			);
 			path = Group2_MyGoodProduct;
@@ -650,8 +650,8 @@
 		93CF8E7E21A536CD004D8111 /* PersonalCenter */ = {
 			isa = PBXGroup;
 			children = (
-				B253EC8D21A79953001DCBEB /* model */,
-				B253EC8E21A79953001DCBEB /* view */,
+				B253EC8D21A79953001DCBEB /* Model */,
+				B253EC8E21A79953001DCBEB /* View */,
 				93CF8E7F21A536D9004D8111 /* ViewController */,
 			);
 			path = PersonalCenter;
@@ -717,14 +717,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B2059C3D21A6596300F70C07 /* model */ = {
+		B2059C3D21A6596300F70C07 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		B2059C3E21A6596300F70C07 /* view */ = {
+		B2059C3E21A6596300F70C07 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B2059C3F21A659A100F70C07 /* MyGoodsTableViewCell.h */,
@@ -742,7 +742,7 @@
 				B218A4A721CB66BB00CFBA19 /* MagicCardView.h */,
 				B218A4A821CB66BB00CFBA19 /* MagicCardView.m */,
 			);
-			path = view;
+			path = View;
 			sourceTree = "<group>";
 		};
 		B2059C4321A65CAD00F70C07 /* custom */ = {
@@ -777,14 +777,14 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		B253EC8D21A79953001DCBEB /* model */ = {
+		B253EC8D21A79953001DCBEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		B253EC8E21A79953001DCBEB /* view */ = {
+		B253EC8E21A79953001DCBEB /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B2A76C2321A7AFFD00AFCC6C /* UserHeadView.h */,
@@ -796,7 +796,7 @@
 				B209F19421A7F9160043E485 /* InviteView.h */,
 				B209F19521A7F9160043E485 /* InviteView.m */,
 			);
-			path = view;
+			path = View;
 			sourceTree = "<group>";
 		};
 		B2649BC621A50C0300C871C8 /* Categories */ = {
