@@ -48,7 +48,7 @@
 +(NSString *)replaceStr:(NSString *)string subString:(NSString *)subString{
     NSRange range = [string rangeOfString:subString];
     NSMutableString * mutString = [NSMutableString stringWithString:string];
-    for (NSInteger i = range.location; i <range.length; i++) {
+    for (NSInteger i = range.location; i <range.location + range.length; i++) {
         [mutString replaceCharactersInRange:NSMakeRange(i, 1) withString:@"#"];
     }
     return mutString;

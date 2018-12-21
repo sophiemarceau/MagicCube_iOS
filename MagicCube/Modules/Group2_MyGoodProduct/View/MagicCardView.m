@@ -55,7 +55,7 @@
     
     
     NSDictionary * attubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
-    NSString *discount = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"discount"]];
+    NSString *discount = [NSString stringWithFormat:@"%d",(int)([[dataDict objectForKey:@"discount"] floatValue] * 100)];
     NSString *price = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];;
     NSString *deliveryPrice =[NSString stringWithFormat:@"分销提货价 %@元（%@折）",price,discount];
     NSArray *attrArray = @[price,discount];
@@ -63,7 +63,18 @@
     self.distrubePriceLabel.attributedText = attributestring;//@"分销提货价 688元（5折）";
 //    self.distrubePriceLabel.text = @"分销提货价 688元（5折）";
     self.distrubePriceLabel.frame = CGRectMake(SCALE_W(173), SCALE_W(108.5), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), SCALE_W(12));
-    self.distrubeInfoLabel.text = @"36客户浏览  已分销8张，分销利润23765元";
+    
+    
+    
+    NSDictionary * attubtrInfoDict = @{NSForegroundColorAttributeName:RedMagicColor};
+    
+    NSString *commission = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"commission"] doubleValue]];
+    NSString *accessCount = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"accessCount"] integerValue]];
+    NSString *salesVolume = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"salesVolume"] integerValue]];
+    NSString *distrubeInfo =[NSString stringWithFormat:@"%@客户浏览  已分销%@张，分销利润%@元",accessCount,salesVolume,commission];
+    NSArray *distrubeInfoArray = @[accessCount,salesVolume,commission];
+    NSAttributedString * distrubeInfoArrayattributestring = [MagicRichTool initWithString:distrubeInfo dict:attubtrInfoDict subStringArray:distrubeInfoArray];
+    self.distrubeInfoLabel.attributedText = distrubeInfoArrayattributestring;//@"36客户浏览  已分销8张，分销利润23765元";
     self.distrubeInfoLabel.hidden = NO;
     self.lineView.y = SCALE_W(105.5);
     

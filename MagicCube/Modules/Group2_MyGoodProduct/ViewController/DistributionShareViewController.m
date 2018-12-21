@@ -37,19 +37,19 @@
 #pragma mark -- 数据
 - (void)requestInfo{
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-    NSString * goodsSn = [self.goodsdict objectForKey:@"goodsSn"];
+    NSString * sn = [self.goodsdict objectForKey:@"sn"];
     
-    [params setObject:goodsSn forKey:@"sn"];
+    [params setObject:sn forKey:@"sn"];
     WS(weakSelf)
     NSLog(@"-----kAppApiDistribution--->%@",params);
     NMShowLoadIng;
-    NSString * urlStr = [NSString stringWithFormat:@"%@%@",kAppApiDistribution,goodsSn];
+    NSString * urlStr = [NSString stringWithFormat:@"%@%@",kAppApiDistribution,sn];
     [BTERequestTools requestWithURLString:urlStr parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
         
         NMRemovLoadIng;
         NSLog(@"---kAppApiDistribution--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            
+            [weakSelf.cardView setUpDistributeDict:[responseObject objectForKey:@"data"]];
         }else{
             NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
             [BHToast showMessage:message];
