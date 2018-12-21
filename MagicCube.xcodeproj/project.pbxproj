@@ -661,8 +661,8 @@
 		93CF8E7D21A536C2004D8111 /* Group3_MyFinanceCenter */ = {
 			isa = PBXGroup;
 			children = (
-				936E9FCB21A6B0E600CD1A4E /* View */,
 				93CF8E9421A5385B004D8111 /* Model */,
+				936E9FCB21A6B0E600CD1A4E /* View */,
 				93CF8E8021A536E2004D8111 /* ViewController */,
 			);
 			path = Group3_MyFinanceCenter;
