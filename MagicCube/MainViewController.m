@@ -24,9 +24,13 @@
 
 #pragma mark - 第一次使用当前类的时候对设置UITabBarItem的主题
 + (void)initialize{
-    UITabBarItem *tabBarItem = [UITabBarItem appearanceWhenContainedInInstancesOfClasses:@[self]];
-    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:GrayMagicColor} forState:UIControlStateNormal];
-    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:RedMagicColor} forState:UIControlStateSelected];
+    if (@available(iOS 9.0, *)) {
+        UITabBarItem *tabBarItem = [UITabBarItem appearanceWhenContainedInInstancesOfClasses:@[self]];
+        [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:GrayMagicColor} forState:UIControlStateNormal];
+        [tabBarItem setTitleTextAttributes:@{NSFontAttributeName:UIFontRegularOfSize(10),NSForegroundColorAttributeName:RedMagicColor} forState:UIControlStateSelected];
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 - (void)viewDidLoad {

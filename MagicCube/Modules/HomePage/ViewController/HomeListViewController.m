@@ -53,7 +53,7 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiHomePageList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            Boolean isLastPage = [[[responseObject objectForKey:@"data"] objectForKey:@"isLastPage"] boolValue];
+            Boolean isLastPage = [[[responseObject objectForKey:@"data"] objectForKey:@"lastPage"] boolValue];
             NSArray *array = [[responseObject objectForKey:@"data"] objectForKey:@"list"];
             [self.listArray removeAllObjects];
             [self.listArray addObjectsFromArray:array];
@@ -84,7 +84,7 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiHomePageList--responseObject--giveMeMoreData->%@",responseObject);
         if (IsSucess(responseObject)) {
-            Boolean isLastPage = [[[responseObject objectForKey:@"data"] objectForKey:@"isLastPage"] boolValue];
+            Boolean isLastPage = [[[responseObject objectForKey:@"data"] objectForKey:@"lastPage"] boolValue];
             NSArray *array = [[responseObject objectForKey:@"data"] objectForKey:@"list"];
             [self.listArray addObjectsFromArray:array];
             [self.baseTableView reloadData];

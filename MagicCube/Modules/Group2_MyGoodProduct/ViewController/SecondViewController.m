@@ -37,7 +37,7 @@
     [params setObject:[NSString stringWithFormat:@"%ld",pageNum] forKey:@"pageNum"];
     [params setObject:@"10" forKey:@"pageSize"];
     WS(weakSelf)
-    NSLog(@"-----kAppApiDistributionList--->%@",params);
+//    NSLog(@"-----kAppApiDistributionList--->%@",params);
     NMShowLoadIng;
     
     [BTERequestTools requestWithURLString:kAppApiDistributionList parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
