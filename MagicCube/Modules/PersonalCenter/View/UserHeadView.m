@@ -83,23 +83,31 @@
     NSDictionary * userInfo = [dict objectForKey:@"userInfo"];
     
     NSInteger memberLevel = [[userInfo objectForKey:@"memberLevel"] integerValue];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"avatar"]]];
+    [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Bitmap"]];
     
+    NSDictionary * leveldict;
     int index = 0;
     for (NSDictionary * subdict in levels) {
         MemberLevelView * memberView = [self.shadowView viewWithTag:500+index];
         NSString * name = [subdict objectForKey:@"name"];
         NSInteger level = [[userInfo objectForKey:@"level"] integerValue];
-        if (level <= memberLevel) {
+        if (level < memberLevel) {
             [memberView setUpName:name imgLight:YES];
+            leveldict = subdict;
+        }else if(level == memberLevel){
+            [memberView setUpName:name imgLight:YES];
+            leveldict = subdict;
         }else{
             [memberView setUpName:name imgLight:NO];
         }
         
         index ++;
     }
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"Bitmap"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
+    NSString * name = [leveldict objectForKey:@"name"];
+    
     [self.memberTypeBtn setImage:[UIImage imageNamed:@"zuanshihuiyuan"] forState:UIControlStateNormal];
-    [self.memberTypeBtn setTitle:@"钻石会员" forState:UIControlStateNormal];
+    [self.memberTypeBtn setTitle:name forState:UIControlStateNormal];
     [self.memberTypeBtn leftAlignmentImgLeftTitleRight:YES middleSpace:5 leftSpace:0];
 //    _nameBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 //    [_nameBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, - _nameBtn.imageView.width , 0, _nameBtn.imageView.width)];
