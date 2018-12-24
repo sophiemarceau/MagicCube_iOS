@@ -13,7 +13,8 @@
 @property (strong,nonatomic) MagicLabel * nameLabel;
 @property (strong,nonatomic) MagicLabel * detailLabel;
 @property (strong,nonatomic) MagicLabel * saleLabel;
-@property (strong,nonatomic) RedButton * priceBtn;
+//@property (strong,nonatomic) RedButton * priceBtn;
+@property (strong,nonatomic) UITextField * priceTextField;
 @end
 
 @implementation SmallCardView
@@ -32,7 +33,8 @@
     [self addSubview:self.nameLabel];
     [self addSubview:self.detailLabel];
     [self addSubview:self.saleLabel];
-    [self addSubview:self.priceBtn];
+//    [self addSubview:self.priceBtn];
+    [self addSubview:self.priceTextField];
 }
 
 - (void)setUpData:(NSDictionary *)dict{
@@ -41,8 +43,9 @@
     self.detailLabel.text = [dict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.saleLabel.text = @"售价";
     
-    NSString * price = [NSString stringWithFormat:@"%.2f元",[[dict objectForKey:@"price"] doubleValue]];
-    [self.priceBtn setTitle:price forState:UIControlStateNormal];
+    NSString * price = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"price"] doubleValue]];
+    self.priceTextField.text = price;
+//    [self.priceBtn setTitle:price forState:UIControlStateNormal];
     if ([dict objectForKey:@"image"]) {
         [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"home_jieqinghaowu"]];//[UIImage imageNamed:@"home_jieqinghaowu"];
     }
@@ -85,14 +88,21 @@
     return _saleLabel;
 }
 
--(RedButton *)priceBtn{
-    if (!_priceBtn) {
-        _priceBtn = [[RedButton alloc] initWithFrame:CGRectMake(SCALE_W(168), 72.5, SCALE_W(102), 23)];
-        _priceBtn.userInteractionEnabled = NO;
-        _priceBtn.titleLabel.font = UIFontLightOfSize(14);
-        [_priceBtn setLayerCornerRadius:23 * 0.5];
+//-(RedButton *)priceBtn{
+//    if (!_priceBtn) {
+//        _priceBtn = [[RedButton alloc] initWithFrame:CGRectMake(SCALE_W(168), 72.5, SCALE_W(102), 23)];
+//        _priceBtn.userInteractionEnabled = NO;
+//        _priceBtn.titleLabel.font = UIFontLightOfSize(14);
+//        [_priceBtn setLayerCornerRadius:23 * 0.5];
+//    }
+//    return _priceBtn;
+//}
+
+-(UITextField *)priceTextField{
+    if (!_priceTextField) {
+        _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(SCALE_W(168), 72.5, SCALE_W(102), 23)];
     }
-    return _priceBtn;
+    return _priceTextField;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

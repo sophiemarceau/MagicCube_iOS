@@ -39,7 +39,7 @@
     self.dataArray = @[@[@{@"left":@"加入魔方社群",@"right":@"",@"showRight":@(YES)},
                          @{@"left":@"我的邀请",@"right":@"8个好友",@"showRight":@(YES)}],
                        @[@{@"left":@"意见反馈",@"right":@"",@"showRight":@(YES)},
-                         @{@"left":@"版本升级",@"right":@"v1.1.1",@"showRight":@(NO)},
+                         @{@"left":@"版本升级",@"right":[NSString stringWithFormat:@"v%@",kCurrentVersion],@"showRight":@(NO)},
                          @{@"left":@"关于",@"right":@"",@"showRight":@(YES)}],];
 }
 

@@ -52,13 +52,11 @@
 
 #pragma mark -- 数据请求
 -(void)createDistribute{
-//    goodsDistributionDetailsRes
-    NSMutableDictionary * mutdict = [[NSMutableDictionary alloc] initWithCapacity:0];
-    [mutdict setObject:@"" forKey:@"distributionSn"];
-    [mutdict setObject:@"wechat" forKey:@"platform"];
-    [mutdict setObject:@"" forKey:@"price"];
+
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-    [params setObject:mutdict forKey:@"goodsDistributionDetailsRes"];
+    [params setObject:[self.dataDict objectForKey:@"sn"] forKey:@"distributionSn"];
+    [params setObject:@"wechat" forKey:@"platform"];
+    [params setObject:[self.dataDict objectForKey:@"price"] forKey:@"price"];
     WS(weakSelf)
     NSLog(@"-----kAppApiDistributionForward--->%@",params);
     NMShowLoadIng;
@@ -68,7 +66,8 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiDistributionForward--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-           
+            NSDictionary * dataDict = [responseObject objectForKey:@"data"];
+            [weakSelf performSelectorOnMainThread:@selector(rewords:) withObject:dataDict waitUntilDone:YES];
         }else{
             NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
             [BHToast showMessage:message];
@@ -132,8 +131,7 @@
     sender.selected = !sender.selected;
 }
 
--(void)gotoSmallProgrammer:(id)sender{
-    
+- (void)rewords:(NSDictionary *)dataDict{
     if ([WXApi isWXAppInstalled]) {
         WXMiniProgramObject *wxMiniObject = [WXMiniProgramObject object];
         wxMiniObject.webpageUrl = @"";
@@ -145,17 +143,17 @@
         //  WXMiniProgramTypeRelease = 0,       //**< 正式版  */
         // WXMiniProgramTypeTest = 1,        //**< 开发版  */
         //WXMiniProgramTypePreview = 2,         //**< 体验版  */
-//        launchMiniProgramReq.miniProgramType = WXMiniProgramTypePreview; //拉起小程序的类型
+        //        launchMiniProgramReq.miniProgramType = WXMiniProgramTypePreview; //拉起小程序的类型
         
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = @"魔方提货卡";
-//        message.description = @"小程序tdesc";
+        //        message.description = @"小程序tdesc";
         message.mediaObject = wxMiniObject;
         UIImage *thumbImage = [UIImage imageNamed:@"详情页"];
-//        nil;
+        //        nil;
         NSData *data = UIImageJPEGRepresentation(thumbImage, 0.1);
         message.thumbData = data;
-//        UIImage *resultImage = [UIImage imageWithData:data];
+        //        UIImage *resultImage = [UIImage imageWithData:data];
         //imageData;//兼容酒颁布节点图片，小于32k
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
         req.message = message;
@@ -164,11 +162,15 @@
         NSLog(@"returnFlag --->%d",returnFlag);
         
         
-//        [WXApi sendReq:launchMiniProgramReq];
+        //        [WXApi sendReq:launchMiniProgramReq];
     } else {
         [BHToast showMessage:@"请您先安装微信"];
     }
     NSLog(@"gotoSmallProgrammer");
+}
+
+-(void)gotoSmallProgrammer:(id)sender{
+    [self createDistribute];
 }
 
 
