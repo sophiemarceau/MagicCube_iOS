@@ -19,8 +19,8 @@ static NSString * const kHeader = @"https://m.bte.top/";
 #else
 //测试环境
 static NSString * const kDomain =
-@"http://172.16.24.185:8090/";
-//@"http://47.94.217.12:8090/";
+//@"http://172.16.24.185:8090/";
+@"http://47.94.217.12:8090/";
 static NSString * const kHeader = @"https://l.bte.top/";
 #define TimeString 7
 #endif
