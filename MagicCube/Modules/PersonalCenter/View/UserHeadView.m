@@ -83,8 +83,11 @@
     NSDictionary * userInfo = [dict objectForKey:@"userInfo"];
     
     NSInteger memberLevel = [[userInfo objectForKey:@"memberLevel"] integerValue];
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"avatar"]]];
-    [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Bitmap"]];
+    
+    if ([dict objectForKey:@"avatar"]) {
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"avatar"]]];
+        [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Bitmap"]];
+    }
     
     NSDictionary * leveldict;
     int index = 0;

@@ -92,6 +92,7 @@
 		B25F70FE21CCCE8F002EFA10 /* InviteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70FD21CCCE8F002EFA10 /* InviteTableViewCell.m */; };
 		B25F710121CCD321002EFA10 /* OpinionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F710021CCD321002EFA10 /* OpinionViewController.m */; };
 		B25F710421CCD376002EFA10 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F710321CCD376002EFA10 /* AboutViewController.m */; };
+		B26292BD21D0802F0001299B /* SmallCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B26292BC21D0802F0001299B /* SmallCardView.m */; };
 		B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */; };
 		B2649BCD21A50C0300C871C8 /* UIColor+YW.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC721A50C0300C871C8 /* UIColor+YW.m */; };
 		B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BC821A50C0300C871C8 /* UIView+Frame.m */; };
@@ -293,6 +294,8 @@
 		B25F710021CCD321002EFA10 /* OpinionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpinionViewController.m; sourceTree = "<group>"; };
 		B25F710221CCD376002EFA10 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		B25F710321CCD376002EFA10 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		B26292BB21D0802F0001299B /* SmallCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmallCardView.h; sourceTree = "<group>"; };
+		B26292BC21D0802F0001299B /* SmallCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmallCardView.m; sourceTree = "<group>"; };
 		B2633AEF21AF7B47001E1490 /* DistributionShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributionShareViewController.h; sourceTree = "<group>"; };
 		B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributionShareViewController.m; sourceTree = "<group>"; };
 		B2649BC721A50C0300C871C8 /* UIColor+YW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YW.m"; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 			children = (
 				7D709BBB21AEDFE6004155C0 /* SendPreviewViewController.h */,
 				7D709BBC21AEDFE6004155C0 /* SendPreviewViewController.m */,
+				B26292BB21D0802F0001299B /* SmallCardView.h */,
+				B26292BC21D0802F0001299B /* SmallCardView.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1184,6 +1189,7 @@
 				B25F70FE21CCCE8F002EFA10 /* InviteTableViewCell.m in Sources */,
 				B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */,
 				B25F710421CCD376002EFA10 /* AboutViewController.m in Sources */,
+				B26292BD21D0802F0001299B /* SmallCardView.m in Sources */,
 				B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */,
 				7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */,
 				932DFD8221C105ED0052051B /* PhoneInfo.m in Sources */,

@@ -64,7 +64,10 @@
 }
 
 - (void)configDict:(NSDictionary *)dict{
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"userAvatar"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
+    
+    if ([dict objectForKey:@"userAvatar"]) {
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"userAvatar"]]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
+    }
     
     self.nameLabel.text = [dict objectForKey:@"userNickname"];
     self.priceLabel.text = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"price"] doubleValue]];

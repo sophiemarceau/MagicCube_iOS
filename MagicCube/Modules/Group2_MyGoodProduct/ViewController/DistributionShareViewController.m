@@ -265,6 +265,7 @@
 
 - (void)shareClick:(UIButton *)btn{
     SendPreviewViewController * sendVC = [[SendPreviewViewController alloc] init];
+    sendVC.dataDict = self.goodsdict;
     [self.navigationController pushViewController:sendVC animated:YES];
 }
 

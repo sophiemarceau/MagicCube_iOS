@@ -9,6 +9,7 @@
 
 #import "SendPreviewViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SmallCardView.h"
 #import "WXApi.h"
 #import "WXApiManager.h"
 @interface SendPreviewViewController ()<WXApiManagerDelegate>
@@ -33,6 +34,8 @@
 @property(nonatomic,strong)UIImageView *addressImageView;
 
 @property(nonatomic,strong)UIImageView *bgImageView;
+
+@property (strong,nonatomic) SmallCardView * scardView;
 @end
 
 @implementation SendPreviewViewController
@@ -44,12 +47,61 @@
     [self initDatas];
     [self initSubviews];
     [self requestData];
+    [self configData];
+}
+
+#pragma mark -- 数据请求
+-(void)createDistribute{
+//    goodsDistributionDetailsRes
+    NSMutableDictionary * mutdict = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [mutdict setObject:@"" forKey:@"distributionSn"];
+    [mutdict setObject:@"wechat" forKey:@"platform"];
+    [mutdict setObject:@"" forKey:@"price"];
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [params setObject:mutdict forKey:@"goodsDistributionDetailsRes"];
+    WS(weakSelf)
+    NSLog(@"-----kAppApiDistributionForward--->%@",params);
+    NMShowLoadIng;
+    
+    [BTERequestTools requestWithURLString:kAppApiDistributionForward parameters:params type:HttpRequestTypePost success:^(id responseObject) {
+       
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiDistributionForward--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+           
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
 }
 
 -(void)requestData{}
 
 -(void)initDatas{
     self.title = @"发送预览";
+}
+
+- (void)configData{
+    [self.scardView setUpData:self.dataDict];
+    NSLog(@"%@",self.dataDict);
+    NSString * videoUrl = [self.dataDict objectForKey:@"video"];
+    NSURL * url = [NSURL URLWithString:videoUrl];
+    self.player = [AVPlayer playerWithURL:url];
+    self.playlayer.player = self.player;
+    NSString * manufacturer = [self.dataDict objectForKey:@"manufacturer"];
+    _identifylLabel.text = [NSString stringWithFormat:@"本卡产品认证生产商为%@",manufacturer];
+    _identifySubLabel.text = [NSString stringWithFormat:@"由%@数字签名确认",manufacturer];
+    
+    NSString * supplier = [self.dataDict objectForKey:@"supplier"];
+    _proNameTitleLabel.text = [NSString stringWithFormat:@"本卡产品认证发货商为%@",supplier];
+    _proNameSubLabel.text = [NSString stringWithFormat:@"由%@数字签名确认",supplier];
+    
+    
 }
 
 -(void)initSubviews{
@@ -81,6 +133,7 @@
 }
 
 -(void)gotoSmallProgrammer:(id)sender{
+    
     if ([WXApi isWXAppInstalled]) {
         WXMiniProgramObject *wxMiniObject = [WXMiniProgramObject object];
         wxMiniObject.webpageUrl = @"";
@@ -128,7 +181,8 @@
     if (_bgView == nil) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(85/2, 10.5, SCREEN_WIDTH - 85, 485)];
         _bgView.backgroundColor = [UIColor whiteColor];
-        [_bgView addSubview:self.headView];
+//        [_bgView addSubview:self.headView];
+        [_bgView addSubview:self.scardView];
         [_bgView.layer addSublayer:self.playlayer];
         
         _bgView.layer.cornerRadius = 10;
@@ -162,6 +216,13 @@
     return _envelopView;
 }
 
+-(SmallCardView *)scardView{
+    if (!_scardView) {
+        _scardView = [[SmallCardView alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, 110)];
+        [_scardView setUpData:@{}];
+    }
+    return _scardView;
+}
 -(UIImageView *)headView{
     if(_headView == nil){
         _headView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"头部卡片"]];
@@ -171,11 +232,11 @@
 }
 
 -(AVPlayerLayer *)playlayer{
-    if (_playlayer == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
-        NSURL * url = [NSURL fileURLWithPath:path];
-        self.player = [AVPlayer playerWithURL:url];
-        _playlayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    if (!_playlayer) {
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
+//        NSURL * url = [NSURL fileURLWithPath:path];
+//        self.player = [AVPlayer playerWithURL:url];
+        _playlayer = [[AVPlayerLayer alloc] init];//[AVPlayerLayer playerLayerWithPlayer:self.player];
         _playlayer.frame = CGRectMake(15, self.headView.bottom + 11.5, self.bgView.width - 30, SCALE_W(140.5));
         _playlayer.backgroundColor = [[UIColor clearColor] CGColor];
     }
