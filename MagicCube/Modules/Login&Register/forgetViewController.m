@@ -70,6 +70,7 @@
         return;
     }
     [self.manager openVerifyCodeView:nil];
+     [self.view endEditing:YES];
 }
 
 - (void)submit:(UIButton *)sender{

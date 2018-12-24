@@ -29,6 +29,7 @@
 @property (nonatomic,strong) UILabel *forgetPwdLabel;
 @property (nonatomic,strong) UILabel *gotoCodeLabel;
 @property (nonatomic, strong) NTESVerifyCodeManager *manager;
+@property (nonatomic,strong) NSString *localSessionStr;
 @end
 
 @implementation LoginViewController
@@ -38,6 +39,7 @@
     if (self.authFlag) {
         self.phoneTextField.text = self.phoneStr;
     }
+    self.localSessionStr = @"";
     i = 60;
     [WXApiManager sharedManager].delegate = self;
     [self initProtectMessageAttack];
@@ -104,12 +106,14 @@
 }
 
 -(void)sendRequest:(UIButton *)sender{
+   
     sendaccount = self.phoneTextField.text.trimString;
     if (!sendaccount.isValidateMobile) {
         [BHToast showMessage:@"手机号有误，请重新输入"];
         return;
     }
     [self.manager openVerifyCodeView:nil];
+     [self.view endEditing:YES];
 }
 
 -(void)loginOnclick:(UIButton *)sender{
@@ -152,6 +156,9 @@
         [pramaDic setObject:self.operationCodeStr forKey:@"operationCode"];
     }else{
         url = kAppApiLogin;
+    }
+    if(![self.localSessionStr isEqualToString:@""]){
+        [pramaDic setObject:self.localSessionStr forKey:@"localSession"];
     }
     NSLog(@"-----%@--->%@",url,pramaDic);
     NMShowLoadIng;
@@ -207,7 +214,7 @@
         //构造SendAuthReq结构体
         SendAuthReq* req = [[SendAuthReq alloc] init];
         req.scope = @"snsapi_userinfo";
-        req.state = @"123";
+        req.state = kWechatStatueStr;
         //第三方向微信终端发送一个SendAuthReq消息结构
         [WXApi sendReq:req];
     }
@@ -299,11 +306,38 @@
 }
 
 - (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
-    NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
     NSString *strMsg = [NSString stringWithFormat:@"code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
-    
-    NSLog(@"strTitle-------->%@",strTitle);
-     NSLog(@"strMsg-------->%@",strMsg);
+    NSLog(@"strMsg-------->%@",strMsg);
+    if([response.state isEqualToString:kWechatStatueStr]){
+        NSMutableDictionary * pramaDic = @{}.mutableCopy;
+        [pramaDic setObject:response.code forKey:@"code"];
+        WS(weakSelf)
+        NSLog(@"-----requestCheckApi--->%@",pramaDic);
+        NMShowLoadIng;
+        [BTERequestTools requestWithURLString:kAppApiWXogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+            NMRemovLoadIng;
+            NSLog(@"kAppApiWXogin-----responseObject--->%@",responseObject);
+            if (IsSucess(responseObject)) {
+                UserObject * yy =  [UserObject shareInstance];
+                yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
+                [yy save];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }else{
+                if( [[responseObject objectForKey:@"code"] isEqualToString:@"USER000"]){
+                    self.wechatBtn.hidden = YES;
+                    self.localSessionStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"localSession"]];
+                }
+            }
+            [self.view endEditing:YES];
+        } failure:^(NSError *error)  {
+            NMRemovLoadIng;
+            //        RequestError(error);
+            NSLog(@"error-------->%@",error);
+        }];
+        
+    }
 }
 
 #pragma mark - NTESVerifyCodeManagerDelegate

@@ -95,12 +95,14 @@
 }
 
 -(void)sendRequest:(UIButton *)sender{
+    [self.view endEditing:YES];
     sendaccount = self.phoneTextField.text.trimString;
     if (!sendaccount.isValidateMobile) {
         [BHToast showMessage:@"手机号有误，请重新输入"];
         return;
     }
     [self.manager openVerifyCodeView:nil];
+     [self.view endEditing:YES];
 }
 
 -(void)onClickforgetBtn:(UIButton *)sender{

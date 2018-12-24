@@ -16,6 +16,7 @@
 @interface RegisterViewController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate,WXApiManagerDelegate>{
      NSInteger i;
     NSString * sendaccount;
+   
 }
 @property (nonatomic,strong) UITextField *phoneTextField;
 @property (nonatomic,strong) UITextField *codeTextField;
@@ -32,7 +33,7 @@
 @property (nonatomic,strong) UIView *lineView4;
 @property (nonatomic,strong) UIImageView *iconImageView;
 @property (nonatomic,strong) UILabel *wechatLabel;
-
+@property (nonatomic,strong) NSString *localSessionStr;
 @property (nonatomic, strong) NTESVerifyCodeManager *manager;
 @end
 
@@ -41,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     i = 60;
+    self.localSessionStr = @"";
       [WXApiManager sharedManager].delegate = self;
     [self initProtectMessageAttack];
     self.title = @"手机注册";
@@ -186,6 +188,9 @@
     [pramaDic setObject:sendaccount forKey:@"tel"];
     [pramaDic setObject:@"IOS" forKey:@"terminal"];
     [pramaDic setObject:idString forKey:@"terminalIdentifier"];
+    if(![self.localSessionStr isEqualToString:@""]){
+         [pramaDic setObject:self.localSessionStr forKey:@"localSession"];
+    }
     WS(weakSelf)
     NSLog(@"-----kAppApiReg--->%@",pramaDic);
     NMShowLoadIng;
@@ -281,11 +286,17 @@
             NMRemovLoadIng;
             NSLog(@"kAppApiWXogin-----responseObject--->%@",responseObject);
             if (IsSucess(responseObject)) {
-                [responseObject objectForKey:@"data"];
-                wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
-                vc.wechatLoginType =  wechatRegister;
-                vc.localSessionStr  ;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
+                UserObject * yy =  [UserObject shareInstance];
+                yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
+                [yy save];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }else{
+                if( [[responseObject objectForKey:@"code"] isEqualToString:@"USER000"]){
+                    self.wechatBtn.hidden = YES;
+                    self.localSessionStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"localSession"]];
+                }
             }
             [self.view endEditing:YES];
         } failure:^(NSError *error)  {
@@ -295,10 +306,11 @@
         }];
 
     }
-    wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
-    vc.wechatLoginType =  wechatRegister;
-    vc.localSessionStr  ;
-    [self.navigationController pushViewController:vc animated:YES];
+    self.wechatBtn.hidden = YES;
+//    wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+//    vc.wechatLoginType =  wechatRegister;
+//    vc.localSessionStr  ;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - NTESVerifyCodeManagerDelegate
