@@ -46,7 +46,7 @@
     titlelabel.text = @"魔方官网";
     [self.view addSubview:titlelabel];
     
-    MagicLabel * addressLabel = [self createLabel:CGRectMake(0, height - 161, SCREEN_WIDTH, 14)];
+    MagicLabel * addressLabel = [self createLabel:CGRectMake(0, height - 161, SCREEN_WIDTH, 16)];
     addressLabel.text = @"http://mofang.biyi.top";
     [self.view addSubview:addressLabel];
     
@@ -60,7 +60,7 @@
     phoneLabel.text = @"010-85112088";
     [self.view addSubview:phoneLabel];
     
-    MagicLabel * copyrightLabel = [self createLabel:CGRectMake(0, height - 54, SCREEN_WIDTH, 14)];
+    MagicLabel * copyrightLabel = [self createLabel:CGRectMake(0, height - 54, SCREEN_WIDTH, 16)];
     copyrightLabel.text = @"© mofang.com 魔方分销 版权所有";
     copyrightLabel.font = UIFontRegularOfSize(12);
     [self.view addSubview:copyrightLabel];

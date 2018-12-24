@@ -11,6 +11,8 @@
 
 @interface MyInviteViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) NSMutableArray * inviteArray;
+@property (strong,nonatomic) UITableView * tableView;
+@property (assign,nonatomic) NSInteger pageNum;
 @end
 
 @implementation MyInviteViewController
@@ -22,13 +24,45 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)requestInvites:(NSInteger)pageNum{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    WS(weakSelf)
+    NSLog(@"-----requestRecords--->%@",params);
+    NMShowLoadIng;
+   
+    
+    [BTERequestTools requestWithURLString:kAppApiDistribution parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"---requestRecords--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            NSDictionary * dataDict = [responseObject objectForKey:@"data"];
+            if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
+                
+                [weakSelf.tableView reloadData];
+            }
+        }else{
+            
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
 - (void)initdata{
     self.title = @"我的邀请";
     self.inviteArray = [NSMutableArray arrayWithCapacity:0];
 }
 
 -(void)addSubViews{
-    UIImageView * bgView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(30), SCALE_W(35), SCREEN_WIDTH - SCALE_W(30) * 2, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(35) - SCALE_W(152))];
+    UIImageView * bgView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(30), SCALE_W(35), SCREEN_WIDTH - SCALE_W(30) * 2, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(35) - SCALE_W(132))];
     bgView.image = [UIImage imageNamed:@"groupInvite"];
     bgView.userInteractionEnabled = YES;
     [self.view addSubview:bgView];
@@ -57,13 +91,28 @@
     
     
     
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, SCALE_W(110 + 34), bgView.width, bgView.height - SCALE_W(110) - SCALE_W(20)) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, SCALE_W(110 + 34), bgView.width, bgView.height - SCALE_W(110) - SCALE_W(20) - SCALE_W(34)) style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.tableFooterView = [UIView new];
     tableView.rowHeight = [InviteTableViewCell cellHeight];
+    self.tableView = tableView;
     [bgView addSubview:tableView];
+    
+    WS(weakSelf);
+    MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.pageNum = 1;
+        [weakSelf.inviteArray removeAllObjects];
+        [weakSelf requestInvites:weakSelf.pageNum];
+    }];
+    tableView.mj_header = header;
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageNum ++;
+        [weakSelf requestInvites:weakSelf.pageNum];
+    }];
+    tableView.mj_footer = footer;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

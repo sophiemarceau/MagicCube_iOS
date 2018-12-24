@@ -26,10 +26,16 @@
     [self goodsInit];
     [self addSubViews];
     [self requestList:self.pageNum];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDistibuteList) name:NotificationUpdateDistributionList object:nil];
+}
+
+- (void)updateDistibuteList{
+    [self.tableView.mj_header beginRefreshing];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
 }
 #pragma mark -- 数据
 - (void)requestList:(NSInteger)pageNum{
@@ -46,9 +52,12 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            NSArray * list = [[responseObject objectForKey:@"data"] objectForKey:@"list"];
-            [weakSelf.goodsArray addObjectsFromArray:list];
-            [weakSelf.tableView reloadData];
+            NSDictionary * dataDict = [responseObject objectForKey:@"data"];
+            if (pageNum == [[dataDict objectForKey:@"pageNum"] integerValue]) {
+                NSArray * list = [dataDict objectForKey:@"list"];
+                [weakSelf.goodsArray addObjectsFromArray:list];
+                [weakSelf.tableView reloadData];
+            }
         }else{
 //            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
 //            [BHToast showMessage:message];
@@ -119,6 +128,10 @@
     DistributionShareViewController * goodsDetail = [[DistributionShareViewController alloc] init];
     goodsDetail.goodsdict = goodsDict;
     [self.navigationController pushViewController:goodsDetail animated:YES];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NotificationUpdateDistributionList object:nil];
 }
 
 @end

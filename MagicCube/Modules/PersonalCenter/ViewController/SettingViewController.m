@@ -12,6 +12,7 @@
 #import "MyInviteViewController.h"
 #import "OpinionViewController.h"
 #import "AboutViewController.h"
+#import "AppDelegate.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) NSArray * dataArray;
@@ -31,6 +32,35 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
+}
+//
+
+- (void)requestLogout{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    WS(weakSelf)
+    NSLog(@"-----kAppApiLogout--->%@",params);
+    NMShowLoadIng;
+    
+    [BTERequestTools requestWithURLString:kAppApiLogout parameters:params type:HttpRequestTypePost success:^(id responseObject) {
+        
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiLogout--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [User removeLoginData];
+            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate setupKeyWindow];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+    
 }
 
 - (void)initData{
@@ -110,7 +140,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIButton * footView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 58)];
-    [footView addTarget:self action:@selector(footClick) forControlEvents:UIControlEventTouchUpInside];
+    [footView addTarget:self action:@selector(requestLogout) forControlEvents:UIControlEventTouchUpInside];
     footView.backgroundColor = KBGColor;
     
     MagicLabel * label = [[MagicLabel alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 48)];

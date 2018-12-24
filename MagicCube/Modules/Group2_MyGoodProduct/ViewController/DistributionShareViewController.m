@@ -76,8 +76,7 @@
         NSLog(@"---requestRecords--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSDictionary * dataDict = [responseObject objectForKey:@"data"];
-            if (dataDict) {
-                
+            if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
                 NSString * recordBtnTitle = [NSString stringWithFormat:@"分销记录 (%ld条)",[[dataDict objectForKey:@"total"] integerValue]];
                 [weakSelf.distributeRecordBtn setTitle:recordBtnTitle forState:UIControlStateNormal];
                 
@@ -179,7 +178,7 @@
         i ++;
     }
     
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - top - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 62, SCREEN_WIDTH, SCREEN_HEIGHT - top - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - 62) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = [SalerTableViewCell cellHeight];
@@ -202,7 +201,7 @@
     }];
     tableView.mj_footer = footer;
     
-    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,62)];
+    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH,62)];
     headView.backgroundColor = [UIColor whiteColor];
    
 
@@ -221,7 +220,8 @@
     }
     MagicLineView *lineView2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, 61.5, SCREEN_WIDTH, 0.5)];
     [headView addSubview:lineView2];
-    tableView.tableHeaderView = headView;
+    [selectBottomView addSubview:headView];
+//    tableView.tableHeaderView = headView;
 }
 
 #pragma --mark tableview 代理

@@ -91,6 +91,7 @@
             [weakSelf.navigationController popToRootViewControllerAnimated:NO];
             AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             [appDelegate.mainVc setSelectedIndex:1];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationUpdateDistributionList object:nil];
         }else{
             NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
             [BHToast showMessage:message];

@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
  @property(nonatomic,strong) MainViewController *mainVc;
+- (void)setupKeyWindow;
 @end
 
