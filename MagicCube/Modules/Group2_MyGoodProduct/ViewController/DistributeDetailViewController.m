@@ -13,6 +13,8 @@
 #import "DistributeGoodsViewController.h"
 #import "MagicCardView.h"
 #import "AppDelegate.h"
+#import "WXApi.h"
+
 @interface DistributeDetailViewController ()<gradeUpDelegate>{
     NSDictionary *returnDataDic;
 }
@@ -189,7 +191,52 @@
 }
 
 -(void)distriute:(UIButton *)btn{
-    [self requestCreateDistribution];
+    [self payAttention];
 }
 
+
+-(void)payAttention{
+    NSString *message;
+    NSString *messageString = [NSString stringWithFormat:@"代理本产品需要预付10元押金，取消代理后押金可退。"];
+    message = NSLocalizedString(messageString,nil);
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    NSMutableAttributedString *messageAtt = [[NSMutableAttributedString alloc] initWithString:message];
+    [messageAtt addAttribute:NSFontAttributeName value:UIFontRegularOfSize(16) range:NSMakeRange(0, message.length)];
+    [messageAtt addAttribute:NSForegroundColorAttributeName value:Black626A75Color range:NSMakeRange(0, message.length)];
+    [alertController setValue:messageAtt forKey:@"attributedMessage"];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消",nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alertController addAction:cancelAction];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"支付",nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+        [self requestCreateDistribution];
+        
+        
+        
+        //商户服务器生成支付订单，先调用【统一下单API】生成预付单，获取到prepay_id后将参数再次签名传输给APP发起支付。以下是调起微信支付的关键代码：
+        
+       // 为了安全性，以下字段最好从服务器去获取
+
+//        // 调起微信支付
+//        PayReq *request = [[PayReq alloc] init];
+//        /** 微信分配的公众账号ID -> APPID */
+//        request.partnerId = APPID;
+//        /** 预支付订单 从服务器获取 */
+//        request.prepayId = @"1101000000140415649af9fc314aa427";
+//        /** 商家根据财付通文档填写的数据和签名 <暂填写固定值Sign=WXPay>*/
+//        request.package = @"Sign=WXPay";
+//        /** 随机串，防重发 */
+//        request.nonceStr= @"a462b76e7436e98e0ed6e13c64b4fd1c";
+//        /** 时间戳，防重发 */
+//        request.timeStamp= @“1397527777";
+//        /** 商家根据微信开放平台文档对数据做的签名, 可从服务器获取，也可本地生成*/
+//        request.sign= @"582282D72DD2B03AD892830965F428CB16E7A256";
+        /* 调起支付 */
+//        [WXApi sendReq:request];
+    }];
+    [alertController addAction:sureAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 @end
