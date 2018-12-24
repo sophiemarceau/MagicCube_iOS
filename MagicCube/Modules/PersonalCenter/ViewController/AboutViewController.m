@@ -7,7 +7,6 @@
 //
 
 #import "AboutViewController.h"
-#import "PhoneInfo.h"
 
 @interface AboutViewController ()
 
@@ -18,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initdata];
     [self addSubViews];
     // Do any additional setup after loading the view.
 }
@@ -30,7 +30,7 @@
     
     CGFloat height = SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT;
     UIImageView * logoView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(149)) * 0.5, SCALE_W(60), SCALE_W(149), SCALE_W(61))];
-    logoView.image = [UIImage imageNamed:@"home_meilihaowu"];
+    logoView.image = [UIImage imageNamed:@"mofangLogo"];
     [self.view addSubview:logoView];
     
     self.gradeLabel = [self createLabel:CGRectMake(0, SCALE_W(149), SCREEN_WIDTH, 16)];

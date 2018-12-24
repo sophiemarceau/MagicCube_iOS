@@ -29,7 +29,7 @@
 
 - (void)addSubViews{
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(140)) * 0.5, SCALE_W(82), SCALE_W(140), SCALE_W(140))];
-    imageView.image = [UIImage imageNamed:@"图标"];
+    imageView.image = [UIImage imageNamed:@"mofanQrcode"];
     [self.view addSubview:imageView];
     
     MagicLabel * noteLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(0, SCALE_W(248), SCREEN_WIDTH, 14)];

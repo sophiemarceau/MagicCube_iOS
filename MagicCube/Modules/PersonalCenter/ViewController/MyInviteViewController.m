@@ -29,7 +29,7 @@
 
 -(void)addSubViews{
     UIImageView * bgView = [[UIImageView alloc] initWithFrame:CGRectMake(SCALE_W(30), SCALE_W(35), SCREEN_WIDTH - SCALE_W(30) * 2, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(35) - SCALE_W(152))];
-    bgView.backgroundColor = [UIColor greenColor];
+    bgView.image = [UIImage imageNamed:@"groupInvite"];
     bgView.userInteractionEnabled = YES;
     [self.view addSubview:bgView];
     
