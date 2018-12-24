@@ -17,5 +17,5 @@ static NSString *const SERVICE_HOT_LINE = @"400-965-0866";
 static NSString *const kAppStoreCommentAddress = @"itms-apps://itunes.apple.com/cn/app/id1342160976?mt=8&action=write-review";
 static NSString * const kNetworkBusyTipMessage = @"网络不给力，请重试";
 static NSString * const kNotReachableTipMessage = @"网络未连接";
-
+static NSString * const kWechatStatueStr = @"wechatLogin";
 #endif /* BHStaticConstant_h */

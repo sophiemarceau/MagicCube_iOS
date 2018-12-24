@@ -182,9 +182,6 @@
         _codeTextField.textAlignment = NSTextAlignmentLeft;
         _codeTextField.tintColor = GrayMagicColor;
         _codeTextField.font = UIFontRegularOfSize(14);
-        
-        
-        _codeTextField.textColor = GrayMagicColor;
         _codeTextField.keyboardType = UIKeyboardTypePhonePad;
         _codeTextField.returnKeyType = UIReturnKeyDone;
     }
@@ -256,7 +253,6 @@
     }
     return _loginBtn;
 }
-
 
 -(UIButton *)pwdChangeBtn{
     if (_pwdChangeBtn == nil) {

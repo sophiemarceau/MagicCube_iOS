@@ -15,7 +15,7 @@
 //腾讯Bugly
 #define BuglyAppId @"02d2f32836"
 //微信开放平台开发
-#define kWechatAppKey @"wx82c2aa4fde147029" //wechat appkey
+#define kWechatAppKey @"wx1e92fb8d6ea75ac2" //wechat appkey
 //微信小程序ID
 #define kWechatMiniAppKey @"gh_a262152021db"
 //微信开放平台开发AppSecret

@@ -10,8 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, WechatLoginType) {
+    wechatRegister = 0,
+    wechatLogin
+};
 @interface wechatLoginViewController : BaseViewController
 
+@property (nonatomic, assign) WechatLoginType wechatLoginType;
+@property (nonatomic, strong) NSString *localSessionStr;
 @end
 
 NS_ASSUME_NONNULL_END

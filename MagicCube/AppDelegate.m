@@ -29,11 +29,12 @@
     [self.window makeKeyAndVisible];
     self.mainVc = [[MainViewController alloc] init];
     [self setupKeyWindow];
+    //向微信注册
+    [WXApi registerApp:kWechatAppKey enableMTA:YES];
     [WXApi startLogByLevel:WXLogLevelNormal logBlock:^(NSString *log) {
         NSLog(@"log : %@", log);
     }];
-    //向微信注册
-    [WXApi registerApp:kWechatAppKey enableMTA:YES];
+    
     return YES;
 }
 
@@ -52,16 +53,18 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    if([url.scheme isEqualToString:kWechatAppKey]){
-        NSLog(@"url-openURL--->%@",url.absoluteString);
+//    if([url.scheme isEqualToString:kWechatAppKey]){
+//        NSLog(@"url-openURL--->%@",url.absoluteString);
 //        if ([url.absoluteString rangeOfString:@"://oauth?code="].location != NSNotFound){
 //            NSArray * arr = [url.absoluteString componentsSeparatedByString:@"&state="];
-//            if (arr != nil && arr.count == 2 && [arr[1] isEqualToString:WechatStatueStr]) {
+//            if (arr != nil && arr.count == 2 && [arr[1] isEqualToString:kWechatStatueStr]) {
 //                return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 //            }
 //        }
-    }
-    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+//    }
+//    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
+     return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 
 -(void)dealloc {

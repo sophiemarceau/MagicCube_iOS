@@ -95,12 +95,14 @@
 //        launchMiniProgramReq.miniProgramType = WXMiniProgramTypePreview; //拉起小程序的类型
         
         WXMediaMessage *message = [WXMediaMessage message];
-        message.title = @"小程序title";
-        message.description = @"小程序tdesc";
+        message.title = @"魔方提货卡";
+//        message.description = @"小程序tdesc";
         message.mediaObject = wxMiniObject;
-//        UIImage *thumbImage = [UIImage imageNamed:@"详情页"];
-//        NSData *imageData = UIImagePNGRepresentation(thumbImage);
-        message.thumbData = nil;
+        UIImage *thumbImage = [UIImage imageNamed:@"详情页"];
+//        nil;
+        NSData *data = UIImageJPEGRepresentation(thumbImage, 0.1);
+        message.thumbData = data;
+//        UIImage *resultImage = [UIImage imageWithData:data];
         //imageData;//兼容酒颁布节点图片，小于32k
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
         req.message = message;
@@ -330,6 +332,49 @@
     UIImageView * tempImageView = [[UIImageView alloc] initWithFrame:frame];
     tempImageView.image = [UIImage imageNamed:imageNameStr];
     return tempImageView;
+}
+
+
+-(UIImage *)compressImageQuality:(UIImage *)image toByte:(NSInteger)maxLength {
+    CGFloat compression = 1;
+    NSData *data = UIImageJPEGRepresentation(image, compression);
+    if (data.length < maxLength) return image;
+    CGFloat max = 1;
+    CGFloat min = 0;
+    for (int i = 0; i < 6; ++i) {
+        compression = (max + min) / 2;
+        data = UIImageJPEGRepresentation(image, compression);
+        if (data.length < maxLength * 0.9) {
+            min = compression;
+        } else if (data.length > maxLength) {
+            max = compression;
+        } else {
+            break;
+        }
+    }
+    UIImage *resultImage = [UIImage imageWithData:data];
+    return resultImage;
+}
+
+
+
+
+- (UIImage *)zipImageWithUrl:(id)imageUrl
+{
+//    NSData * imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+    NSData *imageData = UIImagePNGRepresentation(imageUrl);
+//    imageData = UIImagePNGRepresentation(imageUrl);
+    CGFloat maxFileSize = 32*1024;
+    CGFloat compression = 0.9f;
+    CGFloat maxCompression = 0.1f;
+    UIImage *image = [UIImage imageWithData:imageData];
+    NSData *compressedData = UIImageJPEGRepresentation(image, compression);
+    while ([compressedData length] > maxFileSize && compression > maxCompression) {
+        compression -= 0.1;
+        compressedData = UIImageJPEGRepresentation(image, compression);
+    }
+    UIImage *compressedImage = [UIImage imageWithData:imageData];
+    return compressedImage;
 }
 
 @end

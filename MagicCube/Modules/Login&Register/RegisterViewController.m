@@ -23,15 +23,15 @@
 @property (nonatomic,strong) UITextField *pwdTextField;
 @property (nonatomic,strong) UITextField *inviteTextField;
 @property (nonatomic,strong) UIButton *registerBtn;
-@property(nonatomic,strong) UILabel *timeLabel;//60秒后重发
-@property(nonatomic,strong) UILabel *gotoLabel;//60秒后重发
-@property(nonatomic,strong) NSTimer *timer;
-@property(nonatomic,strong) UIView *lineView1;
-@property(nonatomic,strong) UIView *lineView2;
-@property(nonatomic,strong) UIView *lineView3;
-@property(nonatomic,strong) UIView *lineView4;
-@property(nonatomic,strong) UIImageView *iconImageView;
-@property(nonatomic,strong) UILabel *wechatLabel;
+@property (nonatomic,strong) UILabel *timeLabel;//60秒后重发
+@property (nonatomic,strong) UILabel *gotoLabel;//60秒后重发
+@property (nonatomic,strong) NSTimer *timer;
+@property (nonatomic,strong) UIView *lineView1;
+@property (nonatomic,strong) UIView *lineView2;
+@property (nonatomic,strong) UIView *lineView3;
+@property (nonatomic,strong) UIView *lineView4;
+@property (nonatomic,strong) UIImageView *iconImageView;
+@property (nonatomic,strong) UILabel *wechatLabel;
 
 @property (nonatomic, strong) NTESVerifyCodeManager *manager;
 @end
@@ -41,6 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     i = 60;
+      [WXApiManager sharedManager].delegate = self;
     [self initProtectMessageAttack];
     self.title = @"手机注册";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -113,7 +114,6 @@
         [self checkPhoneNumberWhetherRegister];
     }
     [self.view endEditing:YES];
-//    [self.manager openVerifyCodeView:nil];
 }
 
 -(void)gotoLogin:(UITapGestureRecognizer *)recognizer{
@@ -128,13 +128,10 @@
         //构造SendAuthReq结构体
         SendAuthReq* req = [[SendAuthReq alloc] init];
         req.scope = @"snsapi_userinfo";
-        req.state = @"123";
+        req.state = kWechatStatueStr;
         //第三方向微信终端发送一个SendAuthReq消息结构
         [WXApi sendReq:req];
     }
-//    wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 -(void)checkPhoneNumberWhetherRegister{
@@ -216,7 +213,7 @@
 }
 
 -(void)startClick{
-     [BHToast showMessage:@"验证码已发送"];
+    [BHToast showMessage:@"验证码已发送"];
     [self.codeMessageBtn removeFromSuperview];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(runClock) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
@@ -272,11 +269,90 @@
 }
 
 - (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
-    NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
     NSString *strMsg = [NSString stringWithFormat:@"code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
-    NSLog(@"strTitle-------->%@",strTitle);
     NSLog(@"strMsg-------->%@",strMsg);
+    if([response.state isEqualToString:kWechatStatueStr]){
+        NSMutableDictionary * pramaDic = @{}.mutableCopy;
+        [pramaDic setObject:response.code forKey:@"code"];
+        WS(weakSelf)
+        NSLog(@"-----requestCheckApi--->%@",pramaDic);
+        NMShowLoadIng;
+        [BTERequestTools requestWithURLString:kAppApiWXogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+            NMRemovLoadIng;
+            NSLog(@"kAppApiWXogin-----responseObject--->%@",responseObject);
+            if (IsSucess(responseObject)) {
+                [responseObject objectForKey:@"data"];
+                wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+                vc.wechatLoginType =  wechatRegister;
+                vc.localSessionStr  ;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+            [self.view endEditing:YES];
+        } failure:^(NSError *error)  {
+            NMRemovLoadIng;
+            //        RequestError(error);
+            NSLog(@"error-------->%@",error);
+        }];
+
+    }
+    wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
+    vc.wechatLoginType =  wechatRegister;
+    vc.localSessionStr  ;
+    [self.navigationController pushViewController:vc animated:YES];
 }
+
+#pragma mark - NTESVerifyCodeManagerDelegate
+/**
+ * 验证码组件初始化完成
+ */
+- (void)verifyCodeInitFinish{
+    NSLog(@"收到初始化完成的回调");
+}
+
+/**
+ * 验证码组件初始化出错
+ *
+ * @param message 错误信息
+ */
+- (void)verifyCodeInitFailed:(NSString *)message{
+    NSLog(@"收到初始化失败的回调:%@",message);
+}
+
+/**
+ * 完成验证之后的回调
+ *
+ * @param result 验证结果 BOOL:YES/NO
+ * @param validate 二次校验数据，如果验证结果为false，validate返回空
+ * @param message 结果描述信息
+ *
+ */
+- (void)verifyCodeValidateFinish:(BOOL)result validate:(NSString *)validate message:(NSString *)message{
+    NSLog(@"%@",validate);
+    if (result) {
+        [self requestCheckApi:validate];
+    }else{
+        NSLog(@"收到验证结果的回调:(%d,%@,%@)", result, validate, message);
+    }
+}
+
+/**
+ * 关闭验证码窗口后的回调
+ */
+- (void)verifyCodeCloseWindow{
+    //用户关闭验证后执行的方法
+    NSLog(@"收到关闭验证码视图的回调");
+}
+
+/**
+ * 网络错误
+ *
+ * @param error 网络错误信息
+ */
+- (void)verifyCodeNetError:(NSError *)error{
+    //用户关闭验证后执行的方法
+    NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
+}
+
 
 -(UIImageView *)iconImageView{
     if (_iconImageView == nil) {
@@ -351,7 +427,7 @@
         _codeTextField.tintColor = GrayMagicColor;
         _codeTextField.font = UIFontRegularOfSize(14);
         _codeTextField.textColor = GrayMagicColor;
-         _codeTextField.returnKeyType = UIReturnKeyDone;
+        _codeTextField.returnKeyType = UIReturnKeyDone;
     }
     return _codeTextField;
 }
@@ -441,7 +517,7 @@
         _gotoLabel.userInteractionEnabled = YES;
         UITapGestureRecognizer *gotoLoginGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoLogin:)];
         [_gotoLabel addGestureRecognizer:gotoLoginGesture];
-      
+        
     }
     return _gotoLabel;
 }
@@ -479,57 +555,4 @@
     }
     return _pwdChangeBtn;
 }
-
-#pragma mark - NTESVerifyCodeManagerDelegate
-/**
- * 验证码组件初始化完成
- */
-- (void)verifyCodeInitFinish{
-    NSLog(@"收到初始化完成的回调");
-}
-
-/**
- * 验证码组件初始化出错
- *
- * @param message 错误信息
- */
-- (void)verifyCodeInitFailed:(NSString *)message{
-    NSLog(@"收到初始化失败的回调:%@",message);
-}
-
-/**
- * 完成验证之后的回调
- *
- * @param result 验证结果 BOOL:YES/NO
- * @param validate 二次校验数据，如果验证结果为false，validate返回空
- * @param message 结果描述信息
- *
- */
-- (void)verifyCodeValidateFinish:(BOOL)result validate:(NSString *)validate message:(NSString *)message{
-    NSLog(@"%@",validate);
-    if (result) {
-        [self requestCheckApi:validate];
-    }else{
-        NSLog(@"收到验证结果的回调:(%d,%@,%@)", result, validate, message);
-    }
-}
-
-/**
- * 关闭验证码窗口后的回调
- */
-- (void)verifyCodeCloseWindow{
-    //用户关闭验证后执行的方法
-    NSLog(@"收到关闭验证码视图的回调");
-}
-
-/**
- * 网络错误
- *
- * @param error 网络错误信息
- */
-- (void)verifyCodeNetError:(NSError *)error{
-    //用户关闭验证后执行的方法
-    NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
-}
-
 @end

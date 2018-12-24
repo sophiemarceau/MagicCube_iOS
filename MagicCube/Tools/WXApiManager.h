@@ -8,20 +8,44 @@
 
 #import <Foundation/Foundation.h>
 #import "WXApi.h"
+#import <Foundation/Foundation.h>
+#import "WXApi.h"
+
 @protocol WXApiManagerDelegate <NSObject>
 
 @optional
 
-- (void)managerDidRecvAuthResponse:(SendAuthResp *_Nullable)response;
-- (void)managerDidRecvLaunchMiniProgram:(WXLaunchMiniProgramResp *)response;
+- (void)managerDidRecvGetMessageReq:(GetMessageFromWXReq *)request;
+
+- (void)managerDidRecvShowMessageReq:(ShowMessageFromWXReq *)request;
+
+- (void)managerDidRecvLaunchFromWXReq:(LaunchFromWXReq *)request;
+
+- (void)managerDidRecvMessageResponse:(SendMessageToWXResp *)response;
+
 - (void)managerDidRecvAuthResponse:(SendAuthResp *)response;
+
+- (void)managerDidRecvAddCardResponse:(AddCardToWXCardPackageResp *)response;
+
+- (void)managerDidRecvChooseCardResponse:(WXChooseCardResp *)response;
+
+- (void)managerDidRecvChooseInvoiceResponse:(WXChooseInvoiceResp *)response;
+
+- (void)managerDidRecvSubscribeMsgResponse:(WXSubscribeMsgResp *)response;
+
+- (void)managerDidRecvLaunchMiniProgram:(WXLaunchMiniProgramResp *)response;
+
+- (void)managerDidRecvInvoiceAuthInsertResponse:(WXInvoiceAuthInsertResp *)response;
+
+- (void)managerDidRecvNonTaxpayResponse:(WXNontaxPayResp *)response;
+
+- (void)managerDidRecvPayInsuranceResponse:(WXPayInsuranceResp *)response;
 @end
-NS_ASSUME_NONNULL_BEGIN
 
 @interface WXApiManager : NSObject<WXApiDelegate>
+
 @property (nonatomic, assign) id<WXApiManagerDelegate> delegate;
 
 + (instancetype)sharedManager;
-@end
 
-NS_ASSUME_NONNULL_END
+@end
