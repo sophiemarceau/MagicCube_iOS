@@ -52,7 +52,10 @@
 
 #pragma mark -- 数据请求
 -(void)createDistribute{
-
+    if ([[self.scardView getPrice] length] == 0) {
+        [BHToast showMessage:@"售价不能为空"];
+        return;
+    }
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
     [params setObject:[self.dataDict objectForKey:@"sn"] forKey:@"distributionSn"];
     [params setObject:@"wechat" forKey:@"platform"];
@@ -83,6 +86,10 @@
 
 -(void)initDatas{
     self.title = @"发送预览";
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.scardView hidekeyboard];
 }
 
 - (void)configData{
