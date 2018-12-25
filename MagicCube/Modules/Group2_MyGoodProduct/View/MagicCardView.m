@@ -7,6 +7,7 @@
 //
 
 #import "MagicCardView.h"
+#import "NSString+Size.h"
 
 @interface MagicCardView ()
 @property (strong,nonatomic) UIImageView * cardBGView;
@@ -88,9 +89,16 @@
         NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
         [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
     }
+    NSString *nameStr =  [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"name"]];
+    CGFloat height = [nameStr heightWithFont: UIFontMediumOfSize(14) constrainedToWidth:SCALE_W(110 +72.5)];
+    if (height < 40) {
+        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), height);
+    }else{
+        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), 40);
+    }
+    self.titleLabel.text = nameStr;
     
-    self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
-    self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
+    self.unitLabel.text = [dataDict objectForKey:@"subTitle"];
     self.opinionLabel.text = @"会员分销价";
     NSString * originalPrice = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"originalPrice"] doubleValue]];
     [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
@@ -114,15 +122,11 @@
         NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
         [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
     }
-    
-
-    
-    self.titleLabel.text = [dataDict objectForKey:@"name"];//@"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
-    self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
+    self.titleLabel.text = [dataDict objectForKey:@"name"];
+    self.unitLabel.text = [dataDict objectForKey:@"subTitle"];
     
     self.opinionLabel.text = @"会员分销价";
     [self.priceBtn setTitle:[dataDict objectForKey:@"discountDesc"] forState:UIControlStateNormal];
-    // 位会员分销了这张卡,已售出
     
     NSDictionary * attubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
     NSString *distributionCount = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"distributionCount"] integerValue]];
@@ -157,7 +161,8 @@
         _titleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(13), SCREEN_WIDTH - SCALE_W(20) - SCALE_W(14) - SCALE_W(173), SCALE_W(40))];
         _titleLabel.textColor = Black1Color;
         _titleLabel.font = UIFontMediumOfSize(14);
-        _titleLabel.numberOfLines = 2;
+        _titleLabel.numberOfLines = 0;
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _titleLabel;
 }
@@ -215,12 +220,5 @@
     }
     return _distrubeInfoLabel;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end
