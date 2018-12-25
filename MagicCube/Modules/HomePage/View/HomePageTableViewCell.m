@@ -7,6 +7,7 @@
 //
 
 #import "HomePageTableViewCell.h"
+#import "NSString+Size.h"
 @interface HomePageTableViewCell ()
 
 @property (strong,nonatomic) UIImageView * picImageView;
@@ -51,7 +52,16 @@
 //    NSLog(@"dict----->%@",dict);
    
 
-    self.titleLabel.text = [dict objectForKey:@"name"];
+    NSString *nameStr =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
+//    CGFloat widh = [nameStr heightWithFont: UIFontMediumOfSize(16)constrainedToWidth:SCALE_W(110 +72.5)];
+    CGFloat height = [nameStr heightWithFont: UIFontMediumOfSize(14) constrainedToWidth:SCALE_W(110 +72.5)];
+    if (height < 40) {
+        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), height);
+    }else{
+        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), 40);
+    }
+    self.titleLabel.text = nameStr;
+    
 //    @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.subLabel.text = [dict objectForKey:@"subTitle"];
 //    @"干燕窝原料印尼进口 CAIQ溯源";
@@ -68,7 +78,7 @@
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
     
     self.numLabel.attributedText = attributestring;
-    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
+//    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
 //    NSDictionary * attubtrDict1 = @{NSFontAttributeName:UIFontRegularOfSize(22),NSForegroundColorAttributeName:[UIColor whiteColor]};
 //    NSString *deliveryPrice1 =@"代理价低至 3 折";
 //    NSString *price1 = @"3";
@@ -104,7 +114,7 @@
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = Black1Color;
         _titleLabel.font = UIFontMediumOfSize(14);
-        _titleLabel.numberOfLines = 2;
+        _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _titleLabel;

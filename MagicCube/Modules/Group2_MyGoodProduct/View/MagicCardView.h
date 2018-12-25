@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MagicCardView : UIView
 - (void)setUpDistributeDict:(NSDictionary *)dataDict;
-
+- (void)setUpDistributeDetailDict:(NSDictionary *)dataDict;
 - (void)setUpGoodsDict:(NSDictionary *)dataDict;
 @end
 

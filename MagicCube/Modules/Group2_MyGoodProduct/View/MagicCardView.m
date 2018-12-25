@@ -83,6 +83,31 @@
     
 }
 
+- (void)setUpDistributeDetailDict:(NSDictionary *)dataDict{
+    if ([dataDict objectForKey:@"image"]) {
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
+        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+    }
+    
+    self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
+    self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
+    self.opinionLabel.text = @"会员分销价";
+    NSString * originalPrice = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"originalPrice"] doubleValue]];
+    [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
+    
+    NSString *salesVolume = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"salesVolume"]];
+    NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"distributionCount"]];
+    NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
+    NSString *deliveryPrice = [NSString stringWithFormat:@"%@位会员分销了这张卡,已售出%@件",salesVolume,distribuionCount];
+    NSString *price1 = salesVolume;
+    NSString *price2 = distribuionCount;
+    NSArray *attrArray = @[price1,price2];
+    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
+    self.distrubePriceLabel.attributedText = attributestring;
+    self.distrubePriceLabel.frame =CGRectMake(172.5, 117.5, SCALE_W(110 + 72.5),8.5);
+    self.lineView.y = SCALE_W(105.5);
+}
+
 - (void)setUpGoodsDict:(NSDictionary *)dataDict{
 
     if ([dataDict objectForKey:@"image"]) {

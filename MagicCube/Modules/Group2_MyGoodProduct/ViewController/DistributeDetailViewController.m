@@ -54,7 +54,6 @@
             [BHToast showMessage:message];
         }
     } failure:^(NSError *error)  {
-        
         NMRemovLoadIng;
         NSLog(@"error-------->%@",error);
     }];
@@ -70,7 +69,7 @@
     
     [self.goodsInfoView setUPdata:dataDict];
     
-    [self.cardView setUpGoodsDict:dataDict];
+    [self.cardView setUpDistributeDetailDict:dataDict];
     
     NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
     NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
