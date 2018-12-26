@@ -17,12 +17,15 @@
 
 @interface DistributeDetailViewController ()<gradeUpDelegate>{
     NSDictionary *returnDataDic;
+    float distributionDeposit;
 }
 @property (strong,nonatomic) AVPlayer * player;
 @property (strong,nonatomic) AVPlayerLayer * playerLayer;
 @property (strong,nonatomic) DetailMemberView * memberView;
 @property (strong,nonatomic) GoodsInfoView * goodsInfoView;
 @property (strong,nonatomic) MagicCardView * cardView;
+@property (strong,nonatomic) MagicLabel * distributeDescLabel;
+
 
 @end
 
@@ -74,6 +77,8 @@
     NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
     NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
     [self.memberView setUpdata:memberRuleRes currentUserMemberLevel:currentUserMemberLevel];
+     self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
+    distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
 }
 
 - (void)requestCreateDistribution{
@@ -164,13 +169,13 @@
     distributeLabel.textColor = BHColorWhite;
     [distributeBtn addSubview:distributeLabel];
     
-    MagicLabel * distributeDescLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(0, SCALE_W(29), SCREEN_WIDTH, SCALE_W(10))];
-    distributeDescLabel.userInteractionEnabled = NO;
-    distributeDescLabel.textAlignment = NSTextAlignmentCenter;
-    distributeDescLabel.text = @"无需付款进货，卖出立得分成";
-    distributeDescLabel.textColor = BHColorWhite;
-    distributeDescLabel.font  =UIFontRegularOfSize(10);
-    [distributeBtn addSubview:distributeDescLabel];
+    self.distributeDescLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(0, SCALE_W(29), SCREEN_WIDTH, SCALE_W(10))];
+    self.distributeDescLabel.userInteractionEnabled = NO;
+    self.distributeDescLabel.textAlignment = NSTextAlignmentCenter;
+    self.distributeDescLabel.text = @"无需付款进货，卖出立得分成";
+    self.distributeDescLabel.textColor = BHColorWhite;
+    self.distributeDescLabel.font  =UIFontRegularOfSize(10);
+    [distributeBtn addSubview:self.distributeDescLabel];
     [distributeBtn addTarget:self action:@selector(distriute:) forControlEvents:UIControlEventTouchUpInside];
     rootView.contentSize = CGSizeMake(0, SCALE_W(818));
 }
@@ -191,13 +196,18 @@
 }
 
 -(void)distriute:(UIButton *)btn{
-    [self payAttention];
+    if(distributionDeposit != 0){
+        [self payAttention];
+    }else{
+        [self requestCreateDistribution];
+    }
+   
 }
 
 
 -(void)payAttention{
     NSString *message;
-    NSString *messageString = [NSString stringWithFormat:@"代理本产品需要预付10元押金，取消代理后押金可退。"];
+    NSString *messageString = [NSString stringWithFormat:@"代理本产品需要预付%.2f元押金，取消代理后押金可退。",distributionDeposit];
     message = NSLocalizedString(messageString,nil);
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
     
