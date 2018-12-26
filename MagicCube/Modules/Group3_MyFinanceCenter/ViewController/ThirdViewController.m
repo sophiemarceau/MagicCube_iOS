@@ -37,7 +37,7 @@
 
 -(void)requestInfoData{
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
-    [pramaDic setObject:User.token forKey:@"CUBE_TOKEN"];
+    [pramaDic setObject:User.token forKey:@"CUBE-TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetAccount parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
 //        NSLog(@"---kAppApiGetAccount--responseObject--->%@",responseObject);
@@ -130,7 +130,7 @@
 
 -(void)requestIncomeData{
     NSMutableDictionary *pramaDic = @{}.mutableCopy;
-    [pramaDic setObject:User.token forKey:@"CUBE_TOKEN"];
+    [pramaDic setObject:User.token forKey:@"CUBE-TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetIncome parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
 //        NSLog(@"---kAppApiGetIncome--responseObject--->%@",responseObject);

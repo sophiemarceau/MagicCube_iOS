@@ -121,7 +121,7 @@ static NSTimeInterval   requestTimeout = 20.f;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     if (User.token) {
-        [manager.requestSerializer setValue:User.token forHTTPHeaderField:@"CUBE_TOKEN"];
+        [manager.requestSerializer setValue:User.token forHTTPHeaderField:@"CUBE-TOKEN"];
     }
    
    
@@ -189,7 +189,7 @@ static NSTimeInterval   requestTimeout = 20.f;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     if (User.token) {
-        [manager.requestSerializer setValue:User.token forHTTPHeaderField:@"CUBE_TOKEN"];
+        [manager.requestSerializer setValue:User.token forHTTPHeaderField:@"CUBE-TOKEN"];
     }
     if (networkStatus == YQNetworkStatusNotReachable) {
         if (failBlock) failBlock(YQ_ERROR);

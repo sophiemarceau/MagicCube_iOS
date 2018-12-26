@@ -170,9 +170,10 @@
             UserObject * yy =  [UserObject shareInstance];
             yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
             [yy save];
+            [BHToast showMessage:@"登录成功"];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf performSelector:@selector(successLogin) withObject:nil afterDelay:1.0f];
+           
         }else{
             NSString *codeStr = [NSString stringWithFormat:@"%@",[responseObject  objectForKey:@"code"]];
             if ([codeStr isEqualToString:@"4000"]) {
@@ -321,13 +322,16 @@
                 UserObject * yy =  [UserObject shareInstance];
                 yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
                 [yy save];
+                [BHToast showMessage:@"登录成功"];
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
-                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                [weakSelf performSelector:@selector(successLogin) withObject:nil afterDelay:1.0f];
+                
             }else{
                 if( [[responseObject objectForKey:@"code"] isEqualToString:@"USER000"]){
-                    self.wechatBtn.hidden = YES;
-                    self.localSessionStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"localSession"]];
+                    [BHToast showMessage:@"已微信登录 请您注册绑定手机"];
+                    weakSelf.wechatBtn.enabled = NO;
+                    [weakSelf performSelector:@selector(hidden) withObject:nil afterDelay:1.0f];
+                    weakSelf.localSessionStr = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
                 }
             }
             [self.view endEditing:YES];
@@ -338,6 +342,16 @@
         }];
         
     }
+}
+
+-(void)successLogin{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)hidden{
+    self.wechatBtn.hidden = YES;
+    self.wechatLabel.hidden = YES;
 }
 
 #pragma mark - NTESVerifyCodeManagerDelegate
@@ -390,6 +404,18 @@
 - (void)verifyCodeNetError:(NSError *)error{
     //用户关闭验证后执行的方法
     NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.wechatBtn.enabled = YES;
+    self.wechatBtn.hidden = NO;
+    self.wechatLabel.hidden = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
 }
 
 -(UITextField *)phoneTextField{

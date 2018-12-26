@@ -192,7 +192,10 @@
          [pramaDic setObject:self.localSessionStr forKey:@"localSession"];
     }
     WS(weakSelf)
-    NSLog(@"-----kAppApiReg--->%@",pramaDic);
+    
+    
+    NSLog(@"-----%@--->%@",kAppApiReg,pramaDic);
+    
     NMShowLoadIng;
     [BTERequestTools requestWithURLString:kAppApiReg parameters:pramaDic type:HttpRequestTypePost success:^(id responseObject) {
         NMRemovLoadIng;
@@ -206,8 +209,13 @@
             yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
             [yy save];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            
+            
+            [BHToast showMessage:@"注册成功"];
+            
+            [weakSelf performSelector:@selector(successLogin) withObject:nil afterDelay:1.0f];
+          
+          
         }
         [self.view endEditing:YES];
     } failure:^(NSError *error)  {
@@ -215,6 +223,11 @@
         //        RequestError(error);
         NSLog(@"error-------->%@",error);
     }];
+}
+
+-(void)successLogin{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)startClick{
@@ -280,7 +293,7 @@
         NSMutableDictionary * pramaDic = @{}.mutableCopy;
         [pramaDic setObject:response.code forKey:@"code"];
         WS(weakSelf)
-        NSLog(@"-----requestCheckApi--->%@",pramaDic);
+        NSLog(@"-----kAppApiWXogin--->%@",pramaDic);
         NMShowLoadIng;
         [BTERequestTools requestWithURLString:kAppApiWXogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
             NMRemovLoadIng;
@@ -289,13 +302,16 @@
                 UserObject * yy =  [UserObject shareInstance];
                 yy.token = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
                 [yy save];
+
+                [BHToast showMessage:@"注册成功"];
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_LOGINStatusChange object:nil userInfo:nil];
-                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                [weakSelf performSelector:@selector(successLogin) withObject:nil afterDelay:1.0f];
             }else{
                 if( [[responseObject objectForKey:@"code"] isEqualToString:@"USER000"]){
-                    self.wechatBtn.hidden = YES;
-                    self.localSessionStr = [NSString stringWithFormat:@"%@",[[responseObject objectForKey:@"data"] objectForKey:@"localSession"]];
+                    [BHToast showMessage:@"已微信登录 请您注册绑定手机"];
+                    self.wechatBtn.enabled = NO;
+                    [self performSelector:@selector(hidden) withObject:nil afterDelay:1.0f];
+                    self.localSessionStr = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
                 }
             }
             [self.view endEditing:YES];
@@ -304,13 +320,12 @@
             //        RequestError(error);
             NSLog(@"error-------->%@",error);
         }];
-
     }
+}
+
+-(void)hidden{
     self.wechatBtn.hidden = YES;
-//    wechatLoginViewController *vc= [[wechatLoginViewController alloc] init];
-//    vc.wechatLoginType =  wechatRegister;
-//    vc.localSessionStr  ;
-//    [self.navigationController pushViewController:vc animated:YES];
+    self.wechatLabel.hidden = YES;
 }
 
 #pragma mark - NTESVerifyCodeManagerDelegate
@@ -365,6 +380,16 @@
     NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.wechatBtn.enabled = YES;
+    self.wechatBtn.hidden = NO;
+    self.wechatLabel.hidden = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
 
 -(UIImageView *)iconImageView{
     if (_iconImageView == nil) {
