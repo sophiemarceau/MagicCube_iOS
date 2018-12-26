@@ -19,6 +19,8 @@
 @property (strong,nonatomic) UserHeadView * headView;
 @property (strong,nonatomic) UITableView * tableView;
 @property (strong,nonatomic) ZTYAlertView * alertView;
+@property (strong,nonatomic) MagicLabel * fenhongLabel;
+@property (strong,nonatomic) MagicLabel * invitedetailLabel;
 @end
 
 @implementation MyCenterViewController
@@ -48,7 +50,7 @@
     NSLog(@"-----kAppApiGetUser--->%@",params);
     NMShowLoadIng;
     
-    [BTERequestTools requestWithURLString:kAppApiGetUser parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+    [BTERequestTools requestWithURLString:kAppApiGetAccount parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
 
         NMRemovLoadIng;
         NSLog(@"---kAppApiGetUser--responseObject--->%@",responseObject);
@@ -70,6 +72,23 @@
     
     NSDictionary * dataDict = [responseObject objectForKey:@"data"];
     [self.headView configWithDict:dataDict];
+    
+    UIFont *font =  UIFontMediumOfSize(16);
+    NSDictionary * attubtrDict = @{NSFontAttributeName:font,NSForegroundColorAttributeName:RedMagicColor};
+    NSDictionary * todayIncome = [dataDict objectForKey:@"todayIncome"];
+    
+    NSString *point = [NSString stringWithFormat:@"  %.2f元",[[todayIncome objectForKey:@"point"] doubleValue]];
+    NSString *pointString =[NSString stringWithFormat:@"今日工分分红%@",point];
+    NSAttributedString * attributestring = [MagicRichTool initWithString:pointString dict:attubtrDict subString:point];
+    self.fenhongLabel.attributedText = attributestring;
+    
+    NSDictionary * userInfo = [dataDict objectForKey:@"userInfo"];
+    NSDictionary * inviteattubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
+    NSString *inviteString =@"我的邀请码：48484953";
+    NSString *inviteNum = @"48484953";
+    NSAttributedString * inviteattributestring = [MagicRichTool initWithString:inviteString dict:inviteattubtrDict subString:inviteNum];
+    self.invitedetailLabel.attributedText = inviteattributestring;
+    
 }
 
 - (void)requestCreateDistribution{
@@ -189,6 +208,7 @@
     NSString *price = @"  1.34元";
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subString:price];
     fenhongLabel.attributedText = attributestring;
+    self.fenhongLabel = fenhongLabel;
     
     MagicLabel * label2 = [[MagicLabel alloc] initWithFrame:CGRectMake(10, SCALE_W(68 + 36), SCREEN_WIDTH - 20, SCALE_W(36))];
     label2.numberOfLines = 2;
@@ -222,7 +242,7 @@
     NSString *inviteNum = @"48484953";
     NSAttributedString * inviteattributestring = [MagicRichTool initWithString:inviteString dict:inviteattubtrDict subString:inviteNum];
     detailLabel.attributedText = inviteattributestring;
-    
+    self.invitedetailLabel = detailLabel;
     
     UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(34), SCALE_W(22), SCALE_W(15), SCALE_W(16))];
     imgView.image = [UIImage imageNamed:@"rightArrow"];

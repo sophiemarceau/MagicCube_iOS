@@ -114,11 +114,18 @@
 //    [_nameBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _nameBtn.titleLabel.width + 5, 0, -_nameBtn.titleLabel.width - 5)];
     
 //    self.balenceLabel.text = @" 会员卡余额：￥28";
-    
-    UIFont *font =  UIFontMediumOfSize(16);
-    NSDictionary * attubtrDict = @{NSFontAttributeName:font,NSForegroundColorAttributeName:RedMagicColor};
     NSString *deliveryPrice =@"魔方工分  18";
     NSString *price = @"  18";
+    NSArray * account = [dict objectForKey:@"account"];
+    for (NSDictionary * subDict in account) {
+        if ([[subDict objectForKey:@"type"] isEqualToString:@"POINT"]) {
+            price = [NSString stringWithFormat:@"  %ld",[[subDict objectForKey:@"available"] integerValue]];
+            deliveryPrice = [NSString stringWithFormat:@"魔方工分%@",price];
+        }
+    }
+    UIFont *font =  UIFontMediumOfSize(16);
+    NSDictionary * attubtrDict = @{NSFontAttributeName:font,NSForegroundColorAttributeName:RedMagicColor};
+    
     NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subString:price];
     self.magicPointLabel.attributedText = attributestring;
     [self.detailBtn setTitle:@"奖励细则？" forState:UIControlStateNormal];
