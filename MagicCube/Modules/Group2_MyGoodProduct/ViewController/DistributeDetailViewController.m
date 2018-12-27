@@ -182,7 +182,7 @@
 
 
 -(void)gradeUpLevel:(NSInteger)level{
-    NSLog(@"%ld",level);
+    NSLog(@"%ld",(long)level);
 }
 
 #pragma mark -- btn
@@ -201,7 +201,6 @@
     }else{
         [self requestCreateDistribution];
     }
-   
 }
 
 
