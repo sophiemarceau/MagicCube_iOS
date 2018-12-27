@@ -216,7 +216,7 @@
     [alertController setValue:messageAtt forKey:@"attributedMessage"];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消",nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
+        [self requestWXPayDistribution];
     }];
     [alertController addAction:cancelAction];
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"支付",nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
@@ -247,5 +247,36 @@
     }];
     [alertController addAction:sureAction];
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+
+- (void)requestWXPayDistribution{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [params setObject:self.snStr forKey:@"sn"];
+    [params setObject:@"WXPAY" forKey:@"payType"];
+    [params setObject:@"IOS" forKey:@"terminal"];
+    NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    [params setObject:idString forKey:@"terminalIdentifier"];
+    WS(weakSelf)
+    NSLog(@"-----CreateDistribution--->%@",params);
+    NMShowLoadIng;
+    NSString * requestUrl = [NSString stringWithFormat:@"%@",kAppApiiDistributionPreWxPay];
+    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypePost success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiiDistributionPreWxPay--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.mainVc setSelectedIndex:1];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationUpdateDistributionList object:nil];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
 }
 @end

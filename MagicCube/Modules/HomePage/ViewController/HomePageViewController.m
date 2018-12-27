@@ -611,6 +611,14 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [_scrollView addSubview:targetViewController.view];
 }
 
+-(void)gotoMember:(UIGestureRecognizer *)sender{
+    SecondaryLevelWebViewController *webVc= [[SecondaryLevelWebViewController alloc] init];
+    webVc.urlString = [NSString stringWithFormat:@"%@",@"https://l.bte.top/ad/partner"];
+    webVc.isHiddenLeft = YES;
+    webVc.isHiddenBottom = YES;
+    [self.navigationController pushViewController:webVc animated:YES];
+}
+
 -(UIView *)tableHeaderView{
     if (_tableHeaderView == nil) {
         _tableHeaderView = [UIView new];
@@ -631,6 +639,12 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         [bg addSubview:self.messageLabel];
         
         _tableHeaderView.userInteractionEnabled = YES;
+        picImageView.userInteractionEnabled = YES;
+        
+        
+        UITapGestureRecognizer *tapShareView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoMember:)];
+        [picImageView addGestureRecognizer:tapShareView];
+        
     }
     return _tableHeaderView;
 }
