@@ -45,24 +45,24 @@
        
         [self.shadowView addSubview:self.menberBtn];
         
-        NSArray * array = @[@"普通会员",@"黄金会员",@"白金会员",@"钻石会员"];
-        NSArray * imgArray = @[@"putong",@"huanjin",@"putong",@"zuanshi"];
+        NSArray * names = @[@"普通会员",@"黄金会员",@"白金会员",@"钻石会员"];
+        NSArray * imgArray = @[@"putong",@"huanjin",@"baijin",@"zuanshi"];
         CGFloat width = (SCREEN_WIDTH - 20) / 4.0;
-        for (int index = 0; index < array.count; index ++) {
+        for (int index = 0; index < names.count; index ++) {
             MemberLevelView * memberView = [[MemberLevelView alloc] initWithFrame:CGRectMake(index * width, 0, width, SCALE_W(70))];
             memberView.tag = 500 + index;
             LineLRPosition pos = LinePositionShowLeftRight;
             if (index == 0) {
                 
                 pos = LinePositionShowRight;
-            }else if (index == array.count - 1){
+            }else if (index == names.count - 1){
                 pos = LinePositionShowLeft;
                 [memberView removeFromSuperview];
                 memberView = [[MemberLevelView alloc] initWithFrame:CGRectMake(index * width, 0, width, SCALE_W(70)) imgW:SCALE_W(30)];
             }else{
                 pos = LinePositionShowLeftRight;
             }
-            [memberView configView:imgArray[index] lightImage:imgArray[index] levelText:array[index] LineLRPosition:pos];
+            [memberView configView:imgArray[index] lightImage:imgArray[index] levelText:names[index] LineLRPosition:pos];
 //            memberView.backgroundColor = [UIColor whiteColor];
             [self.shadowView addSubview:memberView];
         }
@@ -91,7 +91,7 @@
     for (NSDictionary * subdict in levels) {
         MemberLevelView * memberView = [self.shadowView viewWithTag:500+index];
         NSString * name = [subdict objectForKey:@"name"];
-        NSInteger level = [[userInfo objectForKey:@"level"] integerValue];
+        NSInteger level = [[subdict objectForKey:@"level"] integerValue];
         if (level < memberLevel) {
             [memberView setUpName:name imgLight:YES];
             leveldict = subdict;
@@ -105,8 +105,13 @@
         index ++;
     }
     NSString * name = [leveldict objectForKey:@"name"];
-    
-    [self.memberTypeBtn setImage:[UIImage imageNamed:@"zuanshihuiyuan"] forState:UIControlStateNormal];
+    NSArray * memberImages = @[@"putonghuiyuan",@"huangjinhuiyuan",@"baijinhuiyuan",@"zuanshihuiyuan"];
+
+    NSString * imageName = @"putonghuiyuan";
+    if (memberLevel <= memberImages.count && memberLevel != 0) {
+        imageName = memberImages[memberLevel - 1];
+    }
+    [self.memberTypeBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [self.memberTypeBtn setTitle:name forState:UIControlStateNormal];
     [self.memberTypeBtn leftAlignmentImgLeftTitleRight:YES middleSpace:5 leftSpace:0];
 //    _nameBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;

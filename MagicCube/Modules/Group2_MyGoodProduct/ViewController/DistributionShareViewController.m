@@ -191,13 +191,13 @@
     MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.pageNum = 1;
         [weakSelf.recordsArray removeAllObjects];
-        [self requestRecords:weakSelf.pageNum];
+        [weakSelf requestRecords:weakSelf.pageNum];
     }];
     tableView.mj_header = header;
     
     MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         weakSelf.pageNum ++;
-        [self requestRecords:weakSelf.pageNum];
+        [weakSelf requestRecords:weakSelf.pageNum];
     }];
     tableView.mj_footer = footer;
     
@@ -265,21 +265,9 @@
 
 - (void)shareClick:(UIButton *)btn{
     
-    
-    UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"您确认要结束分销？" message:@"结束分销后押金将在3个工作日内退还到您的原支付账户" preferredStyle:UIAlertControllerStyleAlert];
-    WS(weakSelf)
-    UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"结束分销" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"继续分销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        SendPreviewViewController * sendVC = [[SendPreviewViewController alloc] init];
-        sendVC.dataDict = weakSelf.goodsdict;
-        [weakSelf.navigationController pushViewController:sendVC animated:YES];
-    }];
-    [alertVc addAction:cancle];
-    [alertVc addAction:sure];
-    [self presentViewController:alertVc animated:YES completion:nil];
-    
+    SendPreviewViewController * sendVC = [[SendPreviewViewController alloc] init];
+    sendVC.dataDict = self.goodsdict;
+    [self.navigationController pushViewController:sendVC animated:YES];
 }
 
 -(UIButton *)createSelectBtn:(CGRect)frame{
@@ -291,6 +279,7 @@
     btn.titleLabel.font = UIFontRegularOfSize(14);
     return btn;
 }
+
 /*
 #pragma mark - Navigation
 

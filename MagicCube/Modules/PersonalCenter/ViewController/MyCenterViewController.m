@@ -84,8 +84,9 @@
     
     NSDictionary * userInfo = [dataDict objectForKey:@"userInfo"];
     NSDictionary * inviteattubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
-    NSString *inviteString =@"我的邀请码：48484953";
-    NSString *inviteNum = @"48484953";
+    
+    NSString *inviteNum = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"inviteCode"]];
+    NSString *inviteString =[NSString stringWithFormat:@"我的邀请码：%@",inviteNum];
     NSAttributedString * inviteattributestring = [MagicRichTool initWithString:inviteString dict:inviteattubtrDict subString:inviteNum];
     self.invitedetailLabel.attributedText = inviteattributestring;
     
@@ -129,8 +130,6 @@
         }
         
     };
-    [self.headView configWithDict:@{}];
-//    [self.view addSubview:self.headView];
     
     UITableView * tabelview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - 49) style:UITableViewStylePlain];
     tabelview.delegate = self;
@@ -260,21 +259,4 @@
     return _alertView;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    if (section == 0) {
-//        return 10;
-//    }else{
-//        return 0.01;
-//    }
-//}
-//
-//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    if (section == 0) {
-//        UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
-//        footView.backgroundColor = KBGColor;
-//        return footView;
-//    }else{
-//        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.01)];
-//    }
-//}
 @end

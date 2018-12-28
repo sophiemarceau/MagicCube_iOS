@@ -131,6 +131,10 @@
     return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.01)];
 }
 
+-(void)dealloc{
+    NSLog(@"dealloc");
+}
+
 /*
 #pragma mark - Navigation
 
