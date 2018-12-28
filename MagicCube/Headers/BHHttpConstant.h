@@ -66,7 +66,8 @@ static NSString * const kHeader = @"https://l.bte.top/";
 #define kAppApiiHomePageUserRecentList [NSString stringWithFormat:@"%@%@",kDomain,@"api/statistics/user/recent"]
 //好物详情 购买分销商品
 #define kAppApiiDistributionPreWxPay [NSString stringWithFormat:@"%@%@",kDomain,@"api/wx/pay/distribution/pre"]
-
+//支付商品分销押金
+#define kAppApiiDeposiPreWxPay [NSString stringWithFormat:@"%@%@",kDomain,@"api/wx/pay/deposit/pre"]
 
 
 /*************************************************************/

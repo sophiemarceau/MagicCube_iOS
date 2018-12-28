@@ -41,7 +41,6 @@
 #pragma mark -- 数据
 - (void)requestDetail{
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-    
     WS(weakSelf)
     NSLog(@"-----kAppApiGoodsDetail--->%@",params);
     NMShowLoadIng;
@@ -62,25 +61,6 @@
     }];
 }
 
-- (void)dealDetailData:(NSDictionary *)dict{
-    NSDictionary * dataDict = [dict objectForKey:@"data"];
-    
-    NSString * videoUrl = [dataDict objectForKey:@"video"];
-    NSURL * url = [NSURL URLWithString:videoUrl];
-    self.player = [AVPlayer playerWithURL:url];
-    self.playerLayer.player = self.player;
-    
-    [self.goodsInfoView setUPdata:dataDict];
-    
-    [self.cardView setUpDistributeDetailDict:dataDict];
-    
-    NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
-    NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
-    [self.memberView setUpdata:memberRuleRes currentUserMemberLevel:currentUserMemberLevel];
-     self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
-    distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
-}
-
 - (void)requestCreateDistribution{
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
     [params setObject:self.snStr forKey:@"sn"];
@@ -91,6 +71,35 @@
     [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypePost success:^(id responseObject) {
         NMRemovLoadIng;
         NSLog(@"---CreateDistribution--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [appDelegate.mainVc setSelectedIndex:1];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationUpdateDistributionList object:nil];
+        }else{
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+- (void)requestWXPayDistribution{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [params setObject:self.snStr forKey:@"sn"];
+    [params setObject:@"WXPAY" forKey:@"payType"];
+    [params setObject:@"IOS" forKey:@"terminal"];
+    NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    [params setObject:idString forKey:@"terminalIdentifier"];
+    WS(weakSelf)
+    NMShowLoadIng;
+    NSString * requestUrl = [NSString stringWithFormat:@"%@",kAppApiiDeposiPreWxPay];
+    NSLog(@"-----kAppApiiDeposiPreWxPay--%@--->%@",requestUrl,params);
+    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypePost success:^(id responseObject) {
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiiDeposiPreWxPay--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             [weakSelf.navigationController popToRootViewControllerAnimated:NO];
             AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -180,6 +189,24 @@
     rootView.contentSize = CGSizeMake(0, SCALE_W(818));
 }
 
+- (void)dealDetailData:(NSDictionary *)dict{
+    NSDictionary * dataDict = [dict objectForKey:@"data"];
+    
+    NSString * videoUrl = [dataDict objectForKey:@"video"];
+    NSURL * url = [NSURL URLWithString:videoUrl];
+    self.player = [AVPlayer playerWithURL:url];
+    self.playerLayer.player = self.player;
+    
+    [self.goodsInfoView setUPdata:dataDict];
+    
+    [self.cardView setUpDistributeDetailDict:dataDict];
+    
+    NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
+    NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
+    [self.memberView setUpdata:memberRuleRes currentUserMemberLevel:currentUserMemberLevel];
+    self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
+    distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
+}
 
 -(void)gradeUpLevel:(NSInteger)level{
     NSLog(@"%ld",(long)level);
@@ -203,7 +230,6 @@
     }
 }
 
-
 -(void)payAttention{
     NSString *message;
     NSString *messageString = [NSString stringWithFormat:@"代理本产品需要预付%.2f元押金，取消代理后押金可退。",distributionDeposit];
@@ -216,12 +242,11 @@
     [alertController setValue:messageAtt forKey:@"attributedMessage"];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消",nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [self requestWXPayDistribution];
+       
     }];
     [alertController addAction:cancelAction];
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"支付",nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
-        [self requestCreateDistribution];
-        
+         [self requestWXPayDistribution];
         
         
         //商户服务器生成支付订单，先调用【统一下单API】生成预付单，获取到prepay_id后将参数再次签名传输给APP发起支付。以下是调起微信支付的关键代码：
@@ -249,34 +274,4 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-
-
-- (void)requestWXPayDistribution{
-    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-    [params setObject:self.snStr forKey:@"sn"];
-    [params setObject:@"WXPAY" forKey:@"payType"];
-    [params setObject:@"IOS" forKey:@"terminal"];
-    NSString *idString = [[UUID getUUID] stringByReplacingOccurrencesOfString:@"-" withString:@""];
-    [params setObject:idString forKey:@"terminalIdentifier"];
-    WS(weakSelf)
-    NSLog(@"-----CreateDistribution--->%@",params);
-    NMShowLoadIng;
-    NSString * requestUrl = [NSString stringWithFormat:@"%@",kAppApiiDistributionPreWxPay];
-    [BTERequestTools requestWithURLString:requestUrl parameters:params type:HttpRequestTypePost success:^(id responseObject) {
-        NMRemovLoadIng;
-        NSLog(@"---kAppApiiDistributionPreWxPay--responseObject--->%@",responseObject);
-        if (IsSucess(responseObject)) {
-            [weakSelf.navigationController popToRootViewControllerAnimated:NO];
-            AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            [appDelegate.mainVc setSelectedIndex:1];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationUpdateDistributionList object:nil];
-        }else{
-            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
-            [BHToast showMessage:message];
-        }
-    } failure:^(NSError *error)  {
-        NMRemovLoadIng;
-        NSLog(@"error-------->%@",error);
-    }];
-}
 @end
