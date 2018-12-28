@@ -24,6 +24,10 @@
     [self addNotification];
 //    self.navigationItem.leftBarButtonItem = [self leftBart];
 //    self.navigationItem.rightBarButtonItem = [self creatRightBarItem];
+    
+    
+    
+     NSLog(@"--------webview-------viewDidLoad------------------%d",self.isHiddenBottom);
 }
 
 - (void)addNotification {}
@@ -55,6 +59,13 @@
     }else{
         [self.timer fire];
     }
+    
+
+   NSLog(@"--------webview-------viewWillAppear------------------%d",self.isHiddenBottom);
+     self.webView.frame = CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT- NAVIGATION_HEIGHT  - (self.isHideTabarView ? HOME_INDICATOR_HEIGHT : TAB_BAR_HEIGHT));
+    
+//    isShowBottom
+     NSLog(@"--------webview-------viewWillAppear------------------%d",self.isHideTabarView);
 }
 
 #pragma mark - viewWillDisappear

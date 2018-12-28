@@ -613,9 +613,11 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
 -(void)gotoMember:(UIGestureRecognizer *)sender{
     SecondaryLevelWebViewController *webVc= [[SecondaryLevelWebViewController alloc] init];
-    webVc.urlString = [NSString stringWithFormat:@"%@",@"https://l.bte.top/ad/partner"];
     webVc.isHiddenLeft = YES;
     webVc.isHiddenBottom = YES;
+    webVc.isHideTabarView = YES;
+    webVc.urlString = [NSString stringWithFormat:@"%@",@"https://l.bte.top/ad/partner"];
+  
     [self.navigationController pushViewController:webVc animated:YES];
 }
 

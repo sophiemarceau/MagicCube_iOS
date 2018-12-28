@@ -11,5 +11,5 @@
 @interface SecondaryLevelWebViewController : BaseWebViewController{
 
 }
-
+@property (nonatomic, assign) BOOL isHideTabarView;
 @end
