@@ -105,6 +105,7 @@
 		B2D8C56021A405FE00BBC74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55F21A405FE00BBC74F /* main.m */; };
 		B2D8C56A21A405FE00BBC74F /* MagicCubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C56921A405FE00BBC74F /* MagicCubeTests.m */; };
 		B2D8C57521A405FE00BBC74F /* MagicCubeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C57421A405FE00BBC74F /* MagicCubeUITests.m */; };
+		B2F7CFD021D74B9D0077FCF2 /* MagicShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +323,8 @@
 		B2D8C57021A405FE00BBC74F /* MagicCubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicCubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C57421A405FE00BBC74F /* MagicCubeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCubeUITests.m; sourceTree = "<group>"; };
 		B2D8C57621A405FE00BBC74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2F7CFCE21D74B9D0077FCF2 /* MagicShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicShareView.h; sourceTree = "<group>"; };
+		B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicShareView.m; sourceTree = "<group>"; };
 		EB2348FC8C17E308B9A9C395 /* Pods-MagicCube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicCube.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube.release.xcconfig"; sourceTree = "<group>"; };
 		F271BB3A73938B24FF22D70E /* Pods-MagicCube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicCube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -794,6 +797,8 @@
 				B209F18F21A7EF2C0043E485 /* RedButton.m */,
 				B209F19121A7F5AB0043E485 /* TableTitleHeadView.h */,
 				B209F19221A7F5AB0043E485 /* TableTitleHeadView.m */,
+				B2F7CFCE21D74B9D0077FCF2 /* MagicShareView.h */,
+				B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -1152,6 +1157,7 @@
 				936EA03921B7A23200CD1A4E /* LoginViewController.m in Sources */,
 				932DFD7321BFB8D80052051B /* YQNetworking+RequestManager.m in Sources */,
 				932DFD6F21BFB8D80052051B /* YQLRUManager.m in Sources */,
+				B2F7CFD021D74B9D0077FCF2 /* MagicShareView.m in Sources */,
 				B2633AF121AF7B47001E1490 /* DistributionShareViewController.m in Sources */,
 				932DFD7121BFB8D80052051B /* YQMemoryCache.m in Sources */,
 				7DC3BA2921C15A3700612DAA /* UUID.m in Sources */,

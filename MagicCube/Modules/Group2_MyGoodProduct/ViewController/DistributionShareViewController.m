@@ -169,6 +169,7 @@
     int i = 0;
     for (NSString * sharetitle in array) {
          UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(intevalw + (intevalw + btnw) * (i % 4), SCALE_W(15) + (SCALE_W(15) + btnh) * (i / 4), btnw, btnh)];
+        btn.tag = i + 600;
         [btn setTitleColor:Gray666Color forState:UIControlStateNormal];
         [btn setTitle:sharetitle forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:imgarray[i]] forState:UIControlStateNormal];
@@ -271,9 +272,13 @@
 
 - (void)shareClick:(UIButton *)btn{
     
-    SendPreviewViewController * sendVC = [[SendPreviewViewController alloc] init];
-    sendVC.dataDict = self.goodsdict;
-    [self.navigationController pushViewController:sendVC animated:YES];
+    if (btn.tag == 601) {
+        SendPreviewViewController * sendVC = [[SendPreviewViewController alloc] init];
+        sendVC.dataDict = self.goodsdict;
+        [self.navigationController pushViewController:sendVC animated:YES];
+    }else{
+        [BHToast showMessage:@"暂未开放"];
+    }
 }
 
 -(UIButton *)createSelectBtn:(CGRect)frame{
