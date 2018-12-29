@@ -121,16 +121,18 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [pramaDic setObject:[self getNowTimeTimestamp] forKey:@"time"];
     [BTERequestTools requestWithURLString:kAppApiHomePageDistriRecent parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-//        NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"];
-            NSDictionary *dic = array[0];
-            NSString *nickNameStr,*commissionStr,*goodsNameStr;
-            
-            nickNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
-            commissionStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"commission"]];
-            goodsNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"goodsName"]];
-            self.messageLabel.text = [NSString stringWithFormat:@"%@刚刚分销了%@,分销收益%@元",nickNameStr,goodsNameStr,commissionStr];
+            if (array && array.count > 0) {
+                NSDictionary *dic = array[0];
+                NSString *nickNameStr,*commissionStr,*goodsNameStr;
+                
+                nickNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
+                commissionStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"commission"]];
+                goodsNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"goodsName"]];
+                self.messageLabel.text = [NSString stringWithFormat:@"%@刚刚分销了%@,分销收益%@元",nickNameStr,goodsNameStr,commissionStr];
+            }
         }
     } failure:^(NSError *error)  {
         NMRemovLoadIng;
