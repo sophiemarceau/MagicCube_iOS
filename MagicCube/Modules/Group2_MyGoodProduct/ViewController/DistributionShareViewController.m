@@ -49,7 +49,11 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiDistribution--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            [weakSelf.cardView setUpDistributeDict:[responseObject objectForKey:@"data"]];
+            
+            if ([responseObject objectForKey:@"data"]) {
+                [weakSelf.cardView setUpDistributeDict:[responseObject objectForKey:@"data"]];
+            }
+            
         }else{
             NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
             [BHToast showMessage:message];
@@ -76,19 +80,21 @@
         NSLog(@"---requestRecords--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSDictionary * dataDict = [responseObject objectForKey:@"data"];
-            if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
-                NSString * recordBtnTitle = [NSString stringWithFormat:@"分销记录 (%ld条)",[[dataDict objectForKey:@"total"] integerValue]];
-                [weakSelf.distributeRecordBtn setTitle:recordBtnTitle forState:UIControlStateNormal];
+            if(dataDict){
+                if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
+                    NSString * recordBtnTitle = [NSString stringWithFormat:@"分销记录 (%ld条)",[[dataDict objectForKey:@"total"] integerValue]];
+                    [weakSelf.distributeRecordBtn setTitle:recordBtnTitle forState:UIControlStateNormal];
+                    
+                    NSArray *list = [dataDict objectForKey:@"list"];
+                    [weakSelf.recordsArray addObjectsFromArray:list];
+                    [weakSelf.recordsTableView reloadData];
+                }
+            }else{
                 
-                NSArray *list = [dataDict objectForKey:@"list"];
-                [weakSelf.recordsArray addObjectsFromArray:list];
-                [weakSelf.recordsTableView reloadData];
+                NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+                [BHToast showMessage:message];
             }
-        }else{
-            
-            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
-            [BHToast showMessage:message];
-        }
+            }
     } failure:^(NSError *error)  {
         [weakSelf.recordsTableView.mj_header endRefreshing];
         [weakSelf.recordsTableView.mj_footer endRefreshing];

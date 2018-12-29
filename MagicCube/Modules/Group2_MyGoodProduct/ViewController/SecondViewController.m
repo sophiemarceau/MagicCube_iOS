@@ -53,15 +53,47 @@
         NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSDictionary * dataDict = [responseObject objectForKey:@"data"];
-            if (pageNum == [[dataDict objectForKey:@"pageNum"] integerValue]) {
-                NSArray * list = [dataDict objectForKey:@"list"];
-                [weakSelf.goodsArray addObjectsFromArray:list];
-                [weakSelf.tableView reloadData];
+            if (dataDict) {
+                if (pageNum == [[dataDict objectForKey:@"pageNum"] integerValue]) {
+                    NSArray * list = [dataDict objectForKey:@"list"];
+                    [weakSelf.goodsArray addObjectsFromArray:list];
+                    [weakSelf.tableView reloadData];
+                }
             }
         }else{
 //            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
 //            [BHToast showMessage:message];
         }
+    } failure:^(NSError *error)  {
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
+
+- (void)requestDelete:(NSString *)sn sucess:(void(^)(void))success{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+   
+    [params setObject:sn forKey:@"pageSize"];
+    NSString * url = [NSString stringWithFormat:@"%@%@/del",kAppApiDistribution,sn];
+    WS(weakSelf)
+    //    NSLog(@"-----kAppApiDistributionList--->%@",params);
+    NMShowLoadIng;
+    
+    [BTERequestTools requestWithURLString:url parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            success();
+        }else{
+            
+        }
+        NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+        [BHToast showMessage:message];
     } failure:^(NSError *error)  {
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
@@ -142,10 +174,17 @@
 //        // [tableView reloadData];
 //        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
+        
+
+        
         UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"您确认要结束分销？" message:@"结束分销后押金将在3个工作日内退还到您的原支付账户" preferredStyle:UIAlertControllerStyleAlert];
         WS(weakSelf)
         UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"结束分销" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
+            NSDictionary * goodsDict = weakSelf.goodsArray[indexPath.row];
+            [weakSelf requestDelete:[goodsDict objectForKey:@"sn"] sucess:^{
+                [weakSelf.goodsArray removeObject:goodsDict];
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }];
         }];
         UIAlertAction *sure = [UIAlertAction actionWithTitle:@"继续分销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             

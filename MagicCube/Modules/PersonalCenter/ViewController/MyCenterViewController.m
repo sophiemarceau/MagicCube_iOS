@@ -71,24 +71,26 @@
 - (void)dealUserInfo:(NSDictionary *)responseObject{
     
     NSDictionary * dataDict = [responseObject objectForKey:@"data"];
-    [self.headView configWithDict:dataDict];
-    
-    UIFont *font =  UIFontMediumOfSize(16);
-    NSDictionary * attubtrDict = @{NSFontAttributeName:font,NSForegroundColorAttributeName:RedMagicColor};
-    NSDictionary * todayIncome = [dataDict objectForKey:@"todayIncome"];
-    
-    NSString *point = [NSString stringWithFormat:@"  %.2f元",[[todayIncome objectForKey:@"point"] doubleValue]];
-    NSString *pointString =[NSString stringWithFormat:@"今日工分分红%@",point];
-    NSAttributedString * attributestring = [MagicRichTool initWithString:pointString dict:attubtrDict subString:point];
-    self.fenhongLabel.attributedText = attributestring;
-    
-    NSDictionary * userInfo = [dataDict objectForKey:@"userInfo"];
-    NSDictionary * inviteattubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
-    
-    NSString *inviteNum = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"inviteCode"]];
-    NSString *inviteString =[NSString stringWithFormat:@"我的邀请码：%@",inviteNum];
-    NSAttributedString * inviteattributestring = [MagicRichTool initWithString:inviteString dict:inviteattubtrDict subString:inviteNum];
-    self.invitedetailLabel.attributedText = inviteattributestring;
+    if (dataDict) {
+        [self.headView configWithDict:dataDict];
+        
+        UIFont *font =  UIFontMediumOfSize(16);
+        NSDictionary * attubtrDict = @{NSFontAttributeName:font,NSForegroundColorAttributeName:RedMagicColor};
+        NSDictionary * todayIncome = [dataDict objectForKey:@"todayIncome"];
+        
+        NSString *point = [NSString stringWithFormat:@"  %.2f元",[[todayIncome objectForKey:@"point"] doubleValue]];
+        NSString *pointString =[NSString stringWithFormat:@"今日工分分红%@",point];
+        NSAttributedString * attributestring = [MagicRichTool initWithString:pointString dict:attubtrDict subString:point];
+        self.fenhongLabel.attributedText = attributestring;
+        
+        NSDictionary * userInfo = [dataDict objectForKey:@"userInfo"];
+        NSDictionary * inviteattubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
+        
+        NSString *inviteNum = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"inviteCode"]];
+        NSString *inviteString =[NSString stringWithFormat:@"我的邀请码：%@",inviteNum];
+        NSAttributedString * inviteattributestring = [MagicRichTool initWithString:inviteString dict:inviteattubtrDict subString:inviteNum];
+        self.invitedetailLabel.attributedText = inviteattributestring;
+    }
     
 }
 

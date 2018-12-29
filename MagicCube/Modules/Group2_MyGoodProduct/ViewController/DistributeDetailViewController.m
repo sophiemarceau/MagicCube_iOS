@@ -192,20 +192,22 @@
 - (void)dealDetailData:(NSDictionary *)dict{
     NSDictionary * dataDict = [dict objectForKey:@"data"];
     
-    NSString * videoUrl = [dataDict objectForKey:@"video"];
-    NSURL * url = [NSURL URLWithString:videoUrl];
-    self.player = [AVPlayer playerWithURL:url];
-    self.playerLayer.player = self.player;
-    
-    [self.goodsInfoView setUPdata:dataDict];
-    
-    [self.cardView setUpDistributeDetailDict:dataDict];
-    
-    NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
-    NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
-    [self.memberView setUpdata:memberRuleRes currentUserMemberLevel:currentUserMemberLevel];
-    self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
-    distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
+    if (dataDict) {
+        NSString * videoUrl = [dataDict objectForKey:@"video"];
+        NSURL * url = [NSURL URLWithString:videoUrl];
+        self.player = [AVPlayer playerWithURL:url];
+        self.playerLayer.player = self.player;
+        
+        [self.goodsInfoView setUPdata:dataDict];
+        
+        [self.cardView setUpDistributeDetailDict:dataDict];
+        
+        NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
+        NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
+        [self.memberView setUpdata:memberRuleRes currentUserMemberLevel:currentUserMemberLevel];
+        self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
+        distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
+    }
 }
 
 -(void)gradeUpLevel:(NSInteger)level{

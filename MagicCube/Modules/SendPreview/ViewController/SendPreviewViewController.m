@@ -147,10 +147,10 @@
         wxMiniObject.hdImageData = nil;
         wxMiniObject.miniProgramType = WXMiniProgramTypePreview;
         // launchMiniProgramReq.path = path;    //拉起小程序页面的可带参路径，不填默认拉起小程序首页
-        //  WXMiniProgramTypeRelease = 0,       //**< 正式版  */
+        // WXMiniProgramTypeRelease = 0,       //**< 正式版  */
         // WXMiniProgramTypeTest = 1,        //**< 开发版  */
-        //WXMiniProgramTypePreview = 2,         //**< 体验版  */
-        //        launchMiniProgramReq.miniProgramType = WXMiniProgramTypePreview; //拉起小程序的类型
+        // WXMiniProgramTypePreview = 2,         //**< 体验版  */
+        // launchMiniProgramReq.miniProgramType = WXMiniProgramTypePreview; //拉起小程序的类型
         
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = @"魔方提货卡";

@@ -39,9 +39,11 @@
         NSLog(@"---requestRecords--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSDictionary * dataDict = [responseObject objectForKey:@"data"];
-            if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
-                
-                [weakSelf.tableView reloadData];
+            if (dataDict) {
+                if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
+                    
+                    [weakSelf.tableView reloadData];
+                }
             }
         }else{
             
