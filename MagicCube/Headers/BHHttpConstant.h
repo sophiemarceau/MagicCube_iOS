@@ -49,7 +49,7 @@ static NSString * const kHeader = @"https://l.bte.top/";
 //app端用退出登录
 #define kAppApiLogout [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/logout"]
 //app端用户微信授权登录接口
-#define kAppApiWXogin [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/wx/login"]
+#define kAppApiWXLogin [NSString stringWithFormat:@"%@%@",kDomain,@"api/user/app/wx/login"]
 
 /*************************************************************/
 //好物中心 商品模块菜单

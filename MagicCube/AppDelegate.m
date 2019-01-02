@@ -63,7 +63,7 @@
 //        }
 //    }
 //    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-    
+     NSLog(@"url-openURL--->%@",url.absoluteString);
      return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 

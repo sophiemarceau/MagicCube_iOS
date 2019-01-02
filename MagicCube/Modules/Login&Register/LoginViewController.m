@@ -33,7 +33,10 @@
 @end
 
 @implementation LoginViewController
-
+//- (void)dealloc
+//{
+//    [WXApiManager sharedManager].delegate = nil
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.authFlag) {
@@ -315,7 +318,7 @@
         WS(weakSelf)
         NSLog(@"-----requestCheckApi--->%@",pramaDic);
         NMShowLoadIng;
-        [BTERequestTools requestWithURLString:kAppApiWXogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        [BTERequestTools requestWithURLString:kAppApiWXLogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
             NMRemovLoadIng;
             NSLog(@"kAppApiWXogin-----responseObject--->%@",responseObject);
             if (IsSucess(responseObject)) {

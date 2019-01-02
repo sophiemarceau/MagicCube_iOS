@@ -44,7 +44,7 @@
 
 @interface WXApiManager : NSObject<WXApiDelegate>
 
-@property (nonatomic, assign) id<WXApiManagerDelegate> delegate;
+@property (nonatomic, weak) id<WXApiManagerDelegate> delegate;
 
 + (instancetype)sharedManager;
 
