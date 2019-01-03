@@ -105,6 +105,8 @@
 		B2D8C56021A405FE00BBC74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55F21A405FE00BBC74F /* main.m */; };
 		B2D8C56A21A405FE00BBC74F /* MagicCubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C56921A405FE00BBC74F /* MagicCubeTests.m */; };
 		B2D8C57521A405FE00BBC74F /* MagicCubeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C57421A405FE00BBC74F /* MagicCubeUITests.m */; };
+		B2E9F3DA21DDF3C40008ED10 /* ProfitView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E9F3D921DDF3C40008ED10 /* ProfitView.m */; };
+		B2E9F3DD21DDF4120008ED10 /* Profit.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E9F3DC21DDF4120008ED10 /* Profit.m */; };
 		B2F7CFD021D74B9D0077FCF2 /* MagicShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */; };
 /* End PBXBuildFile section */
 
@@ -323,6 +325,10 @@
 		B2D8C57021A405FE00BBC74F /* MagicCubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicCubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D8C57421A405FE00BBC74F /* MagicCubeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCubeUITests.m; sourceTree = "<group>"; };
 		B2D8C57621A405FE00BBC74F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2E9F3D821DDF3C40008ED10 /* ProfitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfitView.h; sourceTree = "<group>"; };
+		B2E9F3D921DDF3C40008ED10 /* ProfitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfitView.m; sourceTree = "<group>"; };
+		B2E9F3DB21DDF4120008ED10 /* Profit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profit.h; sourceTree = "<group>"; };
+		B2E9F3DC21DDF4120008ED10 /* Profit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Profit.m; sourceTree = "<group>"; };
 		B2F7CFCE21D74B9D0077FCF2 /* MagicShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicShareView.h; sourceTree = "<group>"; };
 		B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicShareView.m; sourceTree = "<group>"; };
 		EB2348FC8C17E308B9A9C395 /* Pods-MagicCube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicCube.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube.release.xcconfig"; sourceTree = "<group>"; };
@@ -776,6 +782,10 @@
 				B2408FF721AE69E100887B6A /* DistributeLevelView.m */,
 				B22476CA21C9DA9200D08F63 /* DetailMemberView.h */,
 				B22476CB21C9DA9200D08F63 /* DetailMemberView.m */,
+				B2E9F3D821DDF3C40008ED10 /* ProfitView.h */,
+				B2E9F3D921DDF3C40008ED10 /* ProfitView.m */,
+				B2E9F3DB21DDF4120008ED10 /* Profit.h */,
+				B2E9F3DC21DDF4120008ED10 /* Profit.m */,
 				B218A4A421CB2BA500CFBA19 /* GoodsInfoView.h */,
 				B218A4A521CB2BA500CFBA19 /* GoodsInfoView.m */,
 				B218A4A721CB66BB00CFBA19 /* MagicCardView.h */,
@@ -1171,6 +1181,7 @@
 				7D709BB821ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m in Sources */,
 				B218A4A621CB2BA500CFBA19 /* GoodsInfoView.m in Sources */,
 				B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */,
+				B2E9F3DD21DDF4120008ED10 /* Profit.m in Sources */,
 				936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */,
 				7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */,
 				B218A4AC21CB7F9700CFBA19 /* MagicCardTableViewCell.m in Sources */,
@@ -1188,6 +1199,7 @@
 				B25F70F821CCC59A002EFA10 /* JoinClubViewController.m in Sources */,
 				B2D8C56021A405FE00BBC74F /* main.m in Sources */,
 				9333626E21B92DF9001065C7 /* forgetViewController.m in Sources */,
+				B2E9F3DA21DDF3C40008ED10 /* ProfitView.m in Sources */,
 				B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */,
 				93CF8E4821A52EFC004D8111 /* BaseViewController.m in Sources */,
 				B25F70F221CCB5D9002EFA10 /* SettingViewController.m in Sources */,
