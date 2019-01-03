@@ -9,6 +9,7 @@
 #import "ThirdViewController.h"
 #import "HisstoryTableViewCell.h"
 #import "NSString+Size.h"
+#import "SettingViewController.h"
 @interface ThirdViewController ()<UITableViewDelegate,UITableViewDataSource>{
     int current_page,total_count;
     UIImageView *redBgView;
@@ -17,14 +18,14 @@
 @property (nonatomic, strong) UITableView *listView;
 @property (nonatomic, strong) UIImageView *headerImageView,*memImageLevelView;
 @property (nonatomic, strong) UILabel *nameLabel,*namedesLabel;
-@property (nonatomic, strong) UILabel *accountValueLabel;
-@property (nonatomic, strong) UILabel *scoresLabel;
+//@property (nonatomic, strong) UILabel *accountValueLabel;
+//@property (nonatomic, strong) UILabel *scoresLabel;
 @property (nonatomic, strong) UIView *incomeView;
 @property (nonatomic, strong) UIView *historyView;
 @property (nonatomic, strong) UIView *listHeadView;
 @property (nonatomic, strong) UIImageView *moneyView;
 @property (nonatomic, strong) UILabel *moneyLabel,*moneyTitleLabel,*incomeValueLabel;
-@property (nonatomic, strong) UIButton *checkMoneyBtn;
+@property (nonatomic, strong) UIButton *checkMoneyBtn,*settingBtn;
 @end
 
 @implementation ThirdViewController
@@ -64,7 +65,7 @@
                 self.nameLabel.text = nickNameStr;
             }
             self.memImageLevelView.frame = CGRectMake(self.nameLabel.right +10, 61, 15, 15);
-            self.namedesLabel.frame = CGRectMake(self.memImageLevelView.right +10, 64, 40, 10);
+//            self.namedesLabel.frame = CGRectMake(self.memImageLevelView.right +10, 64, 40, 10);
 
            
             if(accountArray && accountArray.count > 0){
@@ -73,39 +74,39 @@
                         self.moneyLabel.text = [NSString stringWithFormat: @"¥%@",[tempDic objectForKey:@"available"]];
                     }
                     if ([tempDic[@"type"] isEqualToString:@"MEMBER"]) {
-                        self.accountValueLabel.text =  [NSString stringWithFormat: @"会员卡余额：¥%@",[tempDic objectForKey:@"available"]];
+//                        self.accountValueLabel.text =  [NSString stringWithFormat: @"会员卡余额：¥%@",[tempDic objectForKey:@"available"]];
                     }
                     if ([tempDic[@"type"] isEqualToString:@"POINT"]) {
-                         self.scoresLabel.text = [NSString stringWithFormat: @"魔方工分：%@",[tempDic objectForKey:@"available"]];
+//                         self.scoresLabel.text = [NSString stringWithFormat: @"魔方工分：%@",[tempDic objectForKey:@"available"]];
                     }
                 }
             }
             
-            if(memberRuleArray && memberRuleArray.count > 0){
-                NSString *memberLevel = stringFormat([infoDic objectForKey:@"memberLevel"]);
-                for (NSDictionary *tempDic  in memberRuleArray) {
-                    if ([stringFormat([infoDic objectForKey:@"level"]) isEqualToString:memberLevel]) {
-                        self.memImageLevelView.hidden = NO;
-                        self.namedesLabel.hidden = NO;
-                        if ([memberLevel isEqualToString:@"1"]) {
-                            self.memImageLevelView.image = [UIImage imageNamed:@"putonghuiyuan"];
-                        }
-                        if ([memberLevel isEqualToString:@"2"]) {
-                            self.memImageLevelView.image = [UIImage imageNamed:@"baijinhuiyuan"];
-                        }
-                        if ([memberLevel isEqualToString:@"3"]) {
-                            self.memImageLevelView.image = [UIImage imageNamed:@"huangjinhuiyuan"];
-                        }
-                        if ([memberLevel isEqualToString:@"4"]) {
-                            self.memImageLevelView.image = [UIImage imageNamed:@"zuanshihuiyuan"];
-                        }
-                        self.namedesLabel.text = [NSString stringWithFormat: @"%@",[tempDic objectForKey:@"name"]];
-                    }else{
-                        self.memImageLevelView.image = [UIImage imageNamed:@"putonghuiyuan"];
-                        self.namedesLabel.hidden = YES;
-                    }
-                }
-            }
+//            if(memberRuleArray && memberRuleArray.count > 0){
+//                NSString *memberLevel = stringFormat([infoDic objectForKey:@"memberLevel"]);
+//                for (NSDictionary *tempDic  in memberRuleArray) {
+//                    if ([stringFormat([infoDic objectForKey:@"level"]) isEqualToString:memberLevel]) {
+//                        self.memImageLevelView.hidden = NO;
+////                        self.namedesLabel.hidden = NO;
+//                        if ([memberLevel isEqualToString:@"1"]) {
+//                            self.memImageLevelView.image = [UIImage imageNamed:@"putonghuiyuan"];
+//                        }
+//                        if ([memberLevel isEqualToString:@"2"]) {
+//                            self.memImageLevelView.image = [UIImage imageNamed:@"baijinhuiyuan"];
+//                        }
+//                        if ([memberLevel isEqualToString:@"3"]) {
+//                            self.memImageLevelView.image = [UIImage imageNamed:@"huangjinhuiyuan"];
+//                        }
+//                        if ([memberLevel isEqualToString:@"4"]) {
+//                            self.memImageLevelView.image = [UIImage imageNamed:@"zuanshihuiyuan"];
+//                        }
+//                        self.namedesLabel.text = [NSString stringWithFormat: @"%@",[tempDic objectForKey:@"name"]];
+//                    }else{
+//                        self.memImageLevelView.image = [UIImage imageNamed:@"putonghuiyuan"];
+//                        self.namedesLabel.hidden = YES;
+//                    }
+//                }
+//            }
             
             
             for(int i = 0; i < self.accountArray.count ;i++){
@@ -116,9 +117,9 @@
                 if (i == 1) {
                     tempLabel.text =stringFormat( [todayDic objectForKey:@"team"]);
                 }
-                if (i == 2) {
-                    tempLabel.text =stringFormat( [todayDic objectForKey:@"point"]);
-                }
+//                if (i == 2) {
+//                    tempLabel.text =stringFormat( [todayDic objectForKey:@"point"]);
+//                }
             }
             self.incomeValueLabel.text = [NSString stringWithFormat:@"¥%ld", [[todayDic objectForKey:@"distribution"] integerValue]+[[todayDic objectForKey:@"team"] integerValue]+[[todayDic objectForKey:@"point"] integerValue]];
         }
@@ -146,6 +147,11 @@
         NMRemovLoadIng;
         NSLog(@"error-------->%@",error);
     }];
+}
+
+-(void)gotoSettingClick{
+    SettingViewController * settingVC = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 -(void)initDatas{
@@ -232,28 +238,29 @@
     self.nameLabel.textColor = [UIColor whiteColor];
     [redBgView addSubview:self.nameLabel];
     
-    self.memImageLevelView = [[UIImageView alloc] initWithFrame:CGRectMake(147, 61, 15, 15)];
+//    self.memImageLevelView = [[UIImageView alloc] initWithFrame:CGRectMake(147, 61, 15, 15)];
+//
+//    [redBgView addSubview:self.memImageLevelView];
     
-    [redBgView addSubview:self.memImageLevelView];
+//    self.namedesLabel = [[UILabel alloc] initWithFrame:CGRectMake(167, 64, 40, 10)];
+//    self.namedesLabel.font = UIFontLightOfSize(10);
+//    self.namedesLabel.textColor = [UIColor whiteColor];
+//    [redBgView addSubview:self.namedesLabel];
     
-    self.namedesLabel = [[UILabel alloc] initWithFrame:CGRectMake(167, 64, 40, 10)];
-    self.namedesLabel.font = UIFontLightOfSize(10);
-    self.namedesLabel.textColor = [UIColor whiteColor];
-    [redBgView addSubview:self.namedesLabel];
+//    self.accountValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 90, 114, 14)];
+//
+//    self.accountValueLabel.font = UIFontRegularOfSize(14);
+//    self.accountValueLabel.textColor = [UIColor whiteColor];
+//    self.accountValueLabel.textAlignment = NSTextAlignmentLeft;
+//    [redBgView addSubview:self.accountValueLabel];
     
-    self.accountValueLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 90, 114, 14)];
-    
-    self.accountValueLabel.font = UIFontRegularOfSize(14);
-    self.accountValueLabel.textColor = [UIColor whiteColor];
-    self.accountValueLabel.textAlignment = NSTextAlignmentLeft;
-    [redBgView addSubview:self.accountValueLabel];
-    
-    self.scoresLabel = [[UILabel alloc] initWithFrame:CGRectMake(235.5, 90, 110, 14)];
-    self.scoresLabel.font = UIFontRegularOfSize(14);
-    self.scoresLabel.textColor = [UIColor whiteColor];
-    self.scoresLabel.textAlignment = NSTextAlignmentLeft;
-    [redBgView addSubview:self.scoresLabel];
-    
+//    self.scoresLabel = [[UILabel alloc] initWithFrame:CGRectMake(235.5, 90, 110, 14)];
+//    self.scoresLabel.font = UIFontRegularOfSize(14);
+//    self.scoresLabel.textColor = [UIColor whiteColor];
+//    self.scoresLabel.textAlignment = NSTextAlignmentLeft;
+//    [redBgView addSubview:self.scoresLabel];
+    redBgView.userInteractionEnabled = YES;
+    [redBgView addSubview:self.settingBtn];
     [headbgview addSubview:redBgView];
     [headbgview addSubview:self.incomeView];
     [headbgview addSubview:self.historyView];
@@ -324,16 +331,16 @@
     UIView *verticalLine;
     self.btnViewsArray = [NSMutableArray array];
     self.accountArray = [NSMutableArray array];
-    for(int i = 0; i < 3 ;i++){
+    for(int i = 0; i < 2 ;i++){
         btn = [UIButton buttonWithType:UIButtonTypeCustom];
         verticalLine = [[UIView alloc] init];
         titleLabel = [[UILabel alloc] init];
         delegateValueLabel = [[UILabel alloc] init];
-        btn.frame = CGRectMake(i*(SCREEN_WIDTH  )/3, 88, (SCREEN_WIDTH)/3, 81);
+        btn.frame = CGRectMake(i*(SCREEN_WIDTH  )/2, 88, (SCREEN_WIDTH)/2, 81);
         [self.incomeView addSubview:btn];
         btn.backgroundColor = [UIColor clearColor];
         
-        delegateValueLabel.frame = CGRectMake(SCALE_W(0), SCALE_W(20),SCREEN_WIDTH/3,SCALE_W(20));
+        delegateValueLabel.frame = CGRectMake(SCALE_W(0), SCALE_W(20),SCREEN_WIDTH/2,SCALE_W(20));
         [btn addSubview:delegateValueLabel];
         delegateValueLabel.backgroundColor  = [UIColor clearColor];
         delegateValueLabel.textAlignment = NSTextAlignmentCenter;
@@ -341,29 +348,29 @@
         delegateValueLabel.textColor = Gray666Color;
         [self.accountArray addObject:delegateValueLabel];
         
-        titleLabel.frame = CGRectMake(SCALE_W(0) , SCALE_W(47), SCREEN_WIDTH/3, SCALE_W(14));
+        titleLabel.frame = CGRectMake(SCALE_W(0) , SCALE_W(47), SCREEN_WIDTH/2, SCALE_W(14));
         titleLabel.font = UIFontRegularOfSize(SCALE_W(14));
         titleLabel.textColor = GrayMagicColor;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [btn addSubview:titleLabel];
         if (i == 0) {
-            titleLabel.text = @"代理收入";
+            titleLabel.text = @"发卡收入";
         }
         if (i == 1) {
-            titleLabel.text = @"团队分红";
+            titleLabel.text = @"互动收入";
         }
-        if (i == 2) {
-            titleLabel.text = @"工分分红";
-        }
-        if (i == 0) {
-            delegateValueLabel.text = @"¥6380";
-        }
-        if (i == 1) {
-            delegateValueLabel.text = @"0";
-        }
-        if (i == 2) {
-            delegateValueLabel.text = @"0";
-        }
+//        if (i == 2) {
+//            titleLabel.text = @"工分分红";
+//        }
+//        if (i == 0) {
+//            delegateValueLabel.text = @"¥6380";
+//        }
+//        if (i == 1) {
+//            delegateValueLabel.text = @"0";
+//        }
+//        if (i == 2) {
+//            delegateValueLabel.text = @"0";
+//        }
         [btn addTarget:self action:@selector(gotoScoresList) forControlEvents:UIControlEventTouchUpInside];
         [self.btnViewsArray addObject:btn];
     }
@@ -461,6 +468,19 @@
         _checkMoneyBtn.layer.cornerRadius = 4;
     }
     return _checkMoneyBtn;
+}
+
+
+-(UIButton *)settingBtn{
+    if (_settingBtn == nil) {
+        _settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(68), SCALE_W(68), SCALE_W(68), SCALE_W(24))];
+        [_settingBtn setTitleColor:BHColorWhite forState:UIControlStateNormal];
+        [_settingBtn setTitle:@"设置" forState:UIControlStateNormal];
+        [_settingBtn addTarget:self action:@selector(gotoSettingClick) forControlEvents:UIControlEventTouchUpInside];
+        _settingBtn.titleLabel.font = UIFontRegularOfSize(14);
+        _settingBtn.tag = 3001;
+    }
+    return _settingBtn;
 }
 
 @end

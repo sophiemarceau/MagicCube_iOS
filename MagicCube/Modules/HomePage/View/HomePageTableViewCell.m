@@ -38,7 +38,7 @@
 //        [self.bgImageView addSubview:self.picImageView];
         [self.bgImageView addSubview:self.titleLabel];
         [self.bgImageView addSubview:self.subLabel];
-        [self.bgImageView addSubview:self.desLabel];
+//        [self.bgImageView addSubview:self.desLabel];
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(172.5, 109.65, 162.5, 0.5)];
         lineView.backgroundColor = GrayMagicColor;
         [self.bgImageView addSubview:lineView];
@@ -66,12 +66,13 @@
     self.subLabel.text = [dict objectForKey:@"subTitle"];
 //    @"干燕窝原料印尼进口 CAIQ溯源";
     
-    self.redBgLabel.text =  [dict objectForKey:@"discountDesc"];
+    self.redBgLabel.text = @"去发卡";
+//    [dict objectForKey:@"discountDesc"];
 //    @"低至6折";
     NSString *salesVolume = [NSString stringWithFormat:@"%@",[dict objectForKey:@"salesVolume"]];
      NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"distributionCount"]];
     NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
-    NSString *deliveryPrice = [NSString stringWithFormat:@"%@位会员分销了这张卡,已售出%@件",salesVolume,distribuionCount];
+    NSString *deliveryPrice = [NSString stringWithFormat:@"最高可赚%@元/张,已有%@人发卡",salesVolume,distribuionCount];
     NSString *price1 = salesVolume;
     NSString *price2 = distribuionCount;
     NSArray *attrArray = @[price1,price2];
@@ -165,7 +166,7 @@
 
 -(UIView *)redBgView{
     if (_redBgView == nil) {
-        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(self.bgImageView.width - 90 - 20, 78 , SCALE_W(90), SCALE_W(23))];
+        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(SCALE_W(173), 78 , SCALE_W(90), SCALE_W(23))];
         _redBgView.backgroundColor = RedMagicColor;
         _redBgView.layer.masksToBounds = YES;
         _redBgView.layer.cornerRadius = 11.5;

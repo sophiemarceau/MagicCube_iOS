@@ -191,7 +191,7 @@
     headView.backgroundColor = [UIColor whiteColor];
     MagicLabel * label1 = [[MagicLabel alloc] initWithFrame:CGRectMake(10, SCALE_W(12), SCREEN_WIDTH - 20, SCALE_W(36))];
     label1.numberOfLines = 3;
-    label1.text = @"魔方工分用于奖励会员对魔方好物做出的贡献，会员通过信息分享/邀请好友/会员卡充值/完成分销任务等各种方式均可获得工分。";
+    label1.text = @"魔方工分用于奖励会员对魔方分销做出的贡献，会员通过信息分享/邀请好友/会员卡充值/完成分销任务等各种方式均可获得工分。";
     label1.font =  UIFontRegularOfSize(SCALE_W(12));
     [headView addSubview:label1];
     
@@ -213,7 +213,7 @@
     
     MagicLabel * label2 = [[MagicLabel alloc] initWithFrame:CGRectMake(10, SCALE_W(68 + 36), SCREEN_WIDTH - 20, SCALE_W(36))];
     label2.numberOfLines = 2;
-    label2.text = @"魔方好物会依据每位会员的工分值，每日将总分销利润的20%作为分红奖励自动发放至会员账户。";
+    label2.text = @"魔方分销会依据每位会员的工分值，每日将总分销利润的20%作为分红奖励自动发放至会员账户。";
     label2.font =  UIFontRegularOfSize(SCALE_W(12));
     [headView addSubview:label2];
     

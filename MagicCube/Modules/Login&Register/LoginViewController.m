@@ -79,7 +79,7 @@
         self.codeTextField.secureTextEntry = YES;
         self.codeMessageBtn.hidden = YES;
     }else if (self.loginStyle == codeMessageLogin) {
-        self.title = @"登录魔方好物";
+        self.title = @"登录魔方分销";
         self.codeTextField.placeholder = @"请输入短信验证码";
         self.wechatLabel.hidden = YES;
         self.wechatBtn.hidden = YES;

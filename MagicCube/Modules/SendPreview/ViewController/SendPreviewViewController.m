@@ -72,7 +72,6 @@
     NMShowLoadIng;
     
     [BTERequestTools requestWithURLString:kAppApiDistributionForward parameters:params type:HttpRequestTypePost success:^(id responseObject) {
-       
         NMRemovLoadIng;
         NSLog(@"---kAppApiDistributionForward--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {

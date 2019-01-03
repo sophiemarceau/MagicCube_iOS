@@ -52,17 +52,17 @@
     BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"home_normal" selectedImage:@"home_selected" title:@"好物中心"];
     
     SecondViewController *secondVc = [[SecondViewController alloc] init];
-    BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"wodehaowu_normal" selectedImage:@"wodehaowu_selected" title:@"分销中心"];
+    BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"wodehaowu_normal" selectedImage:@"wodehaowu_selected" title:@"发放中心"];
     
     ThirdViewController *thirdVc = [[ThirdViewController alloc] init];
-    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"caiwuzhongxin_normal" selectedImage:@"caiwuzhongxin_selected" title:@"财务中心"];
+    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"huiyuanzhongxin_normal" selectedImage:@"huiyuanzhongxin_selected" title:@"个人中心"];
     
-    MyCenterViewController *myCVc = [[MyCenterViewController alloc] init];
-    BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"huiyuanzhongxin_normal" selectedImage:@"huiyuanzhongxin_selected" title:@"会员中心"];
+//    MyCenterViewController *myCVc = [[MyCenterViewController alloc] init];
+//    BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"huiyuanzhongxin_normal" selectedImage:@"huiyuanzhongxin_selected" title:@"会员中心"];
     [self addChildViewController:nav1];
     [self addChildViewController:nav2];
     [self addChildViewController:nav3];
-    [self addChildViewController:nav4];
+//    [self addChildViewController:nav4];
 }
 
 #pragma mark - 初始化设置tabBar上面单个按钮的方法
@@ -88,7 +88,7 @@
     Vc.tabBarItem.title = title;
     Vc.navigationItem.title = title;
     if([title isEqualToString:@"好物中心"]){
-        Vc.navigationItem.title = @"魔方好物";
+        Vc.navigationItem.title = @"魔方分销";
     }
     
     return nav;

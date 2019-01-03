@@ -389,7 +389,6 @@
     self.wechatBtn.enabled = YES;
     self.wechatBtn.hidden = NO;
     self.wechatLabel.hidden = NO;
-  
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -567,7 +566,6 @@
         _gotoLabel.userInteractionEnabled = YES;
         UITapGestureRecognizer *gotoLoginGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoLogin:)];
         [_gotoLabel addGestureRecognizer:gotoLoginGesture];
-        
     }
     return _gotoLabel;
 }

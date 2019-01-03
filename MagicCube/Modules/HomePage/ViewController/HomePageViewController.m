@@ -86,7 +86,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     tempView.backgroundColor = [UIColor whiteColor];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2-72)/2 +18, 0, 72, TAB_BAR_HEIGHT - STATUS_BAR_HEIGHT)];
-    titleLabel.text = @"魔方好物";
+    titleLabel.text = @"魔方分销";
     titleLabel.textColor = BHHexColor(@"3F3F3F");
     titleLabel.font = UIFontRegularOfSize(18);
     titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -150,7 +150,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
             NSString *price2 = [NSString stringWithFormat:@"%@",[dic objectForKey:@"card"]];
 
             NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(12),NSForegroundColorAttributeName:Gray666Color};
-            NSString *deliveryPrice = [NSString stringWithFormat:@"全球已有 %@ 人通过魔方好物交易了 %@ 件商品卡",price1,price2];
+            NSString *deliveryPrice = [NSString stringWithFormat:@"全球已有 %@ 人通过魔方分销交易了 %@ 件商品卡",price1,price2];
             NSArray *attrArray = @[price1,price2];
             NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
             self.subLabel.attributedText = attributestring;
@@ -644,7 +644,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 -(UILabel *) describeLabel{
     if (_describeLabel == nil) {
         _describeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _describeLabel.text = @"正在使用魔方好物";
+        _describeLabel.text = @"正在使用魔方分销";
         _describeLabel.font = UIFontRegularOfSize(12);
         _describeLabel.textColor = Gray666Color;
         _describeLabel.textAlignment = NSTextAlignmentLeft;
