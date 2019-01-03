@@ -16,7 +16,6 @@
     UIView *lineView1,*lineView2;
     NSInteger i;
     NSString * sendaccount;
-    
 }
 @property (nonatomic,strong) UIButton *wechatBtn;
 @property (nonatomic,strong) UILabel *wechatLabel;
@@ -41,7 +40,7 @@
     }
     self.localSessionStr = @"";
     i = 60;
-    [WXApiManager sharedManager].delegate = self;
+    
     [self initProtectMessageAttack];
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"图标"]];
@@ -315,7 +314,7 @@
         WS(weakSelf)
         NSLog(@"-----requestCheckApi--->%@",pramaDic);
         NMShowLoadIng;
-        [BTERequestTools requestWithURLString:kAppApiWXogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        [BTERequestTools requestWithURLString:kAppApiWXLogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
             NMRemovLoadIng;
             NSLog(@"kAppApiWXogin-----responseObject--->%@",responseObject);
             if (IsSucess(responseObject)) {
@@ -416,6 +415,14 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [WXApiManager sharedManager].delegate = self;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [WXApiManager sharedManager].delegate = nil;
 }
 
 -(UITextField *)phoneTextField{

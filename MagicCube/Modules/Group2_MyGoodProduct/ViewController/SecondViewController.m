@@ -25,7 +25,7 @@
     
     [self goodsInit];
     [self addSubViews];
-    [self requestList:self.pageNum];
+//    [self requestList:self.pageNum];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDistibuteList) name:NotificationUpdateDistributionList object:nil];
 }
 
@@ -35,8 +35,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [self requestList:self.pageNum];
 }
+
 #pragma mark -- 数据
 - (void)requestList:(NSInteger)pageNum{
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];

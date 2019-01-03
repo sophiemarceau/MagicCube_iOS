@@ -121,13 +121,12 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [pramaDic setObject:[self getNowTimeTimestamp] forKey:@"time"];
     [BTERequestTools requestWithURLString:kAppApiHomePageDistriRecent parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-        NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
+//        NSLog(@"---kAppApiHomePageDistriRecent--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"];
             if (array && array.count > 0) {
                 NSDictionary *dic = array[0];
                 NSString *nickNameStr,*commissionStr,*goodsNameStr;
-                
                 nickNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
                 commissionStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"commission"]];
                 goodsNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"goodsName"]];
@@ -152,13 +151,9 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 
             NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(12),NSForegroundColorAttributeName:Gray666Color};
             NSString *deliveryPrice = [NSString stringWithFormat:@"全球已有 %@ 人通过魔方好物交易了 %@ 件商品卡",price1,price2];
-            
-            
             NSArray *attrArray = @[price1,price2];
             NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
-            
             self.subLabel.attributedText = attributestring;
-            
         }
     } failure:^(NSError *error)  {
         NMRemovLoadIng;
@@ -172,9 +167,8 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         NMRemovLoadIng;
 //        NSLog(@"---kAppApiiHomePageUserRecentList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
-            
             NSArray *array = [responseObject objectForKey:@"data"];
-            for (int i=0; i<self.headImageViewArray.count; i++) {
+            for (int i=0; i < self.headImageViewArray.count; i++) {
                UIImageView *temp  =[self.view viewWithTag:2000+i];
                 [temp removeFromSuperview];
                 temp = nil;
@@ -184,7 +178,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
             [self.headImageViewArray addObjectsFromArray:array];
             
             UIImageView *headImageView;
-            for (int i=0; i<self.headImageViewArray.count; i++) {
+            for (int i = 0; i < self.headImageViewArray.count; i++) {
                 headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10+i*(23
                                                                                     +10), self.subLabel.bottom +14, 23, 23)];
                 NSString *headStr = [NSString stringWithFormat:@"%@",[self.headImageViewArray[i] objectForKey:@"avatar"]];
@@ -196,7 +190,6 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
                 headImageView.layer.masksToBounds = YES;
                 headImageView.tag = 2000 + i;
             }
-           
             self.describeLabel.frame = CGRectMake(
                                                   10+(self.headImageViewArray.count - 1)*(23
                                                                                           +10)+23 +15, self.subLabel.bottom +18.5 , 96, 12);
@@ -613,6 +606,15 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     [_scrollView addSubview:targetViewController.view];
 }
 
+-(NSString *)getNowTimeTimestamp{
+    NSDate *startDate = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: startDate];
+    NSDate *localeNowDate = [startDate  dateByAddingTimeInterval: interval];
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localeNowDate timeIntervalSince1970]];
+    return timeSp;
+}
+
 -(void)gotoMember:(UIGestureRecognizer *)sender{
     SecondaryLevelWebViewController *webVc= [[SecondaryLevelWebViewController alloc] init];
     webVc.isHiddenLeft = YES;
@@ -621,6 +623,33 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     webVc.urlString = [NSString stringWithFormat:@"%@",@"https://l.bte.top/ad/partner"];
   
     [self.navigationController pushViewController:webVc animated:YES];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[ZTGCDTimerManager sharedInstance] cancelTimerWithName:@"beck.wang.singleTimer"];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[ZTGCDTimerManager sharedInstance] scheduleGCDTimerWithName:@"beck.wang.singleTimer" interval:3 queue:dispatch_get_main_queue() repeats:YES option:CancelPreviousTimerAction action:^{
+        [self requestHomePageRecent];
+        [self requestHomePagePlatform];
+        [self requestHomePageRecentUserList];
+    }];
+
+}
+
+-(UILabel *) describeLabel{
+    if (_describeLabel == nil) {
+        _describeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _describeLabel.text = @"正在使用魔方好物";
+        _describeLabel.font = UIFontRegularOfSize(12);
+        _describeLabel.textColor = Gray666Color;
+        _describeLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _describeLabel;
 }
 
 -(UIView *)tableHeaderView{
@@ -634,18 +663,15 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         UIImageView *picImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"421543305740_.pic_hd"]];
         picImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150);
         [bg addSubview:picImageView];
-//        [bg addSubview:self.picImageView];
-//        [bg addSubview:self.desLabel];
-//        [bg addSubview:self.memberBtn];
+        //        [bg addSubview:self.picImageView];
+        //        [bg addSubview:self.desLabel];
+        //        [bg addSubview:self.memberBtn];
         [bg addSubview:self.subLabel];
         [bg addSubview:self.describeLabel];
-       
         [bg addSubview:self.messageLabel];
         
         _tableHeaderView.userInteractionEnabled = YES;
         picImageView.userInteractionEnabled = YES;
-        
-        
         UITapGestureRecognizer *tapShareView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoMember:)];
         [picImageView addGestureRecognizer:tapShareView];
         
@@ -653,10 +679,86 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     return _tableHeaderView;
 }
 
+-(UILabel *)messageLabel{
+    if (_messageLabel == nil) {
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,  self.subLabel.bottom +51, SCREEN_WIDTH -20 +10, 26)];
+        _messageLabel.font = UIFontRegularOfSize(12);
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.textColor  = Gray666Color;
+        _messageLabel.backgroundColor = BHHexColorAlpha(@"B5262F", 0.1);
+        _messageLabel.layer.cornerRadius = 13;
+        _messageLabel.layer.masksToBounds = YES;
+        _messageLabel.layer.borderColor = RedMagicColor.CGColor;
+        _messageLabel.layer.borderWidth = 1;
+        
+    }
+    return _messageLabel;
+}
+
+-(UIScrollView *)scrollView{
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageMenuH, SCREEN_WIDTH, scrollViewHeight)];
+        _scrollView.delegate = self;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _scrollView;
+}
+
+-(SPPageMenu *)pageMenu{
+    if (_pageMenu == nil) {
+        _pageMenu  = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
+        // 等宽,不可滑动
+        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+        // 设置代理
+        _pageMenu.delegate = self;
+    }
+    return _pageMenu;
+}
+
+-(NSMutableArray *)navigationListArray{
+    if (_navigationListArray == nil) {
+        _navigationListArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _navigationListArray;
+}
+
+-(NSMutableArray *)headImageViewArray{
+    if (_headImageViewArray == nil) {
+        _headImageViewArray = [NSMutableArray array];
+        
+    }
+    return _headImageViewArray;
+}
+
+-(UILabel *)subLabel{
+    if (_subLabel == nil) {
+        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 150+14, SCREEN_WIDTH -20, 12)];
+        _subLabel.font = UIFontRegularOfSize(12);
+        _subLabel.textColor = GrayMagicColor;;
+        _subLabel.textAlignment = NSTextAlignmentLeft;
+        
+    }
+    return _subLabel;
+}
+
+-(UIButton *)memberBtn{
+    if (_memberBtn== nil) {
+        _memberBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 90- 10, 42, 90, 28)];
+        [_memberBtn setTitle:@"成为会员" forState:UIControlStateNormal];
+        _memberBtn.layer.masksToBounds = YES;
+        _memberBtn.layer.cornerRadius = 14;
+        _memberBtn.titleLabel.font = UIFontRegularOfSize(12);
+        [_memberBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _memberBtn.backgroundColor = RedMagicColor;
+    }
+    return _memberBtn;
+}
+
 -(UIImageView *)picImageView{
     if (_picImageView == nil) {
         _picImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 16.5, 78, 78)];
-//        _picImageView.image = [UIImage imageNamed:@""];
+        //        _picImageView.image = [UIImage imageNamed:@""];
         _picImageView.backgroundColor = RedMagicColor;
         _picImageView.layer.masksToBounds = YES;
         _picImageView.layer.cornerRadius = 5;
@@ -681,119 +783,5 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
         _desLabel.text = @"创新商品卡分销网络\n领先区块链技术\n交易全程防伪保真\n分销无需进货，无需预缴货款";
     }
     return _desLabel;
-}
-
--(UIButton *)memberBtn{
-    if (_memberBtn== nil) {
-        _memberBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 90- 10, 42, 90, 28)];
-        [_memberBtn setTitle:@"成为会员" forState:UIControlStateNormal];
-        _memberBtn.layer.masksToBounds = YES;
-        _memberBtn.layer.cornerRadius = 14;
-        _memberBtn.titleLabel.font = UIFontRegularOfSize(12);
-        [_memberBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _memberBtn.backgroundColor = RedMagicColor;
-    }
-    return _memberBtn;
-}
-
-
--(UILabel *)subLabel{
-    if (_subLabel == nil) {
-        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 150+14, SCREEN_WIDTH -20, 12)];
-        _subLabel.font = UIFontRegularOfSize(12);
-        _subLabel.textColor = GrayMagicColor;;
-        _subLabel.textAlignment = NSTextAlignmentLeft;
-       
-    }
-    return _subLabel;
-}
-
--(NSMutableArray *)headImageViewArray{
-    if (_headImageViewArray == nil) {
-        _headImageViewArray = [NSMutableArray array];
-       
-    }
-    return _headImageViewArray;
-}
-
--(NSMutableArray *)navigationListArray{
-    if (_navigationListArray == nil) {
-        _navigationListArray = [NSMutableArray arrayWithCapacity:0];
-    }
-    return _navigationListArray;
-}
-
--(SPPageMenu *)pageMenu{
-    if (_pageMenu == nil) {
-        _pageMenu  = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
-        // 等宽,不可滑动
-        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
-        // 设置代理
-        _pageMenu.delegate = self;
-    }
-    return _pageMenu;
-}
-
--(UIScrollView *)scrollView{
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, pageMenuH, SCREEN_WIDTH, scrollViewHeight)];
-        _scrollView.delegate = self;
-        _scrollView.pagingEnabled = YES;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-    }
-    return _scrollView;
-}
-
--(NSString *)getNowTimeTimestamp{
-    NSDate *startDate = [NSDate date];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: startDate];
-    NSDate *localeNowDate = [startDate  dateByAddingTimeInterval: interval];
-    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[localeNowDate timeIntervalSince1970]];
-    return timeSp;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[ZTGCDTimerManager sharedInstance] cancelTimerWithName:@"beck.wang.singleTimer"];
-    
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [[ZTGCDTimerManager sharedInstance] scheduleGCDTimerWithName:@"beck.wang.singleTimer" interval:3 queue:dispatch_get_main_queue() repeats:YES option:CancelPreviousTimerAction action:^{
-        [self requestHomePageRecent];
-        [self requestHomePagePlatform];
-        [self requestHomePageRecentUserList];
-    }];
-
-}
-
--(UILabel *) describeLabel{
-    if (_describeLabel == nil) {
-        _describeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _describeLabel.text = @"正在使用魔方好物";
-        _describeLabel.font = UIFontRegularOfSize(12);
-        _describeLabel.textColor = Gray666Color;
-        _describeLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _describeLabel;
-}
-
--(UILabel *)messageLabel{
-    if (_messageLabel == nil) {
-        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20,  self.subLabel.bottom +51, SCREEN_WIDTH -20 +10, 26)];
-        _messageLabel.font = UIFontRegularOfSize(12);
-        _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.textColor  = Gray666Color;
-        _messageLabel.backgroundColor = BHHexColorAlpha(@"B5262F", 0.1);
-        _messageLabel.layer.cornerRadius = 13;
-        _messageLabel.layer.masksToBounds = YES;
-        _messageLabel.layer.borderColor = RedMagicColor.CGColor;
-        _messageLabel.layer.borderWidth = 1;
-        
-    }
-    return _messageLabel;
 }
 @end

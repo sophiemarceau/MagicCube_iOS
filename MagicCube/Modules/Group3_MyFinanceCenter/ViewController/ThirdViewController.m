@@ -40,7 +40,7 @@
     [pramaDic setObject:User.token forKey:@"CUBE-TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetAccount parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-//        NSLog(@"---kAppApiGetAccount--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiGetAccount--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             NSDictionary *infoDic = [dic objectForKey:@"userInfo"];

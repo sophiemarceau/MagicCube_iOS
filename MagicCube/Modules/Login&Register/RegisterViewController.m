@@ -43,12 +43,16 @@
     [super viewDidLoad];
     i = 60;
     self.localSessionStr = @"";
-      [WXApiManager sharedManager].delegate = self;
+    
     [self initProtectMessageAttack];
     self.title = @"手机注册";
     self.view.backgroundColor = [UIColor whiteColor];
     [self initSubViews];
 }
+
+
+
+
 
 -(void)initProtectMessageAttack{
     // sdk调用
@@ -295,7 +299,7 @@
         WS(weakSelf)
         NSLog(@"-----kAppApiWXogin--->%@",pramaDic);
         NMShowLoadIng;
-        [BTERequestTools requestWithURLString:kAppApiWXogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
+        [BTERequestTools requestWithURLString:kAppApiWXLogin parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
             NMRemovLoadIng;
             NSLog(@"kAppApiWXogin-----responseObject--->%@",responseObject);
             if (IsSucess(responseObject)) {
@@ -385,10 +389,19 @@
     self.wechatBtn.enabled = YES;
     self.wechatBtn.hidden = NO;
     self.wechatLabel.hidden = NO;
+  
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+     [WXApiManager sharedManager].delegate = self;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [WXApiManager sharedManager].delegate = nil;
 }
 
 -(UIImageView *)iconImageView{
