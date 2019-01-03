@@ -80,6 +80,7 @@
         BOOL oldState = [UIView areAnimationsEnabled];
         [UIView setAnimationsEnabled:NO];
         if(User.token){
+            
             self.window.rootViewController = self.mainVc;
         }else{
             RegisterViewController *vc = [[RegisterViewController alloc] init];

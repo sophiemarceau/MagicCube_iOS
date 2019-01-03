@@ -124,7 +124,6 @@ static NSTimeInterval   requestTimeout = 20.f;
         [manager.requestSerializer setValue:User.token forHTTPHeaderField:@"CUBE-TOKEN"];
     }
    
-   
     if (networkStatus == YQNetworkStatusNotReachable) {
         if (failBlock) failBlock(YQ_ERROR);
         [BHToast showMessage:@"网络未连接"];

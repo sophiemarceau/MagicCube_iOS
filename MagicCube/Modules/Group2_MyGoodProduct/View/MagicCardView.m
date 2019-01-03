@@ -46,14 +46,12 @@
 
 - (void)setUpDistributeDict:(NSDictionary *)dataDict{
     
-    if ([dataDict objectForKey:@"image"]) {
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
-        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
-    }
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
+    [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
     
     self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
-    self.opinionLabel.text = @"会员分销价";
+    self.opinionLabel.text = @"建议零售价";
     NSString * originalPrice = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"originalPrice"] doubleValue]];
     [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
     
@@ -75,12 +73,17 @@
     NSString *commission = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"commission"] doubleValue]];
     NSString *accessCount = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"accessCount"] integerValue]];
     NSString *salesVolume = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"salesVolume"] integerValue]];
-    NSString *distrubeInfo =[NSString stringWithFormat:@"%@客户浏览  已分销%@张，分销利润%@元",accessCount,salesVolume,commission];
+    NSString *distrubeInfo =[NSString stringWithFormat:@"%@客户浏览，%@张被购买，返利%@元",accessCount,salesVolume,commission];
     NSArray *distrubeInfoArray = @[accessCount,salesVolume,commission];
     NSAttributedString * distrubeInfoArrayattributestring = [MagicRichTool initWithString:distrubeInfo dict:attubtrInfoDict subStringArray:distrubeInfoArray];
     self.distrubeInfoLabel.attributedText = distrubeInfoArrayattributestring;//@"36客户浏览  已分销8张，分销利润23765元";
     self.distrubeInfoLabel.hidden = NO;
-    self.lineView.y = SCALE_W(105.5);
+//    self.lineView.y = SCALE_W(105.5);
+    
+    self.distrubePriceLabel.frame = CGRectMake(SCALE_W(173), SCALE_W(117.5), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), 8.5);
+    self.distrubePriceLabel.hidden = YES;
+    self.distrubeInfoLabel.frame = self.distrubePriceLabel.frame;
+    self.lineView.y = SCALE_W(110);
     
 }
 

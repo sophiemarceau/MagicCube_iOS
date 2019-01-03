@@ -67,11 +67,12 @@
 
 - (void)requestRecords:(NSInteger)pageNum{
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
-    
+    [params setObject:@"10" forKey:@"pageSize"];
+    [params setObject:[NSString stringWithFormat:@"%ld",pageNum] forKey:@"pageNum"];
     WS(weakSelf)
     NSLog(@"-----requestRecords--->%@",params);
     NMShowLoadIng;
-    NSString * goodsSn = [self.goodsdict objectForKey:@"goodsSn"];
+    NSString * goodsSn = [self.goodsdict objectForKey:@"sn"];
     NSString * urlStr = [NSString stringWithFormat:@"%@%@/records",kAppApiDistribution,goodsSn];
     [BTERequestTools requestWithURLString:urlStr parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
         [weakSelf.recordsTableView.mj_header endRefreshing];
