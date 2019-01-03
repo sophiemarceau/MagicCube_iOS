@@ -42,12 +42,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [WXApiManager sharedManager].delegate = self;
     self.view.backgroundColor = [UIColor whiteColor];
     [self initDatas];
     [self initSubviews];
     [self requestData];
     [self configData];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [WXApiManager sharedManager].delegate = self;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [WXApiManager sharedManager].delegate = nil;
 }
 
 #pragma mark -- 数据请求
