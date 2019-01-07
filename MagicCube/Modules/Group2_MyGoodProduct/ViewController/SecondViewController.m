@@ -60,6 +60,9 @@
                     [weakSelf.goodsArray addObjectsFromArray:list];
                     [weakSelf.tableView reloadData];
                 }
+                if (pageNum == [[dataDict objectForKey:@"lastPage"] integerValue]) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
             }
         }else{
 //            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];

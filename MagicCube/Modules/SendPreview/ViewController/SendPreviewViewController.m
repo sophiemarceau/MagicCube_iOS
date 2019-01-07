@@ -1,4 +1,3 @@
-
 //
 //  SendPreviewViewController.m
 //  MagicCube
@@ -24,7 +23,7 @@
 
 @property(nonatomic,strong)UILabel *proNameTitleLabel;
 @property(nonatomic,strong)UILabel *proNameSubLabel;
-@property(nonatomic,strong)UIButton *buyBtn,*sendBtn;
+@property(nonatomic,strong)UIButton *buyBtn,*sendBtn,*actionbBtn;
 
 @property(nonatomic,strong)UILabel *proAddressLabel;
 @property(nonatomic,strong)UILabel *proConfirmLabel;
@@ -120,12 +119,13 @@
     [self.view addSubview:self.envelopBGView];
     [self.view addSubview:self.bgView];
     [self.bgView addSubview:self.bgImageView];
-    [self.bgView addSubview:self.ideitifylImageView];
-    [self.bgView addSubview:self.identifylLabel];
-    [self.bgView addSubview:self.identifySubLabel];
-    [self.bgView addSubview:self.proNameTitleLabel];
-    [self.bgView addSubview:self.proNameSubLabel];
+    //    [self.bgView addSubview:self.ideitifylImageView];
+    //    [self.bgView addSubview:self.identifylLabel];
+    //    [self.bgView addSubview:self.identifySubLabel];
+    //    [self.bgView addSubview:self.proNameTitleLabel];
+    //    [self.bgView addSubview:self.proNameSubLabel];
     [self.bgView addSubview:self.buyBtn];
+    [self.bgView addSubview:self.actionbBtn];
     [self.bgView addSubview:self.proAddressLabel];
     [self.bgView addSubview:self.proConfirmLabel];
     [self.bgView addSubview:self.productImageView];
@@ -188,15 +188,15 @@
 
 
 - (void)managerDidRecvLaunchMiniProgram:(WXLaunchMiniProgramResp *)response {
-     NSString *strMsg = [NSString stringWithFormat:@"errMsg:%@,errcode:%d", response.extMsg, response.errCode];
+    NSString *strMsg = [NSString stringWithFormat:@"errMsg:%@,errcode:%d", response.extMsg, response.errCode];
     NSLog(@"strMsg---->%@",strMsg);
 }
 
 -(UIView *)bgView{
     if (_bgView == nil) {
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(85/2, 10.5, SCREEN_WIDTH - 85, 485)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(85/2, 10.5, SCREEN_WIDTH - 85, 408.5)];
         _bgView.backgroundColor = [UIColor whiteColor];
-//        [_bgView addSubview:self.headView];
+        //        [_bgView addSubview:self.headView];
         [_bgView addSubview:self.scardView];
         [_bgView.layer addSublayer:self.playlayer];
         
@@ -209,7 +209,7 @@
         _bgView.layer.shadowOpacity = 0.5;
         // 阴影半径，默认3
         _bgView.layer.shadowRadius = 5;
-       
+        
         
     }
     return _bgView;
@@ -218,7 +218,7 @@
 -(UIImageView *)envelopBGView{
     if(_envelopBGView == nil){
         _envelopBGView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"红包低"]];
-        _envelopBGView.frame = CGRectMake(0, SCALE_W(437 -120), SCREEN_WIDTH, 285);
+        _envelopBGView.frame = CGRectMake(0, SCALE_W(360.5 -120), SCREEN_WIDTH, 285);
     }
     return _envelopBGView;
 }
@@ -226,7 +226,7 @@
 -(UIImageView *)envelopView{
     if(_envelopView == nil){
         _envelopView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"红包"]];
-        _envelopView.frame = CGRectMake(0, SCALE_W(437), SCREEN_WIDTH, 165);
+        _envelopView.frame = CGRectMake(0, SCALE_W(360.5), SCREEN_WIDTH, 165);
     }
     return _envelopView;
 }
@@ -248,9 +248,9 @@
 
 -(AVPlayerLayer *)playlayer{
     if (!_playlayer) {
-//        NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
-//        NSURL * url = [NSURL fileURLWithPath:path];
-//        self.player = [AVPlayer playerWithURL:url];
+        //        NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
+        //        NSURL * url = [NSURL fileURLWithPath:path];
+        //        self.player = [AVPlayer playerWithURL:url];
         _playlayer = [[AVPlayerLayer alloc] init];//[AVPlayerLayer playerLayerWithPlayer:self.player];
         _playlayer.frame = CGRectMake(15, self.headView.bottom + 11.5, self.bgView.width - 30, SCALE_W(140.5));
         _playlayer.backgroundColor = [[UIColor clearColor] CGColor];
@@ -261,9 +261,9 @@
 -(UIButton *)playBtn{
     if (_playBtn == nil) {
         _playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(31)) * 0.5,
-                                                                        SCALE_W(186.8),
-                                                                        SCALE_W(31),
-                                                                        SCALE_W(31))];
+                                                              SCALE_W(186.8),
+                                                              SCALE_W(31),
+                                                              SCALE_W(31))];
         [_playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
         [_playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -306,8 +306,9 @@
 
 -(UIButton *)buyBtn{
     if (_buyBtn == nil) {
+        CGFloat buyWidth = (self.bgView.width - 45) * 0.5;
         _buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _buyBtn.frame = CGRectMake((self.bgView.width - SCALE_W(125)) * 0.5, 287+110, 125, 30);
+        _buyBtn.frame = CGRectMake(15, 287, buyWidth, 30);
         _buyBtn.titleLabel.font = UIFontLightOfSize(16);
         _buyBtn.titleLabel.textColor = [UIColor whiteColor];
         [_buyBtn setTitle:@"付款" forState:UIControlStateNormal];
@@ -316,6 +317,21 @@
         _buyBtn.layer.masksToBounds = YES;
     }
     return _buyBtn;
+}
+
+-(UIButton *)actionbBtn{
+    if (_actionbBtn == nil) {
+        CGFloat buyWidth = (self.bgView.width - 45) * 0.5;
+        _actionbBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _actionbBtn.frame = CGRectMake(30 + buyWidth, 287, buyWidth, 30);
+        _actionbBtn.titleLabel.font = UIFontLightOfSize(16);
+        _actionbBtn.titleLabel.textColor = [UIColor whiteColor];
+        [_actionbBtn setTitle:@"付款" forState:UIControlStateNormal];
+        _actionbBtn.backgroundColor = RedMagicColor;
+        _actionbBtn.layer.cornerRadius = 3.5;
+        _actionbBtn.layer.masksToBounds = YES;
+    }
+    return _actionbBtn;
 }
 
 -(UIButton *)sendBtn{
@@ -334,7 +350,7 @@
 }
 -(UILabel *)proAddressLabel{
     if (_proAddressLabel == nil) {
-        _proAddressLabel = [self createlabel1frame:CGRectMake(0, 325+110,  self.bgView.width, 12)];
+        _proAddressLabel = [self createlabel1frame:CGRectMake(0, 336.5,  self.bgView.width, 12)];
         _proAddressLabel.text = @"本卡信息已在蚂蚁金服区块链存证备查";
         _proAddressLabel.font = UIFontRegularOfSize(10);
         _proAddressLabel.textColor = GrayMagicColor;
@@ -345,7 +361,7 @@
 
 -(UILabel *)proConfirmLabel{
     if (_proConfirmLabel == nil) {
-        _proConfirmLabel = [self createlabel2frame:CGRectMake((self.bgView.width - SCALE_W(79.5)) * 0.5, 349+110,  SCALE_W(79.5), 16)];
+        _proConfirmLabel = [self createlabel2frame:CGRectMake((self.bgView.width - SCALE_W(79.5)) * 0.5, 360.5,  SCALE_W(79.5), 16)];
         _proConfirmLabel.text = @"查看数字签名";
         _proConfirmLabel.font = UIFontRegularOfSize(10);
         _proConfirmLabel.textColor = GrayMagicColor;
@@ -360,7 +376,7 @@
 
 -(UIImageView *)bgImageView{
     if (_bgImageView == nil) {
-        _bgImageView = [self createImageViewframe:CGRectMake((self.bgView.width  -157)/2, 169+110, 157, 157) WithImageName:@"shuiyin"];
+        _bgImageView = [self createImageViewframe:CGRectMake((self.bgView.width  -117)/2, 272, 117, 117) WithImageName:@"shuiyin"];
     }
     return _bgImageView;
 }
@@ -381,7 +397,7 @@
 
 -(UIImageView *)addressImageView{
     if (_addressImageView == nil) {
-        _addressImageView = [self createImageViewframe:CGRectMake(32, 323+110,19, 19) WithImageName:@"防伪"];
+        _addressImageView = [self createImageViewframe:CGRectMake(32, 336.5,19, 19) WithImageName:@"防伪"];
     }
     return _addressImageView;
 }
@@ -437,9 +453,9 @@
 
 - (UIImage *)zipImageWithUrl:(id)imageUrl
 {
-//    NSData * imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+    //    NSData * imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:imageUrl]];
     NSData *imageData = UIImagePNGRepresentation(imageUrl);
-//    imageData = UIImagePNGRepresentation(imageUrl);
+    //    imageData = UIImagePNGRepresentation(imageUrl);
     CGFloat maxFileSize = 32*1024;
     CGFloat compression = 0.9f;
     CGFloat maxCompression = 0.1f;
@@ -454,3 +470,4 @@
 }
 
 @end
+

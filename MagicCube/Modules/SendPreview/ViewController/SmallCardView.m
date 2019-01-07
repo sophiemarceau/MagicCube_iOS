@@ -112,6 +112,10 @@
         _priceTextField.keyboardType = UIKeyboardTypeDecimalPad;
         [_priceTextField setValue:BHColorWhite forKeyPath:@"_placeholderLabel.textColor"];
         _priceTextField.delegate = self;
+        
+        UIImageView * rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"edit"]];
+        rightView.frame = CGRectMake(SCALE_W(102) - 15 - 5, 4, 15, 15);
+        [_priceTextField addSubview:rightView];
     }
     return _priceTextField;
 }

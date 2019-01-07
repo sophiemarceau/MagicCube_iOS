@@ -89,6 +89,11 @@
                     NSArray *list = [dataDict objectForKey:@"list"];
                     [weakSelf.recordsArray addObjectsFromArray:list];
                     [weakSelf.recordsTableView reloadData];
+                    
+                }
+                
+                if (pageNum == [[dataDict objectForKey:@"lastPage"] integerValue]) {
+                    [self.recordsTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }else{
                 

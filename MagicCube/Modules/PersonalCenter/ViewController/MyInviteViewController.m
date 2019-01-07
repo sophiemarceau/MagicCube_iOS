@@ -44,6 +44,10 @@
                     
                     [weakSelf.tableView reloadData];
                 }
+                
+                if (pageNum == [[dataDict objectForKey:@"lastPage"] integerValue]) {
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
             }
         }else{
             
