@@ -269,7 +269,7 @@
 
 -(void)payAttention{
     NSString *message;
-    NSString *messageString = [NSString stringWithFormat:@"代理本产品需要预付%.2f元押金，取消代理后押金可退。",distributionDeposit];
+    NSString *messageString = [NSString stringWithFormat:@"发放此卡需要预付%.2f元押金，取消发卡后押金可退。",distributionDeposit];
     message = NSLocalizedString(messageString,nil);
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
     
@@ -282,7 +282,7 @@
        
     }];
     [alertController addAction:cancelAction];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"支付",nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"微信支付",nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
          [self requestWXPayDistribution];
         
         

@@ -112,16 +112,18 @@
             for(int i = 0; i < self.accountArray.count ;i++){
                 UILabel *tempLabel = self.accountArray[i];
                 if (i == 0) {
-                    tempLabel.text = stringFormat( [todayDic objectForKey:@"distribution"]);
+                    tempLabel.text = [NSString stringWithFormat:@"¥%@",stringFormat( [todayDic objectForKey:@"distribution"])];
                 }
                 if (i == 1) {
-                    tempLabel.text =stringFormat( [todayDic objectForKey:@"team"]);
+                    tempLabel.text = [NSString stringWithFormat:@"¥%@",stringFormat( [todayDic objectForKey:@"gameCashBack"])];
                 }
 //                if (i == 2) {
 //                    tempLabel.text =stringFormat( [todayDic objectForKey:@"point"]);
 //                }
             }
-            self.incomeValueLabel.text = [NSString stringWithFormat:@"¥%ld", [[todayDic objectForKey:@"distribution"] integerValue]+[[todayDic objectForKey:@"team"] integerValue]+[[todayDic objectForKey:@"point"] integerValue]];
+            self.incomeValueLabel.text = [NSString stringWithFormat:@"¥%ld", [[todayDic objectForKey:@"distribution"] integerValue]
+                                        // +[[todayDic objectForKey:@"team"] integerValue]
+                                          +[[todayDic objectForKey:@"gameCashBack"] integerValue]];
         }
     } failure:^(NSError *error)  {
         NMRemovLoadIng;

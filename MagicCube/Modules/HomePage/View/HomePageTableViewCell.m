@@ -69,7 +69,7 @@
     self.redBgLabel.text = @"去发卡";
 //    [dict objectForKey:@"discountDesc"];
 //    @"低至6折";
-    NSString *salesVolume = [NSString stringWithFormat:@"%@",[dict objectForKey:@"salesVolume"]];
+    NSString *salesVolume = [NSString stringWithFormat:@"%@",[dict objectForKey:@"maxCashBack"]];
      NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"distributionCount"]];
     NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
     NSString *deliveryPrice = [NSString stringWithFormat:@"最高可赚%@元/张,已有%@人发卡",salesVolume,distribuionCount];

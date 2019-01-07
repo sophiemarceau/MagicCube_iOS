@@ -55,7 +55,7 @@
     BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"wodehaowu_normal" selectedImage:@"wodehaowu_selected" title:@"发放中心"];
     
     ThirdViewController *thirdVc = [[ThirdViewController alloc] init];
-    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"huiyuanzhongxin_normal" selectedImage:@"huiyuanzhongxin_selected" title:@"个人中心"];
+    BaseNavigationViewController *nav3 = [self setUpOneChildVcWithVc:thirdVc Image:@"personal_normal" selectedImage:@"personal_selected" title:@"个人中心"];
     
 //    MyCenterViewController *myCVc = [[MyCenterViewController alloc] init];
 //    BaseNavigationViewController *nav4 = [self setUpOneChildVcWithVc:myCVc Image:@"huiyuanzhongxin_normal" selectedImage:@"huiyuanzhongxin_selected" title:@"会员中心"];
