@@ -35,7 +35,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self requestList:self.pageNum];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark -- 数据
