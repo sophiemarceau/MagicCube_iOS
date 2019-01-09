@@ -136,7 +136,7 @@
     [pramaDic setObject:User.token forKey:@"CUBE-TOKEN"];
     [BTERequestTools requestWithURLString:kAppApiGetIncome parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-//        NSLog(@"---kAppApiGetIncome--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiGetIncome--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"][@"list"];
             if (array && array.count> 0) {

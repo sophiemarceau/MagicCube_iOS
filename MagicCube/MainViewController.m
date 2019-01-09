@@ -49,7 +49,7 @@
 
 - (void)initChildVC{
     HomePageViewController *homeVc = [[HomePageViewController alloc] init];
-    BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"home_normal" selectedImage:@"home_selected" title:@"好物中心"];
+    BaseNavigationViewController *nav1 = [self setUpOneChildVcWithVc:homeVc Image:@"home_normal" selectedImage:@"home_selected" title:@"福利中心"];
     
     SecondViewController *secondVc = [[SecondViewController alloc] init];
     BaseNavigationViewController *nav2 = [self setUpOneChildVcWithVc:secondVc Image:@"wodehaowu_normal" selectedImage:@"wodehaowu_selected" title:@"发放中心"];
@@ -87,7 +87,7 @@
     
     Vc.tabBarItem.title = title;
     Vc.navigationItem.title = title;
-    if([title isEqualToString:@"好物中心"]){
+    if([title isEqualToString:@"福利中心"]){
         Vc.navigationItem.title = @"魔方分销";
     }
     
