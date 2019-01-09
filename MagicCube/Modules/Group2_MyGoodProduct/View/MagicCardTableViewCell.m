@@ -11,6 +11,7 @@
 
 @interface MagicCardTableViewCell ()
 @property (strong,nonatomic) MagicCardView * cardView;
+//@property (strong,nonatomic) UIImageView * imgCardView;
 @end
 
 @implementation MagicCardTableViewCell
@@ -30,10 +31,13 @@
     if (self) {
         CGFloat heigth = [MagicCardTableViewCell cellHeight];
         self.selectionStyle = UITableViewCellSeparatorStyleNone;
-        //        self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, heigth)];
-        //        [self.contentView addSubview:self.imgView];
-        self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(1),SCREEN_WIDTH , heigth - SCALE_W(5))];
+//        self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, heigth)];
+//                [self.contentView addSubview:self.imgView];
+        self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(1),SCREEN_WIDTH , heigth - SCALE_W(10))];
         [self.contentView addSubview:self.cardView];
+        
+//        self.imgCardView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(1), SCREEN_WIDTH, heigth - SCALE_W(5))];
+//        [self.contentView addSubview:self.imgCardView];
     }
     return self;
 }

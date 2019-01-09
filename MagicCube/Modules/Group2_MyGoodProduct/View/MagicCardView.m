@@ -34,7 +34,7 @@
 
 -(void)createUI{
     [self addSubview:self.cardBGView];
-    [self.cardBGView addSubview:self.imgView];
+//    [self.cardBGView addSubview:self.imgView];
     [self.cardBGView addSubview:self.titleLabel];
     [self.cardBGView addSubview:self.unitLabel];
     [self.cardBGView addSubview:self.opinionLabel];
@@ -47,8 +47,8 @@
 - (void)setUpDistributeDict:(NSDictionary *)dataDict{
     
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
-    [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
-    
+//    [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+    [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
     self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.opinionLabel.text = @"建议零售价";
@@ -79,7 +79,8 @@
 - (void)setUpDistributeDetailDict:(NSDictionary *)dataDict{
     if ([dataDict objectForKey:@"image"]) {
         NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
-        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+//        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+        [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
     }
     NSString *nameStr =  [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"name"]];
     CGFloat height = [nameStr heightWithFont: UIFontMediumOfSize(14) constrainedToWidth:SCALE_W(110 +72.5)];
@@ -111,8 +112,11 @@
 
     if ([dataDict objectForKey:@"image"]) {
         NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
-        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+//        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+        [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+        
     }
+    
     self.titleLabel.text = [dataDict objectForKey:@"name"];
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];
     
@@ -132,8 +136,18 @@
 
 -(UIImageView *)cardBGView{
     if (!_cardBGView) {
-        _cardBGView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.frame.size.height)];
-        _cardBGView.image = [UIImage imageNamed:@"homeCellBgIcon"];
+        _cardBGView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-20, self.frame.size.height)];
+//        _cardBGView.image = [UIImage imageNamed:@"homeCellBgIcon"];
+//        _cardBGView.layer.borderColor = LineGrayColor.CGColor;
+//        _cardBGView.layer.borderWidth = 0.5;
+        _cardBGView.backgroundColor = [UIColor colorWithHexString:@"4b4773"];
+//        _cardBGView.layer.masksToBounds=YES; //这行去掉
+        _cardBGView.layer.cornerRadius = 10;
+        _cardBGView.layer.shadowColor = [UIColor colorWithHexString:@"000000"].CGColor;
+        _cardBGView.layer.shadowOffset = CGSizeMake(0, 1);
+        _cardBGView.layer.shadowOpacity = 0.5;
+        _cardBGView.layer.shadowRadius = 1;
+       
     }
     return _cardBGView;
 }

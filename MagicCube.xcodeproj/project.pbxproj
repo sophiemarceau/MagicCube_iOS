@@ -85,6 +85,7 @@
 		B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900721AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B240900821AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
+		B244862421E5FAFC001015B2 /* MagicNODataView.m in Sources */ = {isa = PBXBuildFile; fileRef = B244862321E5FAFC001015B2 /* MagicNODataView.m */; };
 		B25F70F221CCB5D9002EFA10 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F121CCB5D9002EFA10 /* SettingViewController.m */; };
 		B25F70F521CCB720002EFA10 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F421CCB720002EFA10 /* SettingTableViewCell.m */; };
 		B25F70F821CCC59A002EFA10 /* JoinClubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F721CCC59A002EFA10 /* JoinClubViewController.m */; };
@@ -283,6 +284,8 @@
 		B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B240900421AEA1FF00887B6A /* DistributeGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeGoodsViewController.h; sourceTree = "<group>"; };
 		B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeGoodsViewController.m; sourceTree = "<group>"; };
+		B244862221E5FAFC001015B2 /* MagicNODataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicNODataView.h; sourceTree = "<group>"; };
+		B244862321E5FAFC001015B2 /* MagicNODataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicNODataView.m; sourceTree = "<group>"; };
 		B25F70F021CCB5D9002EFA10 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		B25F70F121CCB5D9002EFA10 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		B25F70F321CCB720002EFA10 /* SettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
@@ -790,6 +793,8 @@
 				B218A4A521CB2BA500CFBA19 /* GoodsInfoView.m */,
 				B218A4A721CB66BB00CFBA19 /* MagicCardView.h */,
 				B218A4A821CB66BB00CFBA19 /* MagicCardView.m */,
+				B244862221E5FAFC001015B2 /* MagicNODataView.h */,
+				B244862321E5FAFC001015B2 /* MagicNODataView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1235,6 +1240,7 @@
 				7DC3BA2C21C15B2900612DAA /* KeyChainStore.m in Sources */,
 				B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */,
 				B218A4A921CB66BB00CFBA19 /* MagicCardView.m in Sources */,
+				B244862421E5FAFC001015B2 /* MagicNODataView.m in Sources */,
 				932DFD7421BFB8D80052051B /* YQNetworking.m in Sources */,
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
 				7DB9F89321A5AB3C005D4DD4 /* TYPageControl.m in Sources */,

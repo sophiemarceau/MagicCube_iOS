@@ -194,7 +194,7 @@
 
 -(UIView *)bgView{
     if (_bgView == nil) {
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(85/2, 10.5, SCREEN_WIDTH - 85, 408.5)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(85/2, 25, SCREEN_WIDTH - 85, 408.5)];
         _bgView.backgroundColor = [UIColor whiteColor];
         //        [_bgView addSubview:self.headView];
         [_bgView addSubview:self.scardView];
@@ -218,7 +218,7 @@
 -(UIImageView *)envelopBGView{
     if(_envelopBGView == nil){
         _envelopBGView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"红包低"]];
-        _envelopBGView.frame = CGRectMake(0, SCALE_W(360.5 -120), SCREEN_WIDTH, 285);
+        _envelopBGView.frame = CGRectMake(0, SCALE_W(360.5 -120)+15, SCREEN_WIDTH, 285);
     }
     return _envelopBGView;
 }
@@ -226,7 +226,7 @@
 -(UIImageView *)envelopView{
     if(_envelopView == nil){
         _envelopView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"红包"]];
-        _envelopView.frame = CGRectMake(0, SCALE_W(360.5), SCREEN_WIDTH, 165);
+        _envelopView.frame = CGRectMake(0, SCALE_W(360.5) + 15, SCREEN_WIDTH, 165);
     }
     return _envelopView;
 }
@@ -326,7 +326,7 @@
         _actionbBtn.frame = CGRectMake(30 + buyWidth, 287, buyWidth, 30);
         _actionbBtn.titleLabel.font = UIFontLightOfSize(16);
         _actionbBtn.titleLabel.textColor = [UIColor whiteColor];
-        [_actionbBtn setTitle:@"付款" forState:UIControlStateNormal];
+        [_actionbBtn setTitle:@"试试手气免费拿" forState:UIControlStateNormal];
         _actionbBtn.backgroundColor = RedMagicColor;
         _actionbBtn.layer.cornerRadius = 3.5;
         _actionbBtn.layer.masksToBounds = YES;
@@ -337,7 +337,7 @@
 -(UIButton *)sendBtn{
     if (_sendBtn == nil) {
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendBtn.frame = CGRectMake((SCREEN_WIDTH - self.bgView.width) * 0.5, 554, self.bgView.width, 18);
+        _sendBtn.frame = CGRectMake((SCREEN_WIDTH - self.bgView.width) * 0.5, 494, self.bgView.width, 18);
         _sendBtn.titleLabel.font = UIFontLightOfSize(20);
         _sendBtn.titleLabel.textColor = [UIColor whiteColor];
         [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];

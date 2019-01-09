@@ -50,17 +50,22 @@
 -(void)setUpdata:(NSArray *)array{
     int index = 100;
     for (NSDictionary * dict in array) {
-        CGFloat price = [[dict objectForKey:@"price"] floatValue];
-        NSString * discount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"discount"]];
-        NSString * name = [dict objectForKey:@"name"];
+//        CGFloat price = [[dict objectForKey:@"price"] floatValue];
+//        NSString * discount = [NSString stringWithFormat:@"%@",[dict objectForKey:@"discount"]];
+//        NSString * name = [dict objectForKey:@"name"];
         Profit * levelView = [self viewWithTag:index];
-        
+        NSString * min = [NSString stringWithFormat:@"%@",[dict objectForKey:@"min"]];
+        NSString * max = [NSString stringWithFormat:@"%@",[dict objectForKey:@"max"]];
+        NSString * amount = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"amount"] doubleValue]];
+        NSString * range = [NSString stringWithFormat:@"%@~%@",min,max];
+        NSArray * texts = @[range,[NSString stringWithFormat:@"%@",amount]];
+        NSString *text = [NSString stringWithFormat:@"售出%@张   返利%@元/张",range,amount];
         if (index == 100) {
-            [levelView configRedtexts:@[@"1～10",@"100"] text:@"售出1～10张   返利100元/张" line:LineDirectionShowDown];
+            [levelView configRedtexts:texts text:text line:LineDirectionShowDown];
         }else if (index == 103){
-            [levelView configRedtexts:@[@"1～10",@"100"] text:@"售出1～10张   返利100元/张" line:LineDirectionShowUp];
+            [levelView configRedtexts:texts text:text line:LineDirectionShowUp];
         }else{
-            [levelView configRedtexts:@[@"1～10",@"100"] text:@"售出1～10张   返利100元/张" line:LineDirectionShowUpDown];
+            [levelView configRedtexts:texts text:text line:LineDirectionShowUpDown];
         }
         index ++;
     }

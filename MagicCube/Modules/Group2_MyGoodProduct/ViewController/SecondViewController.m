@@ -11,11 +11,13 @@
 #import "MagicCardTableViewCell.h"
 #import "DistributionShareViewController.h"
 #import "DistributeDetailViewController.h"
+#import "MagicNODataView.h"
 
 @interface SecondViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) NSMutableArray * goodsArray;
 @property (strong,nonatomic) UITableView * tableView;
 @property (assign,nonatomic) NSInteger pageNum;
+@property (strong,nonatomic) UIView * nodataView;
 @end
 
 @implementation SecondViewController
@@ -62,6 +64,12 @@
                 }
                 if (pageNum == [[dataDict objectForKey:@"lastPage"] integerValue]) {
                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
+                
+                if (self.goodsArray.count == 0) {
+                    self.nodataView.hidden = NO;
+                }else{
+                    self.nodataView.hidden = YES;
                 }
             }
         }else{
@@ -139,6 +147,11 @@
         [self requestList:weakSelf.pageNum];
     }];
     tabelview.mj_footer = footer;
+    
+    
+    self.nodataView = [[MagicNODataView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - 49)];
+    [self.view addSubview:self.nodataView];
+    
     
 }
 

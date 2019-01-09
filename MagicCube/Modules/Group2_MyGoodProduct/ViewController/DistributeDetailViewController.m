@@ -238,8 +238,8 @@
         [self.cardView setUpDistributeDetailDict:dataDict];
         
         NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
-        NSArray * memberRuleRes = [dataDict objectForKey:@"memberRuleRes"];
-        [self.memberView setUpdata:memberRuleRes];
+        NSArray * cashBackRuleRes = [dataDict objectForKey:@"cashBackRuleRes"];
+        [self.memberView setUpdata:cashBackRuleRes];
         self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
         distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
     }

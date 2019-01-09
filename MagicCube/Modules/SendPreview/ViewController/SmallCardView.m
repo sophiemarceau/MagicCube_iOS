@@ -15,6 +15,7 @@
 @property (strong,nonatomic) MagicLabel * saleLabel;
 //@property (strong,nonatomic) RedButton * priceBtn;
 @property (strong,nonatomic) UITextField * priceTextField;
+//@property (strong,nonatomic) UIImageView * bgView;
 @end
 
 @implementation SmallCardView
@@ -30,6 +31,7 @@
 
 - (void)createUI{
     self.userInteractionEnabled = YES;
+    
     [self addSubview:self.imgView];
     [self addSubview:self.nameLabel];
     [self addSubview:self.detailLabel];
@@ -39,7 +41,11 @@
 }
 
 - (void)setUpData:(NSDictionary *)dict{
-    self.image = [UIImage imageNamed:@"homeCellBgIcon"];
+    
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]];
+    [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+    
+//    self.image = [UIImage imageNamed:@"homeCellBgIcon"];
     self.nameLabel.text = [dict objectForKey:@"name"];//@"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.detailLabel.text = [dict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.saleLabel.text = @"售价";
@@ -89,6 +95,8 @@
     return _saleLabel;
 }
 
+
+
 //-(RedButton *)priceBtn{
 //    if (!_priceBtn) {
 //        _priceBtn = [[RedButton alloc] initWithFrame:CGRectMake(SCALE_W(168), 72.5, SCALE_W(102), 23)];
@@ -112,10 +120,11 @@
         _priceTextField.keyboardType = UIKeyboardTypeDecimalPad;
         [_priceTextField setValue:BHColorWhite forKeyPath:@"_placeholderLabel.textColor"];
         _priceTextField.delegate = self;
+        _priceTextField.enabled = NO;
         
-        UIImageView * rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"edit"]];
-        rightView.frame = CGRectMake(SCALE_W(102) - 15 - 5, 4, 15, 15);
-        [_priceTextField addSubview:rightView];
+//        UIImageView * rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"edit"]];
+//        rightView.frame = CGRectMake(SCALE_W(102) - 15 - 5, 4, 15, 15);
+//        [_priceTextField addSubview:rightView];
     }
     return _priceTextField;
 }
