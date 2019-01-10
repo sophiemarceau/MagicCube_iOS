@@ -207,7 +207,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
     [BTERequestTools requestWithURLString:kAppApiHomePageModuleMenu parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
-//        NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
+        NSLog(@"---kAppApiHomePageModuleMenu--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"];
             self.moduleResultDic = (NSDictionary *)responseObject;
@@ -708,8 +708,8 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 -(SPPageMenu *)pageMenu{
     if (_pageMenu == nil) {
         _pageMenu  = [SPPageMenu pageMenuWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, pageMenuH) trackerStyle:SPPageMenuTrackerStyleLine];
-        // 等宽,不可滑动
-        _pageMenu.permutationWay = SPPageMenuPermutationWayNotScrollEqualWidths;
+        // 自适应内容,可以左右滑动
+        _pageMenu.permutationWay = SPPageMenuPermutationWayScrollAdaptContent;
         // 设置代理
         _pageMenu.delegate = self;
     }
