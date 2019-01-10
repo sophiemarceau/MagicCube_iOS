@@ -34,11 +34,12 @@
     [super viewDidLoad];
     [self initDatas];
     [self initSubviews];
+    [self requestInfoData];
 }
 
 -(void)requestInfoData{
     NSMutableDictionary * pramaDic = @{}.mutableCopy;
-    [pramaDic setObject:User.token forKey:@"CUBE-TOKEN"];
+    
     [BTERequestTools requestWithURLString:kAppApiGetAccount parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
         NSLog(@"---kAppApiGetAccount--responseObject--->%@",responseObject);
@@ -52,6 +53,7 @@
             [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[infoDic objectForKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"Bitmap"]];
             NSString *telStr =  stringFormat([infoDic objectForKey:@"tel"]);
             NSString *nickNameStr =  stringFormat([infoDic objectForKey:@"nickname"]);
+            User.nickName = nickNameStr;
             if ([telStr isEqualToString:nickNameStr]) {
               NSString *nameStr =  [NSString stringWithFormat:@"%@****%@",[nickNameStr substringToIndex:4],[nickNameStr substringFromIndex:7]];
               CGFloat widh = [nameStr widthWithFont: UIFontMediumOfSize(16) constrainedToHeight:16];

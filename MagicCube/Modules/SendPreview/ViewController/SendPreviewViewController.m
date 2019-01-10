@@ -11,6 +11,7 @@
 #import "SmallCardView.h"
 #import "WXApi.h"
 #import "WXApiManager.h"
+#import "CaptureScreenView.h"
 @interface SendPreviewViewController ()<WXApiManagerDelegate>
 @property(nonatomic,strong)UIView *bgView;
 @property(nonatomic,strong)UIImageView *envelopBGView,*envelopView,*headView;
@@ -58,14 +59,11 @@
 
 #pragma mark -- 数据请求
 -(void)createDistribute{
-    if ([[self.scardView getPrice] length] == 0) {
-        [BHToast showMessage:@"售价不能为空"];
-        return;
-    }
+    
     NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
     [params setObject:[self.dataDict objectForKey:@"sn"] forKey:@"distributionSn"];
     [params setObject:@"wechat" forKey:@"platform"];
-    [params setObject:[self.dataDict objectForKey:@"price"] forKey:@"price"];
+    [params setObject:[self.dataDict objectForKey:@"originalPrice"] forKey:@"price"];
     WS(weakSelf)
     NSLog(@"-----kAppApiDistributionForward--->%@",params);
     NMShowLoadIng;
@@ -147,9 +145,12 @@
 - (void)rewords:(NSDictionary *)dataDict{
     if ([WXApi isWXAppInstalled]) {
         WXMiniProgramObject *wxMiniObject = [WXMiniProgramObject object];
-        wxMiniObject.webpageUrl = @"";
+        
+        NSString * url = [NSString stringWithFormat:@"pages/card-package/card-package?type=distribution&nickname=%@&sn=%@",User.nickName,[dataDict objectForKey:@"sn"]];
+        NSLog(@"url===>%@",url);
+        wxMiniObject.webpageUrl = @"";//url;
         wxMiniObject.userName = kWechatMiniAppKey;  //拉起的小程序的username 小程序原始id
-        wxMiniObject.path = @"";
+        wxMiniObject.path = url;//@"";
         wxMiniObject.hdImageData = nil;
         wxMiniObject.miniProgramType = WXMiniProgramTypePreview;
         // launchMiniProgramReq.path = path;    //拉起小程序页面的可带参路径，不填默认拉起小程序首页
@@ -159,10 +160,10 @@
         // launchMiniProgramReq.miniProgramType = WXMiniProgramTypePreview; //拉起小程序的类型
         
         WXMediaMessage *message = [WXMediaMessage message];
-        message.title = @"魔方提货卡";
+        message.title = [NSString stringWithFormat:@"%@送您一件福利-%@",User.nickName,[self.dataDict objectForKey:@"name"]];//@"魔方提货卡";
         //        message.description = @"小程序tdesc";
         message.mediaObject = wxMiniObject;
-        UIImage *thumbImage = [UIImage imageNamed:@"详情页"];
+        UIImage *thumbImage = [CaptureScreenView getCapture:self.dataDict]; //[UIImage imageNamed:@"详情页"];
         //        nil;
         NSData *data = UIImageJPEGRepresentation(thumbImage, 0.1);
         message.thumbData = data;

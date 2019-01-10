@@ -150,6 +150,7 @@
     
     
     self.nodataView = [[MagicNODataView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - 49)];
+    self.nodataView.hidden = YES;
     [self.view addSubview:self.nodataView];
     
     

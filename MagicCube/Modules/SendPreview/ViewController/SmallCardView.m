@@ -50,12 +50,12 @@
     self.detailLabel.text = [dict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.saleLabel.text = @"售价";
     
-    NSString * price = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"price"] doubleValue]];
+    NSString * price = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"originalPrice"] doubleValue]];
     self.priceTextField.text = price;
 //    [self.priceBtn setTitle:price forState:UIControlStateNormal];
-    if ([dict objectForKey:@"image"]) {
-        [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"home_jieqinghaowu"]];//[UIImage imageNamed:@"home_jieqinghaowu"];
-    }
+//    if ([dict objectForKey:@"image"]) {
+//        [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]] placeholderImage:[UIImage imageNamed:@"home_jieqinghaowu"]];//[UIImage imageNamed:@"home_jieqinghaowu"];
+//    }
     
 }
 
@@ -68,17 +68,18 @@
 
 -(MagicLabel *)nameLabel{
     if (!_nameLabel) {
-        _nameLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(124), 13, SCALE_W(146), 40)];
+        _nameLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(134), 13, SCALE_W(156), 40)];
         _nameLabel.numberOfLines = 2;
         _nameLabel.font = UIFontMediumOfSize(14);
         _nameLabel.textColor = Black1Color;
+
     }
     return _nameLabel;
 }
 
 -(MagicLabel *)detailLabel{
     if (!_detailLabel) {
-        _detailLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(124), 55, SCALE_W(146), 14)];
+        _detailLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(134), 55, SCALE_W(156), 14)];
         _detailLabel.textColor = Gray858Color;
         _detailLabel.font = UIFontRegularOfSize(10);
     }
@@ -87,7 +88,7 @@
 
 -(MagicLabel *)saleLabel{
     if (!_saleLabel) {
-        _saleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(124), 78, SCALE_W(28), 12)];
+        _saleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(134), 78, SCALE_W(28), 12)];
         _saleLabel.textColor = Gray666Color;
         _saleLabel.font = UIFontLightOfSize(12);
         
@@ -109,7 +110,7 @@
 
 -(UITextField *)priceTextField{
     if (!_priceTextField) {
-        _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(SCALE_W(168), 72.5, SCALE_W(102), 23)];
+        _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(SCALE_W(178), 72.5, SCALE_W(102), 23)];
         _priceTextField.backgroundColor = RedMagicColor;
         _priceTextField.layer.masksToBounds = YES;
         _priceTextField.layer.cornerRadius = 23 * 0.5;

@@ -25,6 +25,7 @@
 @property (strong,nonatomic) GoodsInfoView * goodsInfoView;
 @property (strong,nonatomic) MagicCardView * cardView;
 @property (strong,nonatomic) MagicLabel * distributeDescLabel;
+@property (strong,nonatomic) MagicLabel * rewardDescLabel;
 
 
 @end
@@ -162,6 +163,7 @@
     rewardDescLabel.text = @"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的50%返利";
     rewardDescLabel.font = UIFontRegularOfSize(12);
     [rewardBGView addSubview:rewardDescLabel];
+    self.rewardDescLabel = rewardDescLabel;
     
     MagicLineView * rewardline = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(84), SCREEN_WIDTH, SCALE_W(10))];
     [rewardBGView addSubview:rewardline];
@@ -242,6 +244,9 @@
         [self.memberView setUpdata:cashBackRuleRes];
         self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
         distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
+        
+        int d = [[dataDict objectForKey:@"gameCashBack"] floatValue] * 100;
+        self.rewardDescLabel.text = [NSString stringWithFormat:@"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的%d%%返利",d]; //
     }
 }
 

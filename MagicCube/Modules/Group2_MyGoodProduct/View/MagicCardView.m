@@ -140,6 +140,8 @@
 //        _cardBGView.image = [UIImage imageNamed:@"homeCellBgIcon"];
 //        _cardBGView.layer.borderColor = LineGrayColor.CGColor;
 //        _cardBGView.layer.borderWidth = 0.5;
+        
+        
         _cardBGView.backgroundColor = [UIColor colorWithHexString:@"4b4773"];
 //        _cardBGView.layer.masksToBounds=YES; //这行去掉
         _cardBGView.layer.cornerRadius = 10;

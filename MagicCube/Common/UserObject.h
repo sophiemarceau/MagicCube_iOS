@@ -13,7 +13,7 @@
 @interface UserObject : NSObject
 
 @property (nonatomic, copy) NSString *token;
-
+@property (copy,nonatomic) NSString * nickName;
 #pragma mark - methods
 + (instancetype)shareInstance;
 //删除登录数据

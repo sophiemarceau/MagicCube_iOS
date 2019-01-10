@@ -75,6 +75,7 @@
 		B218A4A621CB2BA500CFBA19 /* GoodsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4A521CB2BA500CFBA19 /* GoodsInfoView.m */; };
 		B218A4A921CB66BB00CFBA19 /* MagicCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4A821CB66BB00CFBA19 /* MagicCardView.m */; };
 		B218A4AC21CB7F9700CFBA19 /* MagicCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */; };
+		B21981A921E6F04F005533EF /* CaptureScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21981A821E6F04F005533EF /* CaptureScreenView.m */; };
 		B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22476CB21C9DA9200D08F63 /* DetailMemberView.m */; };
 		B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B229A66121A692A900A5B23B /* SalerTableViewCell.m */; };
 		B22D178E21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D178D21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m */; };
@@ -264,6 +265,8 @@
 		B218A4A821CB66BB00CFBA19 /* MagicCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCardView.m; sourceTree = "<group>"; };
 		B218A4AA21CB7F9700CFBA19 /* MagicCardTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicCardTableViewCell.h; sourceTree = "<group>"; };
 		B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCardTableViewCell.m; sourceTree = "<group>"; };
+		B21981A721E6F04F005533EF /* CaptureScreenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaptureScreenView.h; sourceTree = "<group>"; };
+		B21981A821E6F04F005533EF /* CaptureScreenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaptureScreenView.m; sourceTree = "<group>"; };
 		B22476CA21C9DA9200D08F63 /* DetailMemberView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailMemberView.h; sourceTree = "<group>"; };
 		B22476CB21C9DA9200D08F63 /* DetailMemberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailMemberView.m; sourceTree = "<group>"; };
 		B229A66021A692A900A5B23B /* SalerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalerTableViewCell.h; sourceTree = "<group>"; };
@@ -814,6 +817,8 @@
 				B209F19221A7F5AB0043E485 /* TableTitleHeadView.m */,
 				B2F7CFCE21D74B9D0077FCF2 /* MagicShareView.h */,
 				B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */,
+				B21981A721E6F04F005533EF /* CaptureScreenView.h */,
+				B21981A821E6F04F005533EF /* CaptureScreenView.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -1169,6 +1174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21981A921E6F04F005533EF /* CaptureScreenView.m in Sources */,
 				936EA03921B7A23200CD1A4E /* LoginViewController.m in Sources */,
 				932DFD7321BFB8D80052051B /* YQNetworking+RequestManager.m in Sources */,
 				932DFD6F21BFB8D80052051B /* YQLRUManager.m in Sources */,
