@@ -43,14 +43,14 @@
 - (void)setUpData:(NSDictionary *)dict{
     
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]];
-    [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+    [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
     
 //    self.image = [UIImage imageNamed:@"homeCellBgIcon"];
     self.nameLabel.text = [dict objectForKey:@"name"];//@"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.detailLabel.text = [dict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.saleLabel.text = @"售价";
     
-    NSString * price = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"originalPrice"] doubleValue]];
+    NSString * price = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"price"] doubleValue]];
     self.priceTextField.text = price;
 //    [self.priceBtn setTitle:price forState:UIControlStateNormal];
 //    if ([dict objectForKey:@"image"]) {

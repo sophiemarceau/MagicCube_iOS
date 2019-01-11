@@ -48,11 +48,11 @@
     
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
 //    [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
-    [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+    [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
     self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.opinionLabel.text = @"建议零售价";
-    NSString * originalPrice = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"originalPrice"] doubleValue]];
+    NSString * originalPrice = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];
     [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
     
     
@@ -80,7 +80,7 @@
     if ([dataDict objectForKey:@"image"]) {
         NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
 //        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
-        [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+        [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
     }
     NSString *nameStr =  [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"name"]];
     CGFloat height = [nameStr heightWithFont: UIFontMediumOfSize(14) constrainedToWidth:SCALE_W(110 +72.5)];
@@ -93,7 +93,7 @@
     
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];
     self.opinionLabel.text = @"建议零售价";
-    NSString * originalPrice = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"originalPrice"] doubleValue]];
+    NSString * originalPrice = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"price"] doubleValue]];
     [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
     
     NSString *salesVolume = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"salesVolume"]];
@@ -113,7 +113,7 @@
     if ([dataDict objectForKey:@"image"]) {
         NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
 //        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
-        [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+        [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
         
     }
     

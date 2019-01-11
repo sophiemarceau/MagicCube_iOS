@@ -202,6 +202,11 @@
             [weakSelf requestDelete:[goodsDict objectForKey:@"sn"] sucess:^{
                 [weakSelf.goodsArray removeObject:goodsDict];
                 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                if (weakSelf.goodsArray.count == 0) {
+                    self.nodataView.hidden = NO;
+                }else{
+                    self.nodataView.hidden = YES;
+                }
             }];
         }];
         UIAlertAction *sure = [UIAlertAction actionWithTitle:@"继续分销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {

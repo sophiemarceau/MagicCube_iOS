@@ -16,7 +16,7 @@
     bgView.backgroundColor = [UIColor whiteColor];
     UIImageView * imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 450, 210)];
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dict objectForKey:@"image"]]];
-    [imageview sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@""]];
+    [imageview sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     [bgView addSubview:imageview];
     
     MagicLabel * titleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(225, 21, 207, 60)];
