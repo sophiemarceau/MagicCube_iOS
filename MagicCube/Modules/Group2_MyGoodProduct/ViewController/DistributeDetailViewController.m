@@ -14,18 +14,24 @@
 #import "AppDelegate.h"
 #import "WXApi.h"
 #import "ProfitView.h"
+#import "CLPlayerView.h"
 
 @interface DistributeDetailViewController (){
     NSDictionary *returnDataDic;
     float distributionDeposit;
 }
-@property (strong,nonatomic) AVPlayer * player;
-@property (strong,nonatomic) AVPlayerLayer * playerLayer;
+//@property (strong,nonatomic) AVPlayer * player;
+//@property (strong,nonatomic) AVPlayerLayer * playerLayer;
+@property (strong,nonatomic) CLPlayerView * playerView;
 @property (strong,nonatomic) ProfitView * memberView;
 @property (strong,nonatomic) GoodsInfoView * goodsInfoView;
 @property (strong,nonatomic) MagicCardView * cardView;
 @property (strong,nonatomic) MagicLabel * distributeDescLabel;
 @property (strong,nonatomic) MagicLabel * rewardDescLabel;
+
+@property (strong,nonatomic) UIView * rewardBGView;
+@property (strong,nonatomic) UIView * introduceBGView;
+@property (strong,nonatomic) UIScrollView * rootView;
 
 
 @end
@@ -124,6 +130,7 @@
 - (void)addSubviews{
     UIScrollView * rootView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - SCALE_W(45))];
     [self.view addSubview:rootView];
+    self.rootView = rootView;
     
     CGFloat top = 0;
     UIView * cardBGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
@@ -142,37 +149,42 @@
     self.memberView = memberView;
     [rootView addSubview:memberView];
     
-    top += SCALE_W(195.5);
+    top += SCALE_W(185.5);
 
-    MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(185.5), SCREEN_WIDTH, SCALE_W(10))];
-    [memberView addSubview:line];
+   
     
     
-    UIView * rewardBGView = [[UIView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(94.5))];
+    UIView * rewardBGView = [[UIView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(104.5))];
     rewardBGView.backgroundColor = BHColorWhite;
     [rootView addSubview:rewardBGView];
-    top += SCALE_W(94.5);
+    self.rewardBGView = rewardBGView;
+    top += SCALE_W(104.5);
     
-    MagicLabel * rewardTitleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(10), 0, SCREEN_WIDTH, SCALE_W(42))];
+    MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(10))];
+    [rewardBGView addSubview:line];
+    
+    MagicLabel * rewardTitleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(10), SCALE_W(10), SCREEN_WIDTH, SCALE_W(42))];
     rewardTitleLabel.text = @"抽奖返利";
     rewardTitleLabel.textColor = Gray666Color;
     [rewardBGView addSubview:rewardTitleLabel];
     
-    MagicLabel * rewardDescLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(10), SCALE_W(42), SCREEN_WIDTH, SCALE_W(42))];
+    MagicLabel * rewardDescLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(10), SCALE_W(52), SCREEN_WIDTH, SCALE_W(42))];
     rewardDescLabel.textColor = Gray666Color;
     rewardDescLabel.text = @"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的50%返利";
     rewardDescLabel.font = UIFontRegularOfSize(12);
     [rewardBGView addSubview:rewardDescLabel];
     self.rewardDescLabel = rewardDescLabel;
     
-    MagicLineView * rewardline = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(84), SCREEN_WIDTH, SCALE_W(10))];
+    MagicLineView * rewardline = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(94), SCREEN_WIDTH, SCALE_W(10))];
     [rewardBGView addSubview:rewardline];
     
-    MagicLineView * rewardline2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(42), SCREEN_WIDTH, 0.5)];
+    MagicLineView * rewardline2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(52), SCREEN_WIDTH, 0.5)];
     [rewardBGView addSubview:rewardline2];
     
     UIView * introduceBGView = [[UIView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(266.5))];
     [rootView addSubview:introduceBGView];
+    
+    self.introduceBGView = introduceBGView;
     
     top += SCALE_W(266.5);
     
@@ -181,16 +193,21 @@
     introduceLabel.textColor = Gray666Color;
     [introduceBGView addSubview:introduceLabel];
     
-    AVPlayerLayer * playlayer = [[AVPlayerLayer alloc] init];
-    playlayer.frame = CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(210.5));
-    self.playerLayer = playlayer;
+//    AVPlayerLayer * playlayer = [[AVPlayerLayer alloc] init];
+//    playlayer.frame = CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(210.5));
+//    self.playerLayer = playlayer;
+//    [introduceBGView.layer addSublayer:playlayer];
     
-    [introduceBGView.layer addSublayer:playlayer];
-    UIButton * playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(62)) * 0.5, SCALE_W(210.5 - 62) * 0.5 + SCALE_W(46), SCALE_W(62), SCALE_W(62))];
-    [playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
-    playBtn.selected = NO;
-    [playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
-    [introduceBGView addSubview:playBtn];
+    CLPlayerView *playerView = [[CLPlayerView alloc] initWithFrame:CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(210.5))];
+    _playerView = playerView;
+    [introduceBGView addSubview:_playerView];
+    
+    
+//    UIButton * playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(62)) * 0.5, SCALE_W(210.5 - 62) * 0.5 + SCALE_W(46), SCALE_W(62), SCALE_W(62))];
+//    [playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+//    playBtn.selected = NO;
+//    [playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
+//    [introduceBGView addSubview:playBtn];
     MagicLineView * line2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(256.5), SCREEN_WIDTH, SCALE_W(10))];
     [introduceBGView addSubview:line2];
     
@@ -232,8 +249,25 @@
     if (dataDict) {
         NSString * videoUrl = [dataDict objectForKey:@"video"];
         NSURL * url = [NSURL URLWithString:videoUrl];
-        self.player = [AVPlayer playerWithURL:url];
-        self.playerLayer.player = self.player;
+//        self.player = [AVPlayer playerWithURL:url];
+//        self.playerLayer.player = self.player;
+        
+        _playerView.url = url;
+        //播放
+        [_playerView playVideo];
+        //返回按钮点击事件回调
+        [_playerView backButton:^(UIButton *button) {
+            NSLog(@"返回按钮被点击");
+            //查询是否是全屏状态
+            NSLog(@"%d",_playerView.isFullScreen);
+        }];
+        //播放完成回调
+        [_playerView endPlay:^{
+            //销毁播放器
+            //        [_playerView destroyPlayer];
+            //        _playerView = nil;
+            NSLog(@"播放完成");
+        }];
         
         [self.goodsInfoView setUPdata:dataDict];
         
@@ -241,7 +275,17 @@
         
         NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
         NSArray * cashBackRuleRes = [dataDict objectForKey:@"cashBackRuleRes"];
+        self.memberView.height = cashBackRuleRes.count * SCALE_W(38.5) + SCALE_W(42);
         [self.memberView setUpdata:cashBackRuleRes];
+        
+        self.rewardBGView.y = self.memberView.bottom;
+        
+        self.introduceBGView.y = self.rewardBGView.bottom;
+        
+        self.goodsInfoView.y = self.introduceBGView.bottom;
+        
+        self.rootView.contentSize = CGSizeMake(0, self.goodsInfoView.bottom);
+        
         self.distributeDescLabel.text = [NSString stringWithFormat:@"%@", [dataDict objectForKey:@"distributionButtonText"]];
         distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
         
@@ -256,11 +300,11 @@
 
 #pragma mark -- btn
 -(void)clickPlay:(UIButton *)btn{
-    if (btn.selected) {
-        [self.player pause];
-    }else{
-        [self.player play];
-    }
+//    if (btn.selected) {
+//        [self.player pause];
+//    }else{
+//        [self.player play];
+//    }
     btn.selected = !btn.selected;
 }
 
@@ -315,5 +359,4 @@
     [alertController addAction:sureAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
-
 @end

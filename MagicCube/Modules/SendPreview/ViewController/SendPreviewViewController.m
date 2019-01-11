@@ -12,12 +12,15 @@
 #import "WXApi.h"
 #import "WXApiManager.h"
 #import "CaptureScreenView.h"
+#import "CLPlayerView.h"
+
 @interface SendPreviewViewController ()<WXApiManagerDelegate>
 @property(nonatomic,strong)UIView *bgView;
 @property(nonatomic,strong)UIImageView *envelopBGView,*envelopView,*headView;
-@property(nonatomic,strong)AVPlayerLayer *playlayer;
-@property(nonatomic,strong)UIButton * playBtn;
-@property(nonatomic,strong) AVPlayer *player;
+//@property(nonatomic,strong)AVPlayerLayer *playlayer;
+//@property(nonatomic,strong)UIButton * playBtn;
+//@property(nonatomic,strong) AVPlayer *player;
+@property (strong,nonatomic) CLPlayerView * playerView;
 
 @property(nonatomic,strong)UILabel *identifylLabel;
 @property(nonatomic,strong)UILabel *identifySubLabel;
@@ -100,8 +103,26 @@
     NSLog(@"%@",self.dataDict);
     NSString * videoUrl = [self.dataDict objectForKey:@"video"];
     NSURL * url = [NSURL URLWithString:videoUrl];
-    self.player = [AVPlayer playerWithURL:url];
-    self.playlayer.player = self.player;
+//    self.player = [AVPlayer playerWithURL:url];
+//    self.playlayer.player = self.player;
+    
+    _playerView.url = url;
+    //播放
+    [_playerView playVideo];
+    //返回按钮点击事件回调
+    [_playerView backButton:^(UIButton *button) {
+        NSLog(@"返回按钮被点击");
+        //查询是否是全屏状态
+        NSLog(@"%d",_playerView.isFullScreen);
+    }];
+    //播放完成回调
+    [_playerView endPlay:^{
+        //销毁播放器
+        //        [_playerView destroyPlayer];
+        //        _playerView = nil;
+        NSLog(@"播放完成");
+    }];
+    
     NSString * manufacturer = [self.dataDict objectForKey:@"manufacturer"];
     _identifylLabel.text = [NSString stringWithFormat:@"本卡产品认证生产商为%@",manufacturer];
     _identifySubLabel.text = [NSString stringWithFormat:@"由%@数字签名确认",manufacturer];
@@ -129,16 +150,16 @@
     [self.bgView addSubview:self.productImageView];
     [self.bgView addSubview:self.addressImageView];
     [self.view addSubview:self.envelopView];
-    [self.view addSubview:self.playBtn];
+//    [self.view addSubview:self.playBtn];
     [self.view addSubview:self.sendBtn];
 }
 
 -(void)clickPlay:(UIButton *)sender{
-    if (sender.selected) {
-        [self.player pause];
-    }else{
-        [self.player play];
-    }
+//    if (sender.selected) {
+//        [self.player pause];
+//    }else{
+//        [self.player play];
+//    }
     sender.selected = !sender.selected;
 }
 
@@ -199,7 +220,8 @@
         _bgView.backgroundColor = [UIColor whiteColor];
         //        [_bgView addSubview:self.headView];
         [_bgView addSubview:self.scardView];
-        [_bgView.layer addSublayer:self.playlayer];
+//        [_bgView.layer addSublayer:self.playlayer];
+        [_bgView addSubview:self.playerView];
         
         _bgView.layer.cornerRadius = 10;
         // 阴影颜色
@@ -247,29 +269,36 @@
     return _headView;
 }
 
--(AVPlayerLayer *)playlayer{
-    if (!_playlayer) {
-        //        NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
-        //        NSURL * url = [NSURL fileURLWithPath:path];
-        //        self.player = [AVPlayer playerWithURL:url];
-        _playlayer = [[AVPlayerLayer alloc] init];//[AVPlayerLayer playerLayerWithPlayer:self.player];
-        _playlayer.frame = CGRectMake(15, self.headView.bottom + 11.5, self.bgView.width - 30, SCALE_W(140.5));
-        _playlayer.backgroundColor = [[UIColor clearColor] CGColor];
+//-(AVPlayerLayer *)playlayer{
+//    if (!_playlayer) {
+//        //        NSString *path = [[NSBundle mainBundle] pathForResource:@"localvideo" ofType:@"mp4"];
+//        //        NSURL * url = [NSURL fileURLWithPath:path];
+//        //        self.player = [AVPlayer playerWithURL:url];
+//        _playlayer = [[AVPlayerLayer alloc] init];//[AVPlayerLayer playerLayerWithPlayer:self.player];
+//        _playlayer.frame = CGRectMake(15, self.headView.bottom + 11.5, self.bgView.width - 30, SCALE_W(140.5));
+//        _playlayer.backgroundColor = [[UIColor clearColor] CGColor];
+//    }
+//    return _playlayer;
+//}
+
+- (CLPlayerView *)playerView{
+    if (!_playerView) {
+        _playerView = [[CLPlayerView alloc] initWithFrame:CGRectMake(15, self.headView.bottom + 11.5, self.bgView.width - 30, SCALE_W(140.5))];
     }
-    return _playlayer;
+    return _playerView;
 }
 
--(UIButton *)playBtn{
-    if (_playBtn == nil) {
-        _playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(31)) * 0.5,
-                                                              SCALE_W(186.8),
-                                                              SCALE_W(31),
-                                                              SCALE_W(31))];
-        [_playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
-        [_playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _playBtn;
-}
+//-(UIButton *)playBtn{
+//    if (_playBtn == nil) {
+//        _playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(31)) * 0.5,
+//                                                              SCALE_W(186.8),
+//                                                              SCALE_W(31),
+//                                                              SCALE_W(31))];
+//        [_playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+//        [_playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _playBtn;
+//}
 
 -(UILabel *)identifylLabel{
     if (_identifylLabel == nil) {

@@ -76,6 +76,11 @@
 		B218A4A921CB66BB00CFBA19 /* MagicCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4A821CB66BB00CFBA19 /* MagicCardView.m */; };
 		B218A4AC21CB7F9700CFBA19 /* MagicCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */; };
 		B21981A921E6F04F005533EF /* CaptureScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21981A821E6F04F005533EF /* CaptureScreenView.m */; };
+		B219820221E7412E005533EF /* CLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B21981F821E7412E005533EF /* CLSlider.m */; };
+		B219820321E7412E005533EF /* AILoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21981FA21E7412E005533EF /* AILoadingView.m */; };
+		B219820421E7412E005533EF /* CLPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21981FB21E7412E005533EF /* CLPlayerMaskView.m */; };
+		B219820521E7412E005533EF /* CLPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21981FD21E7412E005533EF /* CLPlayerView.m */; };
+		B219820621E7412E005533EF /* CLPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B219820121E7412E005533EF /* CLPlayer.bundle */; };
 		B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22476CB21C9DA9200D08F63 /* DetailMemberView.m */; };
 		B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B229A66121A692A900A5B23B /* SalerTableViewCell.m */; };
 		B22D178E21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D178D21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m */; };
@@ -267,6 +272,15 @@
 		B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicCardTableViewCell.m; sourceTree = "<group>"; };
 		B21981A721E6F04F005533EF /* CaptureScreenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaptureScreenView.h; sourceTree = "<group>"; };
 		B21981A821E6F04F005533EF /* CaptureScreenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaptureScreenView.m; sourceTree = "<group>"; };
+		B21981F821E7412E005533EF /* CLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSlider.m; sourceTree = "<group>"; };
+		B21981F921E7412E005533EF /* CLPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerView.h; sourceTree = "<group>"; };
+		B21981FA21E7412E005533EF /* AILoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AILoadingView.m; sourceTree = "<group>"; };
+		B21981FB21E7412E005533EF /* CLPlayerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerMaskView.m; sourceTree = "<group>"; };
+		B21981FC21E7412E005533EF /* CLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSlider.h; sourceTree = "<group>"; };
+		B21981FD21E7412E005533EF /* CLPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLPlayerView.m; sourceTree = "<group>"; };
+		B21981FE21E7412E005533EF /* AILoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AILoadingView.h; sourceTree = "<group>"; };
+		B21981FF21E7412E005533EF /* CLPlayerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLPlayerMaskView.h; sourceTree = "<group>"; };
+		B219820121E7412E005533EF /* CLPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CLPlayer.bundle; sourceTree = "<group>"; };
 		B22476CA21C9DA9200D08F63 /* DetailMemberView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailMemberView.h; sourceTree = "<group>"; };
 		B22476CB21C9DA9200D08F63 /* DetailMemberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailMemberView.m; sourceTree = "<group>"; };
 		B229A66021A692A900A5B23B /* SalerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalerTableViewCell.h; sourceTree = "<group>"; };
@@ -596,6 +610,7 @@
 		93CF8E3821A52EEE004D8111 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				B21981F721E7412E005533EF /* clplayer */,
 				93B6C86C21CA2D44002A920C /* ZTGCDTimer */,
 				932DFD7921C0F39B0052051B /* NTESVerifyCodeResources.bundle */,
 				932DFD7A21C0F39C0052051B /* VerifyCode.framework */,
@@ -821,6 +836,31 @@
 				B21981A821E6F04F005533EF /* CaptureScreenView.m */,
 			);
 			path = custom;
+			sourceTree = "<group>";
+		};
+		B21981F721E7412E005533EF /* clplayer */ = {
+			isa = PBXGroup;
+			children = (
+				B21981FC21E7412E005533EF /* CLSlider.h */,
+				B21981F821E7412E005533EF /* CLSlider.m */,
+				B21981F921E7412E005533EF /* CLPlayerView.h */,
+				B21981FD21E7412E005533EF /* CLPlayerView.m */,
+				B21981FE21E7412E005533EF /* AILoadingView.h */,
+				B21981FA21E7412E005533EF /* AILoadingView.m */,
+				B21981FF21E7412E005533EF /* CLPlayerMaskView.h */,
+				B21981FB21E7412E005533EF /* CLPlayerMaskView.m */,
+				B219820021E7412E005533EF /* Resource */,
+			);
+			name = clplayer;
+			path = MagicCube/libs/clplayer;
+			sourceTree = SOURCE_ROOT;
+		};
+		B219820021E7412E005533EF /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B219820121E7412E005533EF /* CLPlayer.bundle */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		B22E4A2B21A4FCCD003F37BD /* Headers */ = {
@@ -1077,6 +1117,7 @@
 				B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */,
 				936EA03221B0E2CA00CD1A4E /* localvideo.mp4 in Resources */,
 				932DFD7B21C0F39C0052051B /* NTESVerifyCodeResources.bundle in Resources */,
+				B219820621E7412E005533EF /* CLPlayer.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1239,8 @@
 				B218A4AC21CB7F9700CFBA19 /* MagicCardTableViewCell.m in Sources */,
 				B209F19621A7F9160043E485 /* InviteView.m in Sources */,
 				932DFD7821C0E0920052051B /* UserObject.m in Sources */,
+				B219820321E7412E005533EF /* AILoadingView.m in Sources */,
+				B219820521E7412E005533EF /* CLPlayerView.m in Sources */,
 				936E9FC421A66AC300CD1A4E /* MemberView.m in Sources */,
 				7DB9F89621A5AB3C005D4DD4 /* TYCyclePagerTransformLayout.m in Sources */,
 				B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */,
@@ -1251,7 +1294,9 @@
 				93CF8E2921A52E8D004D8111 /* MainViewController.m in Sources */,
 				7DB9F89321A5AB3C005D4DD4 /* TYPageControl.m in Sources */,
 				932DFD7021BFB8D80052051B /* YQDiskCache.m in Sources */,
+				B219820221E7412E005533EF /* CLSlider.m in Sources */,
 				B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */,
+				B219820421E7412E005533EF /* CLPlayerMaskView.m in Sources */,
 				B2408FF821AE69E100887B6A /* DistributeLevelView.m in Sources */,
 				932DFD7221BFB8D80052051B /* YQCacheManager.m in Sources */,
 				7DB9F88A21A5A739005D4DD4 /* LineTabbarView.m in Sources */,
