@@ -67,7 +67,7 @@
     self.title = @"设置";
     
     self.dataArray = @[@[@{@"left":@"加入魔方社群",@"right":@"",@"showRight":@(YES)},
-                         @{@"left":@"我的邀请",@"right":@"8个好友",@"showRight":@(YES)}],
+                         @{@"left":@"我的邀请",@"right":@"0个好友",@"showRight":@(YES)}],
                        @[@{@"left":@"意见反馈",@"right":@"",@"showRight":@(YES)},
                          @{@"left":@"版本升级",@"right":[NSString stringWithFormat:@"v%@",kCurrentVersion],@"showRight":@(NO)},
                          @{@"left":@"关于",@"right":@"",@"showRight":@(YES)}],];
@@ -93,13 +93,11 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
+    return 0;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView * footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.01)];
-    footView.backgroundColor = [UIColor yellowColor];
-    return footView;
+    return [UIView new];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -149,7 +147,6 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor colorWithHexString:@"999999" alpha:0.6];
     [footView addSubview:label];
-//    self.tableView.tableHeaderView = [UIView new];
     self.tableView.tableFooterView = footView;
     self.tableView.rowHeight = [SettingTableViewCell cellHeight];
     [self.view addSubview:self.tableView];

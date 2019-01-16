@@ -28,6 +28,32 @@
     self.title = @"意见反馈";
 }
 
+- (void)requestSubmitOpinion{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [params setObject:self.textview.text forKey:@"text"];
+    WS(weakSelf)
+    NSLog(@"-----requestRecords--->%@",params);
+    NMShowLoadIng;
+    [BTERequestTools requestWithURLString:kAppApiDistribution parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+       
+        NMRemovLoadIng;
+        NSLog(@"---requestRecords--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            NSDictionary * dataDict = [responseObject objectForKey:@"data"];
+            
+        }else{
+            
+            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+            [BHToast showMessage:message];
+        }
+    } failure:^(NSError *error)  {
+       
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+
+}
+
 -(void)addSubViews{
     self.view.backgroundColor = KBGColor;
     

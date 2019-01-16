@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SmallCardView : UIImageView
 - (void)setUpData:(NSDictionary *)dict;
-- (NSString *)getPrice;
--(void)hidekeyboard;
 @end
 
 NS_ASSUME_NONNULL_END

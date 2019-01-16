@@ -115,6 +115,7 @@
 		B2E9F3DA21DDF3C40008ED10 /* ProfitView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E9F3D921DDF3C40008ED10 /* ProfitView.m */; };
 		B2E9F3DD21DDF4120008ED10 /* Profit.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E9F3DC21DDF4120008ED10 /* Profit.m */; };
 		B2F7CFD021D74B9D0077FCF2 /* MagicShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */; };
+		B2FE403621EECF3D00FBAB6F /* RewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FE403521EECF3D00FBAB6F /* RewardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,6 +352,8 @@
 		B2E9F3DC21DDF4120008ED10 /* Profit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Profit.m; sourceTree = "<group>"; };
 		B2F7CFCE21D74B9D0077FCF2 /* MagicShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicShareView.h; sourceTree = "<group>"; };
 		B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicShareView.m; sourceTree = "<group>"; };
+		B2FE403421EECF3D00FBAB6F /* RewardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RewardView.h; sourceTree = "<group>"; };
+		B2FE403521EECF3D00FBAB6F /* RewardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RewardView.m; sourceTree = "<group>"; };
 		EB2348FC8C17E308B9A9C395 /* Pods-MagicCube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicCube.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube.release.xcconfig"; sourceTree = "<group>"; };
 		F271BB3A73938B24FF22D70E /* Pods-MagicCube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicCube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicCube/Pods-MagicCube.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -813,6 +816,8 @@
 				B218A4A821CB66BB00CFBA19 /* MagicCardView.m */,
 				B244862221E5FAFC001015B2 /* MagicNODataView.h */,
 				B244862321E5FAFC001015B2 /* MagicNODataView.m */,
+				B2FE403421EECF3D00FBAB6F /* RewardView.h */,
+				B2FE403521EECF3D00FBAB6F /* RewardView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1272,6 +1277,7 @@
 				7DB9F89521A5AB3C005D4DD4 /* TYCyclePagerView.m in Sources */,
 				936E9FCE21A6B10300CD1A4E /* HisstoryTableViewCell.m in Sources */,
 				B25F70F521CCB720002EFA10 /* SettingTableViewCell.m in Sources */,
+				B2FE403621EECF3D00FBAB6F /* RewardView.m in Sources */,
 				93CF8E2A21A52E8D004D8111 /* AppDelegate.m in Sources */,
 				B2649BCE21A50C0300C871C8 /* UIView+Frame.m in Sources */,
 				B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */,

@@ -17,9 +17,7 @@
 @interface SendPreviewViewController ()<WXApiManagerDelegate>
 @property(nonatomic,strong)UIView *bgView;
 @property(nonatomic,strong)UIImageView *envelopBGView,*envelopView,*headView;
-//@property(nonatomic,strong)AVPlayerLayer *playlayer;
-//@property(nonatomic,strong)UIButton * playBtn;
-//@property(nonatomic,strong) AVPlayer *player;
+@property(nonatomic,strong)UIButton * playBtn;
 @property (strong,nonatomic) CLPlayerView * playerView;
 
 @property(nonatomic,strong)UILabel *identifylLabel;
@@ -54,10 +52,15 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [WXApiManager sharedManager].delegate = self;
+    [self.playerView pausePlay];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [WXApiManager sharedManager].delegate = nil;
+    //销毁播放器
+    [_playerView pausePlay];
+    [_playerView destroyPlayer];
+    _playerView = nil;
 }
 
 #pragma mark -- 数据请求
@@ -94,10 +97,6 @@
     self.title = @"发送预览";
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.scardView hidekeyboard];
-}
-
 - (void)configData{
     [self.scardView setUpData:self.dataDict];
     NSLog(@"%@",self.dataDict);
@@ -108,7 +107,7 @@
     
     _playerView.url = url;
     //播放
-    [_playerView playVideo];
+    [_playerView pausePlay];
     //返回按钮点击事件回调
     [_playerView backButton:^(UIButton *button) {
         NSLog(@"返回按钮被点击");
@@ -150,17 +149,15 @@
     [self.bgView addSubview:self.productImageView];
     [self.bgView addSubview:self.addressImageView];
     [self.view addSubview:self.envelopView];
-//    [self.view addSubview:self.playBtn];
+    [self.view addSubview:self.playBtn];
     [self.view addSubview:self.sendBtn];
 }
 
 -(void)clickPlay:(UIButton *)sender{
-//    if (sender.selected) {
-//        [self.player pause];
-//    }else{
-//        [self.player play];
-//    }
+    
+    [self.playerView playVideo];
     sender.selected = !sender.selected;
+    self.playBtn.hidden = YES;
 }
 
 - (void)rewords:(NSDictionary *)dataDict{
@@ -288,17 +285,17 @@
     return _playerView;
 }
 
-//-(UIButton *)playBtn{
-//    if (_playBtn == nil) {
-//        _playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(31)) * 0.5,
-//                                                              SCALE_W(186.8),
-//                                                              SCALE_W(31),
-//                                                              SCALE_W(31))];
-//        [_playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
-//        [_playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _playBtn;
-//}
+-(UIButton *)playBtn{
+    if (_playBtn == nil) {
+        _playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(31)) * 0.5,
+                                                              SCALE_W(186.8),
+                                                              SCALE_W(31),
+                                                              SCALE_W(31))];
+        [_playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+        [_playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _playBtn;
+}
 
 -(UILabel *)identifylLabel{
     if (_identifylLabel == nil) {

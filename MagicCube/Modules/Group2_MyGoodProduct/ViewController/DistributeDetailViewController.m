@@ -15,23 +15,22 @@
 #import "WXApi.h"
 #import "ProfitView.h"
 #import "CLPlayerView.h"
+#import "RewardView.h"
 
 @interface DistributeDetailViewController (){
     NSDictionary *returnDataDic;
     float distributionDeposit;
 }
-//@property (strong,nonatomic) AVPlayer * player;
-//@property (strong,nonatomic) AVPlayerLayer * playerLayer;
+
 @property (strong,nonatomic) CLPlayerView * playerView;
 @property (strong,nonatomic) ProfitView * memberView;
 @property (strong,nonatomic) GoodsInfoView * goodsInfoView;
 @property (strong,nonatomic) MagicCardView * cardView;
 @property (strong,nonatomic) MagicLabel * distributeDescLabel;
-@property (strong,nonatomic) MagicLabel * rewardDescLabel;
-
-@property (strong,nonatomic) UIView * rewardBGView;
+@property (strong,nonatomic) RewardView * rewardView;
 @property (strong,nonatomic) UIView * introduceBGView;
 @property (strong,nonatomic) UIScrollView * rootView;
+@property (strong,nonatomic) UIButton * playBtn;
 
 
 @end
@@ -43,6 +42,14 @@
     [self initdata];
     [self addSubviews];
     [self requestDetail];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    //销毁播放器
+    [_playerView pausePlay];
+    [_playerView destroyPlayer];
+    _playerView = nil;
 }
 
 #pragma mark -- 数据
@@ -148,42 +155,14 @@
     ProfitView * memberView = [[ProfitView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(195.5))];
     self.memberView = memberView;
     [rootView addSubview:memberView];
-    
     top += SCALE_W(185.5);
-
-   
     
-    
-    UIView * rewardBGView = [[UIView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(104.5))];
-    rewardBGView.backgroundColor = BHColorWhite;
-    [rootView addSubview:rewardBGView];
-    self.rewardBGView = rewardBGView;
+    self.rewardView = [[RewardView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(104.5))];
+    [rootView addSubview:self.rewardView];
     top += SCALE_W(104.5);
-    
-    MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(10))];
-    [rewardBGView addSubview:line];
-    
-    MagicLabel * rewardTitleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(10), SCALE_W(10), SCREEN_WIDTH, SCALE_W(42))];
-    rewardTitleLabel.text = @"抽奖返利";
-    rewardTitleLabel.textColor = Gray666Color;
-    [rewardBGView addSubview:rewardTitleLabel];
-    
-    MagicLabel * rewardDescLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(10), SCALE_W(52), SCREEN_WIDTH, SCALE_W(42))];
-    rewardDescLabel.textColor = Gray666Color;
-    rewardDescLabel.text = @"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的50%返利";
-    rewardDescLabel.font = UIFontRegularOfSize(12);
-    [rewardBGView addSubview:rewardDescLabel];
-    self.rewardDescLabel = rewardDescLabel;
-    
-    MagicLineView * rewardline = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(94), SCREEN_WIDTH, SCALE_W(10))];
-    [rewardBGView addSubview:rewardline];
-    
-    MagicLineView * rewardline2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(52), SCREEN_WIDTH, 0.5)];
-    [rewardBGView addSubview:rewardline2];
     
     UIView * introduceBGView = [[UIView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(266.5))];
     [rootView addSubview:introduceBGView];
-    
     self.introduceBGView = introduceBGView;
     
     top += SCALE_W(266.5);
@@ -193,21 +172,17 @@
     introduceLabel.textColor = Gray666Color;
     [introduceBGView addSubview:introduceLabel];
     
-//    AVPlayerLayer * playlayer = [[AVPlayerLayer alloc] init];
-//    playlayer.frame = CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(210.5));
-//    self.playerLayer = playlayer;
-//    [introduceBGView.layer addSublayer:playlayer];
-    
     CLPlayerView *playerView = [[CLPlayerView alloc] initWithFrame:CGRectMake(0, SCALE_W(46), SCREEN_WIDTH, SCALE_W(210.5))];
     _playerView = playerView;
     [introduceBGView addSubview:_playerView];
     
     
-//    UIButton * playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(62)) * 0.5, SCALE_W(210.5 - 62) * 0.5 + SCALE_W(46), SCALE_W(62), SCALE_W(62))];
-//    [playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
-//    playBtn.selected = NO;
-//    [playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
-//    [introduceBGView addSubview:playBtn];
+    UIButton * playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(62)) * 0.5, SCALE_W(210.5 - 62) * 0.5 + SCALE_W(46), SCALE_W(62), SCALE_W(62))];
+    [playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+    playBtn.selected = NO;
+    [playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
+    [introduceBGView addSubview:playBtn];
+    self.playBtn = playBtn;
     MagicLineView * line2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(256.5), SCREEN_WIDTH, SCALE_W(10))];
     [introduceBGView addSubview:line2];
     
@@ -249,12 +224,10 @@
     if (dataDict) {
         NSString * videoUrl = [dataDict objectForKey:@"video"];
         NSURL * url = [NSURL URLWithString:videoUrl];
-//        self.player = [AVPlayer playerWithURL:url];
-//        self.playerLayer.player = self.player;
         
         _playerView.url = url;
         //播放
-        [_playerView playVideo];
+        [_playerView pausePlay];
         //返回按钮点击事件回调
         [_playerView backButton:^(UIButton *button) {
             NSLog(@"返回按钮被点击");
@@ -263,9 +236,9 @@
         }];
         //播放完成回调
         [_playerView endPlay:^{
-            //销毁播放器
-            //        [_playerView destroyPlayer];
-            //        _playerView = nil;
+//            //销毁播放器
+//            [_playerView destroyPlayer];
+//            _playerView = nil;
             NSLog(@"播放完成");
         }];
         
@@ -273,14 +246,13 @@
         
         [self.cardView setUpDistributeDetailDict:dataDict];
         
-        NSInteger currentUserMemberLevel = [[dataDict objectForKey:@"currentUserMemberLevel"] integerValue];
         NSArray * cashBackRuleRes = [dataDict objectForKey:@"cashBackRuleRes"];
         self.memberView.height = cashBackRuleRes.count * SCALE_W(38.5) + SCALE_W(42);
         [self.memberView setUpdata:cashBackRuleRes];
         
-        self.rewardBGView.y = self.memberView.bottom;
+        self.rewardView.y = self.memberView.bottom;
         
-        self.introduceBGView.y = self.rewardBGView.bottom;
+        self.introduceBGView.y = self.rewardView.bottom;
         
         self.goodsInfoView.y = self.introduceBGView.bottom;
         
@@ -290,7 +262,7 @@
         distributionDeposit =  [[dataDict objectForKey:@"distributionDeposit"] floatValue];
         
         int d = [[dataDict objectForKey:@"gameCashBack"] floatValue] * 100;
-        self.rewardDescLabel.text = [NSString stringWithFormat:@"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的%d%%返利",d]; //
+        [self.rewardView setUpdata:d];
     }
 }
 
@@ -300,12 +272,10 @@
 
 #pragma mark -- btn
 -(void)clickPlay:(UIButton *)btn{
-//    if (btn.selected) {
-//        [self.player pause];
-//    }else{
-//        [self.player play];
-//    }
+
+    [self.playerView playVideo];
     btn.selected = !btn.selected;
+    self.playBtn.hidden = YES;
 }
 
 -(void)distriute:(UIButton *)btn{

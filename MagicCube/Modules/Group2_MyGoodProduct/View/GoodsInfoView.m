@@ -20,7 +20,7 @@
 }
 
 - (void)createUI{
-    UIImageView * goodsInfoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(56), SCREEN_WIDTH, SCALE_W(182.5 - 76))];
+    UIImageView * goodsInfoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, SCALE_W(56), SCREEN_WIDTH, self.frame.size.height - SCALE_W(76))];
     goodsInfoView.image = [UIImage imageNamed:@"fangweituan"];
     goodsInfoView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:goodsInfoView];

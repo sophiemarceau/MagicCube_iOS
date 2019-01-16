@@ -13,6 +13,7 @@
 @property (strong,nonatomic) NSMutableArray * inviteArray;
 @property (strong,nonatomic) UITableView * tableView;
 @property (assign,nonatomic) NSInteger pageNum;
+@property (strong,nonatomic) MagicLabel * titleLabel;
 @end
 
 @implementation MyInviteViewController
@@ -25,41 +26,43 @@
 }
 
 - (void)requestInvites:(NSInteger)pageNum{
-    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     
-    WS(weakSelf)
-    NSLog(@"-----requestRecords--->%@",params);
-    NMShowLoadIng;
-   
-    
-    [BTERequestTools requestWithURLString:kAppApiDistribution parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
-        [weakSelf.tableView.mj_header endRefreshing];
-        [weakSelf.tableView.mj_footer endRefreshing];
-        NMRemovLoadIng;
-        NSLog(@"---requestRecords--responseObject--->%@",responseObject);
-        if (IsSucess(responseObject)) {
-            NSDictionary * dataDict = [responseObject objectForKey:@"data"];
-            if (dataDict) {
-                if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
-                    
-                    [weakSelf.tableView reloadData];
-                }
-                
-                if (pageNum == [[dataDict objectForKey:@"lastPage"] integerValue]) {
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                }
-            }
-        }else{
-            
-            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
-            [BHToast showMessage:message];
-        }
-    } failure:^(NSError *error)  {
-        [weakSelf.tableView.mj_header endRefreshing];
-        [weakSelf.tableView.mj_footer endRefreshing];
-        NMRemovLoadIng;
-        NSLog(@"error-------->%@",error);
-    }];
+    self.titleLabel.attributedText = [MagicRichTool initWithString:@"您已成功邀请 0 位好友" substring:@"0" font:UIFontRegularOfSize(20) color:[UIColor colorWithHexString:@"308cdd"]];
+
+//    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+//    WS(weakSelf)
+//    NSLog(@"-----requestRecords--->%@",params);
+//    NMShowLoadIng;
+//    [BTERequestTools requestWithURLString:kAppApiDistribution parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+//        [weakSelf.tableView.mj_header endRefreshing];
+//        [weakSelf.tableView.mj_footer endRefreshing];
+//        NMRemovLoadIng;
+//        NSLog(@"---requestRecords--responseObject--->%@",responseObject);
+//        if (IsSucess(responseObject)) {
+//            NSDictionary * dataDict = [responseObject objectForKey:@"data"];
+//            if (dataDict) {
+//                if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
+//
+//                    [weakSelf.tableView reloadData];
+//                }
+//
+//                if (pageNum == [[dataDict objectForKey:@"lastPage"] integerValue]) {
+//                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//                }
+//            }
+//        }else{
+//
+//            NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+//            [BHToast showMessage:message];
+//        }
+//    } failure:^(NSError *error)  {
+//        [weakSelf.tableView.mj_header endRefreshing];
+//        [weakSelf.tableView.mj_footer endRefreshing];
+//        NMRemovLoadIng;
+//        NSLog(@"error-------->%@",error);
+//    }];
 }
 
 - (void)initdata{
@@ -77,8 +80,8 @@
     titleLabel.textColor  = Black626A75Color;
     [bgView addSubview:titleLabel];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.attributedText = [MagicRichTool initWithString:@"您已成功邀请 2 位好友" substring:@"2" font:UIFontRegularOfSize(20) color:[UIColor colorWithHexString:@"308cdd"]];
-    
+    titleLabel.attributedText = [MagicRichTool initWithString:@"您已成功邀请 0 位好友" substring:@"0" font:UIFontRegularOfSize(20) color:[UIColor colorWithHexString:@"308cdd"]];
+    self.titleLabel = titleLabel;
     
     UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, SCALE_W(110), bgView.width, SCALE_W(34))];
     [bgView addSubview:headView];
@@ -122,7 +125,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;//self.inviteArray.count;
+    return self.inviteArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
