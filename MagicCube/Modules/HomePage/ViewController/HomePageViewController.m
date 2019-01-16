@@ -18,7 +18,7 @@
 #import "YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.h"
 #import "HomeListViewController.h"
 #import "ZTGCDTimerManager.h"
-
+#import "AppDelegate.h"
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,
 TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , SPPageMenuDelegate, UIScrollViewDelegate>{
     int current_page,total_count;
@@ -236,6 +236,14 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
                 self.scrollView.contentSize = CGSizeMake(self.myChildViewControllers.count*SCREEN_WIDTH, 0);
             }
             [self.tableView reloadData];
+        }else{
+            if ([[responseObject objectForKey:@"code"] isEqualToString:@"401"]) {
+                [User removeLoginData];
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                [appDelegate setupKeyWindow];
+                return;
+            }
         }
     } failure:^(NSError *error)  {
         NMRemovLoadIng;

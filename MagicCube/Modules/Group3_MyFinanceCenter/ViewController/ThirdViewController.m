@@ -10,6 +10,9 @@
 #import "HisstoryTableViewCell.h"
 #import "NSString+Size.h"
 #import "SettingViewController.h"
+#import "AppDelegate.h"
+
+
 @interface ThirdViewController ()<UITableViewDelegate,UITableViewDataSource>{
     int current_page,total_count;
     UIImageView *redBgView;
@@ -126,6 +129,14 @@
             self.incomeValueLabel.text = [NSString stringWithFormat:@"¥%ld", [[todayDic objectForKey:@"distribution"] integerValue]
                                         // +[[todayDic objectForKey:@"team"] integerValue]
                                           +[[todayDic objectForKey:@"gameCashBack"] integerValue]];
+        }else{
+            if ([[responseObject objectForKey:@"code"] isEqualToString:@"401"]) {
+                [User removeLoginData];
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                [appDelegate setupKeyWindow];
+                return;
+            }
         }
     } failure:^(NSError *error)  {
         NMRemovLoadIng;
