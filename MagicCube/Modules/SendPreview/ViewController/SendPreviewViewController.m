@@ -146,7 +146,7 @@
     [self.bgView addSubview:self.actionbBtn];
     [self.bgView addSubview:self.proAddressLabel];
     [self.bgView addSubview:self.proConfirmLabel];
-    [self.bgView addSubview:self.productImageView];
+//    [self.bgView addSubview:self.productImageView];
     [self.bgView addSubview:self.addressImageView];
     [self.view addSubview:self.envelopView];
     [self.view addSubview:self.playBtn];
@@ -213,7 +213,7 @@
 
 -(UIView *)bgView{
     if (_bgView == nil) {
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(85/2, 25, SCREEN_WIDTH - 85, 408.5)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(95/2, 25, SCREEN_WIDTH - 95, 408.5)];
         _bgView.backgroundColor = [UIColor whiteColor];
         //        [_bgView addSubview:self.headView];
         [_bgView addSubview:self.scardView];
@@ -253,7 +253,7 @@
 
 -(SmallCardView *)scardView{
     if (!_scardView) {
-        _scardView = [[SmallCardView alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, 110)];
+        _scardView = [[SmallCardView alloc] initWithFrame:CGRectMake(0, 0, self.bgView.width, 119.5)];
         [_scardView setUpData:@{}];
     }
     return _scardView;
@@ -291,7 +291,7 @@
                                                               SCALE_W(186.8),
                                                               SCALE_W(31),
                                                               SCALE_W(31))];
-        [_playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+        [_playBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
         [_playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playBtn;
@@ -339,7 +339,7 @@
         _buyBtn.titleLabel.font = UIFontLightOfSize(16);
         _buyBtn.titleLabel.textColor = [UIColor whiteColor];
         [_buyBtn setTitle:@"付款" forState:UIControlStateNormal];
-        _buyBtn.backgroundColor = RedMagicColor;
+        _buyBtn.backgroundColor = lightRedColor;
         _buyBtn.layer.cornerRadius = 3.5;
         _buyBtn.layer.masksToBounds = YES;
     }
@@ -354,7 +354,7 @@
         _actionbBtn.titleLabel.font = UIFontLightOfSize(16);
         _actionbBtn.titleLabel.textColor = [UIColor whiteColor];
         [_actionbBtn setTitle:@"试试手气免费拿" forState:UIControlStateNormal];
-        _actionbBtn.backgroundColor = RedMagicColor;
+        _actionbBtn.backgroundColor = lightRedColor;
         _actionbBtn.layer.cornerRadius = 3.5;
         _actionbBtn.layer.masksToBounds = YES;
     }
@@ -377,7 +377,7 @@
 }
 -(UILabel *)proAddressLabel{
     if (_proAddressLabel == nil) {
-        _proAddressLabel = [self createlabel1frame:CGRectMake(0, 336.5,  self.bgView.width, 12)];
+        _proAddressLabel = [self createlabel1frame:CGRectMake(0, 346,  self.bgView.width, 12)];
         _proAddressLabel.text = @"本卡信息已在蚂蚁金服区块链存证备查";
         _proAddressLabel.font = UIFontRegularOfSize(10);
         _proAddressLabel.textColor = GrayMagicColor;
@@ -388,7 +388,7 @@
 
 -(UILabel *)proConfirmLabel{
     if (_proConfirmLabel == nil) {
-        _proConfirmLabel = [self createlabel2frame:CGRectMake((self.bgView.width - SCALE_W(79.5)) * 0.5, 360.5,  SCALE_W(79.5), 16)];
+        _proConfirmLabel = [self createlabel2frame:CGRectMake((self.bgView.width - SCALE_W(79.5)) * 0.5, 368,  SCALE_W(79.5), 16)];
         _proConfirmLabel.text = @"查看数字签名";
         _proConfirmLabel.font = UIFontRegularOfSize(10);
         _proConfirmLabel.textColor = GrayMagicColor;
@@ -403,7 +403,7 @@
 
 -(UIImageView *)bgImageView{
     if (_bgImageView == nil) {
-        _bgImageView = [self createImageViewframe:CGRectMake((self.bgView.width  -117)/2, 272, 117, 117) WithImageName:@"shuiyin"];
+        _bgImageView = [self createImageViewframe:CGRectMake((self.bgView.width  -117)/2, 272, 117, 117) WithImageName:@"sendseal"];
     }
     return _bgImageView;
 }
@@ -424,7 +424,7 @@
 
 -(UIImageView *)addressImageView{
     if (_addressImageView == nil) {
-        _addressImageView = [self createImageViewframe:CGRectMake(32, 336.5,19, 19) WithImageName:@"防伪"];
+        _addressImageView = [self createImageViewframe:CGRectMake(31.5, 341,21, 22) WithImageName:@"sendfangwei"];
     }
     return _addressImageView;
 }

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MagicCardTableViewCell : UITableViewCell
 + (CGFloat)cellHeight;
-+ (CGFloat)cellDetailHeight;
+//+ (CGFloat)cellDetailHeight;
 - (void)configDict:(NSString *)imageName;
 - (void)configDataDict:(NSDictionary *)dict;
 @end

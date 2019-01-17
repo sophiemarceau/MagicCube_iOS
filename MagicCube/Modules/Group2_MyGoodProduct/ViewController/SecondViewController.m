@@ -17,7 +17,7 @@
 @property (strong,nonatomic) NSMutableArray * goodsArray;
 @property (strong,nonatomic) UITableView * tableView;
 @property (assign,nonatomic) NSInteger pageNum;
-@property (strong,nonatomic) UIView * nodataView;
+@property (strong,nonatomic) MagicNODataView * nodataView;
 @end
 
 @implementation SecondViewController
@@ -129,8 +129,8 @@
     tabelview.rowHeight = [MagicCardTableViewCell cellHeight];
     tabelview.separatorStyle = UITableViewCellSeparatorStyleNone;
     tabelview.tableFooterView = [UIView new];
-    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(14.5))];
-    tabelview.tableHeaderView = headView;
+//    UIView * headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(14.5))];
+//    tabelview.tableHeaderView = headView;
     [self.view addSubview:tabelview];
     self.tableView = tabelview;
     
@@ -151,6 +151,7 @@
     
     self.nodataView = [[MagicNODataView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT - 49)];
     self.nodataView.hidden = YES;
+    [self.nodataView setUpImageName:@"sendnodata" title:@"还没有可发放的卡片" addShow:YES];
     [self.view addSubview:self.nodataView];
     
     

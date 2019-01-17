@@ -11,6 +11,7 @@
 #import "SendPreviewViewController.h"
 #import "SalerTableViewCell.h"
 #import "MagicCardView.h"
+#import "MagicNODataView.h"
 
 @interface DistributionShareViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong,nonatomic) UIButton * distributeShareBtn;
@@ -20,6 +21,7 @@
 @property (strong,nonatomic) UIScrollView * bottomScrollview;
 @property (strong,nonatomic) MagicCardView * cardView;
 @property (assign,nonatomic) NSInteger pageNum;
+@property (strong,nonatomic) MagicNODataView * nodataView;
 @end
 
 @implementation DistributionShareViewController
@@ -95,6 +97,12 @@
                 if (pageNum == [[dataDict objectForKey:@"lastPage"] integerValue]) {
                     [self.recordsTableView.mj_footer endRefreshingWithNoMoreData];
                 }
+                
+                if (self.recordsArray.count == 0) {
+                    self.nodataView.hidden = NO;
+                }else{
+                    self.nodataView.hidden = YES;
+                }
             }else{
                 
                 NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
@@ -125,11 +133,11 @@
     CGFloat top = 0;
    
     
-    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
+    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14), SCREEN_WIDTH, SCALE_W(152))];
     [self.cardView setUpDistributeDict:self.goodsdict];
     [rootView addSubview:self.cardView];
     
-    top += SCALE_W(163.5);
+    top += SCALE_W(168);
     
     UIView * selectBgView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(266)) * 0.5, SCALE_W(15) + top, SCALE_W(266), SCALE_W(30))];
     selectBgView.layer.cornerRadius = 4;
@@ -137,7 +145,7 @@
     selectBgView.layer.borderColor = RedMagicColor.CGColor;
     selectBgView.layer.borderWidth = 0.5;
     [rootView addSubview:selectBgView];
-    top += SCALE_W(30 + 15);
+    top += SCALE_W(30 + 20);
     
     NSArray * selectTitles = @[@"分销到",@"分销记录"];
     int index = 0;
@@ -163,18 +171,18 @@
     [rootView addSubview:selectBottomView];
     self.bottomScrollview = selectBottomView;
     
-    UIView * shareBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(105))];
+    UIView * shareBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(115))];
     shareBgView.backgroundColor = [UIColor whiteColor];
     [selectBottomView addSubview:shareBgView];
     
-    NSArray * array = @[@"朋友圈",@"微信",@"微博",@"抖音",@"QQ",@"支付宝",@"今日头条"];
-    NSArray * imgarray = @[@"pengyouquan",@"weixin",@"weibo",@"douyin",@"qq",@"zhifubao",@"jinritoutiao"];
+    NSArray * array = @[@"微信",@"朋友圈",@"微博",@"抖音",@"QQ",@"支付宝",@"今日头条"];
+    NSArray * imgarray = @[@"weixin",@"pengyouquan",@"weibo",@"douyin",@"qq",@"zhifubao",@"jinritoutiao"];
     CGFloat intevalw = SCALE_W(10);
     CGFloat btnw = (SCREEN_WIDTH - 5 * intevalw) / 4.0;
     CGFloat btnh = SCALE_W(30);
     int i = 0;
     for (NSString * sharetitle in array) {
-         UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(intevalw + (intevalw + btnw) * (i % 4), SCALE_W(15) + (SCALE_W(15) + btnh) * (i / 4), btnw, btnh)];
+         UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(intevalw + (intevalw + btnw) * (i % 4), SCALE_W(10)+SCALE_W(15) + (SCALE_W(15) + btnh) * (i / 4), btnw, btnh)];
         btn.tag = i + 600;
         [btn setTitleColor:Gray666Color forState:UIControlStateNormal];
         [btn setTitle:sharetitle forState:UIControlStateNormal];
@@ -188,6 +196,9 @@
         [btn centerAlignmentImgLeftTitleRight:YES space:5];
         [shareBgView addSubview:btn];
 
+        if (i != 0) {
+            btn.enabled = NO;
+        }
         i ++;
     }
     
@@ -199,6 +210,8 @@
     tableView.tableFooterView = [UIView new];
     [selectBottomView addSubview:tableView];
     self.recordsTableView = tableView;
+    
+    
     
     WS(weakSelf);
     MJRefreshNormalHeader * header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -234,6 +247,10 @@
     MagicLineView *lineView2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, 61.5, SCREEN_WIDTH, 0.5)];
     [headView addSubview:lineView2];
     [selectBottomView addSubview:headView];
+    
+    self.nodataView = [[MagicNODataView alloc] initWithFrame:tableView.frame];
+    [self.nodataView setUpImageName:@"recordnodta" title:@"还没有分销记录，快去分销吧" addShow:NO];
+    [selectBottomView addSubview:self.nodataView];
 //    tableView.tableHeaderView = headView;
 }
 
@@ -278,7 +295,7 @@
 
 - (void)shareClick:(UIButton *)btn{
     
-    if (btn.tag == 601) {
+    if (btn.tag == 600) {
         SendPreviewViewController * sendVC = [[SendPreviewViewController alloc] init];
         sendVC.dataDict = self.goodsdict;
         [self.navigationController pushViewController:sendVC animated:YES];

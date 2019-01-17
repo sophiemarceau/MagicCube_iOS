@@ -51,6 +51,9 @@
 //边框 常用d1Layer
 #define LineD1GrayColor BHHexColor(@"D1D1D1")
 
+//按钮背景 淡红色
+#define lightRedColor BHHexColor(@"F9DBDB")
+
 // 按钮背景
 #define BtnBGGrayColor BHHexColor(@"DDDDDD")
 

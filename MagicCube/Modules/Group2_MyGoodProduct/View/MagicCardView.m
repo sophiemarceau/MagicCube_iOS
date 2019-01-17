@@ -51,29 +51,40 @@
     [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
     self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
-    self.opinionLabel.text = @"建议零售价";
-    NSString * originalPrice = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];
-    [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
+//    self.opinionLabel.text = @"建议零售价";
+    self.opinionLabel.hidden = YES;
+//    NSString * originalPrice = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];
+    [self.priceBtn setTitle:@"去发卡" forState:UIControlStateNormal];
     
     
-    NSDictionary * attubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
-    NSString *discount = [NSString stringWithFormat:@"%d",(int)([[dataDict objectForKey:@"discount"] floatValue] * 100)];
-    NSString *price = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];;
-    NSString *deliveryPrice =[NSString stringWithFormat:@"分销提货价 %@元（%@折）",price,discount];
-    NSArray *attrArray = @[price,discount];
-    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
-    self.distrubePriceLabel.attributedText = attributestring;//@"分销提货价 688元（5折）";
+//    NSDictionary * attubtrDict = @{NSForegroundColorAttributeName:RedMagicColor};
+//    NSString *discount = [NSString stringWithFormat:@"%d",(int)([[dataDict objectForKey:@"discount"] floatValue] * 100)];
+//    NSString *price = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];;
+//    NSString *deliveryPrice =[NSString stringWithFormat:@"分销提货价 %@元（%@折）",price,discount];
+//    NSArray *attrArray = @[price,discount];
+//    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
+//    self.distrubePriceLabel.attributedText = attributestring;//@"分销提货价 688元（5折）";
 
     
-    NSDictionary * attubtrInfoDict = @{NSForegroundColorAttributeName:RedMagicColor};
+//    NSDictionary * attubtrInfoDict = @{NSForegroundColorAttributeName:RedMagicColor};
+//
+//    NSString *commission = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"commission"] doubleValue]];
+//    NSString *accessCount = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"accessCount"] integerValue]];
+//    NSString *salesVolume = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"salesVolume"] integerValue]];
+//    NSString *distrubeInfo =[NSString stringWithFormat:@"%@客户浏览，%@张被购买，返利%@元",accessCount,salesVolume,commission];
+//    NSArray *distrubeInfoArray = @[accessCount,salesVolume,commission];
+//    NSAttributedString * distrubeInfoArrayattributestring = [MagicRichTool initWithString:distrubeInfo dict:attubtrInfoDict subStringArray:distrubeInfoArray];
+//    self.distrubePriceLabel.attributedText = distrubeInfoArrayattributestring;//@"36客户浏览  已分销8张，分销利润23765元";
     
-    NSString *commission = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"commission"] doubleValue]];
-    NSString *accessCount = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"accessCount"] integerValue]];
-    NSString *salesVolume = [NSString stringWithFormat:@"%ld",[[dataDict objectForKey:@"salesVolume"] integerValue]];
-    NSString *distrubeInfo =[NSString stringWithFormat:@"%@客户浏览，%@张被购买，返利%@元",accessCount,salesVolume,commission];
-    NSArray *distrubeInfoArray = @[accessCount,salesVolume,commission];
-    NSAttributedString * distrubeInfoArrayattributestring = [MagicRichTool initWithString:distrubeInfo dict:attubtrInfoDict subStringArray:distrubeInfoArray];
-    self.distrubePriceLabel.attributedText = distrubeInfoArrayattributestring;//@"36客户浏览  已分销8张，分销利润23765元";
+    NSString *salesVolume = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"salesVolume"]];
+    NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"distributionCount"]];
+    NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(8.5),NSForegroundColorAttributeName:RedMagicColor};
+    NSString *deliveryPrice = [NSString stringWithFormat:@"最高可赚%@元/张,已有%@人发卡",salesVolume,distribuionCount];
+    NSString *price1 = salesVolume;
+    NSString *price2 = distribuionCount;
+    NSArray *attrArray = @[price1,price2];
+    NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
+    self.distrubePriceLabel.attributedText = attributestring;
 }
 
 - (void)setUpDistributeDetailDict:(NSDictionary *)dataDict{
@@ -92,9 +103,11 @@
     self.titleLabel.text = nameStr;
     
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];
-    self.opinionLabel.text = @"建议零售价";
+    self.opinionLabel.text = @"官方零售价";
     NSString * originalPrice = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"price"] doubleValue]];
     [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
+    
+    self.priceBtn.frame = CGRectMake(241.5, SCALE_W(94.5), SCALE_W(90), SCALE_W(23));
     
     NSString *salesVolume = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"salesVolume"]];
     NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"distributionCount"]];
@@ -163,9 +176,9 @@
 
 - (MagicLabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(13), SCREEN_WIDTH - SCALE_W(20) - SCALE_W(14) - SCALE_W(173), SCALE_W(40))];
+        _titleLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(172), SCALE_W(25), SCREEN_WIDTH - SCALE_W(20) - SCALE_W(14) - SCALE_W(172), SCALE_W(42))];
         _titleLabel.textColor = Black1Color;
-        _titleLabel.font = UIFontMediumOfSize(14);
+        _titleLabel.font = UIFontMediumOfSize(16);
         _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
@@ -174,7 +187,7 @@
 
 -(MagicLabel *)unitLabel{
     if (!_unitLabel) {
-        _unitLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(55), SCREEN_WIDTH - SCALE_W(20) - SCALE_W(14) - SCALE_W(173), SCALE_W(14))];
+        _unitLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(72), SCREEN_WIDTH - SCALE_W(20) - SCALE_W(14) - SCALE_W(173), SCALE_W(10))];
         _unitLabel.textColor = Gray858Color;
         _unitLabel.font = UIFontRegularOfSize(10);
     }
@@ -183,7 +196,7 @@
 
 -(MagicLabel *)opinionLabel{
     if (!_opinionLabel) {
-        _opinionLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(84), SCALE_W(75), SCALE_W(12))];
+        _opinionLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(100), SCALE_W(75), SCALE_W(12))];
         _opinionLabel.textColor = RedMagicColor;
         _opinionLabel.font = UIFontLightOfSize(SCALE_W(12));
     }
@@ -192,7 +205,7 @@
 
 - (RedButton *)priceBtn{
     if (!_priceBtn) {
-        _priceBtn = [[RedButton alloc] initWithFrame:CGRectMake(SCALE_W(245), SCALE_W(78), SCALE_W(90), SCALE_W(23))];
+        _priceBtn = [[RedButton alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(94.5), SCALE_W(90), SCALE_W(23))];
         _priceBtn.userInteractionEnabled = NO;
         _priceBtn.titleLabel.font = UIFontLightOfSize(14);
         [_priceBtn setLayerCornerRadius:SCALE_W(23) * 0.5];
@@ -202,7 +215,7 @@
 
 - (MagicLineView *)lineView{
     if (!_lineView) {
-        _lineView = [[MagicLineView alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(111), SCREEN_WIDTH - SCALE_W(20) - SCALE_W(10) - SCALE_W(173), 0.5)];
+        _lineView = [[MagicLineView alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(125.5), SCREEN_WIDTH - SCALE_W(20) - SCALE_W(19.5) - SCALE_W(173), 0.5)];
         _lineView.backgroundColor = GrayMagicColor;
     }
     return _lineView;
@@ -210,9 +223,9 @@
 
 - (MagicLabel *)distrubePriceLabel{
     if (!_distrubePriceLabel) {
-        _distrubePriceLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(117), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), SCALE_W(10))];
-        _distrubePriceLabel.font = UIFontRegularOfSize(8.5);
-        _distrubePriceLabel.textColor = Gray666Color;
+        _distrubePriceLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(133), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), SCALE_W(9))];
+        _distrubePriceLabel.font = UIFontLightOfSize(9);
+        _distrubePriceLabel.textColor = BlackMagicColor;
     }
     return _distrubePriceLabel;
 }

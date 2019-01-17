@@ -140,12 +140,12 @@
     self.rootView = rootView;
     
     CGFloat top = 0;
-    UIView * cardBGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(173.5))];
+    UIView * cardBGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(186))];
     [rootView addSubview:cardBGView];
     
-    top += SCALE_W(173.5);
+    top += SCALE_W(186);
     
-    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14.5), SCREEN_WIDTH, SCALE_W(139))];
+    self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14), SCREEN_WIDTH, SCALE_W(152))];
     [cardBGView addSubview:self.cardView];
     
 //    DetailMemberView * memberView = [[DetailMemberView alloc] initWithFrame:CGRectMake(0, SCALE_W(173.5), SCREEN_WIDTH, SCALE_W(195.5))];
@@ -161,11 +161,11 @@
     [rootView addSubview:self.rewardView];
     top += SCALE_W(104.5);
     
-    UIView * introduceBGView = [[UIView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(266.5))];
+    UIView * introduceBGView = [[UIView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(256.5))];
     [rootView addSubview:introduceBGView];
     self.introduceBGView = introduceBGView;
     
-    top += SCALE_W(266.5);
+    top += SCALE_W(256.5);
     
     MagicLabel * introduceLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, SCALE_W(46))];
     introduceLabel.text = @"产品介绍";
@@ -178,15 +178,14 @@
     
     
     UIButton * playBtn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCALE_W(62)) * 0.5, SCALE_W(210.5 - 62) * 0.5 + SCALE_W(46), SCALE_W(62), SCALE_W(62))];
-    [playBtn setImage:[UIImage imageNamed:@"bofang"] forState:UIControlStateNormal];
+    [playBtn setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
     playBtn.selected = NO;
     [playBtn addTarget:self action:@selector(clickPlay:) forControlEvents:UIControlEventTouchUpInside];
     [introduceBGView addSubview:playBtn];
     self.playBtn = playBtn;
-    MagicLineView * line2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, SCALE_W(256.5), SCREEN_WIDTH, SCALE_W(10))];
-    [introduceBGView addSubview:line2];
     
-    GoodsInfoView * goodsInfoView = [[GoodsInfoView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(182.5))];
+    
+    GoodsInfoView * goodsInfoView = [[GoodsInfoView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(104))];
     [rootView addSubview:goodsInfoView];
     self.goodsInfoView = goodsInfoView;
     

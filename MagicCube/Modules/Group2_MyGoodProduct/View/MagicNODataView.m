@@ -9,6 +9,11 @@
 #import "MagicNODataView.h"
 #import "AppDelegate.h"
 
+@interface MagicNODataView ()
+@property (strong,nonatomic) UIImageView * imgView;
+@property (strong,nonatomic) MagicLabel * titleLabel;
+@property (strong,nonatomic) UIButton * addBtn;
+@end
 @implementation MagicNODataView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -30,26 +35,39 @@
 }
 
 - (void)createUI{
-    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 113.5) * 0.5, SCALE_W(190), 113.5, 130)];
+    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 114) * 0.5, SCALE_W(190), 114, 134)];
     imgView.image = [UIImage imageNamed:@"nodata"];
     [self addSubview:imgView];
+    self.imgView = imgView;
     
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 93) * 0.5, SCALE_W(307), 93, 14)];
-    view.backgroundColor = [UIColor colorWithHexString:@"EFEFEF" alpha:0.6];
-    [self addSubview:view];
-    
-    MagicLabel * label = [[MagicLabel alloc] initWithFrame:CGRectMake(0, SCALE_W(345), SCREEN_WIDTH, 14)];
+    MagicLabel * label = [[MagicLabel alloc] initWithFrame:CGRectMake(0, SCALE_W(344.5), SCREEN_WIDTH, 14)];
     [self addSubview:label];
-    label.textColor = [UIColor colorWithHexString:@"B5B5B5"];
+    label.textColor = Gray858Color;
     label.text = @"还没有可分销的卡片";
     label.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel = label;
     
-    UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 150) * 0.5, SCALE_W(380), 150, 16)];
+    UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 150) * 0.5, SCALE_W(379), 150, 16)];
     [btn setTitle:@"去添加" forState:UIControlStateNormal];
     [btn setTitleColor:RedMagicColor forState:UIControlStateNormal];
     btn.titleLabel.font = UIFontRegularOfSize(16);
     [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
+    self.addBtn = btn;
+}
+
+-(void)setUpImageName:(NSString *)imageName title:(NSString *)title addShow:(BOOL)showAdd{
+    
+    self.titleLabel.text = title;
+    self.imgView.image = [UIImage imageNamed:imageName];
+    self.addBtn.hidden = !showAdd;
+    
+    CGSize size = [UIImage imageNamed:imageName].size;
+    self.imgView.frame = CGRectMake((self.width - size.width) * 0.5, (self.height - size.height - 34) * 0.45, size.width, size.height);
+    
+    self.titleLabel.frame = CGRectMake(0, self.imgView.bottom + 20, self.width, 14);
+    
+    self.addBtn.y = self.titleLabel.bottom + 20;
 }
 
 - (void)click:(UIButton *)btn{

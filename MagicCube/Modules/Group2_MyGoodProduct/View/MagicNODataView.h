@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MagicNODataView : UIView
-
+-(void)setUpImageName:(NSString *)imageName title:(NSString *)title addShow:(BOOL)showAdd;
 @end
 
 NS_ASSUME_NONNULL_END
