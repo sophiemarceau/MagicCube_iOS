@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger,VideoFillMode){
 typedef void(^BackButtonBlock)(UIButton *button);
 typedef void(^EndBolck)();
 typedef void(^BeyondBlock)();
+typedef void(^PlayBlock)();
 
 @interface CLPlayerView : UIView
 
@@ -42,6 +43,8 @@ typedef void(^BeyondBlock)();
 @property (nonatomic, strong) UIColor        *progressPlayFinishColor;
 /**转子线条颜色*/
 @property (nonatomic, strong) UIColor        *strokeColor;
+
+@property (copy,nonatomic) PlayBlock playBlock;
 
 /**播放*/
 - (void)playVideo;

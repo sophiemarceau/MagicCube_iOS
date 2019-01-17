@@ -480,6 +480,9 @@ typedef NS_ENUM(NSInteger, CLPlayerState) {
     }else{
         [_player play];
     }
+    if (self.playBlock) {
+        self.playBlock();
+    }
 }
 #pragma mark - 重新开始播放
 - (void)resetPlay{

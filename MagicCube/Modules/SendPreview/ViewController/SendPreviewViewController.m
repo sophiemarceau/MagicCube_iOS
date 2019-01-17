@@ -105,7 +105,11 @@
 //    self.player = [AVPlayer playerWithURL:url];
 //    self.playlayer.player = self.player;
     
+    WS(weakSelf)
     _playerView.url = url;
+    _playerView.playBlock = ^{
+        weakSelf.playBtn.hidden = YES;
+    };
     //播放
     [_playerView pausePlay];
     //返回按钮点击事件回调
@@ -281,6 +285,7 @@
 - (CLPlayerView *)playerView{
     if (!_playerView) {
         _playerView = [[CLPlayerView alloc] initWithFrame:CGRectMake(15, self.headView.bottom + 11.5, self.bgView.width - 30, SCALE_W(140.5))];
+        
     }
     return _playerView;
 }

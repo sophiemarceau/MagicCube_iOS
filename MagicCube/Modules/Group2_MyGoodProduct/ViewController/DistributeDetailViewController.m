@@ -225,8 +225,13 @@
         NSURL * url = [NSURL URLWithString:videoUrl];
         
         _playerView.url = url;
+        WS(weakSelf)
+        _playerView.playBlock = ^{
+            weakSelf.playBtn.hidden = YES;
+        };
         //播放
         [_playerView pausePlay];
+        
         //返回按钮点击事件回调
         [_playerView backButton:^(UIButton *button) {
             NSLog(@"返回按钮被点击");
