@@ -27,7 +27,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    self.mainVc = [[MainViewController alloc] init];
+    
     [self setupKeyWindow];
     //向微信注册
     [WXApi registerApp:kWechatAppKey enableMTA:YES];
@@ -72,6 +72,7 @@
 }
 
 - (void)logSelect:(NSNotification *)text{
+//    [self.mainVc.homeVc requestData];
     [self setupKeyWindow];
 }
 
@@ -80,7 +81,7 @@
         BOOL oldState = [UIView areAnimationsEnabled];
         [UIView setAnimationsEnabled:NO];
         if(User.token){
-            
+            self.mainVc = [[MainViewController alloc] init];
             self.window.rootViewController = self.mainVc;
         }else{
             RegisterViewController *vc = [[RegisterViewController alloc] init];

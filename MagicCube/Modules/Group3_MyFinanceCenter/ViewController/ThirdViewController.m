@@ -16,6 +16,7 @@
 @interface ThirdViewController ()<UITableViewDelegate,UITableViewDataSource>{
     int current_page,total_count;
     UIImageView *redBgView;
+    
 }
 @property (nonatomic, strong) NSMutableArray *listArray,*btnViewsArray,*accountArray;
 @property (nonatomic, strong) UITableView *listView;
@@ -26,9 +27,10 @@
 @property (nonatomic, strong) UIView *incomeView;
 @property (nonatomic, strong) UIView *historyView;
 @property (nonatomic, strong) UIView *listHeadView;
-@property (nonatomic, strong) UIImageView *moneyView;
+@property (nonatomic, strong) UIImageView *moneyView,*nodataView;
 @property (nonatomic, strong) UILabel *moneyLabel,*moneyTitleLabel,*incomeValueLabel;
 @property (nonatomic, strong) UIButton *checkMoneyBtn,*settingBtn;
+@property (nonatomic, strong) UIView *headbgview ;
 @end
 
 @implementation ThirdViewController
@@ -150,14 +152,39 @@
     [BTERequestTools requestWithURLString:kAppApiGetIncome parameters:pramaDic type:HttpRequestTypeGet success:^(id responseObject) {
         NMRemovLoadIng;
         NSLog(@"---kAppApiGetIncome--responseObject--->%@",responseObject);
+        [self setTableHeadView];
         if (IsSucess(responseObject)) {
             NSArray *array = [responseObject objectForKey:@"data"][@"list"];
+            [self.listArray removeAllObjects];
             if (array && array.count> 0) {
-                [self.listArray removeAllObjects];
-                [self.listArray addObjectsFromArray:array];
-                [self.listView reloadData];
+                [self.nodataView removeFromSuperview];
+                self.nodataView = nil;
+                [self.headbgview addSubview:self.listHeadView];
+                self.listHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, self.historyView.bottom, SCREEN_WIDTH, 42)];
+                self.headbgview.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.listHeadView.bottom);
+                
+                if(array.count > 3){//最多只显示3条数据
+                    [self setTableFooterView];
+                    for (int i = 0; i <array.count; i++) {
+                        if (i <= 2) {
+                            [self.listArray addObject:array[i]];
+                        }
+                    }
+                }else{
+                    [self.listArray addObjectsFromArray:array];
+                    self.listView.tableFooterView = nil;
+                }
+            }else{
+                self.listView.tableHeaderView = nil;
+                [self.headbgview addSubview:self.nodataView];
+                self.nodataView.frame = CGRectMake(0, self.historyView.bottom, SCREEN_WIDTH, self.nodataView.frame.size.height);
+                self.headbgview.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.nodataView.bottom);
             }
+             [self.listView reloadData];
+        }else{
+             self.headbgview.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.historyView.bottom);
         }
+        self.listView.tableHeaderView = self.headbgview;
     } failure:^(NSError *error)  {
         NMRemovLoadIng;
         NSLog(@"error-------->%@",error);
@@ -223,20 +250,21 @@
 #pragma mark  initView
 -(UITableView *)listView{
     if (_listView == nil) {
-        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT  - TAB_BAR_HEIGHT)];
+        _listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT  - TAB_BAR_HEIGHT - 9)];
         _listView.dataSource = self;
         _listView.delegate = self;
-        _listView.backgroundColor = KBGColor;
+        _listView.backgroundColor = [UIColor whiteColor];
+//        KBGColor;
         _listView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self setTableHeadView];
-        [self setTableFooterView];
+       
+        
     }
     return _listView;
 }
 
 - (void)setTableHeadView{
-    UIView *headbgview = [[UIView alloc] initWithFrame:CGRectZero];
-    headbgview.backgroundColor = KBGColor;
+    self.headbgview = [[UIView alloc] initWithFrame:CGRectZero];
+    self.headbgview.backgroundColor = KBGColor;
     
     redBgView = [[UIImageView alloc] initWithFrame:CGRectZero];
     redBgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 162);
@@ -276,16 +304,12 @@
 //    [redBgView addSubview:self.scoresLabel];
     redBgView.userInteractionEnabled = YES;
     [redBgView addSubview:self.settingBtn];
-    [headbgview addSubview:redBgView];
-    [headbgview addSubview:self.incomeView];
-    [headbgview addSubview:self.historyView];
-    [headbgview addSubview:self.listHeadView];
-    [headbgview addSubview:self.moneyView];
-    self.listHeadView = [[UIView alloc] initWithFrame:CGRectMake(0, self.historyView.bottom, SCREEN_WIDTH, 42)];
-    
+    [self.headbgview addSubview:redBgView];
+    [self.headbgview addSubview:self.incomeView];
+    [self.headbgview addSubview:self.historyView];
+   
+    [self.headbgview addSubview:self.moneyView];
     self.listHeadView.backgroundColor = KBGColor;
-    headbgview.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.listHeadView.bottom);
-    self.listView.tableHeaderView = headbgview;
 }
 
 - (void)setTableFooterView{
@@ -498,4 +522,25 @@
     return _settingBtn;
 }
 
+
+- (UIImageView *)nodataView{
+    if (_nodataView == nil) {
+        _nodataView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH,
+                                                                     //SCREEN_HEIGHT - TAB_BAR_HEIGHT - 9 - SCALE_W(385)
+                                                                    237 )];
+        _nodataView.backgroundColor = BHHexColor(@"ffffff");
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"recordnodta"]];
+        imageView.frame = CGRectMake((SCREEN_WIDTH -SCALE_W(91))/2, 34.5, SCALE_W(91), SCALE_W(107));
+        [_nodataView addSubview:imageView];
+        
+        
+        UILabel *noLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom +20, SCREEN_WIDTH, 14)];
+        noLabel.text = @"暂无历史收入";
+        noLabel.textAlignment = NSTextAlignmentCenter;
+        noLabel.textColor = BHHexColor(@"B5B5B5");
+        noLabel.font = UIFontRegularOfSize(14);
+        [_nodataView addSubview:noLabel];
+    }
+    return _nodataView;
+}
 @end

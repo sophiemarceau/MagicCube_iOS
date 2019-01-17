@@ -39,7 +39,7 @@
         [self.bgImageView addSubview:self.titleLabel];
         [self.bgImageView addSubview:self.subLabel];
 //        [self.bgImageView addSubview:self.desLabel];
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(172.5, 109.65, 162.5, 0.5)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(173, 125.5, 162.5, 0.5)];
         lineView.backgroundColor = GrayMagicColor;
         [self.bgImageView addSubview:lineView];
         [self.bgImageView addSubview:self.numLabel];
@@ -55,10 +55,10 @@
     NSString *nameStr =  [NSString stringWithFormat:@"%@",[dict objectForKey:@"name"]];
 //    CGFloat widh = [nameStr heightWithFont: UIFontMediumOfSize(16)constrainedToWidth:SCALE_W(110 +72.5)];
     CGFloat height = [nameStr heightWithFont: UIFontMediumOfSize(14) constrainedToWidth:SCALE_W(110 +72.5)];
-    if (height < 40) {
-        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), height);
+    if (height < 42) {
+        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(96 + 40), height);
     }else{
-        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), 40);
+        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(96 + 40), 42);
     }
     self.titleLabel.text = nameStr;
     
@@ -88,12 +88,12 @@
 }
 
 + (CGFloat)cellHeight{
-    return 10 + 139;
+    return 152 + 14;
 }
 
 -(UIImageView *)bgImageView{
     if (_bgImageView == nil) {
-        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 139)];
+        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 152)];
         _bgImageView.image = [UIImage imageNamed:@"homeCellBgIcon"];
 //        _bgView.backgroundColor = KBGCell;
 //        _bgView.layer.masksToBounds = YES;
@@ -111,10 +111,10 @@
 
 -(UILabel *)titleLabel{
     if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, 13,SCALE_W(110 +72.5), 40)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(172, 25,SCALE_W(96 + 40), 42)];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.textColor = Black1Color;
-        _titleLabel.font = UIFontMediumOfSize(14);
+        _titleLabel.font = UIFontMediumOfSize(16);
         _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
     }
@@ -123,9 +123,9 @@
 
 -(UILabel *)subLabel{
     if (_subLabel == nil) {
-        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, self.titleLabel.bottom + 1.9, SCALE_W(110 +72.5), 14)];
+        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(172, 72, SCALE_W(145 +27), 10)];
         _subLabel.textColor = Gray858Color;
-        _subLabel.font = UIFontRegularOfSize(12);
+        _subLabel.font = UIFontRegularOfSize(10);
         _subLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _subLabel;
@@ -144,7 +144,7 @@
 
 -(UILabel *)numLabel{
     if (_numLabel == nil) {
-        _numLabel = [[UILabel alloc] initWithFrame:CGRectMake(172.5, 117.5, SCALE_W(110 + 72.5),8.5)];
+        _numLabel = [[UILabel alloc] initWithFrame:CGRectMake(172, 133, SCALE_W(142 +40),8.5)];
         _numLabel.backgroundColor = [UIColor clearColor];
         _numLabel.textColor = BlackMagicColor;
         _numLabel.font = UIFontRegularOfSize(8.5);
@@ -166,7 +166,7 @@
 
 -(UIView *)redBgView{
     if (_redBgView == nil) {
-        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(SCALE_W(173), 78 , SCALE_W(90), SCALE_W(23))];
+        _redBgView = [[UILabel alloc] initWithFrame:CGRectMake(SCALE_W(173), 94.5 , SCALE_W(90), SCALE_W(23))];
         _redBgView.backgroundColor = RedMagicColor;
         _redBgView.layer.masksToBounds = YES;
         _redBgView.layer.cornerRadius = 11.5;

@@ -130,7 +130,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
                 nickNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
                 commissionStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"commission"]];
                 goodsNameStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"goodsName"]];
-                self.messageLabel.text = [NSString stringWithFormat:@"%@刚刚分销了%@,分销收益%@元",nickNameStr,goodsNameStr,commissionStr];
+                self.messageLabel.text = [NSString stringWithFormat:@"%@刚刚发放了%@,分销收益%@元",nickNameStr,goodsNameStr,commissionStr];
             }
         }
     } failure:^(NSError *error)  {
@@ -150,7 +150,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
             NSString *price2 = [NSString stringWithFormat:@"%@",[dic objectForKey:@"card"]];
 
             NSDictionary * attubtrDict = @{NSFontAttributeName:UIFontMediumOfSize(12),NSForegroundColorAttributeName:Gray666Color};
-            NSString *deliveryPrice = [NSString stringWithFormat:@"全球已有 %@ 人通过魔方分销交易了 %@ 件商品卡",price1,price2];
+            NSString *deliveryPrice = [NSString stringWithFormat:@"全球已有 %@ 人通过魔方分销发放了 %@ 件福利卡",price1,price2];
             NSArray *attrArray = @[price1,price2];
             NSAttributedString * attributestring = [MagicRichTool initWithString:deliveryPrice dict:attubtrDict subStringArray:attrArray];
             self.subLabel.attributedText = attributestring;
@@ -201,6 +201,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
 }
 
 -(void)requestData{
+     NSLog(@"requestData-------->");
     [self.myChildViewControllers removeAllObjects];
     [self.navigationListArray removeAllObjects];
     
@@ -220,7 +221,7 @@ TYCyclePagerViewDataSource,TYCyclePagerViewDelegate,LineTabbarSelectDelegate , S
                 BaseViewController *vc;
                 vc = [[HomeListViewController alloc] init];
                 ((HomeListViewController *)vc).tagid = self.navID;
-                [self addChildViewController:vc];
+//                [self addChildViewController:vc];
                 // 控制器本来自带childViewControllers,但是遗憾的是该数组的元素顺序永远无法改变，只要是addChildViewController,都是添加到最后一个，而控制器不像数组那样，可以插入或删除任意位置，所以这里自己定义可变数组，以便插入(删除)(如果没有插入(删除)功能，直接用自带的childViewControllers即可)
                 [self.myChildViewControllers addObject:vc];
             }

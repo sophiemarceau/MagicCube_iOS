@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomePageViewController : BaseViewController
 @property (strong,nonatomic) UIImageView * bgView;
+-(void)requestData;
 @end
 
 NS_ASSUME_NONNULL_END

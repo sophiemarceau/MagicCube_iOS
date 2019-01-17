@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomePageViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MainViewController : UITabBarController
-
+@property(nonatomic,strong)  HomePageViewController *homeVc;
 @end
 
 NS_ASSUME_NONNULL_END
