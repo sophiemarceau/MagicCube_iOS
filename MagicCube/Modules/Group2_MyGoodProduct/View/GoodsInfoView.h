@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol LookCodeDelegate <NSObject>
 
+-(void)lookCode;
+
+@end
 @interface GoodsInfoView : UIView
+@property (weak,nonatomic) id <LookCodeDelegate>delegate;
 - (void)setUPdata:(NSDictionary *)dict;
 @end
 

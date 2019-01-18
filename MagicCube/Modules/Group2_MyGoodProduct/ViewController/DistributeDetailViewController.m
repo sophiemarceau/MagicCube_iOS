@@ -16,8 +16,9 @@
 #import "ProfitView.h"
 #import "CLPlayerView.h"
 #import "RewardView.h"
+#import "MagicHashCodeShowView.h"
 
-@interface DistributeDetailViewController (){
+@interface DistributeDetailViewController ()<LookCodeDelegate>{
     NSDictionary *returnDataDic;
     float distributionDeposit;
 }
@@ -31,7 +32,7 @@
 @property (strong,nonatomic) UIView * introduceBGView;
 @property (strong,nonatomic) UIScrollView * rootView;
 @property (strong,nonatomic) UIButton * playBtn;
-
+@property (copy,nonatomic) NSString * hashCode;
 
 @end
 
@@ -186,6 +187,7 @@
     
     
     GoodsInfoView * goodsInfoView = [[GoodsInfoView alloc] initWithFrame:CGRectMake(0, top, SCREEN_WIDTH, SCALE_W(104))];
+    goodsInfoView.delegate = self;
     [rootView addSubview:goodsInfoView];
     self.goodsInfoView = goodsInfoView;
     
@@ -215,6 +217,7 @@
     [distributeBtn addSubview:self.distributeDescLabel];
     [distributeBtn addTarget:self action:@selector(distriute:) forControlEvents:UIControlEventTouchUpInside];
     rootView.contentSize = CGSizeMake(0, top);
+
 }
 
 - (void)dealDetailData:(NSDictionary *)dict{
@@ -238,6 +241,7 @@
             //查询是否是全屏状态
             NSLog(@"%d",_playerView.isFullScreen);
         }];
+        
         //播放完成回调
         [_playerView endPlay:^{
 //            //销毁播放器
@@ -267,6 +271,8 @@
         
         int d = [[dataDict objectForKey:@"gameCashBack"] floatValue] * 100;
         [self.rewardView setUpdata:d];
+        
+        self.hashCode = [dataDict objectForKey:@"hashCode"];
     }
 }
 
@@ -332,5 +338,11 @@
     }];
     [alertController addAction:sureAction];
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+//查看数字签名代理
+-(void)lookCode{
+    MagicHashCodeShowView * codeView = [[MagicHashCodeShowView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT) code:self.hashCode];
+    [self.view addSubview:codeView];
 }
 @end

@@ -24,6 +24,7 @@
     UIImageView * goodsInfoView = [[UIImageView alloc] initWithFrame:CGRectMake((self.width - SCALE_W(58)) * 0.5, SCALE_W(21), SCALE_W(58), SCALE_W(58))];
     goodsInfoView.image = [UIImage imageNamed:@"detailseal"];
     goodsInfoView.contentMode = UIViewContentModeScaleAspectFit;
+    goodsInfoView.userInteractionEnabled = YES;
     [self addSubview:goodsInfoView];
     
     
@@ -46,6 +47,7 @@
     lookbtn.layer.masksToBounds = YES;
     [lookbtn setTitleColor:Gray666Color forState:UIControlStateNormal];
     [lookbtn setTitle:@"查看数字签名" forState:UIControlStateNormal];
+    [lookbtn addTarget:self action:@selector(look) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:lookbtn];
     
     MagicLineView * line = [[MagicLineView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCALE_W(10))];
@@ -53,6 +55,12 @@
     
     MagicLineView * line2 = [[MagicLineView alloc] initWithFrame:CGRectMake(0, self.height - SCALE_W(10), SCREEN_WIDTH, SCALE_W(10))];
     [self addSubview:line2];
+}
+
+-(void)look{
+    if ([self.delegate respondsToSelector:@selector(lookCode)]) {
+        [self.delegate lookCode];
+    }
 }
 
 - (void)setUPdata:(NSDictionary *)dict{

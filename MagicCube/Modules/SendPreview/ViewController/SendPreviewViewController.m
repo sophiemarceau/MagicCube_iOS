@@ -13,6 +13,8 @@
 #import "WXApiManager.h"
 #import "CaptureScreenView.h"
 #import "CLPlayerView.h"
+#import "MagicHashCodeShowView.h"
+#import "MagicHashCodeShowView.h"
 
 @interface SendPreviewViewController ()<WXApiManagerDelegate>
 @property(nonatomic,strong)UIView *bgView;
@@ -28,7 +30,7 @@
 @property(nonatomic,strong)UIButton *buyBtn,*sendBtn,*actionbBtn;
 
 @property(nonatomic,strong)UILabel *proAddressLabel;
-@property(nonatomic,strong)UILabel *proConfirmLabel;
+@property(nonatomic,strong)UIButton *proConfirmBtn;
 
 @property(nonatomic,strong)UIImageView *ideitifylImageView;
 @property(nonatomic,strong)UIImageView *productImageView;
@@ -37,6 +39,7 @@
 @property(nonatomic,strong)UIImageView *bgImageView;
 
 @property (strong,nonatomic) SmallCardView * scardView;
+@property (copy,nonatomic) NSString * hashCode;
 @end
 
 @implementation SendPreviewViewController
@@ -134,6 +137,7 @@
     _proNameTitleLabel.text = [NSString stringWithFormat:@"本卡产品认证发货商为%@",supplier];
     _proNameSubLabel.text = [NSString stringWithFormat:@"由%@数字签名确认",supplier];
     
+    self.hashCode = [self.dataDict objectForKey:@"hashcode"];
     
 }
 
@@ -149,7 +153,7 @@
     [self.bgView addSubview:self.buyBtn];
     [self.bgView addSubview:self.actionbBtn];
     [self.bgView addSubview:self.proAddressLabel];
-    [self.bgView addSubview:self.proConfirmLabel];
+    [self.bgView addSubview:self.proConfirmBtn];
 //    [self.bgView addSubview:self.productImageView];
     [self.bgView addSubview:self.addressImageView];
     [self.view addSubview:self.envelopView];
@@ -391,19 +395,20 @@
     return _proAddressLabel;
 }
 
--(UILabel *)proConfirmLabel{
-    if (_proConfirmLabel == nil) {
-        _proConfirmLabel = [self createlabel2frame:CGRectMake((self.bgView.width - SCALE_W(79.5)) * 0.5, 368,  SCALE_W(79.5), 16)];
-        _proConfirmLabel.text = @"查看数字签名";
-        _proConfirmLabel.font = UIFontRegularOfSize(10);
-        _proConfirmLabel.textColor = GrayMagicColor;
-        _proConfirmLabel.textAlignment = NSTextAlignmentCenter;
-        _proConfirmLabel.layer.masksToBounds = YES;
-        _proConfirmLabel.layer.borderWidth = 0.5;
-        _proConfirmLabel.layer.borderColor = GrayMagicColor.CGColor;
-        _proConfirmLabel.layer.cornerRadius = 2;
+-(UIButton *)proConfirmBtn{
+    if (_proConfirmBtn == nil) {
+        _proConfirmBtn = [[UIButton alloc] initWithFrame:CGRectMake((self.bgView.width - SCALE_W(79.5)) * 0.5, 368,  SCALE_W(79.5), 16)];
+        [_proConfirmBtn setTitle:@"查看数字签名" forState:UIControlStateNormal];
+        [_proConfirmBtn setTitleColor:GrayMagicColor forState:UIControlStateNormal];
+        _proConfirmBtn.titleLabel.font = UIFontRegularOfSize(10);
+        [_proConfirmBtn addTarget:self action:@selector(lookHashCode) forControlEvents:UIControlEventTouchUpInside];
+        _proConfirmBtn.layer.masksToBounds = YES;
+        _proConfirmBtn.layer.borderWidth = 0.5;
+        _proConfirmBtn.layer.borderColor = GrayMagicColor.CGColor;
+        _proConfirmBtn.layer.cornerRadius = 2;
+        
     }
-    return _proConfirmLabel;
+    return _proConfirmBtn;
 }
 
 -(UIImageView *)bgImageView{
@@ -499,6 +504,12 @@
     }
     UIImage *compressedImage = [UIImage imageWithData:imageData];
     return compressedImage;
+}
+
+// 查看数字签名 按钮事件
+- (void)lookHashCode{
+    MagicHashCodeShowView * codeView = [[MagicHashCodeShowView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_HEIGHT - HOME_INDICATOR_HEIGHT) code:self.hashCode];
+    [self.view addSubview:codeView];
 }
 
 @end

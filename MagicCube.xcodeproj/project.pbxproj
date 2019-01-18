@@ -84,6 +84,7 @@
 		B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22476CB21C9DA9200D08F63 /* DetailMemberView.m */; };
 		B229A66221A692A900A5B23B /* SalerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B229A66121A692A900A5B23B /* SalerTableViewCell.m */; };
 		B22D178E21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = B22D178D21B0E6F200D49DFA /* UIButton+ImageTitleAlign.m */; };
+		B22FD12121F1B9C800F159FF /* MagicHashCodeShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22FD12021F1B9C800F159FF /* MagicHashCodeShowView.m */; };
 		B2408FEF21AE2D3B00887B6A /* MemberLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FEE21AE2D3B00887B6A /* MemberLevelView.m */; };
 		B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF421AE478100887B6A /* DistributeDetailViewController.m */; };
 		B2408FF821AE69E100887B6A /* DistributeLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF721AE69E100887B6A /* DistributeLevelView.m */; };
@@ -293,6 +294,8 @@
 		B22E4A2E21A4FCCD003F37BD /* BHNotificationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHNotificationConstant.h; sourceTree = "<group>"; };
 		B22E4A3021A4FCCD003F37BD /* BHHttpConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHHttpConstant.h; sourceTree = "<group>"; };
 		B22E4AB321A4FCFA003F37BD /* MagicPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicPrefixHeader.pch; sourceTree = "<group>"; };
+		B22FD11F21F1B9C800F159FF /* MagicHashCodeShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicHashCodeShowView.h; sourceTree = "<group>"; };
+		B22FD12021F1B9C800F159FF /* MagicHashCodeShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicHashCodeShowView.m; sourceTree = "<group>"; };
 		B2408FED21AE2D3B00887B6A /* MemberLevelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemberLevelView.h; sourceTree = "<group>"; };
 		B2408FEE21AE2D3B00887B6A /* MemberLevelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemberLevelView.m; sourceTree = "<group>"; };
 		B2408FF321AE478100887B6A /* DistributeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeDetailViewController.h; sourceTree = "<group>"; };
@@ -839,6 +842,8 @@
 				B2F7CFCF21D74B9D0077FCF2 /* MagicShareView.m */,
 				B21981A721E6F04F005533EF /* CaptureScreenView.h */,
 				B21981A821E6F04F005533EF /* CaptureScreenView.m */,
+				B22FD11F21F1B9C800F159FF /* MagicHashCodeShowView.h */,
+				B22FD12021F1B9C800F159FF /* MagicHashCodeShowView.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -1289,6 +1294,7 @@
 				93CF8E3421A52ECA004D8111 /* BHToast.m in Sources */,
 				7DB9F88721A5A278005D4DD4 /* UIView+category.m in Sources */,
 				936EA03521B506CF00CD1A4E /* WXApiManager.m in Sources */,
+				B22FD12121F1B9C800F159FF /* MagicHashCodeShowView.m in Sources */,
 				936E9FDE21A7FF6100CD1A4E /* BaseWebViewController.m in Sources */,
 				932DFD6E21BFB8D80052051B /* BTERequestTools.m in Sources */,
 				93CF8E3321A52ECA004D8111 /* BHHexColor.m in Sources */,
