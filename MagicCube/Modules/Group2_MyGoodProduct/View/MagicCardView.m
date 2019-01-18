@@ -53,8 +53,8 @@
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     
     self.priceBtn.frame = CGRectMake(241.5, SCALE_W(94.5), SCALE_W(90), SCALE_W(23));
-    self.opinionLabel.text = @"建议零售价";
-    NSString * price = [NSString stringWithFormat:@"%.2f",[[dataDict objectForKey:@"price"] doubleValue]];
+    self.opinionLabel.text = @"官方零售价";
+    NSString * price = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"price"] doubleValue]];
     [self.priceBtn setTitle:price forState:UIControlStateNormal];
     
     

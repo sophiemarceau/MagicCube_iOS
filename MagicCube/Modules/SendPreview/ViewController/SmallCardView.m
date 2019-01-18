@@ -50,7 +50,7 @@
     self.detailLabel.text = [dict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     self.saleLabel.text = @"官方零售价";
     
-    NSString * price = [NSString stringWithFormat:@"%.2f",[[dict objectForKey:@"price"] doubleValue]];
+    NSString * price = [NSString stringWithFormat:@"%.2f元",[[dict objectForKey:@"price"] doubleValue]];
 //    self.priceTextField.text = price;
     [self.priceBtn setTitle:price forState:UIControlStateNormal];
 //    if ([dict objectForKey:@"image"]) {
