@@ -137,7 +137,7 @@
     _proNameTitleLabel.text = [NSString stringWithFormat:@"本卡产品认证发货商为%@",supplier];
     _proNameSubLabel.text = [NSString stringWithFormat:@"由%@数字签名确认",supplier];
     
-    self.hashCode = [self.dataDict objectForKey:@"hashcode"];
+    self.hashCode = [self.dataDict objectForKey:@"hashCode"];
     
 }
 

@@ -53,6 +53,7 @@
         if (IsSucess(responseObject)) {
             
             if ([responseObject objectForKey:@"data"]) {
+                weakSelf.goodsdict = [responseObject objectForKey:@"data"];
                 [weakSelf.cardView setUpDistributeDict:[responseObject objectForKey:@"data"]];
             }
             
