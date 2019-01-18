@@ -53,7 +53,15 @@
 }
 
 -(void)setUpdata:(int)percent{
-    self.rewardDescLabel.text = [NSString stringWithFormat:@"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的%d%%返利",percent]; //
+    
+//    self.rewardDescLabel.text = [NSString stringWithFormat:@"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的%d%%返利",percent]; //
+    
+    NSDictionary * attubtrInfoDict = @{NSForegroundColorAttributeName:RedMagicColor};
+    NSString *percentStr = [NSString stringWithFormat:@"%d%%",percent];
+    NSString *distrubeInfo =[NSString stringWithFormat:@"用户通过您发的卡参与抽奖，您可获得抽奖充值金额的%@返利",percentStr];;
+    NSArray *distrubeInfoArray = @[percentStr];
+    NSAttributedString * distrubeInfoArrayattributestring = [MagicRichTool initWithString:distrubeInfo dict:attubtrInfoDict subStringArray:distrubeInfoArray];
+    self.rewardDescLabel.attributedText = distrubeInfoArrayattributestring;
 }
 /*
 // Only override drawRect: if you perform custom drawing.
