@@ -78,7 +78,15 @@
             if(accountArray && accountArray.count > 0){
                 for (NSDictionary *tempDic  in accountArray) {
                     if ([tempDic[@"type"] isEqualToString:@"BALANCE"]) {
-                        self.moneyLabel.text = [NSString stringWithFormat: @"¥%@",[tempDic objectForKey:@"available"]];
+                        NSString *moneyStr = [NSString stringWithFormat: @"¥%@",[tempDic objectForKey:@"available"]];
+                        CGFloat widh = [moneyStr widthWithFont:UIFontMediumOfSize(24) constrainedToHeight:16];
+                        if (widh < 112) {
+                            self.moneyLabel.frame = CGRectMake(self.moneyLabel.frame.origin.x, self.moneyLabel.origin.y, widh, 24);
+                        }else{
+                            self.moneyLabel.frame = CGRectMake(self.moneyLabel.frame.origin.x, self.moneyLabel.origin.y, 112, 24);
+                        }
+                        self.moneyLabel.text = moneyStr;
+                        self.moneyTitleLabel.frame = CGRectMake(self.moneyLabel.right + 10, 35, 48, 12);
                     }
                     if ([tempDic[@"type"] isEqualToString:@"MEMBER"]) {
 //                        self.accountValueLabel.text =  [NSString stringWithFormat: @"会员卡余额：¥%@",[tempDic objectForKey:@"available"]];
@@ -275,7 +283,7 @@
     self.headerImageView.layer.cornerRadius = 30;
     [redBgView addSubview:self.headerImageView];
     
-    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 61, SCREEN_WIDTH / 2, 16)];
+    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, SCALE_W(72), SCREEN_WIDTH / 2, 16)];
    
     self.nameLabel.font = UIFontMediumOfSize(16);
     self.nameLabel.textColor = [UIColor whiteColor];
@@ -512,7 +520,7 @@
 
 -(UIButton *)settingBtn{
     if (_settingBtn == nil) {
-        _settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(68), SCALE_W(68), SCALE_W(68), SCALE_W(24))];
+        _settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(48), SCALE_W(73), SCALE_W(28), SCALE_W(14))];
         [_settingBtn setTitleColor:BHColorWhite forState:UIControlStateNormal];
         [_settingBtn setTitle:@"设置" forState:UIControlStateNormal];
         [_settingBtn addTarget:self action:@selector(gotoSettingClick) forControlEvents:UIControlEventTouchUpInside];

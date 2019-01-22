@@ -317,6 +317,8 @@
                     [self performSelector:@selector(hidden) withObject:nil afterDelay:1.0f];
                     self.localSessionStr = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"data"]];
                 }
+//                NSString *
+//                  [BHToast showMessage:@"已微信登录 请您注册绑定手机"];
             }
             [self.view endEditing:YES];
         } failure:^(NSError *error)  {
