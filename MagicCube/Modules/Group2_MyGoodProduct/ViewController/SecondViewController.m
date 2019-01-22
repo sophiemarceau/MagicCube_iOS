@@ -26,7 +26,7 @@
     
     [self goodsInit];
     [self addSubViews];
-//    [self requestList:self.pageNum];
+    [self requestList:self.pageNum];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDistibuteList) name:NotificationUpdateDistributionList object:nil];
 }
 
