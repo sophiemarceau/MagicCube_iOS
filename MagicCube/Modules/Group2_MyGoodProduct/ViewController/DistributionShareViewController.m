@@ -131,6 +131,8 @@
         NMRemovLoadIng;
         NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
         if (IsSucess(responseObject)) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotificationUpdateDistributionList object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
             
