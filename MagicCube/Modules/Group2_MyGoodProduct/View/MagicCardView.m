@@ -52,7 +52,7 @@
     self.titleLabel.text = [dataDict objectForKey:@"name"];// @"燕之屋 尼罗河蓝\n孕妇正品燕盏卡";
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];//@"干燕窝原料印尼进口 CAIQ溯源";
     
-    self.priceBtn.frame = CGRectMake(241.5, SCALE_W(94.5), SCALE_W(90), SCALE_W(23));
+    self.priceBtn.frame = CGRectMake(SCALE_W(241.5), SCALE_W(94.5), SCALE_W(90), SCALE_W(23));
     self.opinionLabel.text = @"官方零售价";
     NSString * price = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"price"] doubleValue]];
     [self.priceBtn setTitle:price forState:UIControlStateNormal];
@@ -89,18 +89,16 @@
 }
 
 - (void)setUpDistributeDetailDict:(NSDictionary *)dataDict{
-    if ([dataDict objectForKey:@"image"]) {
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
-//        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
-        [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
-    }
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dataDict objectForKey:@"image"]]];
+    //        [self.imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"home_jiankanghaowu"]];
+    [self.cardBGView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"homeCellBgIcon"]];
     NSString *nameStr =  [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"name"]];
-    CGFloat height = [nameStr heightWithFont: UIFontMediumOfSize(14) constrainedToWidth:SCALE_W(110 +72.5)];
-    if (height < 40) {
-        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), height);
-    }else{
-        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), 40);
-    }
+//    CGFloat height = [nameStr heightWithFont: UIFontMediumOfSize(14) constrainedToWidth:SCALE_W(110 +72.5)];
+//    if (height < 40) {
+//        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), height);
+//    }else{
+//        self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.origin.y, SCALE_W(110 +72.5), 40);
+//    }
     self.titleLabel.text = nameStr;
     
     self.unitLabel.text = [dataDict objectForKey:@"subTitle"];
@@ -108,7 +106,7 @@
     NSString * originalPrice = [NSString stringWithFormat:@"%.2f元",[[dataDict objectForKey:@"price"] doubleValue]];
     [self.priceBtn setTitle:originalPrice forState:UIControlStateNormal];
     
-    self.priceBtn.frame = CGRectMake(241.5, SCALE_W(94.5), SCALE_W(90), SCALE_W(23));
+    self.priceBtn.frame = CGRectMake(SCALE_W(241.5), SCALE_W(94.5), SCALE_W(90), SCALE_W(23));
     
     NSString *maxCashBack = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"maxCashBack"]];
     NSString *distribuionCount = [NSString stringWithFormat:@"%@",[dataDict objectForKey:@"distributionCount"]];
@@ -214,8 +212,7 @@
 
 - (RedButton *)priceBtn{
     if (!_priceBtn) {
-        // CGRectMake(SCALE_W(173), SCALE_W(94.5), SCALE_W(90), SCALE_W(23))
-        _priceBtn = [[RedButton alloc] initWithFrame:CGRectMake(241.5, SCALE_W(94.5), SCALE_W(90), SCALE_W(23))];
+        _priceBtn = [[RedButton alloc] initWithFrame:CGRectMake(SCALE_W(241.5), SCALE_W(94.5), SCALE_W(90), SCALE_W(23))];
         _priceBtn.userInteractionEnabled = NO;
         _priceBtn.titleLabel.font = UIFontLightOfSize(14);
         [_priceBtn setLayerCornerRadius:SCALE_W(23) * 0.5];
@@ -234,7 +231,7 @@
 - (MagicLabel *)distrubePriceLabel{
     if (!_distrubePriceLabel) {
         _distrubePriceLabel = [[MagicLabel alloc] initWithFrame:CGRectMake(SCALE_W(173), SCALE_W(133), SCREEN_WIDTH - SCALE_W(173) - SCALE_W(20) - SCALE_W(14), SCALE_W(9))];
-        _distrubePriceLabel.font = UIFontLightOfSize(9);
+        _distrubePriceLabel.font = UIFontLightOfSize(SCALE_W(9));
         _distrubePriceLabel.textColor = BlackMagicColor;
     }
     return _distrubePriceLabel;

@@ -7,7 +7,6 @@
 //
 
 #import "SecondViewController.h"
-//#import "MyGoodsTableViewCell.h"
 #import "MagicCardTableViewCell.h"
 #import "DistributionShareViewController.h"
 #import "DistributeDetailViewController.h"
@@ -117,7 +116,6 @@
 - (void)goodsInit{
     _goodsArray = [NSMutableArray arrayWithCapacity:0];
     self.pageNum = 1;
-    self.title = @"分销中心";
     self.view.backgroundColor =  [UIColor whiteColor];
 }
 
@@ -175,7 +173,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary * goodsDict = _goodsArray[indexPath.row];
-//    DistributeDetailViewController * goodsDetail = [[DistributeDetailViewController alloc] init];
     DistributionShareViewController * goodsDetail = [[DistributionShareViewController alloc] init];
     goodsDetail.goodsdict = goodsDict;
     [self.navigationController pushViewController:goodsDetail animated:YES];
@@ -187,21 +184,15 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // 1.删除数据
-//        [self.goodsArray removeObjectAtIndex:indexPath.row];
-//        // 2.更新UITableView UI界面
-//        // [tableView reloadData];
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
-        
-
         
         UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"您确认要结束分销？" message:@"结束分销后押金将在3个工作日内退还到您的原支付账户" preferredStyle:UIAlertControllerStyleAlert];
         WS(weakSelf)
         UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"结束分销" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             NSDictionary * goodsDict = weakSelf.goodsArray[indexPath.row];
             [weakSelf requestDelete:[goodsDict objectForKey:@"sn"] sucess:^{
+                // 1.删除数据
                 [weakSelf.goodsArray removeObject:goodsDict];
+                // 2.更新UITableView UI界面
                 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 if (weakSelf.goodsArray.count == 0) {
                     self.nodataView.hidden = NO;

@@ -66,7 +66,6 @@
 		93CF8E8821A53717004D8111 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8721A53717004D8111 /* SecondViewController.m */; };
 		93CF8E8B21A5371E004D8111 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8A21A5371E004D8111 /* ThirdViewController.m */; };
 		93CF8E8E21A53734004D8111 /* MyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CF8E8D21A53734004D8111 /* MyCenterViewController.m */; };
-		B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */; };
 		B2059C4621A65CC900F70C07 /* MagicLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4521A65CC900F70C07 /* MagicLabel.m */; };
 		B2059C4921A6603500F70C07 /* MagicLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2059C4821A6603500F70C07 /* MagicLineView.m */; };
 		B209F19021A7EF2C0043E485 /* RedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B209F18F21A7EF2C0043E485 /* RedButton.m */; };
@@ -89,9 +88,6 @@
 		B2408FF521AE478100887B6A /* DistributeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF421AE478100887B6A /* DistributeDetailViewController.m */; };
 		B2408FF821AE69E100887B6A /* DistributeLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2408FF721AE69E100887B6A /* DistributeLevelView.m */; };
 		B2408FFE21AE8CFF00887B6A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */; };
-		B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
-		B240900721AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
-		B240900821AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */; };
 		B244862421E5FAFC001015B2 /* MagicNODataView.m in Sources */ = {isa = PBXBuildFile; fileRef = B244862321E5FAFC001015B2 /* MagicNODataView.m */; };
 		B25F70F221CCB5D9002EFA10 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F121CCB5D9002EFA10 /* SettingViewController.m */; };
 		B25F70F521CCB720002EFA10 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F70F421CCB720002EFA10 /* SettingTableViewCell.m */; };
@@ -107,7 +103,6 @@
 		B2649BCF21A50C0300C871C8 /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = B2649BCB21A50C0300C871C8 /* UIButton+EnlargeEdge.m */; };
 		B272875F21BF92FD0002FE0A /* ZTYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B272875E21BF92FD0002FE0A /* ZTYAlertView.m */; };
 		B27585D321A6864800C9943A /* MagicRichTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D221A6864800C9943A /* MagicRichTool.m */; };
-		B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27585D521A68A5500C9943A /* GoodsDetailViewController.m */; };
 		B2A76C2521A7AFFD00AFCC6C /* UserHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A76C2421A7AFFD00AFCC6C /* UserHeadView.m */; };
 		B2D8C55A21A405FE00BBC74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D8C55921A405FE00BBC74F /* Assets.xcassets */; };
 		B2D8C56021A405FE00BBC74F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D8C55F21A405FE00BBC74F /* main.m */; };
@@ -254,8 +249,6 @@
 		93CF8E8A21A5371E004D8111 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		93CF8E8C21A53734004D8111 /* MyCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
 		93CF8E8D21A53734004D8111 /* MyCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
-		B2059C3F21A659A100F70C07 /* MyGoodsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsTableViewCell.h; sourceTree = "<group>"; };
-		B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsTableViewCell.m; sourceTree = "<group>"; };
 		B2059C4421A65CC900F70C07 /* MagicLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicLabel.h; sourceTree = "<group>"; };
 		B2059C4521A65CC900F70C07 /* MagicLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicLabel.m; sourceTree = "<group>"; };
 		B2059C4721A6603500F70C07 /* MagicLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicLineView.h; sourceTree = "<group>"; };
@@ -303,8 +296,6 @@
 		B2408FF621AE69E100887B6A /* DistributeLevelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeLevelView.h; sourceTree = "<group>"; };
 		B2408FF721AE69E100887B6A /* DistributeLevelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeLevelView.m; sourceTree = "<group>"; };
 		B2408FFD21AE8CFF00887B6A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		B240900421AEA1FF00887B6A /* DistributeGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributeGoodsViewController.h; sourceTree = "<group>"; };
-		B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributeGoodsViewController.m; sourceTree = "<group>"; };
 		B244862221E5FAFC001015B2 /* MagicNODataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicNODataView.h; sourceTree = "<group>"; };
 		B244862321E5FAFC001015B2 /* MagicNODataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicNODataView.m; sourceTree = "<group>"; };
 		B25F70F021CCB5D9002EFA10 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -335,8 +326,6 @@
 		B272875E21BF92FD0002FE0A /* ZTYAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZTYAlertView.m; sourceTree = "<group>"; };
 		B27585D121A6864800C9943A /* MagicRichTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicRichTool.h; sourceTree = "<group>"; };
 		B27585D221A6864800C9943A /* MagicRichTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicRichTool.m; sourceTree = "<group>"; };
-		B27585D421A68A5500C9943A /* GoodsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
-		B27585D521A68A5500C9943A /* GoodsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		B2A76C2321A7AFFD00AFCC6C /* UserHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserHeadView.h; sourceTree = "<group>"; };
 		B2A76C2421A7AFFD00AFCC6C /* UserHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHeadView.m; sourceTree = "<group>"; };
 		B2D8C54D21A405FA00BBC74F /* MagicCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -754,12 +743,8 @@
 				93CF8E8721A53717004D8111 /* SecondViewController.m */,
 				B2408FF321AE478100887B6A /* DistributeDetailViewController.h */,
 				B2408FF421AE478100887B6A /* DistributeDetailViewController.m */,
-				B240900421AEA1FF00887B6A /* DistributeGoodsViewController.h */,
-				B240900521AEA1FF00887B6A /* DistributeGoodsViewController.m */,
 				B2633AEF21AF7B47001E1490 /* DistributionShareViewController.h */,
 				B2633AF021AF7B47001E1490 /* DistributionShareViewController.m */,
-				B27585D421A68A5500C9943A /* GoodsDetailViewController.h */,
-				B27585D521A68A5500C9943A /* GoodsDetailViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -799,8 +784,6 @@
 		B2059C3E21A6596300F70C07 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B2059C3F21A659A100F70C07 /* MyGoodsTableViewCell.h */,
-				B2059C4021A659A100F70C07 /* MyGoodsTableViewCell.m */,
 				B218A4AA21CB7F9700CFBA19 /* MagicCardTableViewCell.h */,
 				B218A4AB21CB7F9700CFBA19 /* MagicCardTableViewCell.m */,
 				B229A66021A692A900A5B23B /* SalerTableViewCell.h */,
@@ -1242,7 +1225,6 @@
 				936E9FE021A7FF6100CD1A4E /* SecondaryLevelWebViewController.m in Sources */,
 				7D709BB821ADC130004155C0 /* YXIgnoreHeaderTouchAndRecognizeSimultaneousTableView.m in Sources */,
 				B218A4A621CB2BA500CFBA19 /* GoodsInfoView.m in Sources */,
-				B27585D621A68A5500C9943A /* GoodsDetailViewController.m in Sources */,
 				B2E9F3DD21DDF4120008ED10 /* Profit.m in Sources */,
 				936E9FE321A7FF6100CD1A4E /* TestJSObject.m in Sources */,
 				7DB9F88321A59633005D4DD4 /* HomePageTableViewCell.m in Sources */,
@@ -1272,7 +1254,6 @@
 				B22476CC21C9DA9200D08F63 /* DetailMemberView.m in Sources */,
 				B25F710421CCD376002EFA10 /* AboutViewController.m in Sources */,
 				B26292BD21D0802F0001299B /* SmallCardView.m in Sources */,
-				B2059C4121A659A100F70C07 /* MyGoodsTableViewCell.m in Sources */,
 				7DB9F89421A5AB3C005D4DD4 /* TYCyclePagerViewCell.m in Sources */,
 				932DFD8221C105ED0052051B /* PhoneInfo.m in Sources */,
 				7DB9F88021A58DFE005D4DD4 /* ProductDetailViewController.m in Sources */,
@@ -1307,7 +1288,6 @@
 				7DB9F89321A5AB3C005D4DD4 /* TYPageControl.m in Sources */,
 				932DFD7021BFB8D80052051B /* YQDiskCache.m in Sources */,
 				B219820221E7412E005533EF /* CLSlider.m in Sources */,
-				B240900621AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */,
 				B219820421E7412E005533EF /* CLPlayerMaskView.m in Sources */,
 				B2408FF821AE69E100887B6A /* DistributeLevelView.m in Sources */,
 				932DFD7221BFB8D80052051B /* YQCacheManager.m in Sources */,
@@ -1331,7 +1311,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B240900721AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */,
 				B2D8C56A21A405FE00BBC74F /* MagicCubeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1340,7 +1319,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B240900821AEA1FF00887B6A /* DistributeGoodsViewController.m in Sources */,
 				B2D8C57521A405FE00BBC74F /* MagicCubeUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

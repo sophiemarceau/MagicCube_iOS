@@ -373,11 +373,12 @@
 -(UIButton *)sendBtn{
     if (_sendBtn == nil) {
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendBtn.frame = CGRectMake((SCREEN_WIDTH - self.bgView.width) * 0.5, 494, self.bgView.width, 18);
-        _sendBtn.titleLabel.font = UIFontLightOfSize(20);
-        _sendBtn.titleLabel.textColor = [UIColor whiteColor];
+        _sendBtn.frame = CGRectMake((SCREEN_WIDTH - 125) * 0.5, 491, 125, 34);
+        _sendBtn.titleLabel.font = UIFontRegularOfSize(20);
+//        _sendBtn.titleLabel.textColor = RedMagicColor;
+        [_sendBtn setTitleColor:RedMagicColor forState:UIControlStateNormal];
         [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
-        _sendBtn.backgroundColor = [UIColor clearColor];
+        _sendBtn.backgroundColor = BHColorWhite;
         _sendBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_sendBtn addTarget:self
                      action:@selector(gotoSmallProgrammer:) forControlEvents:UIControlEventTouchUpInside];

@@ -86,7 +86,7 @@
             NSDictionary * dataDict = [responseObject objectForKey:@"data"];
             if(dataDict){
                 if ([[dataDict objectForKey:@"pageNum"] integerValue] == pageNum) {
-                    NSString * recordBtnTitle = [NSString stringWithFormat:@"分销记录 (%ld条)",[[dataDict objectForKey:@"total"] integerValue]];
+                    NSString * recordBtnTitle = [NSString stringWithFormat:@"发放记录 (%ld条)",[[dataDict objectForKey:@"total"] integerValue]];
                     [weakSelf.distributeRecordBtn setTitle:recordBtnTitle forState:UIControlStateNormal];
                     
                     NSArray *list = [dataDict objectForKey:@"list"];
@@ -119,7 +119,7 @@
 }
 
 - (void)initdata{
-    self.title = @"分销中心";
+    self.title = @"发放中心";
     self.recordsArray = [NSMutableArray arrayWithCapacity:0];
     self.pageNum = 1;
 }
@@ -148,7 +148,7 @@
     [rootView addSubview:selectBgView];
     top += SCALE_W(30 + 20);
     
-    NSArray * selectTitles = @[@"分销到",@"分销记录"];
+    NSArray * selectTitles = @[@"发放到",@"发放记录"];
     int index = 0;
     for (NSString * selectTitle in selectTitles) {
         UIButton * selectBtn = [self createSelectBtn:CGRectMake(index *SCALE_W(133), 0, SCALE_W(133), SCALE_W(30))];
@@ -250,7 +250,7 @@
     [selectBottomView addSubview:headView];
     
     self.nodataView = [[MagicNODataView alloc] initWithFrame:tableView.frame];
-    [self.nodataView setUpImageName:@"recordnodta" title:@"还没有分销记录，快去分销吧" addShow:NO];
+    [self.nodataView setUpImageName:@"recordnodta" title:@"还没有发放记录，快去发放吧" addShow:NO];
     [selectBottomView addSubview:self.nodataView];
 //    tableView.tableHeaderView = headView;
 }

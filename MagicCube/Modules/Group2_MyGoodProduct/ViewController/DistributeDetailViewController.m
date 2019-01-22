@@ -9,7 +9,6 @@
 #import "DistributeDetailViewController.h"
 #import "GoodsInfoView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "DistributeGoodsViewController.h"
 #import "MagicCardView.h"
 #import "AppDelegate.h"
 #import "WXApi.h"
