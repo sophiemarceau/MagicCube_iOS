@@ -118,6 +118,32 @@
     }];
 }
 
+- (void)requestDelete:(NSString *)sn{
+    NSMutableDictionary * params = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    [params setObject:sn forKey:@"pageSize"];
+    NSString * url = [NSString stringWithFormat:@"%@%@/del",kAppApiDistribution,sn];
+    //    NSLog(@"-----kAppApiDistributionList--->%@",params);
+    NMShowLoadIng;
+    
+    [BTERequestTools requestWithURLString:url parameters:params type:HttpRequestTypeGet success:^(id responseObject) {
+        
+        NMRemovLoadIng;
+        NSLog(@"---kAppApiDistributionList--responseObject--->%@",responseObject);
+        if (IsSucess(responseObject)) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            
+        }
+        NSString *message = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"message"]];
+        [BHToast showMessage:message];
+    } failure:^(NSError *error)  {
+        
+        NMRemovLoadIng;
+        NSLog(@"error-------->%@",error);
+    }];
+}
+
 - (void)initdata{
     self.title = @"发放中心";
     self.recordsArray = [NSMutableArray arrayWithCapacity:0];
@@ -137,6 +163,11 @@
     self.cardView = [[MagicCardView alloc] initWithFrame:CGRectMake(0, SCALE_W(14), SCREEN_WIDTH, SCALE_W(152))];
     [self.cardView setUpDistributeDict:self.goodsdict];
     [rootView addSubview:self.cardView];
+    
+    UIButton * finishBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - SCALE_W(25) - 16, self.cardView.bottom + SCALE_W(11.5), 16, 12)];
+    [finishBtn setImage:[UIImage imageNamed:@"finish"] forState:UIControlStateNormal];
+    [finishBtn addTarget:self action:@selector(finishClick) forControlEvents:UIControlEventTouchUpInside];
+    [rootView addSubview:finishBtn];
     
     top += SCALE_W(168);
     
@@ -314,6 +345,14 @@
     btn.titleLabel.font = UIFontRegularOfSize(14);
     return btn;
 }
+
+// 结束分销
+- (void)finishClick{
+    NSString * sn = [self.goodsdict objectForKey:@"sn"];
+    [self requestDelete:sn];
+}
+
+
 
 /*
 #pragma mark - Navigation

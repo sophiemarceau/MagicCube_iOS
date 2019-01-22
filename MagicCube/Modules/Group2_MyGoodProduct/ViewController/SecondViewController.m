@@ -178,41 +178,41 @@
     [self.navigationController pushViewController:goodsDetail animated:YES];
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete;
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"您确认要结束分销？" message:@"结束分销后押金将在3个工作日内退还到您的原支付账户" preferredStyle:UIAlertControllerStyleAlert];
-        WS(weakSelf)
-        UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"结束分销" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            NSDictionary * goodsDict = weakSelf.goodsArray[indexPath.row];
-            [weakSelf requestDelete:[goodsDict objectForKey:@"sn"] sucess:^{
-                // 1.删除数据
-                [weakSelf.goodsArray removeObject:goodsDict];
-                // 2.更新UITableView UI界面
-                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                if (weakSelf.goodsArray.count == 0) {
-                    self.nodataView.hidden = NO;
-                }else{
-                    self.nodataView.hidden = YES;
-                }
-            }];
-        }];
-        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"继续分销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        [alertVc addAction:cancle];
-        [alertVc addAction:sure];
-        [self presentViewController:alertVc animated:YES completion:nil];
-    }
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除";
-}
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return UITableViewCellEditingStyleDelete;
+//}
+//
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        
+//        UIAlertController * alertVc = [UIAlertController alertControllerWithTitle:@"您确认要结束分销？" message:@"结束分销后押金将在3个工作日内退还到您的原支付账户" preferredStyle:UIAlertControllerStyleAlert];
+//        WS(weakSelf)
+//        UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"结束分销" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//            NSDictionary * goodsDict = weakSelf.goodsArray[indexPath.row];
+//            [weakSelf requestDelete:[goodsDict objectForKey:@"sn"] sucess:^{
+//                // 1.删除数据
+//                [weakSelf.goodsArray removeObject:goodsDict];
+//                // 2.更新UITableView UI界面
+//                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//                if (weakSelf.goodsArray.count == 0) {
+//                    self.nodataView.hidden = NO;
+//                }else{
+//                    self.nodataView.hidden = YES;
+//                }
+//            }];
+//        }];
+//        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"继续分销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//            
+//        }];
+//        [alertVc addAction:cancle];
+//        [alertVc addAction:sure];
+//        [self presentViewController:alertVc animated:YES completion:nil];
+//    }
+//}
+//
+//-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return @"删除";
+//}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NotificationUpdateDistributionList object:nil];

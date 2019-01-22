@@ -373,7 +373,7 @@
 -(UIButton *)sendBtn{
     if (_sendBtn == nil) {
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendBtn.frame = CGRectMake((SCREEN_WIDTH - 125) * 0.5, 491, 125, 34);
+        _sendBtn.frame = CGRectMake((SCREEN_WIDTH - 125) * 0.5, 476, 125, 34);
         _sendBtn.titleLabel.font = UIFontRegularOfSize(20);
 //        _sendBtn.titleLabel.textColor = RedMagicColor;
         [_sendBtn setTitleColor:RedMagicColor forState:UIControlStateNormal];

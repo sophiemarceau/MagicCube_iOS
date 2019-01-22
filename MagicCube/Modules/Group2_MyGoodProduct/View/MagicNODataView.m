@@ -35,6 +35,9 @@
 }
 
 - (void)createUI{
+    
+    self.backgroundColor = [UIColor whiteColor];
+    
     UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 114) * 0.5, SCALE_W(190), 114, 134)];
     imgView.image = [UIImage imageNamed:@"nodata"];
     [self addSubview:imgView];
